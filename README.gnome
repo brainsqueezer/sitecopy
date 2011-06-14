@@ -1,0 +1,129 @@
+#######################################################################
+# XSitecopy - a frontend for sitecopy under X11. Written using GNOME. #
+#                                                                     #
+# (C) 2000. Lee Mallabone. <lee0@callnetuk.com>                       #
+# Distributed under the GNU General public license. See the file      #
+# COPYING for more information.                                       #
+#######################################################################
+
+Description
+===========
+
+XSitecopy is a GNOME-based tool for maintaining remote websites. It detects
+additions, changes, deletion, movement and renames on the local site. It
+does this without requiring a connection to the remote site.
+
+The application can then commit all updates to an FTP or WebDAV server in
+one session. Sitecopy is a command-line tool that carries out the above -
+Xsitecopy is the graphical version that provides some extra features as
+well, such as easy creation of site definitions, at-a-glance tree view of
+file/directory statuses, and on-the-fly editing of site definitions.
+
+Requirements
+============
+
+* Gnome-libs >= 1.0.14.
+* Gtk+ >= 1.2.7.
+* Gnome-xml.
+
+The version numbers are important; there is a bug with gtk+ versions earlier
+than 1.2.7 that affects multi-threaded apps. 
+
+The GnomeDruid was only introduced in version 1.0.14 of the gnome libraries.
+
+Installation
+============
+
+./configure --enable-gnomefe
+make
+make install
+
+Usage
+=====
+
+To run, either type 'xsitecopy' in an xterm, or choose xsitecopy from the 
+GNOME panel menu, under Internet.
+NB:- See the release notes if you've never used (x)sitecopy before.
+
+If you're not sure whether you should be using this program or not, or what
+the core of it actually does, check the README file that comes with the 
+distribution - it should answer most of your questions as to whether you 
+should be using (x)sitecopy or not.
+
+A quick-start guide to XSitecopy
+================================
+
+The main window is divided up as follows:
+At the top is the menu. At the moment, all you can do from the menu is exactly
+the same as from the toolbar. You can use the buttons in this bar to perform
+operations on your website(s). It can also be used to create & delete sites,
+as well as get further help.
+
+The main area below the toolbar is split into 2. On the left is a tree view.
+This shows the title of each site as an entry in the tree.
+If you expand these items, the files that are related to the selected site
+will be shown. Clicking on a file brings up information about that file in
+the right side of the window.
+
+If you click on a site, the details and attributes of that site will be
+displayed in the right hand area.
+
+See the docs from the help menu for more information.
+
+Hacking on Xsitecopy
+====================
+
+First things first... The code to Xsitecopy is not amazingly elegant. It was
+(is) the first big C program I actually wrote. Quite a lot of it has been
+rewritten since its original incarnation, but there are still far too many
+global variables and bits of cruft hanging around. 
+
+If you're looking for more elegant code, try gnocvs.sourceforge.net which is
+a work-in-progress CVS front end. It's been designed from the ground-up to
+be asynchronous and run many many cvs operations at once. I like the code in
+that significantly more than my xsitecopy code. :)
+
+If you do manage to decipher the Xsitecopy source code (some people have!;)
+then please do feel free to send patches, either to the sitecopy mailing
+list, (sitecopy@lyra.org) or to me personally (lee0@callnetuk.com).
+
+A brief guide to the source in the gnome/ directory is given below.
+
+changes.c       - Handles events for editing site details.
+changes.h       - Header
+file_widgets.c  - Displays file information when a file is clicked.
+file_widgets.h  - Header
+gcommon.c       - Implements common functions found in src/frontend.h
+gcommon.h       - Header
+init.c          - Creates the main user interface & about box. Will
+                  parse preferences some time soon, too.
+init.h          - Header
+main.c          - Creates the threads & semaphores, initialises gnome.
+minilist.c      - Creates the widgets, and handles events for, site excludes, 
+                  ASCII files, and `ignores'. 
+minilist.h      - Header
+misc.c          - Backs up info files and/or the rcfile. Loads and saves the
+                  rcfile. Also has error dialog functions - creates the 
+		  opening ``your rcfile is screwed'' dialog, as well as the
+		  dialog for errors with an upload. Creates an animation for
+		  use in the various transfer dialogs.
+misc.h          - Header
+new_site.c      - Code to create and handle events for the site creation druid.
+new_site.h      - Header
+operations.c    - thread code for uploading files. Contains wrappers for
+                  catching up and initialising a site as well as deleting 
+		  sites.
+operations.h    - Header
+resynch.c       - Thread code for fetching a file list.
+resynch.h       - Header
+site_widgets.c  - Creates the user interface for editing sites.
+site_widgets.h  - Header
+tree.c          - Builds the main GtkCTree based on the site & file info of
+                  all_sites.
+tree.h          - Header
+
+
+XSitecopy is *in development*. I am by no means claiming it as crash-proof. 
+If it does crash while you are using it then, please please please email
+me (address above), describing as much of what led to the crash as possible,
+and if you can include a backtrace or patch, that's even better.

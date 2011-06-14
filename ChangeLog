@@ -1,0 +1,725 @@
+------------------------------------------------------------------------
+r1012 | joe | 2006-03-12 10:09:01 +0000 (Sun, 12 Mar 2006) | 1 line
+
+Tag release 0.16.3.
+------------------------------------------------------------------------
+r1010 | joe | 2006-03-12 10:07:42 +0000 (Sun, 12 Mar 2006) | 2 lines
+
+* po/: make update-po.
+
+------------------------------------------------------------------------
+r1008 | joe | 2006-03-12 10:04:06 +0000 (Sun, 12 Mar 2006) | 2 lines
+
+* NEWS: Update.
+
+------------------------------------------------------------------------
+r1007 | joe | 2006-03-12 09:57:51 +0000 (Sun, 12 Mar 2006) | 2 lines
+
+Switch to using neon 0.26.x for externals.
+
+------------------------------------------------------------------------
+r977 | joe | 2006-03-01 19:38:21 +0000 (Wed, 01 Mar 2006) | 7 lines
+
+* configure.in: Support neon 0.26.x.
+
+* src/davdriver.c (init, pfind_results): Adapt for neon 0.26.x API.
+(destroy_private): New function.
+
+* src/sites.c (fetch_checksum_file): Adapt for neon 0.26.x MD5 API.
+
+------------------------------------------------------------------------
+r865 | joe | 2006-02-04 12:36:49 +0000 (Sat, 04 Feb 2006) | 2 lines
+
+* src/console_fe.c (fe_login): Respect the password buffer size.
+
+------------------------------------------------------------------------
+r864 | joe | 2006-02-04 12:16:36 +0000 (Sat, 04 Feb 2006) | 13 lines
+
+Add client certificate support for DAV driver:
+
+* src/sites.h (struct site): Add client_cert member.
+
+* src/rcfile.c (rcfile_read): Parse client-cert option.
+(rcfile_verify): Resolve $HOME-relative client-cert.
+
+* src/davdriver.c (init): Decrypt and configure client-cert.
+
+* src/frontend.h (fe_decrypt_clicert): New function.
+
+* src/console_fe.c (fe_decrypt_clicert): Implement.
+
+------------------------------------------------------------------------
+r863 | joe | 2006-02-04 10:18:08 +0000 (Sat, 04 Feb 2006) | 3 lines
+
+* src/sitestore.c (site_write_stored_state): Use \n rather than EOL
+macro.
+
+------------------------------------------------------------------------
+r862 | joe | 2006-02-04 10:15:52 +0000 (Sat, 04 Feb 2006) | 4 lines
+
+* src/sitestore.c (INVALID_MODE): New macro.
+(start_element): Initialize stored.mode to INVALID_MODE.
+(site_write_stored_state): Only write stored.mode if valid.
+
+------------------------------------------------------------------------
+r861 | joe | 2006-02-04 10:11:28 +0000 (Sat, 04 Feb 2006) | 4 lines
+
+* src/sitestore.c (start_element): Clear truth value.
+(end_element): Fail if no boolean was given.  Set error messages for
+integer overflow in size/modtime parsing.
+
+------------------------------------------------------------------------
+r860 | joe | 2006-02-04 10:06:02 +0000 (Sat, 04 Feb 2006) | 3 lines
+
+* Makefile.in: Update for removal of fileset.c (missed in previous
+commit).
+
+------------------------------------------------------------------------
+r826 | joe | 2006-01-03 20:25:23 +0000 (Tue, 03 Jan 2006) | 4 lines
+
+* src/sitefiles.c (file_insert, file_set, file_set_stored, file_set_local): Move here...
+
+* src/rcfile.c: ...from here; file removed.
+
+------------------------------------------------------------------------
+r793 | joe | 2005-12-30 16:25:48 +0000 (Fri, 30 Dec 2005) | 13 lines
+
+Remove borked abort-safety handling:
+
+* src/console_fe.c (abort_now, abort_handler, init_signals,
+fe_disable_abort, fe_enable_abort, quit_handler): Remove functions.
+
+* src/frontend.h (fe_disable_abort, fe_enable_abort): Remove
+prototypes.
+
+* src/sitesi.h (site_enter, site_leave): Remove macros.
+
+* src/console_fe.c, src/sitefiles.c, src/sites.c, src/fileset.c: All
+callers removed.
+
+------------------------------------------------------------------------
+r792 | joe | 2005-12-30 16:13:23 +0000 (Fri, 30 Dec 2005) | 2 lines
+
+* Makefile.in (HEADERS): Update dependencies.
+
+------------------------------------------------------------------------
+r791 | joe | 2005-12-30 16:12:36 +0000 (Fri, 30 Dec 2005) | 3 lines
+
+* src/sites.h (struct file_state, struct site_file, struct site): Stop
+using bitfields throughout.
+
+------------------------------------------------------------------------
+r790 | joe | 2005-12-30 16:11:47 +0000 (Fri, 30 Dec 2005) | 6 lines
+
+* src/fileset.c (file_set): Move here from fileset.h's macro-based 
+implementation; adjust to take structure offset arguments.
+(file_set_local, file_set_stored): Implement using file_set.
+
+* src/fileset.h: Remove file.
+
+------------------------------------------------------------------------
+r789 | joe | 2005-12-30 16:11:37 +0000 (Fri, 30 Dec 2005) | 6 lines
+
+* src/fileset.c (file_set): Move here from fileset.h's macro-based 
+implementation; adjust to take structure offset arguments.
+(file_set_local, file_set_stored): Implement using file_set.
+
+* src/fileset.h: Remove file.
+
+------------------------------------------------------------------------
+r788 | joe | 2005-12-30 13:32:39 +0000 (Fri, 30 Dec 2005) | 2 lines
+
+* po/: make update-po.
+
+------------------------------------------------------------------------
+r786 | joe | 2005-12-30 13:19:50 +0000 (Fri, 30 Dec 2005) | 1 line
+
+News for 0.16.2.
+------------------------------------------------------------------------
+r785 | joe | 2005-12-30 13:19:29 +0000 (Fri, 30 Dec 2005) | 2 lines
+
+* Makefile.in, configure.in: Remove stale references to NLSINSTALL.
+
+------------------------------------------------------------------------
+r784 | joe | 2005-12-30 13:18:29 +0000 (Fri, 30 Dec 2005) | 3 lines
+
+* src/ftp.c (ftp_put): Retry the STOR command twice if there is a
+timeout reading the response on the PI connection.
+
+------------------------------------------------------------------------
+r783 | joe | 2005-12-30 13:13:23 +0000 (Fri, 30 Dec 2005) | 3 lines
+
+* src/fileset.h (file_set_local/remote): Don't consider a file as a
+"move" or "rename" candidate if its diff is "unchanged".
+
+------------------------------------------------------------------------
+r779 | joe | 2005-12-12 21:21:53 +0000 (Mon, 12 Dec 2005) | 2 lines
+
+Random updates.
+
+------------------------------------------------------------------------
+r778 | joe | 2005-12-12 21:19:06 +0000 (Mon, 12 Dec 2005) | 2 lines
+
+* src/protocol.h (struct proto_file): Remove now-unused depth field.
+
+------------------------------------------------------------------------
+r777 | joe | 2005-12-12 21:17:10 +0000 (Mon, 12 Dec 2005) | 2 lines
+
+* doc/sitecopy.1: Clarify interaction of "permissions dir".
+
+------------------------------------------------------------------------
+r776 | joe | 2005-12-12 21:13:07 +0000 (Mon, 12 Dec 2005) | 8 lines
+
+Fix (and simplify) DAV fetch mode files list ordering:
+
+* src/davdriver.c (struct fetch_context): Add tail field.
+(get_depth): Remove function.
+(insert_file): Just append new files to the tail of the list.
+(pfind_results): Remove depth handling.
+(fetch_list): Initialize tail field.
+
+------------------------------------------------------------------------
+r742 | joe | 2005-10-24 14:09:55 +0100 (Mon, 24 Oct 2005) | 2 lines
+
+* src/lsparser.c (ls_pflist_add): Fix memory leak.
+
+------------------------------------------------------------------------
+r741 | joe | 2005-10-24 14:09:28 +0100 (Mon, 24 Oct 2005) | 3 lines
+
+* src/lsparser.c (ls_parse): Reset after_blank flag after parsing a
+non-blank line.
+
+------------------------------------------------------------------------
+r724 | joe | 2005-09-24 20:01:40 +0100 (Sat, 24 Sep 2005) | 2 lines
+
+* po/: make update-po.
+
+------------------------------------------------------------------------
+r723 | joe | 2005-09-24 20:00:05 +0100 (Sat, 24 Sep 2005) | 2 lines
+
+Update for 0.16.1.
+
+------------------------------------------------------------------------
+r720 | joe | 2005-09-22 01:53:36 +0100 (Thu, 22 Sep 2005) | 4 lines
+
+* src/ftp.c (parse_reply): Unset sess->pisock after closure on 421
+response.  (ftp_open): If authenticate() fails, only close the PI
+connection if it was not already closed.
+
+------------------------------------------------------------------------
+r694 | joe | 2005-09-10 10:23:45 +0100 (Sat, 10 Sep 2005) | 4 lines
+
+* src/lsparser.c (parse_file): Improve error messages.
+
+* src/ftp.c (ftp_fetch): Use error message from ls parser API.
+
+------------------------------------------------------------------------
+r670 | joe | 2005-08-13 17:51:21 +0100 (Sat, 13 Aug 2005) | 6 lines
+
+Spec file cleanup:
+- remove xsitecopy subpackage
+- use find_lang
+- use %%configure
+- general clean up
+
+------------------------------------------------------------------------
+r669 | joe | 2005-08-07 21:48:43 +0100 (Sun, 07 Aug 2005) | 2 lines
+
+Note missing docs.
+
+------------------------------------------------------------------------
+r667 | joe | 2005-08-07 21:36:06 +0100 (Sun, 07 Aug 2005) | 2 lines
+
+* configure.in: Use AC_MSG_NOTICE.
+
+------------------------------------------------------------------------
+r666 | joe | 2005-08-07 21:35:40 +0100 (Sun, 07 Aug 2005) | 2 lines
+
+make update-po
+
+------------------------------------------------------------------------
+r665 | joe | 2005-08-07 21:26:11 +0100 (Sun, 07 Aug 2005) | 2 lines
+
+Reorder.
+
+------------------------------------------------------------------------
+r664 | joe | 2005-08-07 21:25:50 +0100 (Sun, 07 Aug 2005) | 2 lines
+
+Update for 0.16.0.
+
+------------------------------------------------------------------------
+r663 | joe | 2005-08-07 21:25:16 +0100 (Sun, 07 Aug 2005) | 3 lines
+
+* doc/sitecopy.1: Document that exclude applies to --fetch operations
+now too.
+
+------------------------------------------------------------------------
+r662 | joe | 2005-08-07 21:24:29 +0100 (Sun, 07 Aug 2005) | 3 lines
+
+* src/sites.c (site_update): Delete files before creating directories
+so that the "replace a file with a directory" case works.
+
+------------------------------------------------------------------------
+r661 | joe | 2005-07-26 22:20:21 +0100 (Tue, 26 Jul 2005) | 3 lines
+
+* src/sites.c (site_flatlist): Use remote_is_different flag not
+local_is_different.
+
+------------------------------------------------------------------------
+r652 | joe | 2005-07-01 23:45:51 +0100 (Fri, 01 Jul 2005) | 2 lines
+
+* po/de.po: Update from Jens Seidel via Reed.
+
+------------------------------------------------------------------------
+r649 | joe | 2005-06-29 10:44:47 +0100 (Wed, 29 Jun 2005) | 3 lines
+
+* src/sftpdriver.c (sftp_disconnect): Fix build on platforms without
+socketpair() and missing definition of SHUT_RDWR.
+
+------------------------------------------------------------------------
+r647 | joe | 2005-06-28 08:24:30 +0100 (Tue, 28 Jun 2005) | 15 lines
+
+* src/sites.c (fetch_add_file): New function, factored out from
+site_fetch_walk.  (fetch_checksum_file): New function, factored
+out from site_fetch_checksum.
+(site_fetch): Rewrite to recursively fetch remote site state,
+rather than relying on the protocol providing a recursive listing.
+
+* src/davdriver.c (fetch_list): Use a depth-one PROPFIND.
+
+* src/ftp.c (ftp_fetch): Don't request a recursive LIST.
+
+* src/rshdriver.c (run_rcmd): Don't request a recursive ls.
+
+* src/sftpdriver.c (fetch_list): Don't request a recursive ls.
+
+
+------------------------------------------------------------------------
+r646 | joe | 2005-06-28 08:12:20 +0100 (Tue, 28 Jun 2005) | 3 lines
+
+* src/ftp.c (dtp_open_active): Add a missing return-on-error; fail if
+getsockname did not return a port number for the bound data socket.
+
+------------------------------------------------------------------------
+r645 | joe | 2005-06-28 08:10:04 +0100 (Tue, 28 Jun 2005) | 3 lines
+
+* src/sitesi.h, src/sitefiles.c (file_isascii): Constify filename
+argument.
+
+------------------------------------------------------------------------
+r644 | joe | 2005-06-28 08:09:21 +0100 (Tue, 28 Jun 2005) | 2 lines
+
+* configure.in: Move AC_WARN for gnomefe later.
+
+------------------------------------------------------------------------
+r643 | joe | 2005-06-28 07:46:59 +0100 (Tue, 28 Jun 2005) | 2 lines
+
+* src/lsparser.h: Improve documentation.
+
+------------------------------------------------------------------------
+r617 | joe | 2005-05-18 21:30:09 +0100 (Wed, 18 May 2005) | 4 lines
+
+* src/ftp.c (parse_reply): Return FTP_BROKEN for a 421 response, and
+close the PI connection.  Fixes issues with transient "idle timeout"
+logic in some FTP servers.
+
+------------------------------------------------------------------------
+r610 | joe | 2005-05-08 18:49:28 +0100 (Sun, 08 May 2005) | 6 lines
+
+From Chris White:
+
+* gnome/misc.c (quit_please): Fix.
+
+* gnome/minilist.c (remove_minilist_item): Fix.
+
+------------------------------------------------------------------------
+r609 | joe | 2005-05-08 18:46:42 +0100 (Sun, 08 May 2005) | 2 lines
+
+* debian/: Remove per advice from Reed Snellenberger.
+
+------------------------------------------------------------------------
+r603 | joe | 2005-04-24 19:41:55 +0100 (Sun, 24 Apr 2005) | 2 lines
+
+* po/: make update-po.
+
+------------------------------------------------------------------------
+r602 | joe | 2005-04-24 19:39:37 +0100 (Sun, 24 Apr 2005) | 2 lines
+
+Mention Reed's man page tweak.
+
+------------------------------------------------------------------------
+r601 | joe | 2005-04-24 19:37:10 +0100 (Sun, 24 Apr 2005) | 1 line
+
+Prepare for 0.15.1.
+------------------------------------------------------------------------
+r598 | joe | 2005-04-24 19:31:37 +0100 (Sun, 24 Apr 2005) | 3 lines
+
+* src/davdriver.c, src/sites.c, src/ftp.c, src/common.h: Use new
+NE_VERSION_* macros.
+
+------------------------------------------------------------------------
+r597 | joe | 2005-04-24 17:19:28 +0100 (Sun, 24 Apr 2005) | 2 lines
+
+* configure.in: Quieten output.
+
+------------------------------------------------------------------------
+r596 | joe | 2005-04-24 17:18:55 +0100 (Sun, 24 Apr 2005) | 3 lines
+
+* src/ftp.c (send_file_ascii): Fix newline munging to better handle
+partial lines.
+
+------------------------------------------------------------------------
+r595 | joe | 2005-04-24 17:17:35 +0100 (Sun, 24 Apr 2005) | 2 lines
+
+* gnome/: Update Lee's e-mail address.
+
+------------------------------------------------------------------------
+r594 | joe | 2005-04-24 17:10:48 +0100 (Sun, 24 Apr 2005) | 3 lines
+
+* doc/sitecopy.1: Comment on "http secure" (Reed Snellenberger).
+
+
+------------------------------------------------------------------------
+r543 | joe | 2005-04-04 18:36:38 +0100 (Mon, 04 Apr 2005) | 4 lines
+
+* src/davdriver.c (get_server_port): Don't use ne_service_lookup.
+
+* src/ftpdriver.c (get_server_port): Likewise.
+
+------------------------------------------------------------------------
+r528 | joe | 2005-03-19 20:43:21 +0000 (Sat, 19 Mar 2005) | 2 lines
+
+* po/it.po: Update from Cristian Rigamonti.
+
+------------------------------------------------------------------------
+r523 | joe | 2005-03-05 09:38:17 +0000 (Sat, 05 Mar 2005) | 1 line
+
+make update-po
+------------------------------------------------------------------------
+r522 | joe | 2005-03-05 09:36:11 +0000 (Sat, 05 Mar 2005) | 2 lines
+
+* configure.in: Quoting fixes.
+
+------------------------------------------------------------------------
+r521 | joe | 2005-03-05 09:32:33 +0000 (Sat, 05 Mar 2005) | 1 line
+
+Ignore ChangeLog
+------------------------------------------------------------------------
+r520 | joe | 2005-03-05 09:31:06 +0000 (Sat, 05 Mar 2005) | 2 lines
+
+Prepare for 0.15.0.
+
+------------------------------------------------------------------------
+r519 | joe | 2005-03-05 09:30:07 +0000 (Sat, 05 Mar 2005) | 3 lines
+
+* src/rshdriver.c (file_delete, file_chmod, dir_create, dir_remove):
+More quoting half-fixes from Nobuyuki.
+
+------------------------------------------------------------------------
+r513 | joe | 2005-03-01 09:53:14 +0000 (Tue, 01 Mar 2005) | 2 lines
+
+* src/davdriver.c (init): Path-escape the remote root.
+
+------------------------------------------------------------------------
+r491 | joe | 2005-02-26 12:44:53 +0000 (Sat, 26 Feb 2005) | 2 lines
+
+* doc/sitecopy.1: Document tempupload change.
+
+------------------------------------------------------------------------
+r490 | joe | 2005-02-26 12:43:17 +0000 (Sat, 26 Feb 2005) | 3 lines
+
+* src/sites.c (update_files): Apply tempupload mode to new as well as
+changed files.
+
+------------------------------------------------------------------------
+r489 | joe | 2005-02-26 12:40:12 +0000 (Sat, 26 Feb 2005) | 3 lines
+
+* src/ftp.c (run_command): Hide the password in debug output by
+default for a PASS command.
+
+------------------------------------------------------------------------
+r474 | joe | 2005-02-06 21:10:24 +0000 (Sun, 06 Feb 2005) | 1 line
+
+make update-po
+------------------------------------------------------------------------
+r473 | joe | 2005-02-06 21:07:09 +0000 (Sun, 06 Feb 2005) | 2 lines
+
+Add sftpdriver.c, ne_sspi.c.
+
+------------------------------------------------------------------------
+r472 | joe | 2005-02-06 21:05:51 +0000 (Sun, 06 Feb 2005) | 1 line
+
+Remove ne_cookies.c.
+------------------------------------------------------------------------
+r471 | joe | 2005-02-06 21:04:35 +0000 (Sun, 06 Feb 2005) | 3 lines
+
+* src/sites.c (site_flatlist_items): Add "|ignored" after items marked
+as ignored.
+
+------------------------------------------------------------------------
+r470 | joe | 2005-02-06 21:01:51 +0000 (Sun, 06 Feb 2005) | 2 lines
+
+* src/sitefiles.c (fnlist_match): Use const bname.
+
+------------------------------------------------------------------------
+r469 | joe | 2005-02-06 20:57:33 +0000 (Sun, 06 Feb 2005) | 4 lines
+
+* .update-po.sh: Do clean up temp files.
+
+* .release.sh: Generate sitecopy.spec.
+
+------------------------------------------------------------------------
+r468 | joe | 2005-02-06 20:55:06 +0000 (Sun, 06 Feb 2005) | 2 lines
+
+* Makefile.in (clean): Run "clean" in po subdirectory.
+
+------------------------------------------------------------------------
+r447 | joe | 2005-01-24 21:52:53 +0000 (Mon, 24 Jan 2005) | 16 lines
+
+Add new sftp driver from Nobuyuki Tsuchimura:
+
+* configure.in: Add --enable-sftp; enable by default if socketpair()
+or pipe() is available.
+
+* src/rcfile.c (rcfile_read): Allow "protocol sftp".
+(rcfile_verify): Enable sftp driver.
+
+* src/console_fe.c (usage, version): Advertise sftp support.
+
+* src/common.c: Add sftp debug channel.
+
+* src/sftpdriver.c: New file.
+
+* src/sites.h: Define new siteproto_sftp.
+
+------------------------------------------------------------------------
+r423 | joe | 2005-01-08 13:28:31 +0000 (Sat, 08 Jan 2005) | 1 line
+
+Current news.
+------------------------------------------------------------------------
+r422 | joe | 2005-01-08 13:27:48 +0000 (Sat, 08 Jan 2005) | 2 lines
+
+* Makefile.in (ChangeLog): New target.
+
+------------------------------------------------------------------------
+r421 | joe | 2005-01-08 13:22:17 +0000 (Sat, 08 Jan 2005) | 5 lines
+
+* Makefile.in (MANLANGS): Define.
+(install-sitecopy): Install translated man pages too.
+
+* doc/sitecopy.fr.1: New file, contributed by Nicolas Girard.
+
+------------------------------------------------------------------------
+r420 | joe | 2005-01-08 13:20:37 +0000 (Sat, 08 Jan 2005) | 5 lines
+
+* Makefile.in (MANLANGS): Define.
+(install-sitecopy): Install translated man pages too.
+
+* doc/sitecopy.fr.1: New file, contributed by Nicolas Girard.
+
+------------------------------------------------------------------------
+r419 | joe | 2005-01-08 12:57:33 +0000 (Sat, 08 Jan 2005) | 2 lines
+
+* doc/sitecopy.1: Document actual default for symlink handling.
+
+------------------------------------------------------------------------
+r418 | joe | 2005-01-08 12:43:46 +0000 (Sat, 08 Jan 2005) | 2 lines
+
+Note some more bugs and strip email addresses.
+
+------------------------------------------------------------------------
+r417 | joe | 2005-01-08 12:35:16 +0000 (Sat, 08 Jan 2005) | 2 lines
+
+* src/ftp.c (dtp_close): Add discard flag; all callers updated.
+
+------------------------------------------------------------------------
+r412 | joe | 2005-01-06 23:24:33 +0000 (Thu, 06 Jan 2005) | 3 lines
+
+* src/lsparser.c (parse_file): Ignore the line earlier if it is not a
+file or dirctory; don't fail on relative symlinks.
+
+------------------------------------------------------------------------
+r411 | joe | 2005-01-06 23:11:02 +0000 (Thu, 06 Jan 2005) | 4 lines
+
+* src/ftp.c (read_reply): Don't set session error string to reply line
+here.  (run_command, dtp_close, ftp_open): Do it here instead, but
+only in failure cases.b
+
+------------------------------------------------------------------------
+r410 | joe | 2005-01-06 23:09:30 +0000 (Thu, 06 Jan 2005) | 5 lines
+
+* src/lsparser.c (struct ls_context): Add error field.
+(fail): New function.
+(ls_parse): Use it to store error context.
+(ls_geterror): New function.
+
+------------------------------------------------------------------------
+r409 | joe | 2005-01-06 22:59:29 +0000 (Thu, 06 Jan 2005) | 4 lines
+
+* src/ftp.c (ftp_fetch): Simplify and tidy up error handling; set
+session error string on ls_parse errors, 
+(set_sockerr): Print a debug message.
+
+------------------------------------------------------------------------
+r406 | joe | 2005-01-03 11:47:55 +0000 (Mon, 03 Jan 2005) | 2 lines
+
+* doc/sitecopy.1: Document "permissions dir".
+
+------------------------------------------------------------------------
+r405 | joe | 2005-01-03 11:43:59 +0000 (Mon, 03 Jan 2005) | 2 lines
+
+Update copyright notices.
+
+------------------------------------------------------------------------
+r404 | joe | 2005-01-03 11:41:14 +0000 (Mon, 03 Jan 2005) | 1 line
+
+Fix typo.
+------------------------------------------------------------------------
+r403 | joe | 2005-01-03 11:38:50 +0000 (Mon, 03 Jan 2005) | 1 line
+
+Changes since 0.14.2.
+------------------------------------------------------------------------
+r402 | joe | 2005-01-03 11:37:54 +0000 (Mon, 03 Jan 2005) | 3 lines
+
+* src/lsparser.c (parse_directory): Avoid a strlen call.
+(parse_file): Reject relative filenames.
+
+------------------------------------------------------------------------
+r401 | joe | 2005-01-03 11:18:24 +0000 (Mon, 03 Jan 2005) | 2 lines
+
+* src/rshdriver.c (run_rcmd): Use ne_vsnprintf.
+
+------------------------------------------------------------------------
+r400 | joe | 2005-01-03 10:52:43 +0000 (Mon, 03 Jan 2005) | 2 lines
+
+This is sh not make.
+
+------------------------------------------------------------------------
+r399 | joe | 2005-01-03 10:51:26 +0000 (Mon, 03 Jan 2005) | 2 lines
+
+* .update-po.sh: Avoid recursive make invocations.
+
+------------------------------------------------------------------------
+r398 | joe | 2005-01-03 10:45:53 +0000 (Mon, 03 Jan 2005) | 2 lines
+
+* .update-po.sh: Define DOMAIN in the Makefile.
+
+------------------------------------------------------------------------
+r397 | joe | 2005-01-03 10:41:15 +0000 (Mon, 03 Jan 2005) | 1 line
+
+Fix typo.
+------------------------------------------------------------------------
+r396 | joe | 2005-01-03 10:39:49 +0000 (Mon, 03 Jan 2005) | 2 lines
+
+* .update-po.sh: Another attempt at working po/Makefile.in.in-munging.
+
+------------------------------------------------------------------------
+r395 | joe | 2005-01-03 10:33:28 +0000 (Mon, 03 Jan 2005) | 2 lines
+
+* .release.sh: Really run .update-po.sh.
+
+------------------------------------------------------------------------
+r394 | joe | 2005-01-03 10:31:50 +0000 (Mon, 03 Jan 2005) | 4 lines
+
+* .release.sh: Update to run .update-po.sh.
+
+* .update-po.sh: Update for current gettext Makefile.in.in.
+
+------------------------------------------------------------------------
+r393 | joe | 2005-01-03 10:27:39 +0000 (Mon, 03 Jan 2005) | 1 line
+
+* po/: make update-po
+------------------------------------------------------------------------
+r392 | joe | 2005-01-03 10:16:14 +0000 (Mon, 03 Jan 2005) | 3 lines
+
+* src/frontend.h (fe_status): Remove trailing comma from enum, fix
+Tru64 cc warning.
+
+------------------------------------------------------------------------
+r391 | joe | 2005-01-03 10:14:49 +0000 (Mon, 03 Jan 2005) | 2 lines
+
+* src/ftp.c: Misc style and comment tweaks; no functional change.
+
+------------------------------------------------------------------------
+r390 | joe | 2005-01-03 10:13:26 +0000 (Mon, 03 Jan 2005) | 2 lines
+
+* src/rshdriver.c (run_rcmd): Use ne_attribute.
+
+------------------------------------------------------------------------
+r388 | joe | 2005-01-02 19:12:02 +0000 (Sun, 02 Jan 2005) | 2 lines
+
+Remove two fixed bugs.
+
+------------------------------------------------------------------------
+r387 | joe | 2005-01-02 19:00:26 +0000 (Sun, 02 Jan 2005) | 2 lines
+
+* Makefile.in: Update dependencies.
+
+------------------------------------------------------------------------
+r386 | joe | 2005-01-02 15:00:39 +0000 (Sun, 02 Jan 2005) | 1 line
+
+Rename ChangeLog to ChangeLog.CVS.
+------------------------------------------------------------------------
+r385 | joe | 2005-01-02 15:00:33 +0000 (Sun, 02 Jan 2005) | 1 line
+
+Rename ChangeLog to ChangeLog.CVS.
+------------------------------------------------------------------------
+r384 | joe | 2005-01-02 13:25:17 +0000 (Sun, 02 Jan 2005) | 4 lines
+
+* po/POTFILES.in: Update to current list of sources.
+
+* po/: Run update-po.
+
+------------------------------------------------------------------------
+r383 | joe | 2005-01-02 13:19:27 +0000 (Sun, 02 Jan 2005) | 3 lines
+
+* configure.in: Pass two arguments to NEON_XML_PARSER to support VPATH
+expat builds correctly.  Create lib/expat/* directories likewise.
+
+------------------------------------------------------------------------
+r381 | joe | 2005-01-02 13:17:20 +0000 (Sun, 02 Jan 2005) | 2 lines
+
+* Makefile.in: Fix lack of trailing slashes after $(EXPATDIR).
+
+------------------------------------------------------------------------
+r380 | joe | 2005-01-02 13:01:23 +0000 (Sun, 02 Jan 2005) | 2 lines
+
+Bring in lib/expat from cadaver/trunk/lib/expat.
+
+------------------------------------------------------------------------
+r379 | joe | 2005-01-02 13:00:34 +0000 (Sun, 02 Jan 2005) | 2 lines
+
+Update copyright to 2005.
+
+------------------------------------------------------------------------
+r378 | joe | 2005-01-02 13:00:04 +0000 (Sun, 02 Jan 2005) | 3 lines
+
+* src/sites.c (site_fetch_csum_read): Use correct return type for both
+neon 0.24 and 0.25.
+
+------------------------------------------------------------------------
+r377 | joe | 2005-01-02 12:59:15 +0000 (Sun, 02 Jan 2005) | 8 lines
+
+* Makefile.in: Adjust to use lib/neon for bundled neon, $(EXPATDIR)
+for bundled expat
+
+* configure.in: Update for new expat and neon locations.  Use
+AC_MSG_NOTICE.
+
+* autogen.sh: Look for neon macros in m4/neon.
+
+------------------------------------------------------------------------
+r376 | joe | 2005-01-02 12:39:38 +0000 (Sun, 02 Jan 2005) | 3 lines
+
+Set svn:externals to pull in neon/src, neon/macros.  Set
+svn:ignore from .cvsignores.
+
+------------------------------------------------------------------------
+r375 | joe | 2005-01-02 12:35:31 +0000 (Sun, 02 Jan 2005) | 1 line
+
+Import sitecopy CVS HEAD.
+------------------------------------------------------------------------
+r374 | joe | 2005-01-02 12:31:43 +0000 (Sun, 02 Jan 2005) | 1 line
+
+Create sitecopy tree.
+------------------------------------------------------------------------

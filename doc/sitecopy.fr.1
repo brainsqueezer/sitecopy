@@ -1,0 +1,828 @@
+.\" Copyright 1999-2001 Joe Orton
+.\" Relecture Gérard Delafond
+.TH sitecopy 1 "June 2001" sitecopy "User Manuals"
+.SH NOM
+sitecopy \- Maintient à jour des copies distantes de sites web
+.SH SYNOPSIS
+.B sitecopy [options] [mode opératoire] 
+.I nomdusite
+.B ...
+.SH DESCRIPTION
+.I sitecopy
+sert à copier des sites web stockés localement vers des serveurs web
+distants. Une simple commande va mettre à jour sur le serveur les
+fichiers modifiés localement, et supprimer du serveur les fichiers
+supprimés localement, maintenant ainsi le site distant à jour avec le
+site local. L'objectif est de supprimer l'étape très pénible de mise à
+jour et de suppression de fichiers individuels avec un client FTP.
+\fBsitecopy\fP peut également repérer les fichiers que vous avez
+déplacés localement pour les déplacer sur le site distant.
+
+FTP, WebDAV et autres serveurs de publication basés sur HTTP (comme
+par exemple AOLserver et Netscape Enterprise) sont également gérés.
+
+.SH POUR COMMENCER
+
+Cette section explique comment mettre en place la maintenance d'un
+site web à l'aide de \fBsitecopy\fP. Après avoir présenté les
+rudiments, on examinera deux situations\ : d'abord celle où vous avez
+déjà placé votre site sur le serveur distant, puis celle où vous ne
+l'avez pas encore fait.
+
+.SS Rudiments
+
+Si vous ne l'avez pas déjà fait, il vous faut créer un fichier de
+configuration qui contiendra les informations relatives aux sites que
+vous désirer administrer. Vous devez également créer un répertoire
+dans lequel \fBsitecopy\fP stockera l'état des fichiers de chacun
+des sites distants. Le fichier de configuration ainsi que le
+répertoire de stockage de l'état des fichiers doivent n'être
+accessibles que par vous-même -- sans quoi \fBsitecopy\fP refusera de
+démarrer. Pour créer le répertoire de stockage avec les permissions
+adéquates, utilisez la commande
+.br
+.B "	mkdir -m 700 .sitecopy"
+.br
+depuis votre répertoire personnel. Pour créer le fichier de
+configuration, utilisez les commandes
+.br
+.B "	touch .sitecopyrc"
+.br
+.B "	chmod 600 .sitecopyrc"
+.br
+depuis votre répertoire personnel. Ceci fait, éditez le fichier de
+configuration pour ajouter les détails relatifs à votre site comme
+indiqué à la section CONFIGURATION.
+
+.SS Si le site distant existe déjà
+
+Si vous aviez déjà placé votre site sur le serveur distant,
+assurez-vous que vos fichiers locaux soient synchronisés avec les
+fichiers distants. Ensuite, lancez
+.br
+.B "	sitecopy --catchup nomdusite"
+.br
+où nomdusite est le nom du site que vous avez indiqué après le mot-clé
+.B site
+dans le fichier de configuration.
+
+Si vous n'avez pas de copie locale du site distant, vous pouvez
+utiliser le
+.B mode récupération
+pour découvrir le contenu du site distant, et le
+.B mode synchronisation
+pour le télécharger. Le mode récupération marche bien avec les
+serveurs WebDAV, et peut marcher avec les serveurs FTP. Tapez
+.br
+.B "	sitecopy --fetch nomdusite"
+.br
+pour récupérer les informations sur les fichiers du site\ ; en cas de
+succès, tapez
+.br
+.B "	sitecopy --synch nomdusite"
+.br
+pour télécharger une copie locale. N'effectuez PAS ces opérations si
+vous avez déjà une copie locale de votre site.
+
+.SS Si le site distant n'existe pas encore
+
+Assurez-vous que l'administrateur ait bien créé la racine du site
+distant. Tapez
+.br
+.B "	sitecopy --init nomdusite"
+.br
+où nomdusite est le nom du site que vous avez indiqué après le mot-clé
+.B site
+dans le fichier de configuration.
+
+.SS Maintenance du site
+
+Après avoir mis en place le site comme décrit dans une des deux
+sections ci-dessus, vous pouvez commencer à éditer vos fichiers locaux
+normalement. Lorsque vous en avez fini avec un ensemble de
+changements, et que vous voulez mettre à jour la copie distante de
+votre site, tapez
+.br
+.B "	sitecopy --update nomdusite"
+.br
+et tous les fichiers modifiés seront remontés sur serveur. Tout
+fichier localement supprimé sera également suppprimé sur le serveur, à
+moins que l'option
+.B nodelete 
+n'ait été spécifiée dans le fichier de configuration. Si vous déplacez
+un ou plusieurs fichiers entre deux répertoires, leurs copies
+distantes seront supprimées du serveur, puis remontées à nouveau, à
+moins que l'option
+.B checkmoved
+n'ait été spécifiée dans le fichier de configuration.
+
+À tout moment, si vous désirez voir la liste des changements effectués
+au site local depuis la dernière mise à jour, pour pouvez lancer
+.br
+.B "	sitecopy nomdusite"
+.br
+qui affichera la liste des différences.
+
+.SS Problèmes de synchronisation
+
+Dans certaines circonstances, les fichiers qui constituent réellement
+le site distant diffèrent de ce que \fBsitecopy\fP
+.I pense
+qu'il y a sur
+le site. Cela peut arriver, par exemple, si la connexion au serveur
+est interrompue durant une mise à jour. Dans cette situation, vous
+devriez utiliser le
+.B mode récupération
+pour retrouver du serveur distant la liste des fichier qui constitue
+le site.
+
+.SH INVOCATION
+
+Pour une opération normale, spécifiez un
+.I simple
+mode opératoire, suivi par les options que vous avez choisies, puis un
+ou plusieurs nom de sites. Par exemple,
+.br
+.B "	sitecopy --update --quiet siteprincipal autresite"
+.br
+mettra à jour silencieusement les sites appelés «\ siteprincipal\ »
+et «\ autresite\ ».
+
+.SH MODES OPÉRATOIRES
+.IP "-l, --list"
+.B Mode Liste
+\- produit une liste de toutes les différences entre les fichiers
+locaux et leur copie distante pour les sites spécifiés.
+.IP "-ll, --flatlist"
+.B Mode Liste plate
+\- similaire au mode liste, mais la sortie produite convient à une
+analyse ultérieure par un script externe ou un programme. Le script
+AWK fourni,
+.B changes.awk.
+produit par exemple une page HTML depuis une sortie produite par ce mode.
+.IP "-u, --update"
+.B Mode Mise à jour
+\- Met à jour la copie distante des sites spécifiés.
+.IP "-f, --fetch"
+.B Mode Récupération
+\- Récupère la liste des fichiers du serveur distant. Notez qu'en FTP
+le support de ce mode est limité -- le serveur doit accepter la commande
+.B MDTM
+, et utiliser un programme «\ ls\ » de type Unix comme implémentation de
+la commande LIST.
+.IP "-s, --synchronize"
+.B Mode Synchronisation
+\- Met à jour la copie
+.I locale
+du site à partir de la copie distante.
+.B AVERTISSEMENT\ :
+Ce mode écrase les fichiers locaux. À utiliser avec précaution.
+.IP "-i, --initialize"
+.B Mode Initialisation
+\- initialise les sites spécifiés, \fBsitecopy\fP pensant alors qu'il
+n'y a AUCUN fichier sur le serveur distant. 
+.IP "\-c, \-\-catchup"
+.B Mode Rendre identique
+\- amène \fBsitecopy\fP à penser que les copies locale et distante du
+site sont identiques.
+.IP "-v, --view"
+.B Mode Voir configuration
+\- Affiche toutes les définitions de sites du fichier de configuration.
+.IP "-h, --help"
+Affiche un message d'aide.
+.IP "-V, --version"
+Affiche le numéro de version.
+.SH OPTIONS
+.IP "-y, --prompting"
+Valable seulement pour le
+.B Mode Mise à jour
+, demande à l'utilisateur de confirmer chaque mise à jour (i.e.,
+création d'un répertoire, remontée d'un fichier sur le site distant, etc.).
+.IP "-r FICHIER, --rcfile=FICHIER"
+Spécifie un fichier de configuration alternatif pour l'exécution en cours.
+.IP "-p RÉPERTOIRE, --storepath=RÉPERTOIRE"
+Spécifie un chemin d'accès alternatif au répertoire contenant les
+informations sur les fichiers du site distant, pour l'exécution en cours.
+.IP "-q, --quiet"
+Sortie discrète - n'affiche que le nom du fichier pour chaque mise
+à jour effectuée.
+.IP "-qq, --silent"
+Sortie silencieuse - n'affiche aucune information lors des mises à jour.
+.IP "-o, --show-progress"
+Valable seulement pour le
+.B Mode Mise à jour
+, affiche la progression (sous forme de pourcentage effectué) du
+transfert de données.
+.IP "-k, --keep-going"
+Passe outre les erreurs en
+.B Mode Mise à jour
+ou en
+.B Mode Synchronisation
+
+.IP "-a, --allsites"
+Exécute l'opération donnée pour tous les sites - valable pour tous les
+modes, sauf le
+.B Mode Voir configuration
+, pour lequel cette option est sans effet.
+.IP "-d MASQUE, --debug=CLÉ[,CLÉ...]"
+Affiche des informations de débogage. Vous devez donner une liste de
+mots-clés séparés par une virgule. Chaque mot-clé peut être, au choix\ :
+.br
+  socket    Manipulation des sockets
+.br
+  files     Manipulation des fichiers
+.br
+  rcfile    Analyseur du fichier de configuration
+.br
+  http      Pilote HTTP
+.br
+  httpbody  Affiche le corps des réponses HTTP
+.br
+  ftp       Pilote FTP
+.br
+  xml       Informations d'analyse syntaxique XML
+.br
+  xmlparse  Informations d'analyse syntaxique XML de bas niveau
+.br
+  httpauth  Informations d'authentification HTTP
+.br
+  cleartext Affiche les mots de passe en clair
+
+Les mots de passe seront masqués dans l'affichage de débogage, à
+moins que le mot-clé cleartext ne soit utilisé. Un exemple de
+l'utilisation des informations de débogage est de déboguer le mode
+récupération FTP\ :
+
+.br
+.B "	sitecopy --debug=ftp,socket --fetch nomdusite"
+.br
+
+.SH CONCEPTS
+L'
+.B état stocké
+d'un site est un instantané de l'état du site, conservé dans le
+répertoire de stockage (~/.sitecopy/). Le
+.B fichier de stockage
+sert à conserver cet état entre deux invocations du programme. En mode
+mise à jour, \fBsitecopy\fP construit une
+.B liste de fichiers
+pour chaque site en parcourant le répertoire local, prend connaissance
+de l'état stocké et, en comparant les deux, détermine quels fichiers
+ont changé, lesquels ont été déplacés, et ainsi de suite.
+
+.SH CONFIGURATION
+
+La configuration est assurée par le fichier de configuration (fc). Ce
+fichier contient une ou plusieurs définitions de sites. Un nom unique
+est attribué à chaque définition de site\ ; c'est par ce nom qu'on se
+réfère à un site en ligne de commande.
+.PP
+Chaque définition de site contient les détails du serveur sur lequel
+est stocké le site, la manière dont on peut accéder à ce serveur,
+l'emplacement local et distant du site, ainsi que des options pour ce
+site si nécessaire.
+
+.SS Définition d'un site
+
+La définition d'un site est constituée d'une série de lignes\ :
+
+
+.BR "site " nom-du-site
+.br
+.BR "   server " nom-du-serveur
+.br
+.BR "   remote " répertoire-racine-distant
+.br
+.BR "   local " répertoire-racine-local
+.br
+.br
+ [ 
+.BR port " numéro-de-port ]"
+.br
+ [ 
+.BR username " utilisateur ]"
+.br
+ [
+.BR password " mot-de-passse ]"
+ [
+.BR "proxy-server " nom-du-proxy
+.br
+.BR "   proxy-port " "numero-port-proxy ]"
+ [ 
+.BR "url " "URL-du-site ]"
+.br
+ [ 
+.BR "protocol " "{ ftp | webdav } ]"
+.br
+ [ 
+.BR ftp " nopasv ]"
+.br
+ [
+.BR ftp " showquit ]"
+.br
+ [ 
+.BR ftp " { usecwd | nousecwd } ]"
+.br
+ [ 
+.BR http " expect ]"
+.br
+ [ 
+.BR http " secure ]"
+ [ 
+.BR safe " ]"
+.br
+ [ 
+.BR "state " "{ checksum | timesize } ]"
+ [ 
+.BR permissions " { ignore | exec | all } ]"
+ [ 
+.BR symlinks " { ignore | follow | maintain } ]"
+ [ 
+.BR nodelete " ]"
+ [ 
+.BR nooverwrite " ]"
+ [ 
+.BR checkmoved " [renames] ]"
+ [
+.BR tempupload " ]"
+ [ 
+.BR exclude " motif ]..."
+ [ 
+.BR ignore " motif ]..."
+ [ 
+.BR ascii " motif ]..."
+
+Tout ce qui suit le caractère # sur une ligne est considéré comme un
+commentaire et est ignoré.
+Les valeurs peuvent être entourées par des guillemets, et les
+caractères peuvent être échappés par une contre-oblique (\\).
+Par exemple, pour utiliser le motif d'
+.B exclusion
+*#, utilisez la ligne suivante:
+.br
+.BR "	exclude " """*#"""
+
+.SS Options pour le serveur distant
+La clé
+.B server
+est utilisée pour spécifier le serveur distant sur lequel est stocké
+le site distant. Cela peut être un nom DNS ou une adresse IP. La
+connexion au serveur se fera sur le port par défaut pour le protocole
+utilisé, ou bien par le numéro indiqué par le mot-clé
+.B port.
+\fBsitecopy\fP gère les protocoles WebDAV ou FTP -- le mot-clé
+.B protocol
+spécifie lequel utiliser, en prenant comme valeur
+.B webdav
+ou 
+.B ftp
+respectivement. Le protocole par défaut est FTP.
+
+Les mots-clés
+.B proxy-server
+et
+.B proxy-port
+peuvent être utilisés pour spécifier un serveur de proxy. Les serveurs
+de proxy ne sont gérés qu'avec le protocole webDAV.
+
+Si le serveur FTP ne gère pas le mode passif (PASV), utilisez l'option
+.B ftp nopasv.
+Pour afficher le message retourné par le serveur à la fermeture de la
+connexion, utilisez l'option
+.B ftp showquit.
+Si le serveur ne permet la remontée des fichiers que dans le
+répertoire courant, utilisez le mot-clé
+.B ftp usecwd
+(un symptôme possible est le message\ : "overwrite permission
+denied"). 
+Notez que le répertoire racine distant (mot-clé 
+.B remote\fP)
+doit être un chemin absolu (qui commence par '/'), sans quoi
+.B usecwd
+sera ignoré.
+
+Si le serveur WebDAV utilise correctement le message d'attente
+100-continue, comme par exemple Apache version 1.3.9 et supérieure,
+utilisez le mot-clé 
+.B http expect.
+Cela peut économiser de la bande passante ainsi que réduire le temps
+nécessaire à une mise à jour.
+
+Pour authentifier l'utilisateur sur le serveur, utilisez les mots-clés 
+.B username
+et 
+.B password. 
+Si le mot de passe n'est pas spécifié, il sera recherché dans le fichier
+.B ~/.netrc
+s'il existe. Voyez ftp(1) pour la syntaxe de ce fichier. 
+
+Pour le protocole WebDAV, l'authentification basique et par condensé
+(digest authentication) sont gérées. Notez que vous ne devriez pas
+utiliser l'authentification basique, à moins que vous ne considériez la
+connexion au serveur comme digne de confiance.
+
+Vous pouvez spécifier l'URL complète pour accéder au site
+avec le mot-clé
+.B url.
+Elle n'est utilisée qu'en mode liste plate, afin qu'elle puisse
+figurer dans les pages«\ Changements récents\ ». L'URL ne doit
+.I pas
+se terminer par une barre oblique (/)\ ; un exemple valide est 
+.br
+.BR "	url " http://www.site.com/monsite
+
+Si vous spécifiez l'option
+.B tempupload,
+les fichiers modifiés sont transmis au serveur distant avec un
+préfixe «\ .in.\ », puis renommés (par déplacement) en leur nom d'origine
+une fois remontés complètement. 
+
+.SS État des fichiers
+
+L'état d'un fichier est conservé dans le fichier de stockage associé
+(dans ~/.sitecopy/*), et sert à déterminer quand le fichier a été
+modifié. Il y a deux méthodes possibles, qui peuvent être choisies via
+le mot-clé 
+.B state
+, avec comme paramètre 
+.B timesize
+(par défaut), ou
+.B checksum.
+
+.B timesize
+utilise la date de dernière modification et la taille du fichier
+pour détecter s'il a changé.
+.B checksum
+utilise une somme de contrôle MD5 pour détecter toute modification
+dans le contenu du fichier.
+
+Notez que calculer une somme de contrôle implique de lire le contenu
+entier du fichier\ ; et est plus lent que d'utiliser simplement la date
+de dernière modification et la taille. Cela peut être utile par
+exemple si vous utilisez un système de gestion de versions qui change
+la date de dernière modification des fichiers à chaque extraction
+d'une copie de travail («\ checkout\ »), alors que le contenu des fichiers
+n'est en réalité pas modifié.
+
+
+.SS Mode Sécurisé
+
+Vous pouvez passer en 
+.B Mode Sécurisé
+grâce au mot-clé 
+
+.B safe.
+Dans ce mode, chaque fois qu'un fichier est remonté sur le serveur, la
+date de modification du fichier
+.B telle qu'elle apparaît sur le serveur
+est conservée. Par la suite, lorsque le fichier a été changé
+localement et doit être à nouveau remonté sur le serveur, la date de
+modification actuellement conservée côté serveur est récupérée puis
+comparée avec la date locale. En cas de différence, cela signifie que
+la copie sur le serveur a été changée par une tierce partie\ ; un
+message d'avertissement est produit, et votre copie locale n'écrasera
+pas la copie distante, prévenant ainsi la suppression de toute
+modification.
+
+Le mode sécurisé peut être utilisé avec des serveurs FTP ou WebDAV,
+mais si Apache/mod_dav est utilisé, il faut une version de mod_dav au
+moins égale à 0.9.11.
+
+
+.B Note
+Le mode sécurisé ne peut être utilisé conjointement avec l'option
+.B nooverwrite
+(voir plus bas).
+
+.SS Emplacements de stockage des fichiers du site
+
+Le mot-clé 
+.B remote
+spécifie le répertoire racine de la copie distante du site. Vous
+pouvez le donner sous la forme d'un chemin absolu, comme\ :
+.br
+.BR "	remote " /www/monsite/
+.br
+
+Si vous utilisez le protocole FTP, vous pouvez également spécifier le
+répertoire sous la forme d'un chemin relatif au répertoire de
+connexion\ ; il doit être dans ce cas préfixé par «\ ~/\ », comme par
+exemple\ :
+.br
+.BR "	remote " ~/public_html/
+.PP
+Le mot-clé
+.B local
+spécifie le répertoire qui sert localement de stockage aux fichiers du
+site. Cela peut être un chemin absolu ou relatif à votre
+répertoire personnel (donné par la variable d'environnement $HOME),
+encore une fois en usant du préfixe «\ ~/\ ».
+.br
+.BR "	local " "~/html/lesite/"
+.br
+.BR "	local " "/home/fred/html/lesite/"
+.br
+sont équivalents, si $HOME est fixé à «\ /home/fred\ ».
+
+Pour les deux mots-clés local et remote, le chemin spécifié peut se
+terminer par une barre oblique, mais ça n'est pas obligatoire.
+
+.SS Traitement des permissions des fichiers
+Le traitement des permissions des fichiers est contrôlé par le mot-clé
+.B permissions
+, qui peut prendre une de ces trois valeurs\ :
+.TP 
+.B ignore
+pour ignorer complètement les permissions des fichiers,
+.TP
+.B exec
+pour propager les permissions des fichiers exécutables uniquement,
+.TP
+.B all
+pour propager les permissions de tous les fichiers.
+.PP
+Vous pouvez utiliser ce mot-clé par exemple pour vous assurer que les
+permissions de vos scripts CGI soient correctes. Cette option est pour
+le moment ignorée des serveurs WebDAV. Avec les serveurs FTP, un
+.B chmod
+est exécuté côté serveur pour modifier les permissions.
+
+.SS Traitement des liens symboliques
+
+Les liens symboliques trouvés sur le site local peuvent être au choix
+ignorés, suivis ou maintenus. En mode «\ follow\ », le fichier
+référencé par un lien symbolique sera remonté à l'emplacement
+du lien sur le site distant. En mode «\ maintain\ », le lien sera aussi
+créé sur le site distant (voir ci-dessous). Le mode utilisé pour
+chaque site est spécifié par le mot-clé
+.B symlinks
+, qui peut prendre la valeur
+.B ignore,
+.B follow
+ou
+.B maintain.
+
+Le mode par défaut est
+.B ignore,
+i.e. les liens symboliques trouvés sur la copie locale du site sont ignorés.
+
+.SS Maintenance des liens symboliques
+
+Ce mode est n'actuellement supporté que par les serveurs WebDAV
+implémentant WebDAV Advanced Collections, qui est en cours de
+développement. Dans ce mode, la cible du lien sur le serveur est
+littéralement copié à partir de la cible du lien symbolique. Astuce\ :
+vous pouvez utiliser des URL si vous le désirez\ :
+.br
+.B "	ln -s" """http://www.quelquepart.org/""" quelquepart
+
+De cette façon , un ordre "302 Redirect" peut être facilement mis en
+place depuis le client, sans altérer la configuration du serveur.
+
+.SS Suppression et déplacememnt des fichiers distants
+Vous pouvez utiliser l'option 
+.B nodelete
+pour empêcher les fichiers distants d'être jamais supprimés. Cela peut
+être utile si vous conservez de grosses quantités de données sur le
+serveur, dont vous ne voudriez pas pour autant conserver de copie
+locale.
+
+Si votre serveur ne permet pas l'écrasement de fichiers existants par
+ceux que vous remontez, utilisez l'option
+.B nooverwrite.
+Dans ce cas, avant de remonter un fichier, \fBsitecopy\fP supprimera
+au préalable la copie distante.
+
+Si vous utilisez l'option
+.B checkmoved,
+\fBsitecopy\fP cherchera si des fichiers ont été déplacés
+localement. Si c'est le cas, lors de la mise à jour du site, ces
+fichiers seront aussi déplacés sur le site distant.
+
+Avec l'option
+.B checkmoved renames,
+\fBsitecopy\fP cherchera si des fichiers ont été localement déplacés
+ou renommés. Cette option n'est utilisable qu'en conjonction avec l'option
+.B state checksum.
+
+.B AVERTISSEMENT
+
+Si vous n'utilisez pas de somme de contrôle MD5 pour déterminer l'état
+des fichiers (i.e. avec l'option
+.B state checksum
+) N'UTILISEZ PAS non plus l'option 
+.B checkmoved
+si vous avez tendance à mettre dans des répertoires différents des
+fichiers de même nom, taille et date de modification. Le risque
+d'écrasement est improbable, mais ne dites pas que vous n'aviez pas
+été prévenu.
+
+.SS Exclure des fichiers
+
+Certains fichiers peuvent être ignorés de \fBsitecopy\fP par l'emploi
+du mot-clé
+.B exclude,
+qui accepte des motifs d'expressions rationnelles à la manière du
+shell. Par exemple, utilisez
+.br
+.BR "	exclude " "*.bak"
+.br
+.BR "	exclude " *~
+.br
+.BR "	exclude " """#*#"""
+.br
+pour exclure tous les fichiers qui portent l'extension .bak, se
+terminent par un tilde (~) ou qui commencent et se terminent par un
+dièse. N'oubliez pas d'échapper ou d'entourer de guillemets le motif
+s'il inclut un dièse !
+
+Pour exclure des fichiers d'un répertoire particulier, préfixez
+simplement le motif par le nom du répertoire -- en commençant par une
+barre oblique. Par exemple,
+.br
+.BR "	exclude " "/docs/*.m4"
+.br
+.BR "	exclude " "/files/*.gz"
+.br
+excluera tous les fichiers à l'extension .m4 dans le sous-répertoire 
+«\ docs\ », et tous les fichiers à l'extension .gz dans le sous-répertoire
+«\ files\ ».
+
+Un répertoire entier peut également être exclu -- en omettant la barre
+oblique à la fin du nom du répertoire. Par exemple,
+.br
+.BR "	exclude " "/quelque/part"
+.br
+.BR "	exclude " "/autre/part"
+.br
+excluera les sous-répertoires du site «\ quelque/part\ » et «\ autre/part\ ».
+
+Les motifs d'exclusion sont examinés lorsque \fBsitecopy\fP parcourt
+le répertoire local. Un fichier qui correspond à n'importe lequel
+des motifs ne sera pas ajouté à la liste des fichiers. Cela signifie
+qu'un fichier déjà remonté sur le serveur qui correspond à un motif
+d'exclusion sera supprimé du serveur.
+
+.SS Ignorer les changements des fichiers locaux
+
+Utilisez l'option
+.B ignore
+pour indiquer à \fBsitecopy\fP qu'il doit ignorer les modifications
+locales apportées aux fichiers du site. Si un changement est fait au
+contenu d'un fichier ignoré, le fichier ne sera
+.B pas
+remonté sur le serveur en mode mise à jour. Les fichiers ignorés
+seront toutefois créés, déplacés et supprimés comme en temps normal.
+
+L'option
+.B ignore
+s'utilise de la même manière que l'option
+.B exclude.
+
+Notez que le mode synchronisation
+.B écrasera
+les changements apportés aux fichiers ignorés.
+
+.SS Mode de transfert par FTP
+
+Pour spécifier le mode de transfert des fichiers par FTP, utilisez le mot-clé
+.B ascii.
+Tout fichier transféré en utilisant le mode ASCII verra ses caractères
+de fin de ligne (CRLF/LF) interprétés de façon appropriée. Par
+exemple, utilisez
+.br
+.BR "	ascii " "*.pl"
+.br
+pour remonter tous les fichiers à l'extension .pl comme des fichiers
+texte ASCII. Ce mot-clé est actuellement sans effet avec les serveurs WebDAV.
+
+.SH VALEURS DE RETOUR
+
+Les valeurs de retour possibles dépendent du mode opératoire. Si
+plusieurs sites sont spécifiés en ligne de commande, la valeur de
+retour correspondra aux opérations effectuées pour le dernier des
+sites spécifiés.
+
+.SS Pour le mode mise à jour
+ -1 ... la mise à jour n'a pas pu démarrer - problème de configuration
+  0 ... la mise à jour s'est parfaitement effectuée.
+  1 ... il y a eu un problème pendant la mise à jour
+  2 ... impossible de se connecter ou s'authentifier auprès du serveur
+
+.SS Pour le mode liste (mode par défaut)
+ -1 ... impossible de former la liste - problème de configuration
+  0 ... le site distant n'a pas besoin de mise à jour
+  1 ... le site distant nécessite une mise à jour
+
+.SH CONTENU DU FICHIER DE CONFIGURATION D'EXEMPLE
+
+.SS Serveur FTP, usage simple
+
+Le site de Fred est remonté sur un serveur FTP nommé «\ my.server.com\ »
+et maintenu dans le répertoire «\ public_html\ » situé dans le répertoire
+de connexion. Le site est conservé en local dans le répertoire
+/home/fred/html.
+
+site mysite
+  server my.server.com
+  url http://www.server.com/fred
+  username fred
+  password juniper
+  local /home/fred/html/
+  remote ~/public_html/
+
+.SS Serveur FTP, usage avancé
+
+Ici, le site de Freda est remonté sur un serveur FTP nommé «\ ftp.elsewhere.com\ »
+et maintenu dans le répertoire /www/freda. Le site
+est conservé en local dans le répertoire /home/freda/sites/elsewhere/
+
+site anothersite
+  server ftp\.elsewhere\.com
+  username freda
+  password blahblahblah
+  local /home/freda/sites/elsewhere/
+  remote /www/freda/
+  # Freda veut ignorer les fichiers à l'extension .bak ou 
+  # se terminant par un ~:
+  exclude *.bak
+  exclude *~
+
+.SS Serveur WebDAV, usage simple
+
+Cet exemple montre comment définir un site avec un serveur WebDAV.
+
+site supersite
+  server dav.wow.com
+  protocol webdav
+  username pow
+  password zap 
+  local /home/joe/www/super/
+  remote /
+
+.SH FICHIERS
+.I ~/.sitecopyrc
+Emplacement par défaut du fichier de configuration. 
+.br
+.I ~/.sitecopy/
+Répertoire de stockage des informations sur les fichiers du site distant.
+.br
+.I ~/.netrc
+Informations relatives aux comptes sur des serveurs distants.
+.br
+
+.SH BOGUES
+Problèmes connus\ : Les modes récupération et synchronisation ne sont
+PAS fiables avec le protocole FTP. Si vous avez besoin d'opérations
+atomiques de récupération d'informations et de synchronisation de
+fichiers, n'utilisez pas sitecopy\ ; essayez plutôt rsync.
+
+.PP
+Veuillez envoyer vos rapports d'anomalies et demandes d'améliorations
+à <sitecopy@lyra.org> plutôt qu'à l'auteur lui-même, puisque la liste
+de diffusion archive ses messages et les vôtres pourraient être utiles à
+d'autres utilisateurs.
+
+.SH VOIR AUSSI
+rsync(1), ftp(1), mirror(1)
+
+.SH STANDARDS
+
+[Cités seulement pour référence, l'auteur ne revendique aucune
+conformité à aucun de ces standards.]
+
+.BR "RFC 959" " - File Transfer Protocol (FTP)"
+.br
+.BR "RFC 1521" " - Multipurpose Internet Mail Extensions Part One"
+.br
+.BR "RFC 1945" " - Hypertext Transfer Protocol -- HTTP/1.0"
+.br
+.BR "RFC 2396" " - Uniform Resource Identifiers: Generic Syntax"
+.br
+.BR "RFC 2518" " - HTTP Extensions for Distributed Authoring -- WEBDAV"
+.br
+.BR "RFC 2616" " - Hypertext Transfer Protocol -- HTTP/1.1"
+.br
+.BR "RFC 2617" " - HTTP Authentication"
+.br
+.BR "REC-XML" " - Extensible Markup Language (XML) 1.0"
+.br
+.BR "REC-XML-NAMES" " - Namespaces in XML"
+
+.SH ÉBAUCHES DE STANDARDS
+.BR "draft-ietf-ftpext-mlst-05.txt" " - Extensions to FTP"
+.br
+.BR "draft-ietf-webdav-collections-protocol-03.txt" " - WebDAV Advanced Collections Protocol"
+.SH AUTEURS
+Joe Orton et d'autres.
+.br
+e-mail: sitecopy@lyra.org
+.br
+www: http://www.lyra.org/sitecopy/
+
+.SH TRADUCTION
+Nicolas Girard <\fIgirard_nicolas at yahoo.fr\fR>, 2004.
+.SH AVERTISSEMENT SUR LA TRADUCTION
+Il est possible que cette traduction soit imparfaite ou périmée. En cas de doute, veuillez vous reporter
+au document original en langue anglaise fourni avec le programme.
+

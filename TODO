@@ -1,0 +1,183 @@
+						-*- text -*-
+Bugs:
+
+- "sitecopy foo bar" always process foo and bar in the order they
+  are specified in the rcfile
+
+- review w.r.t djb's FTP interop notes, http://cr.yp.to/ftp.html
+
+- add support for MLST, latest draft:
+  http://www.ietf.org/internet-drafts/draft-ietf-ftpext-mlst-16.txt
+
+- enable large file support by default when necessary.
+
+- Synch mode won't transfer in ASCII mode, nor maintain symlinks, nor
+  correctly order file deletions.
+- Filename conflicts are not handled by update or synch mode: case:
+  Directory exists remote called "foo". Delete locally, replace with 
+  file called "foo". Try an update. Bang. Another nice one is:
+	mv foo tmp
+	mv bar foo
+	mv tmp bar
+  Which, in renames mode, will be correctly discovered, but when we
+  do an --update... bang.
+- "sitecopy --rcfile=/" should say the right thing
+- The man page does not make clear what "exclude" excludes *from*.
+  The point that exclude will translate into deleting existing files
+  from the remote site is important and confusing.
+
+Known Standards Compliance Problems:
+
+- RFC959: handle telnet control characters?
+- RFC2518: accept collection URI's in DAV:href without trailing slash
+- RFC2617: support 'domain'
+
+* anything with (FEAPI) after requires frontend API change, not including
+  simple config options additions
+
+- Move use_this out of struct site, use proper data structures in console
+  frontend to represent sites passed on cmd line.
+- Anything in the below list.
+- Do the hash table thang.
+
+Required Features for one-point-oh:
+
+- Verify mode, also a --force-overwrite to force updates... maybe 
+  --prompt-overwrite too.
+- Filename conflict resolution for update mode, as per bug... or at LEAST,
+  conflict detection: can be done in file_set, not too hard probably.
+- Read HTTP proxy from HTTP_PROXY/http_proxy environment variable.
+- Document files list order dependancies.
+- Do default ports, netrc lookups for the proxy too
+- Report corrupt info files back to the user (FEAPI)
+- Check write return codes in site_writefiles, signal the error if
+  the info file doesn't get written properly.
+- Get warning (i.e. non-fatal) messages to the user.
+- Check remote directory exists on initial connection in FTP (chdir/ls)
+- In davdriver.c:dir_remove, check whether the collection is empty before
+  deleting it.
+- Because it's The Right Thing, add hash table indexing of files list.
+  Hash using DJBs *33 hash algorithm. Open hash so we don't have
+  worry about filling the table up. Size the hash table in the range
+  100kB-200kB to not give too much run-time bloat, but not to fill up
+  with reasonable-sized sites too quickly. Maybe do a user survey to determine
+  optimum hash-table size.
+- "include" option to mirror "exclude".
+
+"Would be Nice to Have But We Can Live Without" features:
+
+- "sftp" support; FTP-over-SSL
+- Console: don't read local site state in --fetch mode.
+- Support FTP proxying (how?): there are several different ways this is done...
+- Support for Content-MD5 header and allow server-side MD5'ing, rather
+  than having to download, checksum and discard. (remote-checksum)
+- Symlink 'maintain' mode for FTP: can you create symlinks over FTP???
+- Write complete documentation using GNU texinfo or DocBook, for a 
+  printed manual and info pages.
+
+Possible features, which need more consideration:
+
+- Per-site lockfiles (FEAPI)
+- Shortcircuit parm in file_set_* used for the FIRST site state read on a 
+  site, to make the file search always fail - guarantee to be true, since if we
+  read local state before stored state, there is no stored state in the
+  list when we read the local state.
+- Console: Some kind of 'first-time-use' option, `sitecopy --first-time'
+  runs a wizard a la the GNOME fe's one.
+- Support for other better/faster checksumming algorithms: is SHA1
+  better/faster? (GPL implementation in GnuPG)
+- Backup info file on write_stored... optionally? Only implement in frontend?
+  GNU-style $VERSION_CONTROL support?
+- Have 'preconnect' and 'postconnect' options which run user-specified
+  programs before and after an update, synch etc.
+- Some kind of user-feedback for slow startup in checksumming mode.
+  takes approx 1 sec to MD5 a 10mb file on a K5 166 -> okay for average-sized
+  sites. (FEAPI)... 
+- Abstract protocol drivers into a mc VFS-like 'open', 'read' etc.
+  Abstract sites code so that "local" and "remote" can be handled by any 
+  of {file, http, ftp}. Then, update + synch could possibly merge, since
+  an synch is an update with the remote and local sides switched (kindof).
+- Allow file->file sites (screem wants this)... as above, or simply by
+  implementing another protocol driver.
+- consequently, read ls-laR.txt files and be more like 'mirror'
+- Add quota management, specify a per-site quota and only do update
+  if the result means the site will stay under quota.
+  -> problem: a directory uses up k's, but how many?
+- Abstract protocol drivers into a mc VFS-like 'open', 'read' etc.
+  Abstract sites code so that "local" and "remote" can be handled by any 
+  of {file, http, ftp}. Allows file->file sites, which screem wants.
+- Read ls-laR.txt files and be more like 'mirror'
+
+Evaluation of sitecopy alternatives: weex
+
+- weex beats sitecopy hands-down in new user ease-of-use: you just run it.
+  With sitecopy you have to do --fetch or --catchup first. This situation
+  is slightly improved in 0.9, where on the first 'sitecopy newsite' 
+  invocation, you get told what to do next.
+- sitecopy could improve by doing:
+  an interactive 'on first run for site', like the GNOME fe site
+  creation wizard. This could create the .sitecopy directory with the
+  correct permissions (but I am a bit dubious about this).
+- Another alternative is the --first-time option. This could do:
+   mkdir .sitecopy with correct perms
+   create .sitecopyrc with correct perms
+   ? enter a complete site definition, and run --init, or --fetch, 
+   or catchup, as appropriate.
+  This could either be run automagically if no .sitecopyrc file is
+  found (don't let trigger by --rcfile= option), or, better, by a message
+  telling you to run --first-time.
+  --new-user might be better...
+
+Definitely Not-till-after-1.0 thinkings:
+
+The current "file list" is bad. It is pseudo-sorted by depth (probably).
+The GNOME fe wants a proper directory tree representation.
+
+To allow the possibility of doing the "spot moved directories" test,
+we might want a proper dirtree; but, this is a complex task, and might
+be achieved in another way.
+
+To get decent "checkmoved" operation, need better than O(n) lookup.
+O(1)-ish could be achieved using a a hash table.
+
+- Find operation on the files list is O(n), making state reads O(n^2).
+  Hashing would be nice -> can use the MD5 csum.
+
+- Intelligent file movement detector, to spot whole moved directories:
+  Possibly implement by checksumming relative filenames for EACH 
+  directory (fairly nasty overhead); so each directory has a 
+  children_checksum field. Need a clever checksumming algo; MD5 would
+  require identical ordering, which would be a heavy constraint.
+- Make the protocol drivers and sites code thread-safe.
+
+Things You Might Like to Do On A Rainy Day:
+
+- Investigate any extra handling needed for servers which have case
+  insensitive filenames
+- Native Windows port (e.g. reimplement socket.c using the Winsock API)
+- Convince the maintainer that it's more productive to spend time 
+  implementing features than carefully crafting a mile-long TODO list.
+
+XSitecopy TODO
+--------------
+
+- Tooltip(s) for the site widgets; specifically safe mode.
+- Integrating resynch into the app.
+- View files using gnome mime types.
+- Transition from time-size to checksum.
+* Prefs
+
+Future releases:
+
+- Bring back optional 'slim' mode which will take up less desktop real estate.
+- Popup menus for the site/file tree.
+- Single file updates.
+- Update all.
+
+Longer term things:
+
+- Panel applet for easily updating sites in a couple of clicks.  
+- Html based reports - integration into FE apps, and possible auto uploading
+  to the remote site. (useful as a "recent changes" page)
+* Please send any suggestions you may have as to the format/design/type of
+  reports that you might find useful.

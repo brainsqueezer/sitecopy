@@ -1,0 +1,29 @@
+README for the EMX Port
+=======================
+
+To build the sitecopy executable with EMX 0.9d, just run GNU make on
+Makefile.emx:
+
+make -f Makefile.emx
+
+
+The ported sitecopy was successfully tested with FTP using the OS/2
+ftpd. I have no idea whether WebDAV works, thus it is disabled in the
+Makefile.
+
+
+You need the EMX Runtime 0.9d (or later) to run sitecopy with OS/2.
+
+It is also possible to use the executable with Windows9x/NT, if you
+have RSXNT 1.42 (or later) installed.
+
+
+The latest EMX Runtime is available from the following URL:
+ftp://ftp.leo.org/pub/comp/os/os2/leo/02-emx-runtime.zip
+
+RSXNT 1.42 is available from this URL:
+ftp://ftp.leo.org/pub/comp/os/os2/leo/gnu/emx+gcc/rsxnt/rsxrt142.zip
+
+
+Steffen Siebert <siebert@SteffenSiebert.de>
+

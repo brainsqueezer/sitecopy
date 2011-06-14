@@ -1,0 +1,104 @@
+.TH xsitecopy "1" "September 2001" "Xsitecopy" sitecopy
+.SH NAME
+Xsitecopy \- manual page for sitecopy GNOME frontend
+.SH SYNOPSIS
+.B xsitecopy
+[\fIOPTION\fR...]
+.SH DESCRIPTION
+GNOME options
+.TP
+\fB\-\-disable\-sound\fR
+Disable sound server usage
+.TP
+\fB\-\-enable\-sound\fR
+Enable sound server usage
+.TP
+\fB\-\-espeaker\fR=\fIHOSTNAME\fR:PORT
+Host:port on which the sound server to use is
+running
+.HP
+\fB\-\-version\fR
+.PP
+Help options
+.TP
+-?, \fB\-\-help\fR
+Show this help message
+.TP
+\fB\-\-usage\fR
+Display brief usage message
+.PP
+GTK options
+.TP
+\fB\-\-gdk\-debug\fR=\fIFLAGS\fR
+Gdk debugging flags to set
+.TP
+\fB\-\-gdk\-no\-debug\fR=\fIFLAGS\fR
+Gdk debugging flags to unset
+.TP
+\fB\-\-display\fR=\fIDISPLAY\fR
+X display to use
+.TP
+\fB\-\-sync\fR
+Make X calls synchronous
+.TP
+\fB\-\-no\-xshm\fR
+Don't use X shared memory extension
+.TP
+\fB\-\-name\fR=\fINAME\fR
+Program name as used by the window manager
+.TP
+\fB\-\-class\fR=\fICLASS\fR
+Program class as used by the window manager
+.HP
+\fB\-\-gxid_host\fR=\fIHOST\fR
+.HP
+\fB\-\-gxid_port\fR=\fIPORT\fR
+.HP
+\fB\-\-xim\-preedit\fR=\fISTYLE\fR
+.HP
+\fB\-\-xim\-status\fR=\fISTYLE\fR
+.TP
+\fB\-\-gtk\-debug\fR=\fIFLAGS\fR
+Gtk+ debugging flags to set
+.TP
+\fB\-\-gtk\-no\-debug\fR=\fIFLAGS\fR
+Gtk+ debugging flags to unset
+.TP
+\fB\-\-g\-fatal\-warnings\fR
+Make all warnings fatal
+.TP
+\fB\-\-gtk\-module\fR=\fIMODULE\fR
+Load an additional Gtk module
+.PP
+GNOME GUI options
+.HP
+\fB\-\-disable\-crash\-dialog\fR
+.PP
+Session management options
+.TP
+\fB\-\-sm\-client\-id\fR=\fIID\fR
+Specify session management ID
+.TP
+\fB\-\-sm\-config\-prefix\fR=\fIPREFIX\fR
+Specify prefix of saved configuration
+.TP
+\fB\-\-sm\-disable\fR
+Disable connection to session manager
+.PP
+Sitecopy options
+.TP
+\fB\-d\fR, \fB\-\-debug\fR=\fILEVEL\fR
+Debugging level (sum of: 1=socket, 2=files,
+4=rcfile, 8=WebDAV, 16=FTP, 32=XML, 64=GNOME )
+.SH "SEE ALSO"
+The full documentation for
+.B Gnome
+is maintained as a Texinfo manual.  If the
+.B info
+and
+.B Gnome
+programs are properly installed at your site, the command
+.IP
+.B info Gnome
+.PP
+should give you access to the complete manual.

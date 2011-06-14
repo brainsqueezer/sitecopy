@@ -1,0 +1,799 @@
+.\" Copyright 1999-2001 Joe Orton
+.TH sitecopy 1 "June 2001" sitecopy "User Manuals"
+.SH NAME
+sitecopy \- maintain remote copies of web sites
+.SH SYNOPSIS
+.B sitecopy [options] [operation mode] 
+.I sitename
+.B ...
+.SH DESCRIPTION
+.I sitecopy
+is for copying locally stored web sites to remote web servers.  A
+single command will upload files to the server which have changed
+locally, and delete files from the server which have been removed
+locally, to keep the remote site synchronized with the local site.
+The aim is to remove the hassle of uploading and deleting individual
+files using an FTP client.  sitecopy will also optionally try to spot
+files you move locally, and move them remotely.
+
+FTP, WebDAV and other HTTP-based authoring servers (for instance,
+AOLserver and Netscape Enterprise) are supported.
+
+.SH GETTING STARTED
+
+This section covers how to start maintaining a web site using
+sitecopy.  After introducing the basics, two situations are covered:
+first, where you have already upload the site to the remote server;
+second, where you haven't.  Lastly, normal site maintenance activities
+are explained.
+
+.SS Introducing the Basics
+
+If you have not already done so, you need to create an rcfile, which
+will store information about the sites you wish to administer. You also
+need to create a storage directory, which sitecopy uses to record the
+state of the files on each of the remote sites. The rcfile and storage
+directory must both be accessible only by you - sitecopy will not run
+otherwise.  To create the storage directory with the correct
+permissions, use the command
+.br
+.B "	mkdir -m 700 .sitecopy"
+.br
+from your home directory. To create the rcfile, use the commands
+.br
+.B "	touch .sitecopyrc"
+.br
+.B "	chmod 600 .sitecopyrc"
+.br
+from your home directory. Once this is done, edit the rcfile to enter
+your site details as shown in the CONFIGURATION section.
+
+.SS Existing Remote Site
+
+If you have already uploaded the site to the remote server, ensure
+your local files are synchronized with the remote files. Then, run
+.br
+.B "	sitecopy --catchup sitename"
+.br
+where sitename is the name of the site you used after the 
+.B site
+keyword in the rcfile.
+
+If you do not have a local copy of the remote site, then you can use
+.B fetch mode
+to discover what is on the remote site, and
+.B synchronize mode
+to download it. Fetch mode works well for WebDAV servers, and might
+work if you're lucky for FTP servers. Run
+.br
+.B "	sitecopy --fetch sitename"
+.br
+to fetch the site - if this succeeds, then run
+.br
+.B "	sitecopy --synch sitename"
+.br
+to download a local copy.  Do NOT do this if you already have a 
+local copy of your site.
+
+.SS New Remote Site
+
+Ensure that the root directory of the site has been created on the
+server by the server administrator. Run
+.br
+.B "	sitecopy --init sitename"
+.br
+where sitename is the name of the site you used after the 
+.B site
+keyword in the rcfile.
+
+.SS Site Maintenance
+
+After setting up the site as given in one of the two above sections,
+you can now start editing your local files as normal. When you have
+finished a set of changes, and you want to update the remote copy of
+the site, run:
+.br
+.B "	sitecopy --update sitename"
+.br
+and all the changed files will be uploaded to the server. Any files
+you delete locally will be deleted remotely too, unless the
+.B nodelete 
+option is specified in the rcfile. If you move any files between
+directories, the remote files will be deleted from the server then
+uploaded again unless you specify the
+.B checkmoved
+option in the rcfile.
+
+At any time, if you wish to see what changes you have made to the
+local site since the last update, you can run
+.br
+.B "	sitecopy sitename"
+.br
+which will display the list of differences.
+
+.SS Synchronization Problems
+
+In some circumstances, the actual files which make up the remote site
+will be different from what sitecopy
+.I thinks
+is on the remote site. This can happen, for instance, if the
+connection to the server is broken during an update. When this
+situation arises,
+.B Fetch Mode
+should be used to fetch the list of files making up the site from the
+remote server.
+
+.SH INVOCATION
+
+In normal operation, specify a 
+.I single
+operation mode, followed by any options you choose, then one or more
+site names. For instance,
+.br
+.B "	sitecopy --update --quiet mainsite anothersite"
+.br
+will quietly update the sites named 'mainsite' and 'anothersite'.
+
+.SH OPERATION MODES
+.IP "-l, --list"
+.B List Mode
+\- produces a listing of all the differences between the
+local files and the remote copy for the specified sites.
+.IP "-ll, --flatlist"
+.B Flat list Mode
+\- like list mode, except the output produced is suitable for 
+parsing by an external script or program. An AWK script,
+.B changes.awk.
+is provided which produces an HTML page from this mode.
+.IP "-u, --update"
+.B Update Mode
+\- updates the remote copy of the specified sites.
+.IP "-f, --fetch"
+.B Fetch Mode
+\- fetches the list of files from the remote server.  Note that this
+mode has only limited support in FTP - the server must accept the
+.B MDTM
+command, and use a Unix-style 'ls' for LIST implementation.
+.IP "-s, --synchronize"
+.B Synchronize Mode
+\- updates the 
+.I local
+site from the remote copy. 
+.B WARNING:
+This mode overwrites local files. Use with care.
+.IP "-i, --initialize"
+.B Initialization Mode
+\- initializes the sites specified - making sitecopy think there are NO
+files on the remote server.
+.IP "\-c, \-\-catchup"
+.B Catchup Mode
+\- makes sitecopy think the local site is exactly the same as the
+remote copy.
+.IP "-v, --view"
+.B View Mode
+\- displays all the site definitions from the rcfile.
+.IP "-h, --help"
+Display help information.
+.IP "-V, --version"
+Display version information.
+.SH OPTIONS
+.IP "-y, --prompting"
+Applicable in
+.B Update Mode
+only, will prompt the user for confirmation for each update
+(i.e., creating a directory, uploading a file etc.).
+.IP "-r RCFILE, --rcfile=RCFILE"
+Specify an alternate run control file location.
+.IP "-p PATH, --storepath=PATH"
+Specify an alternate location to use for the remote site storage directory.
+.IP "-q, --quiet"
+Quiet output - display the filename only for each update performed.
+.IP "-qq, --silent"
+Very quiet output - display nothing for each update performed.
+.IP "-o, --show-progress"
+Applicable in 
+.B Update Mode
+only, displays the progress (percentage complete) of data transfer.
+.IP "-k, --keep-going"
+Keep going past errors in 
+.B Update Mode
+or 
+.B Synch Mode
+
+.IP "-a, --allsites"
+Perform the given operation on all sites - applicable for all
+modes except
+.B View Mode,
+for which it has no effect.
+.IP "-d MASK, --debug=KEY[,KEY...]"
+Turns on debugging.  A list of comma-separated keywords should 
+be given. Each keyword may be one of:
+.br
+  socket    Socket handling
+.br
+  files     File handling
+.br
+  rcfile    rcfile parser
+.br
+  http      HTTP driver
+.br
+  httpbody  Display response bodies in HTTP
+.br
+  ftp       FTP driver
+.br
+  xml       XML parsing information
+.br
+  xmlparse  Low-level XML parsing information
+.br
+  httpauth  HTTP authentication information
+.br
+  cleartext Display passwords in plain text
+
+Passwords will be obscured in the debug output unless
+the cleartext keyword is used. An example use of debugging
+is to debug FTP fetch mode:
+
+.br
+.B "	sitecopy --debug=ftp,socket --fetch sitename"
+.br
+
+.SH CONCEPTS
+The 
+.B stored state
+of a site is the snapshot of the state of the site saved into the 
+storage directory (~/.sitecopy/). The 
+.B storage file
+is used to record this state between invocations. In update mode,
+sitecopy builds up a
+.B files list
+for each site by scanning the local directory, reading in the stored
+state, and comparing the two - determining which files have changed,
+which have moved, and so on.
+
+.SH CONFIGURATION
+Configuration is performed via the run control file (rcfile).  This
+file contains a set of site definitions.  A unique name is assigned to
+every site definition, which is used on the command line to refer to
+the site.
+.PP
+Each site definition contains the details of the server the site is
+stored on, how the site may be accessed at that server, where the site
+is held locally and remotely, and any other options for the site.
+
+.SS Site Definition
+
+A site definition is made up of a series of lines:
+
+.BR "site " sitename
+.br
+.BR "   server " server-name
+.br
+.BR "   remote " remote-root-directory
+.br
+.BR "   local " local-root-directory
+.br
+.br
+ [ 
+.BR port " port-number ]"
+.br
+ [ 
+.BR username " username ]"
+.br
+ [
+.BR password " password ]"
+ [
+.BR "proxy-server " proxy-name
+.br
+.BR "   proxy-port " "port-number ]"
+ [ 
+.BR "url " "siteURL ]"
+.br
+ [ 
+.BR "protocol " "{ ftp | webdav } ]"
+.br
+ [ 
+.BR ftp " nopasv ]"
+.br
+ [
+.BR ftp " showquit ]"
+.br
+ [ 
+.BR ftp " { usecwd | nousecwd } ]"
+.br
+ [ 
+.BR http " expect ]"
+.br
+ [ 
+.BR http " secure ]"
+ [ 
+.BR safe " ]"
+.br
+ [ 
+.BR "state " "{ checksum | timesize } ]"
+ [ 
+.BR permissions " { ignore | exec | all | dir } ]"
+ [ 
+.BR symlinks " { ignore | follow | maintain } ]"
+ [ 
+.BR nodelete " ]"
+ [ 
+.BR nooverwrite " ]"
+ [ 
+.BR checkmoved " [renames] ]"
+ [
+.BR tempupload " ]"
+ [ 
+.BR exclude " pattern ]..."
+ [ 
+.BR ignore " pattern ]..."
+ [ 
+.BR ascii " pattern ]..."
+
+Anything after a hash (#) in a line is ignored as a comment.
+Values may be quoted and characters may be backslash-escaped.
+For example, to use the
+.B exclude
+pattern *#, use the following line:
+.br
+.BR "	exclude " """*#"""
+
+.SS Remote Server Options
+The
+.B server
+key is used to specify the remote server the site is stored on.
+This may be either a DNS name or IP address. A connection is made
+to the default port for the protocol used, or that given by the
+.B port
+key.
+sitecopy supports the WebDAV or FTP protocols - the 
+.B protocol
+key specifies which to use, taking the value of either
+.B webdav
+or 
+.B ftp
+respectively. By default, FTP will be used.
+
+The 
+.B proxy-server
+and
+.B proxy-port
+keys may be used to specify a proxy server to use. Proxy servers
+are currently only supported for WebDAV.
+
+If the FTP server does not support passive (PASV) mode, then
+the key
+.B ftp nopasv
+should be used.  To display the message returned by the server
+on closing the connection, use the 
+.B ftp showquit
+option.
+If the server only supports uploading files in the current
+working directory, use the key
+.B ftp usecwd
+(possible symptom: "overwrite permission denied"). 
+Note that the remote-directory (keyword
+.B remote\fP)
+must be an absolute path (starting with '/'), or
+.B usecwd
+will be ignored.
+
+If the WebDAV server correctly supports the 100-continue
+expectation, e.g. Apache 1.3.9 and later, the key
+.B http expect
+should be used. Doing so can save some bandwidth and time in an
+update.
+
+If the WebDAV server supports access via SSL, the key
+.B http secure
+can be used.  Doing so will cause the transfers between sitecopy
+and the host to be performed using an secure, encrypted link.  The
+first time SSL is used to access the server, the user will be
+prompted to verify the SSL certificate, if it's not signed by
+a CA trusted in the system's CA root bundle.
+
+To authenticate the user with the server, the 
+.B username
+and 
+.B password 
+keys are used. If it exists, the
+.B ~/.netrc
+will be searched for a password if one is not specified. See
+ftp(1) for the syntax of this file.
+
+Basic and digest authentication are supported for
+WebDAV. Note that basic authentication must not be used unless the
+connection is known to be secure.
+
+The full URL that is used to access the site can optionally be
+specified in the
+.B url
+key. This is used only in flat list mode, so the site URL
+can be inserted in 'Recent Changes' pages. The URL must
+.I not
+have a trailing slash; a valid example is
+.br
+.BR "	url " http://www.site.com/mysite
+
+If the 
+.B tempupload
+option is given, new or changed files are upload with a ".in." prefix,
+then moved to the true filename when the upload is complete.
+
+.SS File State
+
+File state is stored in the storage files (~/.sitecopy/*), and is used
+to discover when a file has been changed.  Two methods are supported,
+and can be selected using the 
+.B state
+option, with either parameter:
+.B timesize
+(the default), and
+.B checksum.
+
+.B timesize
+uses the last-modification date and the size of files to detect when
+they have changed. 
+.B checksum
+uses an MD5 checksum to detect any changes to the file contents.
+
+Note that MD5 checksumming involves reading in the entire file, and
+is slower than simply using the last-modification date and size. It
+may be useful for instance if a versioning system is in use which 
+updates the last-modification date on a 'checkout', but this doesn't
+actually change the file contents.
+
+.SS Safe Mode
+
+.B Safe Mode
+is enabled by using the 
+.B safe
+key. When enabled, each time a file is uploaded to the server,
+the modification time of the file 
+.B as on the server
+is recorded. Subsequently, whenever this file has been changed locally
+and is to be uploaded again, the current modification time of the file
+on the server is retrieved, and compared with the stored value. If
+these differ, then the remote copy of the file has been altered by a
+foreign party.  A warning message is issued, and your local copy of
+the file will not be uploaded over it, to prevent losing any changes.
+
+Safe Mode can be used with FTP or WebDAV servers, but if Apache/mod_dav
+is used, mod_dav 0.9.11 or later is required.
+
+.B Note
+Safe mode cannot be used in conjunction with the 
+.B nooverwrite
+option (see below).
+
+.SS File Storage Locations
+
+The 
+.B remote
+key specifies the root directory of the remote copy of the site.
+It may be in the form of an absolute pathname, e.g.
+.br
+.BR "	remote " /www/mysite/
+.br
+For FTP, the directory may also be specified relative to the login
+directory, in which case it must be prefixed by "~/", for example:
+.br
+.BR "	remote " ~/public_html/
+.PP
+The
+.B local
+key specifies the directory in which the site is stored locally.  This
+may be given relative to your home directory (as given by the
+environment variable $HOME), again using the "~/" prefix.
+.br
+.BR "	local " "~/html/foosite/"
+.br
+.BR "	local " "/home/fred/html/foosite/"
+.br
+are equivalent, if $HOME is set to "/home/fred".
+
+For both the local and remote keywords, a trailing slash may be used,
+but is not required.
+
+.SS File Permissions Handling
+File permissions handling is dictated by the 
+.B permissions
+key, which may be given one of three values:
+.TP 
+.B ignore
+to ignore file permissions completely,
+.TP
+.B exec
+to mirror the permissions of executable files only,
+.TP
+.B all
+to mirror the permissions of all files.
+.PP
+This can be used, for instance, to ensure the permissions of CGI files
+are set. The option is currently ignored for WebDAV servers. For FTP
+servers, a
+.B chmod
+is performed remotely to set the permissions.
+
+To handle permissions directories, the key:
+.br
+.BR "   permissions dir"
+.br
+may be used in addition to a 
+.B permissions
+key of either 
+.B exec,
+.B local
+or
+.B all.
+Note that 
+.B permissions all
+does not imply 
+.B permissions dir.
+
+.SS Symbolic Link Handling
+
+Symlinks found in the local site can be either ignored, followed, or
+maintained. In 'follow' mode, the files references by the symlinks
+will be uploaded in their place. In 'maintain' mode, the link will be
+created remotely as well, see below for more information. The mode
+used for each site is specified with the
+.B symlinks
+rcfile key, which may take the value of
+.B ignore,
+.B follow
+or
+.B maintain
+to select the mode as appropriate.
+
+The default mode is
+.B follow,
+i.e. symbolic links found in the local site are followed.
+
+.SS Symbolic link Maintain Mode
+
+This mode is currently only supported by the WebDAV driver, and will
+work only with servers which implement WebDAV Advanced Collections,
+which is a work-in-progress. The target of the link on the server is
+literally copied from the target of the symlink. Hint: you can use
+URL's if you like:
+.br
+.B "	ln -s" """http://www.somewhere.org/""" somewherehome
+
+In this way, a "302 Redirect" can be easily set up from the client,
+without having to alter the server configuration.
+
+.SS Deleting and Moving Remote Files
+The 
+.B nodelete
+option may be used to prevent remote files from ever being
+deleted. This may be useful if you keep large amounts of data on the
+remote server which you do not need to store locally as well.
+
+If your server does not allow you to upload changed files over
+existing files, then you can use the
+.B nooverwrite
+option. When this is used, before uploading a changed file, the
+remote file will be deleted.
+
+If the 
+.B checkmoved
+option is used, sitecopy will look for any files which have been
+moved locally. If any are found, when the remote site is updated,
+the files will be moved remotely.
+
+If the
+.B checkmoved renames
+option is used, sitecopy will look for any files which have been
+moved or renamed locally. This option may only be used in 
+conjunction with the
+.B state checksum
+option.
+
+.B WARNING
+
+If you are not using MD5 checksumming (i.e. the
+.B state checksum
+option) to determine file state, do NOT use the 
+.B checkmoved
+option if you tend to hold files in different directories with
+identical sizes, modification times and names and ever move them
+about. This seems unlikely, but don't say you haven't been warned.
+
+.SS Excluding Files
+
+Files may be excluded from the files list by use of the
+.B exclude
+key, which accepts shell-style globbing patterns. For example, use
+.br
+.BR "	exclude " "*.bak"
+.br
+.BR "	exclude " *~
+.br
+.BR "	exclude " """#*#"""
+.br
+to exclude all files which have a .bak extension, end in a tilde (~)
+character, or which begin and end with a a hash. Don't forget to quote
+or escape the value if it includes a hash!
+
+To exclude certain files within an particular directory, simply prefix
+the pattern with the directory name - including a leading slash. For
+instance:
+.br
+.BR "	exclude " "/docs/*.m4"
+.br
+.BR "	exclude " "/files/*.gz"
+.br
+which will exclude all files with the .m4 extension in the 'docs'
+subdirectory of the site, and all files with the .gz extension in the
+files subdirectory.
+
+An entire directory can also be excluded - simply use the directory
+name with no trailing slash. For example
+.br
+.BR "	exclude " "/foo/bar"
+.br
+.BR "	exclude " "/where/else"
+.br
+to exclude the 'foo/bar' and 'where/else' subdirectories of the site.
+
+Exclude patterns are consulted when scanning the local directory, and
+when scanning the remote site during a --fetch.  Any file which
+matches any exclude pattern is not added to the files list.  This
+means that a file which has already been uploaded by sitecopy, and
+subsequently matches an exclude pattern will be deleted from the
+server.
+
+.SS Ignoring Local Changes to Files
+
+The 
+.B ignore
+option is used to instruct sitecopy to ignore any local changes made
+to a file. If a change is made to the contents of an ignored file,
+this file will
+.B not
+be uploaded by update mode. Ignored files will be created, moved
+and deleted as normal.
+
+The 
+.B ignore
+option is used in the same way as the 
+.B exclude
+option.
+
+Note that synchronize mode 
+.B will
+overwrite changes made to ignored files.
+
+.SS FTP Transfer Mode
+
+To specify the FTP transfer mode for files, use the
+.B ascii
+key. Any files which are transferred using ASCII mode have
+CRLF/LF translation performed appropriately. For example, use
+.br
+.BR "	ascii " "*.pl"
+.br
+to upload all files with the .pl extension as ASCII text.
+This key has no effect with WebDAV (currently).
+
+.SH RETURN VALUES
+
+Return values are specified for different operation modes. If multiple
+sites are specified on the command line, the return value is in
+respect to the last site given.
+
+.SS Update Mode
+ -1 ... update never even started - configuration problem
+  0 ... update was entirely successful.
+  1 ... update went wrong somewhere
+  2 ... could not connect or login to server 
+
+.SS List Mode (default mode of operation)
+ -1 ... could not form list - configuration problem
+  0 ... the remote site does not need updating
+  1 ... the remote site needs updating
+
+.SH EXAMPLE RCFILE CONTENTS
+
+.SS FTP Server, Simple Usage
+
+Fred's site is uploaded to the FTP server 'my.server.com'
+and held in the directory 'public_html', which is in the
+login directory. The site is stored locally in the 
+directory /home/fred/html.
+
+site mysite
+  server my.server.com
+  url http://www.server.com/fred
+  username fred
+  password juniper
+  local /home/fred/html/
+  remote ~/public_html/
+
+.SS FTP Server, Complex Usage
+
+Here, Freda's site is uploaded to the FTP server
+\'ftp\.elsewhere\.com\', where it is held in the directory
+/www/freda/. The local site is stored in /home/freda/sites/elsewhere/
+
+site anothersite
+  server ftp\.elsewhere\.com
+  username freda
+  password blahblahblah
+  local /home/freda/sites/elsewhere/
+  remote /www/freda/
+  # Freda wants files with a .bak extension or a 
+  # trailing ~ to be ignored:
+  exclude *.bak
+  exclude *~
+
+.SS WebDAV Server, Simple Usage
+
+This example shows use of a WebDAV server.
+
+site supersite
+  server dav.wow.com
+  protocol webdav
+  username pow
+  password zap 
+  local /home/joe/www/super/
+  remote /
+
+.SH FILES
+.I ~/.sitecopyrc 
+Default run control file location.
+.br
+.I ~/.sitecopy/
+Remote site information storage directory
+.br
+.I ~/.netrc
+Remote server accounts information
+.br
+
+.SH BUGS
+Known problems: Fetch + synch modes are NOT reliable for FTP.  If you
+need reliable operation of fetch or synch modes, you shouldn't be
+using sitecopy.  Try rsync instead.
+
+.PP
+Please send bug reports and feature requests to <sitecopy@lyra.org>
+rather than to the author, since the mailing list is archived and can
+be a useful resource for others.
+
+.SH SEE ALSO
+rsync(1), ftp(1), mirror(1)
+
+.SH STANDARDS
+
+[Listed for reference only, no claim of compliance to any of the 
+below standards is made.]
+
+.BR "RFC 959" " - File Transfer Protocol (FTP)"
+.br
+.BR "RFC 1521" " - Multipurpose Internet Mail Extensions Part One"
+.br
+.BR "RFC 1945" " - Hypertext Transfer Protocol -- HTTP/1.0"
+.br
+.BR "RFC 2396" " - Uniform Resource Identifiers: Generic Syntax"
+.br
+.BR "RFC 2518" " - HTTP Extensions for Distributed Authoring -- WEBDAV"
+.br
+.BR "RFC 2616" " - Hypertext Transfer Protocol -- HTTP/1.1"
+.br
+.BR "RFC 2617" " - HTTP Authentication"
+.br
+.BR "REC-XML" " - Extensible Markup Language (XML) 1.0"
+.br
+.BR "REC-XML-NAMES" " - Namespaces in XML"
+
+.SH DRAFT STANDARDS
+.BR "draft-ietf-ftpext-mlst-05.txt" " - Extensions to FTP"
+.br
+.BR "draft-ietf-webdav-collections-protocol-03.txt" " - WebDAV Advanced Collections Protocol"
+.SH AUTHOR
+Joe Orton and others.
+.br
+e-mail: sitecopy@lyra.org
+.br
+www: http://www.lyra.org/sitecopy/
+

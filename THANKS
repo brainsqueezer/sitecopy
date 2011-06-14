@@ -1,0 +1,59 @@
+Thanks to all the following contributors of code, ideas, bug reports,
+encouragement, translations, suggestions, etc (alphabetical order):
+
+A. Sinan Unur <sinan@unur.com>
+Aloril <aloril@iki.fi>
+Andrey A. Chernov <ache@nagual.pp.ru>
+Andy Cowling <andy.cowling@bigfoot.com>
+Bob van der Poel <bvdpoel@kootenay.com>
+Cristian Rigamonti <cri@linux.it>
+David Gibbs <david@midrange.com>
+David Massart <massart@qant.ucl.ac.be>
+David Knight <david@screem.org>
+Dobrica Pavlinusic <dpavlin@foi.hr>
+Fabrice Noilhan <Fabrice.Noilhan@ens.fr>
+Gal Goldschmidt <gal@il.esafe.com>
+Graham Todd <gtodd@yorku.ca>
+H. Henning Vossieck <h.vossieck@ndh.net>
+Hans Meine <hans_meine@gmx.net>
+James Youngman <jay@gnu.org>
+Jonathan Paisley <jp@dcs.gla.ac.uk>
+Juergen Daubert <Juergen.Daubert@t-online.de>
+Karl Ove Hufthammer <huftis@bigfoot.com>
+Lee Mallabone <lee@fonicmonkey.net>
+Masayuki Hatta <mhatta@debian.org>
+Michael Lindner <mikel@att.net>
+Nathan Hand <Nathan.Hand@defence.gov.au>
+Niall Smart <niall@pobox.com>
+Nik Clayton <nik@nothing-going-on.demon.co.uk>
+Nobuyuki Tsuchimura <tutimura@nn.iij4u.or.jp>
+Olaf Hering <olh@suse.de>
+Olivier Calle <olivier@calle.org>
+David Madore <david.madore@ens.fr
+Paul Crowley <paul@hedonism.demon.co.uk>
+Peter Moulder <pjm@bofh.asn.au>
+Petr Prazak <prazak@grisoft.cz>
+Phil Davis <pmd@hazy.org.uk>
+Phillip Cole <ukpgc@p.cole.easynet.co.uk>
+Rob Funk <rfunk@funknet.net>
+Ross Nicoll <jrn@st-andrews.ac.uk>
+Shaun Steinhorst <srstein@itis.com>
+Steffen Siebert <siebert@SteffenSiebert.de>
+Sylvain 'Murdock' Glaize <mokona@club-internet.fr>
+Thomas Schultz <tststs@gmx.de>
+Volker Kuhlmann <VolkerKuhlmann@GMX.de>
+Yoram Last <ylast@cco.caltech.edu>
+
+Thanks also to originators-of-stolen-code:
+
+Alain Magloire <alainm@rcsm.ee.mcgill.ca>
+Eric S Raymond <esr@snark.thyrsus.com>
+Gordon Matzigkeit <gord@gnu.org>
+Ulrich Drepper <drepper@gnu.org>
+
+sitecopy owes a dept of thanks to all those who have contributed to
+neon, so see the THANKS file in neon too.
+
+And last but by no means least, for hosting everything:
+
+Greg Stein <gstein@lyra.org>

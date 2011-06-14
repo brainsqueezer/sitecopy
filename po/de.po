@@ -1,0 +1,2039 @@
+# The German translation for sitecopy.
+# Thomas Schultz <tststs@gmx.de>, 2000.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: sitecopy 0.11.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-03-12 10:07+0000\n"
+"PO-Revision-Date: 2002-01-13 13:37+0100\n"
+"Last-Translator: Thomas Schultz <tststs@gmx.de>\n"
+"Language-Team: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/console_fe.c:119
+msgid "Show changes to"
+msgstr "Anzeigen der Veränderungen"
+
+#: src/console_fe.c:119
+msgid "showing changes to"
+msgstr "Anzeigen der Veränderungen an"
+
+#: src/console_fe.c:119 src/console_fe.c:120
+msgid "local"
+msgstr "der lokalen Daten"
+
+#: src/console_fe.c:120
+msgid "Synchronize"
+msgstr "Abgleich"
+
+#: src/console_fe.c:120
+msgid "synchronizing"
+msgstr "Abgleichen"
+
+#: src/console_fe.c:125
+msgid "Fetch"
+msgstr "Holen"
+
+#: src/console_fe.c:125
+msgid "fetching"
+msgstr "Holen"
+
+#: src/console_fe.c:125 src/console_fe.c:126 src/console_fe.c:127
+msgid "remote"
+msgstr "des Servers"
+
+#: src/console_fe.c:126 gnome/init.c:198
+msgid "Update"
+msgstr "Aktualisieren"
+
+#: src/console_fe.c:126
+msgid "updating"
+msgstr "Aktualisieren"
+
+#: src/console_fe.c:127
+msgid "Verify"
+msgstr "Vergleich"
+
+#: src/console_fe.c:127
+msgid "verifying"
+msgstr "Vergleichen"
+
+#: src/console_fe.c:128
+msgid "Catch up"
+msgstr "Kennzeichnung als `aktualisiert'"
+
+#: src/console_fe.c:128
+msgid "catching up"
+msgstr "als `aktualisiert' kennzeichnen"
+
+#: src/console_fe.c:128 src/console_fe.c:129
+msgid "stored"
+msgstr "des Datenbank-Verzeichnisses"
+
+#: src/console_fe.c:129
+msgid "Initialize"
+msgstr "Initialisierung"
+
+#: src/console_fe.c:129
+msgid "initializing"
+msgstr "Initialisieren"
+
+#: src/console_fe.c:134
+msgid ""
+"You should never see this message.\n"
+"Please contact the maintainer at sitecopy@lyra.org\n"
+msgstr ""
+"Sie sollten diesen Text nie zu Gesicht bekommen.\n"
+"Bitte wenden Sie sich an den Maintainer <sitecopy@lyra.org>\n"
+
+#: src/console_fe.c:196
+#, c-format
+msgid "%s: Error: No site called `%s' found - skipping.\n"
+msgstr "%s: Fehler: Keine Site namens `%s' gefunden - übergangen.\n"
+
+#: src/console_fe.c:214
+#, c-format
+msgid "%s: No valid sites specified.\n"
+msgstr "%s: Keine gültigen Sites angegeben.\n"
+
+#: src/console_fe.c:216
+#, c-format
+msgid "%s: No sites specified.\n"
+msgstr "%s: Keine Sites angegeben.\n"
+
+#: src/console_fe.c:218 src/console_fe.c:369 src/console_fe.c:529
+#, c-format
+msgid "Try `%s --help' for more information.\n"
+msgstr "Mit `%s --help' erhalten Sie mehr Informationen.\n"
+
+#: src/console_fe.c:228
+#, c-format
+msgid "%s: %c%s site `%s' (on %s in %s)\n"
+msgstr "%s: %c%s der Site `%s' (auf %s in %s)\n"
+
+#: src/console_fe.c:249
+#, c-format
+msgid "* These items have been added since the last update:\n"
+msgstr "* Diese Einträge sind seit der letzten Aktualisierung dazugekommen:\n"
+
+#: src/console_fe.c:254 src/console_fe.c:285
+#, c-format
+msgid "dir:"
+msgstr "Verzeichnis:"
+
+#: src/console_fe.c:261
+#, c-format
+msgid "* These items have been changed since the last update:\n"
+msgstr "* Diese Einträge wurden seit der letzten Aktualisierung geändert:\n"
+
+#: src/console_fe.c:263
+#, c-format
+msgid "  Changes to items in [brackets] are ignored during updates.\n"
+msgstr ""
+"  Änderungen an Einträgen in [Klammern] werden bei der Aktualisierung "
+"ignoriert.\n"
+
+#: src/console_fe.c:277
+#, c-format
+msgid "* These items have been deleted, but will be left on the server:\n"
+msgstr ""
+"* Diese Einträge wurden gelöscht, werden jedoch auf dem Server gelassen:\n"
+
+#: src/console_fe.c:279
+#, c-format
+msgid "* These items have been deleted since the last update:\n"
+msgstr "* Diese Einträge wurden seit der letzten Aktualisierung gelöscht:\n"
+
+#: src/console_fe.c:292
+#, c-format
+msgid "* These items have been moved since the last update:\n"
+msgstr "* Diese Einträge wurden seit der letzten Aktualisierung verschoben:\n"
+
+#: src/console_fe.c:310 src/console_fe.c:322
+msgid "Ignored"
+msgstr "Ignorieren"
+
+#: src/console_fe.c:312
+msgid "Maintained for executables"
+msgstr "Bei ausführbaren Dateien beibehalten"
+
+#: src/console_fe.c:314
+msgid "Always maintained"
+msgstr "Immer beibehalten"
+
+#: src/console_fe.c:324
+msgid "Maintained"
+msgstr "Beibehalten"
+
+#: src/console_fe.c:326
+msgid "Followed"
+msgstr "Auflösen"
+
+#: src/console_fe.c:337
+#, c-format
+msgid ""
+"Site: %s\n"
+"\tServer: %s"
+msgstr ""
+"Site: %s\n"
+"\tServer: %s"
+
+#: src/console_fe.c:339
+#, c-format
+msgid "  Port: "
+msgstr "  Port: "
+
+#: src/console_fe.c:341
+#, c-format
+msgid "(default)\n"
+msgstr "(Voreinstellung)\n"
+
+#: src/console_fe.c:343
+#, c-format
+msgid "%d\n"
+msgstr "%d\n"
+
+#: src/console_fe.c:345
+#, c-format
+msgid "\tProtocol: %s    Username: %s\n"
+msgstr "\tProtokoll: %s    Benutzername: %s\n"
+
+#: src/console_fe.c:348
+msgid "(unspecified)"
+msgstr "(nicht angegeben)"
+
+#: src/console_fe.c:350
+#, c-format
+msgid "\tPassive mode FTP will not be used.\n"
+msgstr "\tFTP wird nicht im `passive'-Modus verwendet.\n"
+
+#: src/console_fe.c:351
+#, c-format
+msgid ""
+"\tRemote directory: %s\n"
+"\tLocal directory: %s\n"
+msgstr ""
+"\tVerzeichnis auf dem Server: %s\n"
+"\tLokales Verzeichnis: %s\n"
+
+#: src/console_fe.c:353
+#, c-format
+msgid "\tPermissions: %s     Symlinks: %s\n"
+msgstr "\tZugriffsrechte: %s    Symbolische Links: %s\n"
+
+#: src/console_fe.c:356
+#, c-format
+msgid "\tRemote files will not be deleted.\n"
+msgstr "\tAuf dem Server werden keine Dateien gelöscht.\n"
+
+#: src/console_fe.c:358
+#, c-format
+msgid "\tFiles will be moved remotely if moved locally.\n"
+msgstr "\tLokal verschobene Dateien werden auf dem Server verschoben.\n"
+
+#: src/console_fe.c:367
+#, c-format
+msgid "%s: Error: Only specify ONE operation mode at a time.\n"
+msgstr "%s: Fehler: Geben Sie nur EINEN Modus gleichzeitig an.\n"
+
+#: src/console_fe.c:489
+#, c-format
+msgid "%s: Error: Debug channel %s not known.\n"
+msgstr "%s: Fehler: Debug-Schlüssel %s ist unbekannt.\n"
+
+#: src/console_fe.c:497
+#, c-format
+msgid "%s: Warning: Could not open `%s' to use as logfile.\n"
+msgstr "%s: Warnung: Konnte `%s' nicht als Logfile öffnen.\n"
+
+#: src/console_fe.c:540
+#, c-format
+msgid "%s: Error: Dry run mode is currently only supported for updates.\n"
+msgstr ""
+
+#: src/console_fe.c:556
+#, c-format
+msgid ""
+"%s: Warning: Only %d sites can be specified on the command line!\n"
+"Extra entries are being skipped.\n"
+msgstr ""
+"%s: Warnung: An der Kommandozeile können nur %d Sites angegeben werden!\n"
+"Weitere Einträge werden übergangen.\n"
+
+#: src/console_fe.c:581
+msgid "WARNING: Server certificate is not trusted."
+msgstr ""
+
+#: src/console_fe.c:584
+#, c-format
+msgid "Certificate was issued for server `%s'.\n"
+msgstr ""
+
+#: src/console_fe.c:586
+msgid "WARNING: Certificate does not specify a server"
+msgstr ""
+
+#: src/console_fe.c:588
+#, c-format
+msgid "Fingerprint: %s\n"
+msgstr ""
+
+#: src/console_fe.c:591
+#, c-format
+msgid "Issued to: %s\n"
+msgstr ""
+
+#: src/console_fe.c:595
+#, c-format
+msgid "Issued by: %s\n"
+msgstr ""
+
+#: src/console_fe.c:598
+#, c-format
+msgid "Do you wish to accept this certificate? (y/n) "
+msgstr ""
+
+#: src/console_fe.c:607
+msgid "server"
+msgstr "Server"
+
+#: src/console_fe.c:607
+msgid "proxy server"
+msgstr "Proxy-Server"
+
+#: src/console_fe.c:613
+#, c-format
+msgid "Authentication required for %s on %s `%s':\n"
+msgstr "Anmeldung wird benötigt für %s auf %s `%s':\n"
+
+#: src/console_fe.c:616
+#, c-format
+msgid "Authentication required on %s `%s':\n"
+msgstr "Anmeldung wird benötigt auf %s `%s':\n"
+
+#: src/console_fe.c:619
+msgid "Username: "
+msgstr "Benutzername: "
+
+#: src/console_fe.c:624
+#, c-format
+msgid "Username: %s\n"
+msgstr "Benutzername: %s\n"
+
+#: src/console_fe.c:626 src/console_fe.c:650
+msgid "Password: "
+msgstr "Passwort: "
+
+#: src/console_fe.c:636
+#, c-format
+msgid "Retrying: ["
+msgstr "Erneuter Versuch: ["
+
+#: src/console_fe.c:647
+#, c-format
+msgid "%s: Encrypted client certificate configured%s%s.\n"
+msgstr ""
+
+#: src/console_fe.c:680
+#, c-format
+msgid "Create %s/"
+msgstr "Lege %s/ an"
+
+#: src/console_fe.c:682
+#, c-format
+msgid "Delete %s/"
+msgstr "Lösche %s/"
+
+#: src/console_fe.c:689
+msgid "Upload %s (%"
+msgstr "Aktualisiere %s ("
+
+#: src/console_fe.c:689
+#, c-format
+msgid " bytes)"
+msgstr " Byte)"
+
+#: src/console_fe.c:691
+#, c-format
+msgid "Delete %s"
+msgstr "Lösche %s"
+
+#: src/console_fe.c:692
+#, c-format
+msgid "Move %s->%s"
+msgstr "Verschiebe %s->%s"
+
+#: src/console_fe.c:696
+#, c-format
+msgid ""
+"%s: in fe_can_update/file_file\n"
+"%s"
+msgstr ""
+"%s: in fe_can_update/file_file\n"
+"%s"
+
+#: src/console_fe.c:703
+#, c-format
+msgid "Change %s"
+msgstr "Verändere %s"
+
+#: src/console_fe.c:704
+#, c-format
+msgid "Create %s"
+msgstr "Erstelle %s"
+
+#: src/console_fe.c:705
+#, c-format
+msgid "Remove %s"
+msgstr "Entferne %s"
+
+#: src/console_fe.c:708
+#, c-format
+msgid ""
+"%s: in fe_can_update/file_link\n"
+"%s"
+msgstr ""
+"%s: in fe_can_update/file_link\n"
+"%s"
+
+#: src/console_fe.c:714
+#, c-format
+msgid "? (y/n) "
+msgstr "? (j/n) "
+
+#: src/console_fe.c:723
+#, c-format
+msgid "Checksumming %s: ["
+msgstr "Errechne Prüfsumme von %s: ["
+
+#: src/console_fe.c:738 src/console_fe.c:849 src/console_fe.c:910
+#, c-format
+msgid "] done.\n"
+msgstr "] fertig.\n"
+
+#: src/console_fe.c:740 src/console_fe.c:912
+#, c-format
+msgid ""
+"] failed:\n"
+"%s\n"
+msgstr ""
+"] gescheitert:\n"
+"%s\n"
+
+#: src/console_fe.c:750
+#, fuzzy, c-format
+msgid "Setting permissions on %s%s: "
+msgstr "Setze Zugriffsrechte auf %s: "
+
+#: src/console_fe.c:760 src/console_fe.c:838 src/console_fe.c:904
+#, c-format
+msgid "done.\n"
+msgstr "fertig.\n"
+
+#: src/console_fe.c:762 src/console_fe.c:906
+#, c-format
+msgid ""
+"failed:\n"
+"%s\n"
+msgstr ""
+"gescheitert:\n"
+"%s\n"
+
+#: src/console_fe.c:781 src/console_fe.c:868
+#, c-format
+msgid "Creating %s/: "
+msgstr "Lege %s/ an: "
+
+#: src/console_fe.c:783 src/console_fe.c:870
+#, c-format
+msgid "Deleting %s/: "
+msgstr "Lösche %s/: "
+
+#: src/console_fe.c:790
+#, c-format
+msgid "Uploading %s: ["
+msgstr "Lade %s hoch: ["
+
+#: src/console_fe.c:793 src/console_fe.c:812 src/console_fe.c:880
+#, c-format
+msgid "Deleting %s: "
+msgstr "Lösche %s: "
+
+#: src/console_fe.c:796 src/console_fe.c:883
+#, c-format
+msgid "Moving %s->%s: "
+msgstr "Verschiebe %s->%s: "
+
+#: src/console_fe.c:800
+#, c-format
+msgid ""
+"%s: in fe_updating/file_file\n"
+"%s"
+msgstr ""
+"%s: in fe_updating/file_file\n"
+"%s"
+
+#: src/console_fe.c:808
+#, c-format
+msgid "Changing %s: "
+msgstr "Ändere %s: "
+
+#: src/console_fe.c:810
+#, c-format
+msgid "Creating %s: "
+msgstr "Lege %s an: "
+
+#: src/console_fe.c:814
+#, c-format
+msgid ""
+"%s: in fe_updating/file_link\n"
+"%s"
+msgstr ""
+"%s: in fe_updating/file_link\n"
+"%s"
+
+#: src/console_fe.c:831
+#, fuzzy, c-format
+msgid "Failed to update %s:%c%s\n"
+msgstr ""
+"Aktualisierung von %s gescheitert:\n"
+"%s\n"
+
+#: src/console_fe.c:840
+#, fuzzy, c-format
+msgid "failed:%c%s\n"
+msgstr ""
+"gescheitert:\n"
+"%s\n"
+
+#: src/console_fe.c:852
+#, fuzzy, c-format
+msgid "] failed:%c%s\n"
+msgstr ""
+"] gescheitert:\n"
+"%s\n"
+
+#: src/console_fe.c:877
+#, c-format
+msgid "Downloading %s: ["
+msgstr "Lade %s herunter: ["
+
+#: src/console_fe.c:922
+msgid "Changed on server"
+msgstr "Auf dem Server verändert"
+
+#: src/console_fe.c:925
+msgid "Added on server"
+msgstr "Auf dem Server hinzugefügt"
+
+#: src/console_fe.c:933
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s: %s\n"
+
+#: src/console_fe.c:951
+#, c-format
+msgid "Directory: %s/\n"
+msgstr "Verzeichnis: %s/\n"
+
+#: src/console_fe.c:955
+msgid "File: %s - size %"
+msgstr "Datei: %s - Größe %"
+
+#: src/console_fe.c:955
+#, c-format
+msgid "%s\n"
+msgstr "%s\n"
+
+#: src/console_fe.c:957
+msgid " (ASCII)"
+msgstr " (ASCII)"
+
+#: src/console_fe.c:960
+#, c-format
+msgid "Link: %s - target %s\n"
+msgstr "Link: %s - zeigt auf %s\n"
+
+#: src/console_fe.c:973 gnome/init.c:402
+#, c-format
+msgid "%s: Error: Could not open rcfile: %s.\n"
+msgstr "%s: Fehler: Konnte rc-Datei nicht öffnen: %s.\n"
+
+#: src/console_fe.c:977 gnome/init.c:407
+#, c-format
+msgid ""
+"%s: rcfile corrupt at line %d:\n"
+"%s\n"
+msgstr ""
+"%s: rc-Datei in Zeile %d beschädigt:\n"
+"%s\n"
+
+#: src/console_fe.c:996
+#, c-format
+msgid ""
+"%s: Could not read directory for `%s':\n"
+"\t%s\n"
+msgstr ""
+"%s: Konnte Verzeichnis für `%s' nicht einlesen:\n"
+"\t%s\n"
+
+#: src/console_fe.c:1000
+#, c-format
+msgid "%s: Server not specified in site `%s'.\n"
+msgstr "%s: Für die Site `%s' ist kein Server angegeben.\n"
+
+#: src/console_fe.c:1004
+#, c-format
+msgid "%s: Remote directory not specified in site `%s'.\n"
+msgstr "%s: Für die Site `%s' ist kein Verzeichnis auf dem Server angegeben.\n"
+
+#: src/console_fe.c:1008
+#, c-format
+msgid "%s: Local directory not specified in site `%s'.\n"
+msgstr "%s: Für die Site `%s' ist kein lokales Verzeichnis angegeben.\n"
+
+#: src/console_fe.c:1012
+#, c-format
+msgid "%s: Invalid port used in site `%s'.\n"
+msgstr "%s: Für die Site `%s' ist ein ungültiger Port angegeben.\n"
+
+#: src/console_fe.c:1016
+#, c-format
+msgid "%s: %s cannot maintain symbolic links (site `%s').\n"
+msgstr "%s: %s kann keine symbolischen Links beibehalten (Site `%s').\n"
+
+#: src/console_fe.c:1020
+#, c-format
+msgid "%s: Cannot use a relative remote directory in %s (site `%s').\n"
+msgstr ""
+"%s: Bei %s ist keine relative Verzeichnisangabe auf dem Server möglich (Site "
+"`%s').\n"
+
+#: src/console_fe.c:1023
+#, c-format
+msgid "%s: File permissions are not supported in %s (site `%s').\n"
+msgstr "%s: %s unterstützt keine Zugriffsrechte (Site `%s').\n"
+
+#: src/console_fe.c:1026
+#, c-format
+msgid ""
+"%s: Safe mode cannot be used in conjunction with nooverwrite (site `%s').\n"
+msgstr ""
+"%s: Der sichere Modus kann nicht in Verbindung mit nooverwrite verwendet "
+"werden (Site `%s').\n"
+
+#: src/console_fe.c:1029
+#, c-format
+msgid ""
+"%s: Safe mode cannot be used in conjunction with tempupload (site `%s').\n"
+msgstr ""
+"%s: Der sichere Modus kann nicht in Verbindung mit tempupload verwendet "
+"werden (Site `%s').\n"
+
+#: src/console_fe.c:1032
+#, c-format
+msgid "%s: Can only check for renamed files when checksumming (site `%s').\n"
+msgstr ""
+"%s: Kann nur bei Verwendung von Prüfsummen auf umbenannte Dateien testen "
+"(Site `%s').\n"
+
+#: src/console_fe.c:1035
+#, c-format
+msgid "%s: The protocol `%s' is unsupported (site `%s').\n"
+msgstr "%s: Protokoll `%s' wird nicht unterstützt (Site `%s').\n"
+
+#: src/console_fe.c:1042
+#, c-format
+msgid "%s: Unhandled error %d in site `%s' - please contact the maintainer.\n"
+msgstr ""
+"%s: Unvorhergesehener Fehler %d in Site `%s' - bitte wenden Sie sich an den "
+"Maintainer.\n"
+
+#: src/console_fe.c:1060
+#, c-format
+msgid ""
+"%s: Error: Corrupt site storage file for `%s':\n"
+"%s: %s\n"
+msgstr ""
+"%s: Fehler: Datei für Site `%s' beschädigt:\n"
+"%s: %s\n"
+
+#: src/console_fe.c:1069
+#, c-format
+msgid ""
+"%s: Error: No storage file for `%s'.\n"
+"%s: Use --init, --catchup or --fetch to create a storage file.\n"
+msgstr ""
+"%s: Fehler: Für `%s' existiert noch keine Datei.\n"
+"%s: Verwenden Sie --init, --catchup oder --fetch um die Datei zu erstellen.\n"
+
+#: src/console_fe.c:1082
+#, c-format
+msgid "%s: Skipping site `%s'.\n"
+msgstr "%s: Überspringe Site `%s'.\n"
+
+#: src/console_fe.c:1097
+#, c-format
+msgid "%s: %s completed successfully.\n"
+msgstr "%s: %s erfolgreich abgeschlossen.\n"
+
+#: src/console_fe.c:1103
+#, c-format
+msgid "%s: %s unsupported for %s.\n"
+msgstr "%s: %s wird bei %s nicht unterstützt.\n"
+
+#: src/console_fe.c:1108
+#, c-format
+msgid "%s: Errors occurred while %s the %s site.\n"
+msgstr "%s: Fehler beim %s %s.\n"
+
+#: src/console_fe.c:1113
+#, c-format
+msgid "%s: Error: Could not resolve remote hostname (%s).\n"
+msgstr "%s: Fehler: Konnte den Namen des Servers nicht auflösen (%s).\n"
+
+#: src/console_fe.c:1119
+#, c-format
+msgid "%s: Error: Could not resolve hostname of proxy server (%s).\n"
+msgstr "%s: Fehler: Konnte den Namen des Proxy-Servers nicht auflösen (%s).\n"
+
+#: src/console_fe.c:1125
+#, c-format
+msgid "%s: Error: Could not connect to proxy server (%s port %d).\n"
+msgstr ""
+"%s: Fehler: Verbindungsaufbau zum Proxy-Server gescheitert (%s Port %d).\n"
+
+#: src/console_fe.c:1128
+#, c-format
+msgid "%s: Error: Could not connect to server (%s port %d).\n"
+msgstr "%s: Fehler: Verbindungsaufbau zum Server gescheitert (%s Port %d).\n"
+
+#: src/console_fe.c:1134
+#, c-format
+msgid "%s: Error: Could not authorise user on server.\n"
+msgstr "%s: Fehler: Konnte auf dem Server den Benutzer nicht anmelden.\n"
+
+#: src/console_fe.c:1139
+#, c-format
+msgid "%s: Error: %s\n"
+msgstr "%s: Fehler: %s\n"
+
+#: src/console_fe.c:1143
+#, c-format
+msgid "%s: Error: Could not authorise user on proxy server (%s).\n"
+msgstr ""
+"%s: Fehler: Konnte auf dem Proxy-Server (%s) den Benutzer nicht anmelden.\n"
+
+#: src/console_fe.c:1148
+#, c-format
+msgid ""
+"%s: in issue_error\n"
+"%s"
+msgstr ""
+"%s: in issue_error\n"
+"%s"
+
+#: src/console_fe.c:1162
+#, c-format
+msgid "%s: Error: Environment variable HOME not set.\n"
+msgstr "%s: Fehler: Umgebungsvariable HOME nicht gesetzt.\n"
+
+#: src/console_fe.c:1170
+#, c-format
+msgid "%s: Error: Could not open rcfile: %s\n"
+msgstr "%s: Fehler: Konnte rc-Datei nicht öffnen: %s\n"
+
+#: src/console_fe.c:1173
+#, c-format
+msgid "%s: Error: rcfile permissions allow other users to read your rcfile.\n"
+msgstr ""
+"%s: Fehler: Die Zugriffsrechte der rc-Datei erlauben anderen Benutzern "
+"lesenden Zugriff.\n"
+
+#: src/console_fe.c:1174 src/console_fe.c:1186
+#, c-format
+msgid "%s: Set the permissions to 0600.\n"
+msgstr "%s: Setzen Sie die Zugriffsrechte auf 0600.\n"
+
+#: src/console_fe.c:1177
+#, c-format
+msgid "%s: Error: Could not open storage directory: %s\n"
+msgstr "%s: Fehler: Konnte Datenbank-Verzeichnis nicht öffnen: %s\n"
+
+#: src/console_fe.c:1178
+#, c-format
+msgid ""
+"%s: You need to create this directory and set the permissions to 0700.\n"
+msgstr "%s: Legen Sie dieses Verzeichnis mit den Zugriffsrechten 0700 an.\n"
+
+#: src/console_fe.c:1181
+#, c-format
+msgid "%s: Error: storage directory permissions incorrect.\n"
+msgstr "%s: Fehler: Das Datenbank-Verzeichnis hat falsche Zugriffsrechte.\n"
+
+#: src/console_fe.c:1182
+#, c-format
+msgid "%s: Set the permissions to 0700.\n"
+msgstr "%s: Setzen Sie die Zugriffsrechte auf 0700.\n"
+
+#: src/console_fe.c:1185
+#, c-format
+msgid "%s: Error: ~/.netrc permissions incorrect.\n"
+msgstr "%s: Fehler: ~/.netrc hat falsche Zugriffsrechte.\n"
+
+#: src/console_fe.c:1191
+#, c-format
+msgid ""
+"%s: init_paths gave %d\n"
+"%s"
+msgstr ""
+"%s: init_paths gab %d zurück\n"
+"%s"
+
+#: src/console_fe.c:1198
+#, c-format
+msgid "%s: Error: Could not parse ~/.netrc.\n"
+msgstr "%s: Fehler: Konnte ~/.netrc nicht einlesen.\n"
+
+#: src/console_fe.c:1216 src/console_fe.c:1315
+#, c-format
+msgid "%s: Nothing to do - no changes found.\n"
+msgstr "%s: Nichts zu tun - keine Änderungen vorgefunden.\n"
+
+#: src/console_fe.c:1225
+#, c-format
+msgid ""
+"%s: Error: Could not open storage file for writing (%s)\n"
+"%s: Error: %s\n"
+"%s: Will not update site `%s'.\n"
+msgstr ""
+"%s: Fehler: Kein Schreibzugriff auf die Datei der Site (%s)\n"
+"%s: Fehler: %s\n"
+"%s: Kann Site `%s' nicht aktualisieren.\n"
+
+#: src/console_fe.c:1249
+#, fuzzy, c-format
+msgid ""
+"%s: Warning: Current state method differs from stored in site `%s'.\n"
+"%s: All existing files will appear changed (use catchup?).\n"
+msgstr ""
+"%s: Warnung: Aktuelle Abfrage-Methode weicht von der in Site `%s' "
+"gespeicherten ab.\n"
+"%s: Alle bestehenden Dateien werden als geändert erscheinen (`catchup' "
+"verwenden?).\n"
+
+#: src/console_fe.c:1255
+#, c-format
+msgid "%s: The remote site needs updating (%d items to update).\n"
+msgstr ""
+"%s: Verzeichnis auf dem Server muss aktualisiert werden (%d Einträge).\n"
+
+#: src/console_fe.c:1257
+#, c-format
+msgid "%s: The remote site needs updating (1 item to update).\n"
+msgstr "%s: Verzeichnis auf dem Server muss aktualisiert werden (1 Eintrag).\n"
+
+#: src/console_fe.c:1260
+#, c-format
+msgid "%s: The remote site does not need updating.\n"
+msgstr "%s: Der Server ist bereits auf dem neuesten Stand.\n"
+
+#: src/console_fe.c:1268
+#, c-format
+msgid "%s: All the files and directories are marked as NOT updated remotely.\n"
+msgstr ""
+"%s: Alle Dateien und Verzeichnisse wurden als zu aktualisieren "
+"gekennzeichnet.\n"
+
+#: src/console_fe.c:1273
+#, c-format
+msgid "%s: All the files and and directories are marked as updated remotely.\n"
+msgstr ""
+"%s: Alle Dateien und Verzeichnisse wurden als aktualisiert gekennzeichnet.\n"
+
+#: src/console_fe.c:1282
+#, c-format
+msgid ""
+"%s: Failed to fetch file listing for site `%s':\n"
+"%s: %s\n"
+msgstr ""
+"%s: Holen der Datei-Liste von Site `%s' gescheitert:\n"
+"%s: %s\n"
+
+#: src/console_fe.c:1296
+#, c-format
+msgid ""
+"%s: Failed to fetch file listing to verify site `%s':\n"
+"%s: %s\n"
+msgstr ""
+"%s: Holen der Datei-Liste zum Vergleich mit Site `%s' gescheitert:\n"
+"%s: %s\n"
+
+#: src/console_fe.c:1303
+#, c-format
+msgid "%s: Verify found %d files missing from server.\n"
+msgstr "%s: Der Vergleich hat %d auf dem Server fehlende Dateien gefunden.\n"
+
+#: src/console_fe.c:1306
+#, fuzzy, c-format
+msgid "%s: Remote site not synchronized with stored state.\n"
+msgstr "%s: Die Site ist mit dem gespeicherten Zustand nicht synchron.\n"
+
+#: src/console_fe.c:1319
+#, c-format
+msgid ""
+"%s: Refusing to delete all local files with a synchronize operation.\n"
+"%s: Use --update to update the remote site.\n"
+msgstr ""
+"%s: Ich weigere mich, beim Abgleich (synchronize) alle lokalen Dateien zu "
+"löschen.\n"
+"%s: Um die Dateien hochzuladen steht --update (aktualisieren) zur "
+"Verfügung.\n"
+
+#: src/console_fe.c:1327
+#, c-format
+msgid ""
+"%s: in act_on_site\n"
+"%s"
+msgstr ""
+"%s: in act_on_site\n"
+"%s"
+
+#: src/console_fe.c:1338
+#, c-format
+msgid "Usage: %s [OPTIONS] [MODE] [sitename]...\n"
+msgstr "Aufruf: %s [OPTIONEN] [MODUS] [sitename]...\n"
+
+#: src/console_fe.c:1340
+#, c-format
+msgid "Options: \n"
+msgstr "Optionen: \n"
+
+#: src/console_fe.c:1343
+#, fuzzy, c-format
+msgid ""
+"  -d, --debug=KEY[,KEY] Turn debugging on for each KEY, which may be:\n"
+"     socket, files, rcfile, ftp, http, httpbody, rsh, sftp, xml, xmlparse, "
+"cleartext\n"
+"     Warning: cleartext displays (normally hidden) passwords in plain text\n"
+"  -g, --logfile=FILE    Append debugging messages to FILE (else use stderr)\n"
+msgstr ""
+"  -d, --debug=WAS[,WAS] Aktiviert Debug-Meldungen; WAS ist eins der "
+"folgenden:\n"
+"     socket, files, rcfile, ftp, http, httpbody, xml, xmlparse, cleartext\n"
+"     Warnung: cleartext zeigt die (normalerweise verborgene) Passwörter an\n"
+"  -g, --logfile=DATEI   Schreibe Debug-Meldungen in DATEI (sonst auf "
+"stderr)\n"
+
+#: src/console_fe.c:1350
+#, fuzzy, c-format
+msgid ""
+"  -r, --rcfile=FILE     Use alternate run control file\n"
+"  -p, --storepath=PATH  Use alternate site storage directory\n"
+"  -y, --prompting       Request confirmation before making each update\n"
+"  -a, --allsites        Perform the operation on ALL defined sites\n"
+"  -k, --keep-going      Carry on an update regardless of errors\n"
+"  -o, --show-progress   Display total percentage file transfer complete\n"
+"  -q, --quiet           Be quiet while performing the operation\n"
+"  -qq, --silent         Be silent while perforing the operation\n"
+"  -n, --dry-run         Display but do not carry out the operation\n"
+"Operation modes:\n"
+"  -l, --list            List changes between remote and local sites "
+"(default)\n"
+"  -ll, --flatlist       Flat list of changes between remote and local sites\n"
+"  -v, --view            Display a list of the site definitions\n"
+"  -i, --initialize      Mark all files and directories as not updated\n"
+"  -f, --fetch           Find out what files are on the remote site\n"
+"  -e, --verify          Verify stored state of site matches real remote "
+"state\n"
+"  -c, --catchup         Mark all files and directories as updated\n"
+"  -s, --synchronize     Update the local site from the remote site\n"
+"  -u, --update          Update the remote site\n"
+"  -h, --help            Display this help message\n"
+"  -V, --version         Display version information\n"
+"Please send feature requests and bug reports to sitecopy@lyra.org\n"
+msgstr ""
+"  -r, --rcfile=DATEI    Verwende eine andere rc-Datei\n"
+"  -p, --storepath=PFAD  Verwende anderes Datenbank-Verzeichnis\n"
+"  -y, --prompting       Vor jeder Aktualisierung nachfragen\n"
+"  -a, --allsites        Aktion auf ALLEN bekannten Sites ausführen\n"
+"  -k, --keep-going      Aktualisierung bei Fehlern fortsetzen\n"
+"  -o, --show-progress   Zeige, zu wie viel Prozent der Transfer beendet ist\n"
+"  -q, --quiet           Beim Ausführen ruhig bleiben\n"
+"  -qq, --silent         Beim Ausführen still bleiben (stärker als `-q')\n"
+"Aktions-Modi:\n"
+"  -l, --list            Zeige Veränderungen zwischen lokalem Verzeichnis\n"
+"                        und Server an (Voreinstellung)\n"
+"  -ll, --flatlist       Wie `-l', erlaubt leichteres Weiterverarbeiten\n"
+"  -v, --view            Gib eine Liste der definierten Sites aus\n"
+"  -i, --initialize      Kennzeichne alle Dateien als zu aktualisieren\n"
+"  -f, --fetch           Finde heraus, welche Dateien auf dem Server liegen\n"
+"  -e, --verify          Vergleiche den gespeicherten mit dem wirklichen\n"
+"                        Zustand der Site\n"
+"  -c, --catchup         Kennzeichne alle Dateien als aktualisiert\n"
+"  -s, --synchronize     Gleiche die lokalen Dateien an den Server an\n"
+"  -u, --update          Aktualisiere die Dateien auf dem Server\n"
+"  -h, --help            Gib diese Hilfe aus\n"
+"  -V, --version         Gib die Versionsnummer aus\n"
+"Wenden Sie sich bei Problemen oder Anregungen bitte an sitecopy@lyra.org\n"
+
+#: src/sitestore.c:326
+#, c-format
+msgid "Invalid checksum at line %d"
+msgstr ""
+
+#: src/sitestore.c:371
+#, c-format
+msgid "Boolean missing in 'ascii' at line %d"
+msgstr ""
+
+#: src/sitestore.c:396
+#, c-format
+msgid "Size overflow (%s) in '%s' at line %d"
+msgstr ""
+
+#: src/davdriver.c:175
+msgid "The connection timed out."
+msgstr "Verbindung wegen Zeitüberschreitung abgebrochen."
+
+#: src/davdriver.c:220
+msgid "SSL support has not be compiled in."
+msgstr "Unterstützung für SSL wurde beim Compilieren nicht aktiviert."
+
+#: src/davdriver.c:228
+#, fuzzy, c-format
+msgid "Could not load certificate `%s'."
+msgstr "Konnte nicht in diese Datei schreiben: %s"
+
+#: src/davdriver.c:264
+#, fuzzy, c-format
+msgid "Could not read SSL client certificate '%s'."
+msgstr "Konnte nicht in diese Datei schreiben: %s"
+
+#: src/davdriver.c:277
+#, fuzzy, c-format
+msgid "Could not decrypt SSL client certificate '%s'."
+msgstr "Konnte nicht in diese Datei schreiben: %s"
+
+#: src/davdriver.c:299
+msgid "The server does not appear to be a WebDAV server."
+msgstr "Der Server scheint kein WebDAV-Server zu sein."
+
+#: src/davdriver.c:304
+msgid "The server does not support the executable live property."
+msgstr "Der Server unterstützt das Zugriffsrecht `ausführbar' nicht."
+
+#: src/davdriver.c:350 src/davdriver.c:417 src/davdriver.c:454 src/ftp.c:888
+#: src/ftp.c:972
+#, fuzzy
+msgid "Could not open file"
+msgstr "Konnte Datei nicht öffnen: "
+
+#: src/davdriver.c:385
+#, fuzzy, c-format
+msgid "Could not stat file: %s"
+msgstr "Konnte nicht in diese Datei schreiben: %s"
+
+#: src/davdriver.c:644
+msgid "Could not access resource"
+msgstr "Konnte nicht auf Ressource zugreifen"
+
+#: src/sites.c:160
+msgid "Could not set modification time of local file."
+msgstr "Konnte den Zeitstempel der lokalen Datei nicht ändern."
+
+#: src/sites.c:308
+msgid ""
+"Upload succeeded, but could not retrieve modification time.\n"
+"If this message persists, turn off safe mode."
+msgstr ""
+"Hochladen war erfolgreich, konnte aber Zeitstempel nicht abfragen.\n"
+"Stelle den `sicheren Modus' ab, wenn diese Meldung weiter auftritt."
+
+#: src/sites.c:515
+msgid "Remote file has been modified - not overwriting with local changes"
+msgstr ""
+"Datei auf dem Server wurde geändert - überschreibe nicht mit lokalen "
+"Änderungen"
+
+#: src/sites.c:828
+msgid "Could not examine file."
+msgstr "Konnte Datei nicht untersuchen."
+
+#: src/sites.c:871
+msgid "Could not checksum file"
+msgstr "Konnte keine Prüfsumme für Datei errechnen."
+
+#: src/sites.c:887
+msgid "The target of the symlink could not be read."
+msgstr "Konnte das Ziel des symbolischen Links nicht lesen."
+
+#: src/common.c:113
+msgid "Unknown system error"
+msgstr "Unbekannter System-Fehler"
+
+#: src/ftp.c:153 lib/neon/ne_request.c:240
+#, c-format
+msgid "%s: connection was closed by server."
+msgstr "%s: Verbindung vom Server geschlossen."
+
+#: src/ftp.c:157 lib/neon/ne_request.c:245
+#, c-format
+msgid "%s: connection timed out."
+msgstr "%s: Verbindung wegen Zeitüberschreitung geschlossen."
+
+#: src/ftp.c:195
+#, fuzzy
+msgid "Could not read response line"
+msgstr "Konnte Rumpf der Antwort nicht lesen"
+
+#: src/ftp.c:229
+#, fuzzy
+msgid "Cannot parse MDTM response; wrong length."
+msgstr "Konnte Status-Zeile des Servers nicht interpretieren."
+
+#: src/ftp.c:236
+#, fuzzy
+msgid "Cannot parse MDTM response."
+msgstr "Konnte Status-Zeile des Servers nicht interpretieren."
+
+#: src/ftp.c:260
+#, fuzzy
+msgid "Could not find address in PASV response"
+msgstr "Konnte Rumpf der Antwort nicht lesen"
+
+#: src/ftp.c:267
+#, fuzzy
+msgid "Could not parse PASV response"
+msgstr "Konnte Rumpf der Antwort nicht lesen"
+
+#: src/ftp.c:276
+msgid "Invalid IP address in PASV response"
+msgstr ""
+
+#: src/ftp.c:296
+#, fuzzy
+msgid "Malformed EPSV response"
+msgstr "Konnte Rumpf der Antwort nicht lesen"
+
+#: src/ftp.c:304
+#, fuzzy
+msgid "Malformed port in EPSV response"
+msgstr "Konnte Rumpf der Antwort nicht lesen"
+
+#: src/ftp.c:449
+msgid "Error sending file"
+msgstr ""
+
+#: src/ftp.c:463 src/ftp.c:489
+#, fuzzy
+msgid "Error reading file"
+msgstr "Fehler beim Lesen des Rumpfs der Anfrage"
+
+#: src/ftp.c:480
+#, fuzzy
+msgid "Could not send file"
+msgstr "Konnte Datei nicht öffnen: "
+
+#: src/ftp.c:510 src/ftp.c:991
+#, fuzzy
+msgid "Error writing to file"
+msgstr "Fehler beim Warten auf Antwort"
+
+#: src/ftp.c:516
+msgid "Receiving file"
+msgstr ""
+
+#: src/ftp.c:532
+#, fuzzy
+msgid "Could not connect passive data socket"
+msgstr "Konnte keine SSL-Sitzung herstellen"
+
+#: src/ftp.c:647
+msgid "Active open failed: could not determine address of control socket"
+msgstr ""
+
+#: src/ftp.c:659
+#, fuzzy
+msgid "Active open failed: could not create socket"
+msgstr "Konnte keine SSL-Sitzung herstellen"
+
+#: src/ftp.c:667
+msgid "Active open failed: could not bind to address"
+msgstr ""
+
+#: src/ftp.c:677
+msgid "Active open failed: could not determine address of data socket"
+msgstr ""
+
+#: src/ftp.c:684
+#, fuzzy
+msgid "Could not determine bound port number for data socket"
+msgstr "Konnte keine SSL-Sitzung herstellen"
+
+#: src/ftp.c:727
+msgid "Active open failed: could not accept connection"
+msgstr ""
+
+#: src/ftp.c:800
+msgid "Error closing data socket"
+msgstr ""
+
+#: src/ftp.c:894
+#, fuzzy
+msgid "Could not determine length of file"
+msgstr "Konnte Länge der Datei nicht herausfinden: %s"
+
+#: src/ftp.c:905
+#, fuzzy
+msgid "Could not rewind to beginning of file"
+msgstr "Konnte Länge der Datei nicht herausfinden: %s"
+
+#: src/ftp.c:1147
+#, fuzzy
+msgid "Could not read 'LIST' response."
+msgstr "Konnte Rumpf der Antwort nicht lesen"
+
+#: src/ftp.c:1156
+#, fuzzy, c-format
+msgid "Parse error in LIST response: %s"
+msgstr "Konnte Rumpf der Antwort nicht lesen"
+
+#: gnome/init.c:51
+msgid "_New site..."
+msgstr ""
+
+#: gnome/init.c:51 gnome/init.c:171
+msgid "Create a new site definition"
+msgstr ""
+
+#: gnome/init.c:54
+msgid "_Open..."
+msgstr ""
+
+#: gnome/init.c:54
+msgid "Open a new rc file. (EXPERIMENTAL)."
+msgstr ""
+
+#: gnome/init.c:57
+msgid "_Save Sites"
+msgstr ""
+
+#: gnome/init.c:57 gnome/init.c:177
+msgid "Save the current site definitions"
+msgstr ""
+
+#: gnome/init.c:60
+msgid "Sav_e Sites As..."
+msgstr ""
+
+#: gnome/init.c:60
+msgid "Save the current site definitions to a file."
+msgstr ""
+
+#: gnome/init.c:63
+#, fuzzy
+msgid "_Delete this site"
+msgstr "Lösche %s"
+
+#: gnome/init.c:63
+msgid "Delete the selected site entry"
+msgstr ""
+
+#: gnome/init.c:69
+msgid "E_xit"
+msgstr ""
+
+#: gnome/init.c:69 gnome/init.c:202
+msgid "Exit the program"
+msgstr ""
+
+#: gnome/init.c:78
+#, fuzzy
+msgid "_Initialise site"
+msgstr "Initialisierung"
+
+#: gnome/init.c:78
+msgid "All files will be uploaded if a site is initialised"
+msgstr ""
+
+#: gnome/init.c:81
+#, fuzzy
+msgid "'_Catchup' site"
+msgstr "Kennzeichnung als `aktualisiert'"
+
+#: gnome/init.c:81
+msgid "Records the site as already updated."
+msgstr ""
+
+#: gnome/init.c:84
+msgid "_Fetch site listing"
+msgstr ""
+
+#: gnome/init.c:84
+msgid "Figures out which files are new/changed from the actual remote site."
+msgstr ""
+
+#: gnome/init.c:88
+#, fuzzy
+msgid "_Resynchronize site"
+msgstr "Abgleichen"
+
+#: gnome/init.c:88
+msgid "Copies newer files from the remote site to the local drive."
+msgstr ""
+
+#: gnome/init.c:91
+msgid "_Update site..."
+msgstr ""
+
+#: gnome/init.c:91
+msgid "Apply the local site's changes to the remote site."
+msgstr ""
+
+#: gnome/init.c:94
+msgid "Update _ALL sites"
+msgstr ""
+
+#: gnome/init.c:94 gnome/init.c:137
+msgid "Performs the required operations on all site definitions. (TODO)."
+msgstr ""
+
+#: gnome/init.c:98
+msgid "Rescan local directory"
+msgstr ""
+
+#: gnome/init.c:98
+#, fuzzy
+msgid "Re-reads the local directory of the selected site."
+msgstr "%s: Für die Site `%s' ist kein lokales Verzeichnis angegeben.\n"
+
+#: gnome/init.c:106
+msgid "_Required updates"
+msgstr ""
+
+#: gnome/init.c:106
+msgid "Displays a brief report of any required updates."
+msgstr ""
+
+#: gnome/init.c:109
+msgid "Site web-r_eport"
+msgstr ""
+
+#: gnome/init.c:109
+msgid ""
+"Generates a web page detailing the changes required on the selected site."
+msgstr ""
+
+#: gnome/init.c:112
+msgid "Prin_t site info..."
+msgstr ""
+
+#: gnome/init.c:112
+msgid "Print information about the selected site"
+msgstr ""
+
+#: gnome/init.c:119
+msgid "_Backup files status"
+msgstr ""
+
+#: gnome/init.c:119
+msgid "Save the 'state' of your local files, in case of accident."
+msgstr ""
+
+#: gnome/init.c:122
+msgid "Restore files status..."
+msgstr ""
+
+#: gnome/init.c:122 gnome/init.c:129
+msgid "If a backup has previously been made, it will be restored."
+msgstr ""
+
+#: gnome/init.c:126
+msgid "_Backup site definitions"
+msgstr ""
+
+#: gnome/init.c:126
+msgid "Backup your site definitions, in case you delete your sites."
+msgstr ""
+
+#: gnome/init.c:129
+msgid "Restore site definitions..."
+msgstr ""
+
+#: gnome/init.c:137
+msgid "Preferences..."
+msgstr ""
+
+#: gnome/init.c:146
+msgid "_About XSitecopy"
+msgstr ""
+
+#: gnome/init.c:146
+msgid "Information about XSitecopy"
+msgstr ""
+
+#: gnome/init.c:158
+msgid "_File"
+msgstr ""
+
+#: gnome/init.c:159
+#, fuzzy
+msgid "_Operations"
+msgstr "Optionen: \n"
+
+#: gnome/init.c:160
+msgid "_Reports"
+msgstr ""
+
+#: gnome/init.c:161
+msgid "_Settings"
+msgstr ""
+
+#: gnome/init.c:162
+msgid "_Backup"
+msgstr ""
+
+#: gnome/init.c:163
+msgid "_Help"
+msgstr ""
+
+#: gnome/init.c:171
+msgid "New site"
+msgstr ""
+
+#: gnome/init.c:174
+msgid "Open"
+msgstr ""
+
+#: gnome/init.c:174
+msgid "Open a new site definitions file."
+msgstr ""
+
+#: gnome/init.c:177
+msgid "Save"
+msgstr ""
+
+#: gnome/init.c:180
+#, fuzzy
+msgid "Delete site"
+msgstr "Lösche %s"
+
+#: gnome/init.c:180
+msgid "Delete the selected site"
+msgstr ""
+
+#: gnome/init.c:185
+#, fuzzy
+msgid "Initialise"
+msgstr "Initialisierung"
+
+#: gnome/init.c:185
+msgid "Initialise the site (mark all files as needing to be updated)."
+msgstr ""
+
+#: gnome/init.c:188
+#, fuzzy
+msgid "Catch-up"
+msgstr "Kennzeichnung als `aktualisiert'"
+
+#: gnome/init.c:188
+msgid "Mark all of the selected site's files as updated."
+msgstr ""
+
+#: gnome/init.c:194
+#, fuzzy
+msgid "Download"
+msgstr "Lade %s herunter: ["
+
+#: gnome/init.c:194
+msgid "Download newer files from the remote site. (Use with care)"
+msgstr ""
+
+#: gnome/init.c:198
+msgid "Updates the selected site"
+msgstr ""
+
+#: gnome/init.c:202
+msgid "Quit"
+msgstr ""
+
+#: gnome/init.c:412
+#, fuzzy, c-format
+msgid "%s: Error: Could not read rcfile: %s.\n"
+msgstr "%s: Fehler: Konnte rc-Datei nicht öffnen: %s.\n"
+
+#: gnome/main.c:184
+msgid ""
+"Debugging level (sum of: 1=socket, 2=files, 4=rcfile, 8=WebDAV, 16=FTP, "
+"32=XML, 64=GNOME )"
+msgstr ""
+
+#: gnome/misc.c:580
+#, fuzzy, c-format
+msgid "Server not specified in site `%s'.\n"
+msgstr "%s: Für die Site `%s' ist kein Server angegeben.\n"
+
+#: gnome/misc.c:584
+#, fuzzy, c-format
+msgid "Remote directory not specified in site `%s'.\n"
+msgstr "%s: Für die Site `%s' ist kein Verzeichnis auf dem Server angegeben.\n"
+
+#: gnome/misc.c:588
+#, fuzzy, c-format
+msgid "Local directory not specified in site `%s'.\n"
+msgstr "%s: Für die Site `%s' ist kein lokales Verzeichnis angegeben.\n"
+
+#: gnome/misc.c:592
+#, fuzzy, c-format
+msgid ""
+"Could not read directory for `%s':\n"
+"\t%s\n"
+msgstr ""
+"%s: Konnte Verzeichnis für `%s' nicht einlesen:\n"
+"\t%s\n"
+
+#: gnome/misc.c:596
+#, fuzzy, c-format
+msgid "Invalid port used in site `%s'.\n"
+msgstr "%s: Für die Site `%s' ist ein ungültiger Port angegeben.\n"
+
+#: gnome/misc.c:600
+#, fuzzy, c-format
+msgid "Protocol '%s' cannot maintain symbolic links (site `%s').\n"
+msgstr "%s: %s kann keine symbolischen Links beibehalten (Site `%s').\n"
+
+#: gnome/misc.c:604
+#, fuzzy, c-format
+msgid "Cannot use a relative remote directory protocol '%s' (site `%s').\n"
+msgstr ""
+"%s: Bei %s ist keine relative Verzeichnisangabe auf dem Server möglich (Site "
+"`%s').\n"
+
+#: gnome/misc.c:607
+#, c-format
+msgid "%s's protocol does not currently support maintaining permissions."
+msgstr ""
+
+#: gnome/misc.c:611
+#, fuzzy, c-format
+msgid "Could not find 'relative' local directory"
+msgstr "Konnte keine SSL-Sitzung herstellen"
+
+#: lib/neon/ne_redirect.c:92
+#, fuzzy
+msgid "Could not parse redirect location."
+msgstr "Konnte Status-Zeile des Servers nicht interpretieren."
+
+#: lib/neon/ne_gnutls.c:521 lib/neon/ne_openssl.c:386
+msgid "Server certificate was missing commonName attribute in subject name"
+msgstr ""
+
+#: lib/neon/ne_gnutls.c:557 lib/neon/ne_openssl.c:599
+#, fuzzy, c-format
+msgid "SSL negotiation failed: %s"
+msgstr "Konnte nicht in diese Datei schreiben: %s"
+
+#: lib/neon/ne_gnutls.c:566
+msgid "Server did not send certificate chain"
+msgstr ""
+
+#: lib/neon/ne_openssl.c:418
+#, c-format
+msgid "Certificate verification error: %s"
+msgstr ""
+
+#: lib/neon/ne_openssl.c:618
+msgid "SSL server did not present certificate"
+msgstr ""
+
+#: lib/neon/ne_openssl.c:627
+msgid "Server certificate changed: connection intercepted?"
+msgstr ""
+
+#: lib/neon/ne_session.c:305 lib/neon/ne_session.c:316
+msgid "[invalid date]"
+msgstr ""
+
+#: lib/neon/ne_session.c:329
+msgid "certificate is not yet valid"
+msgstr ""
+
+#: lib/neon/ne_session.c:330
+msgid "certificate has expired"
+msgstr ""
+
+#: lib/neon/ne_session.c:331
+msgid "certificate issued for a different hostname"
+msgstr ""
+
+#: lib/neon/ne_session.c:332
+msgid "issuer is not trusted"
+msgstr ""
+
+#: lib/neon/ne_session.c:337
+msgid "Server certificate verification failed: "
+msgstr ""
+
+#: lib/neon/ne_socket.c:480 lib/neon/ne_socket.c:528 lib/neon/ne_socket.c:631
+#, fuzzy
+msgid "Connection closed"
+msgstr "Verbindung vom Server geschlossen"
+
+#: lib/neon/ne_socket.c:538 lib/neon/ne_socket.c:643
+#, fuzzy
+msgid "Secure connection truncated"
+msgstr "Verbindung wegen Zeitüberschreitung abgebrochen."
+
+#: lib/neon/ne_socket.c:550 lib/neon/ne_socket.c:655
+#, fuzzy, c-format
+msgid "SSL error: %s"
+msgstr "%s: Fehler: %s\n"
+
+#: lib/neon/ne_socket.c:553
+#, c-format
+msgid "SSL error code %d/%d/%lu"
+msgstr ""
+
+#: lib/neon/ne_socket.c:636
+#, fuzzy, c-format
+msgid "SSL alert received: %s"
+msgstr "%s: Fehler: %s\n"
+
+#: lib/neon/ne_socket.c:651
+msgid "SSL socket read failed"
+msgstr ""
+
+#: lib/neon/ne_socket.c:750
+msgid "Line too long"
+msgstr "Zeile zu lang"
+
+#: lib/neon/ne_socket.c:890 lib/neon/ne_socket.c:896
+msgid "Host not found"
+msgstr "Host nicht gefunden"
+
+#: lib/neon/ne_socket.c:1006
+msgid "Socket descriptor number exceeds FD_SETSIZE"
+msgstr ""
+
+#: lib/neon/ne_socket.c:1218
+msgid "Client certificate verification failed"
+msgstr ""
+
+#: lib/neon/ne_socket.c:1234
+msgid "SSL disabled due to lack of entropy"
+msgstr ""
+
+#: lib/neon/ne_socket.c:1241
+msgid "SSL disabled due to library version mismatch"
+msgstr ""
+
+#: lib/neon/ne_socket.c:1247
+#, fuzzy
+msgid "Could not create SSL structure"
+msgstr "Konnte keine SSL-Sitzung herstellen"
+
+#: lib/neon/ne_request.c:237
+#, c-format
+msgid "%s: connection was closed by proxy server."
+msgstr "%s: Verbindung vom Proxy-Server geschlossen."
+
+#: lib/neon/ne_request.c:351
+msgid "offset invalid"
+msgstr ""
+
+#: lib/neon/ne_request.c:356
+#, fuzzy, c-format
+msgid "Could not seek to offset %s of request body file: %s"
+msgstr "Konnte nicht in diese Datei schreiben: %s"
+
+#: lib/neon/ne_request.c:401
+msgid "Could not send request body"
+msgstr "Konnte den Rumpf der Anfrage nicht schicken"
+
+#: lib/neon/ne_request.c:759
+msgid "Could not read chunk size"
+msgstr "Lesefehler bei Ermittlung der Blockgröße"
+
+#: lib/neon/ne_request.c:766
+msgid "Could not parse chunk size"
+msgstr "Parser-Fehler bei Ermittlung der Blockgröße"
+
+#: lib/neon/ne_request.c:803
+msgid "Could not read response body"
+msgstr "Konnte Rumpf der Antwort nicht lesen"
+
+#: lib/neon/ne_request.c:819
+#, fuzzy
+msgid "Could not read chunk delimiter"
+msgstr "Lesefehler bei Ermittlung der Blockgröße"
+
+#: lib/neon/ne_request.c:822
+msgid "Chunk delimiter was invalid"
+msgstr ""
+
+#: lib/neon/ne_request.c:928
+msgid "Could not read status line"
+msgstr "Konnte Status-Zeile des Servers nicht lesen"
+
+#: lib/neon/ne_request.c:950
+msgid "Could not parse response status line."
+msgstr "Konnte Status-Zeile des Servers nicht interpretieren."
+
+#: lib/neon/ne_request.c:962
+#, fuzzy
+msgid "Could not read interim response headers"
+msgstr "Konnte Rumpf der Antwort nicht lesen"
+
+#: lib/neon/ne_request.c:996
+msgid "Could not send request"
+msgstr "Konnte keine Anfrage (request) schicken"
+
+#: lib/neon/ne_request.c:1044 lib/neon/ne_request.c:1062
+#: lib/neon/ne_request.c:1072
+msgid "Error reading response headers"
+msgstr "Fehler beim Lesen der Kopfzeilen (header) der Antwort"
+
+#: lib/neon/ne_request.c:1090
+msgid "Response header too long"
+msgstr "Kopfzeilen (header) der Antwort zu lang"
+
+#: lib/neon/ne_request.c:1172
+msgid "Response exceeded maximum number of header fields."
+msgstr "Antwort hatte zu viele Header-Felder."
+
+#: lib/neon/ne_request.c:1189
+#, fuzzy, c-format
+msgid "Could not resolve hostname `%s': %s"
+msgstr "%s: Fehler: Konnte den Namen des Servers nicht auflösen (%s).\n"
+
+#: lib/neon/ne_request.c:1309
+msgid "Invalid Content-Length in response"
+msgstr ""
+
+#: lib/neon/ne_request.c:1371
+#, c-format
+msgid "Could not write to file: %s"
+msgstr "Konnte nicht in diese Datei schreiben: %s"
+
+#: lib/neon/ne_request.c:1444
+msgid "Could not create SSL connection through proxy server"
+msgstr "Konnte durch den Proxy-Server keine SSL-Verbindung herstellen"
+
+#: lib/neon/ne_request.c:1489
+#, fuzzy
+msgid "Could not create socket"
+msgstr "Konnte keine SSL-Sitzung herstellen"
+
+#: lib/neon/ne_request.c:1533
+msgid "Could not connect to server"
+msgstr "Verbindungsaufbau zum Server gescheitert."
+
+#: lib/neon/ne_request.c:1536
+msgid "Could not connect to proxy server"
+msgstr "Verbindungsaufbau zum Proxy-Server gescheitert."
+
+#: lib/neon/ne_xml.c:280
+#, fuzzy, c-format
+msgid "XML parse error at line %d: invalid element name"
+msgstr "Fehler beim XML-Parsing in Zeile %d: %s."
+
+#: lib/neon/ne_xml.c:436
+#, fuzzy
+msgid "Unknown error"
+msgstr "Unbekannter System-Fehler"
+
+#: lib/neon/ne_xml.c:521
+msgid "Invalid Byte Order Mark"
+msgstr ""
+
+#: lib/neon/ne_xml.c:609
+#, c-format
+msgid "XML parse error at line %d: %s."
+msgstr "Fehler beim XML-Parsing in Zeile %d: %s."
+
+#: lib/neon/ne_props.c:371 lib/neon/ne_props.c:411
+#, fuzzy
+msgid "Response exceeds maximum property count"
+msgstr "Antwort hatte zu viele Header-Felder."
+
+#: lib/neon/ne_compress.c:173
+#, fuzzy, c-format
+msgid "%s: %s"
+msgstr "%s: %s\n"
+
+#: lib/neon/ne_compress.c:184
+#, c-format
+msgid "%s: %s (code %d)"
+msgstr ""
+
+#: lib/neon/ne_compress.c:232
+#, fuzzy
+msgid "Could not inflate data"
+msgstr "Konnte Datei nicht öffnen: "
+
+#: lib/neon/ne_compress.c:293
+#, fuzzy
+msgid "Could not initialize zlib"
+msgstr "Konnte Datei nicht öffnen: "
+
+#: lib/neon/ne_xmlreq.c:31
+#, fuzzy, c-format
+msgid "Could not parse response: %s"
+msgstr "Konnte Rumpf der Antwort nicht lesen"
+
+#: lib/neon/ne_basic.c:94
+#, fuzzy, c-format
+msgid "Could not determine file size: %s"
+msgstr "Konnte Länge der Datei nicht herausfinden: %s"
+
+#: lib/neon/ne_basic.c:149
+msgid "Response did not include requested range"
+msgstr ""
+
+#: lib/neon/ne_basic.c:183
+#, fuzzy
+msgid "Range is not satisfiable"
+msgstr "Range is not satisfiable."
+
+#: lib/neon/ne_basic.c:188
+#, fuzzy
+msgid "Resource does not support ranged GETs."
+msgstr "Server ermöglicht keine teilweisen GETs."
+
+#: lib/neon/ne_auth.c:462
+#, fuzzy, c-format
+msgid "GSSAPI authentication error (%s)"
+msgstr "Anmeldung wird benötigt auf %s `%s':\n"
+
+#: lib/neon/ne_auth.c:595
+msgid "Unknown algorithm in Digest authentication challenge"
+msgstr ""
+
+#: lib/neon/ne_auth.c:600
+msgid "Incompatible algorithm in Digest authentication challenge"
+msgstr ""
+
+#: lib/neon/ne_auth.c:606
+msgid "Missing nonce or realm in Digest authentication challenge"
+msgstr ""
+
+#: lib/neon/ne_auth.c:886
+msgid "Digest mutual authentication failure: missing parameters"
+msgstr ""
+
+#: lib/neon/ne_auth.c:891
+msgid "Digest mutual authentication failure: client nonce mismatch"
+msgstr ""
+
+#: lib/neon/ne_auth.c:896
+#, c-format
+msgid "Digest mutual authentication failure: nonce count mismatch (%u not %u)"
+msgstr ""
+
+#: lib/neon/ne_auth.c:936
+msgid "Digest mutual authentication failure: request-digest mismatch"
+msgstr ""
+
+#: lib/neon/ne_207.c:198
+#, c-format
+msgid ""
+"Invalid HTTP status line in status element at line %d of response:\n"
+"Status line was: %s"
+msgstr ""
+"Ungültige HTTP Status-Zeile im Status-Element in Zeile %d der Antwort:\n"
+"Status-Zeile war: %s"
+
+#: lib/neon/ne_locks.c:583
+msgid "LOCK response missing Lock-Token header"
+msgstr ""
+
+#: lib/neon/ne_locks.c:739
+msgid "No Lock-Token header given"
+msgstr ""
+
+#: lib/neon/ne_locks.c:767
+#, c-format
+msgid "Response missing activelock for %s"
+msgstr ""
+
+#: lib/neon/ne_locks.c:811
+#, c-format
+msgid "No activelock for <%s> returned in LOCK refresh response"
+msgstr ""
+
+#: lib/rpmatch.c:79
+msgid "^[yY]"
+msgstr "^[jJyY]"
+
+#: lib/rpmatch.c:82
+msgid "^[nN]"
+msgstr "^[nN]"
+
+#: lib/getopt.c:664
+#, c-format
+msgid "%s: option `%s' is ambiguous\n"
+msgstr "%s: Option `%s' ist mehrdeutig\n"
+
+#: lib/getopt.c:688
+#, c-format
+msgid "%s: option `--%s' doesn't allow an argument\n"
+msgstr "%s: Option `--%s' darf kein Argument haben\n"
+
+#: lib/getopt.c:693
+#, c-format
+msgid "%s: option `%c%s' doesn't allow an argument\n"
+msgstr "%s: Option `%c%s' darf kein Argument haben\n"
+
+#: lib/getopt.c:710 lib/getopt.c:883
+#, c-format
+msgid "%s: option `%s' requires an argument\n"
+msgstr "%s: Option `%s' erfordert ein Argument\n"
+
+#: lib/getopt.c:739
+#, c-format
+msgid "%s: unrecognized option `--%s'\n"
+msgstr "%s: unbekannte Option `--%s'\n"
+
+#: lib/getopt.c:743
+#, c-format
+msgid "%s: unrecognized option `%c%s'\n"
+msgstr "%s: unbekannte Option `%c%s'\n"
+
+#: lib/getopt.c:769
+#, c-format
+msgid "%s: illegal option -- %c\n"
+msgstr "%s: unerlaubte Option -- %c\n"
+
+#: lib/getopt.c:772
+#, c-format
+msgid "%s: invalid option -- %c\n"
+msgstr "%s: ungültige Option -- %c\n"
+
+#: lib/getopt.c:802 lib/getopt.c:932
+#, c-format
+msgid "%s: option requires an argument -- %c\n"
+msgstr "%s: Option erfordert ein Argument -- %c\n"
+
+#: lib/getopt.c:849
+#, c-format
+msgid "%s: option `-W %s' is ambiguous\n"
+msgstr "%s: Option `-W %s' ist mehrdeutig\n"
+
+#: lib/getopt.c:867
+#, c-format
+msgid "%s: option `-W %s' doesn't allow an argument\n"
+msgstr "%s: Option `-W %s' darf kein Argument haben\n"
+
+#~ msgid "%s: Aborted.\n"
+#~ msgstr "%s: Abgebrochen.\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "%s: Caught signal: %s (%d)\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "%s: Signal empfangen: %s (%d)\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "%s: Caught signal %d\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "%s: Signal %d empfangen\n"
+
+#~ msgid "%s: Cannot recover from segmentation fault, aborting.\n"
+#~ msgstr "%s: Kann Zugriffsverletzung nicht beheben, breche ab.\n"
+
+#~ msgid "%s: Aborting update...\n"
+#~ msgstr "%s: Breche Aktualisierung ab...\n"
+
+#~ msgid "%s: Terminating.\n"
+#~ msgstr "%s: Beende.\n"
+
+#, fuzzy
+#~ msgid " of request body file: %s"
+#~ msgstr "Konnte nicht in diese Datei schreiben: %s"
+
+#~ msgid "Error reading request body."
+#~ msgstr "Fehler beim Lesen des Rumpfs der Anfrage"
+
+#, fuzzy
+#~ msgid "unknown error code"
+#~ msgstr "Unbekannter System-Fehler"
+
+#~ msgid "Error reading chunked response body"
+#~ msgstr "Fehler beim blockweisen Lesen des Rumpfs der Antwort"
+
+#~ msgid "document root"
+#~ msgstr "Wurzel (root) des Dokuments"
+
+#~ msgid "unknown element"
+#~ msgstr "unbekanntes Element"
+
+#~ msgid "unspecified"
+#~ msgstr "nicht angegeben"
+
+#~ msgid "XML is not valid (%s found in parent %s)"
+#~ msgstr "XML ist ungültig (%s im `parent' %s gefunden)"
+
+#~ msgid "Unknown XML element `%s (in %s)'"
+#~ msgstr "Unbekanntes XML-Element `%s (in %s)'"
+
+#~ msgid ""
+#~ "The server did not authenticate itself correctly.\n"
+#~ "Report this error to your server administrator."
+#~ msgstr ""
+#~ "Der Server hat sich nicht korrekt authentifiziert.\n"
+#~ "Melden Sie diesen Fehler bitte dem Administrator des Servers."
+
+#~ msgid ""
+#~ "The proxy server did not authenticate itself correctly.\n"
+#~ "Report this error to your proxy server administrator."
+#~ msgstr ""
+#~ "Der Proxy-Server hat sich nicht korrekt authentifiziert.\n"
+#~ "Melden Sie diesen Fehler bitte dem Administrator des Proxy-Servers."
+
+#~ msgid "%s: socket error."
+#~ msgstr "%s: Socket-Fehler."
+
+#~ msgid "Timed out waiting for 100 Continue"
+#~ msgstr "Zeitüberschreitung beim Warten auf \"100 Fortfahren\""
+
+#, fuzzy
+#~ msgid "Host `%s' not found"
+#~ msgstr "Host nicht gefunden"
+
+#~ msgid "Host not found (try again later?)"
+#~ msgstr "Host nicht gefunden (später nochmal versuchen?)"
+
+#~ msgid "Host exists but has no address."
+#~ msgstr "Host existiert, hat aber keine Adresse."
+
+#~ msgid "Non-recoverable error in resolver library."
+#~ msgstr "Nicht-behebbarer Fehler beim Auflösen des Namens."
+
+#~ msgid "Malformed header line."
+#~ msgstr "Kopfzeile hat ungültiges Format."
+
+#~ msgid "This application does not have SSL support."
+#~ msgstr "Diese Anwendung bietet keine SSL-Unterstützung."
+
+#, fuzzy
+#~ msgid "Recent Changes"
+#~ msgstr "Verändere %s"
+
+#, fuzzy
+#~ msgid "Changed Items"
+#~ msgstr "Verändere %s"
+
+#, fuzzy
+#~ msgid "Deleted Items"
+#~ msgstr "Lösche %s"

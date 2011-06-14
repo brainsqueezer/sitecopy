@@ -1,0 +1,483 @@
+Sun Jan 13 21:04:23 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* gcommon.c (fe_login): Remove unnecessary g_strdup_printf.
+	Address `unused local var' warning (Peter Moulder).
+
+2002-01-09  Joe Orton  <joe@manyfish.co.uk>
+
+	Changes from Peter Moulder:
+
+	* gcommon.c (gfe_status): Made `message' const.
+
+	* operations.c (catchup_selected, initialized_selected,
+	save_default): Fix memory leaks.
+
+2002-01-09  Joe Orton  <joe@manyfish.co.uk>
+
+	* gnome/doc/*.htm: Removed from CVS (now generated at release time
+	directly from xsitecopy.sgml).
+
+	* gnome/doc/topic.dat: Updated for filenames produced by recent
+	DocBook SGML tools.
+
+2002-01-07  Joe Orton  <joe@manyfish.co.uk>
+
+	* gnome/misc.c (check_site_and_record_errors): Add return value if
+	rcfile_verify fails.
+
+2002-01-07  Joe Orton  <joe@manyfish.co.uk>
+
+	* gnome/file_widgets.c (file_view_clicked): Make private function
+	static.
+
+2002-01-07  Joe Orton  <joe@manyfish.co.uk>
+
+	* gnome/changes.c (change_port): Rename port to p to shadowing
+	global symbol.
+
+2002-01-06  Joe Orton  <joe@manyfish.co.uk>
+
+	* gnome/*.[ch]: Renamed DEBUG() calls to NE_DEBUG.
+
+	* gnome/main.c (main): Renamed neon_debug_init call to
+	ne_debug_init.
+
+2002-01-06  Joe Orton  <joe@manyfish.co.uk>
+
+	* gnome/gcommon.c (fe_login): Updated for API change.
+
+2002-01-06  Joe Orton  <joe@manyfish.co.uk>
+
+	* gnome/*.[ch]: Renamed fe_status to gfe_status.
+
+2001-01-09  Lee Mallabone <lee0@callnetuk.com>
+
+        * operations.c: Fix bug where site details are accessed when
+	no site has been selected.
+	
+	* tree.c: Make sure that the local directory is read when adding
+	sites even if catching them up or doing an init.
+
+2000-12-17  Joe Orton <joe@light.plus.com>
+
+	* new_site.c (create_site_druid): Fix typo.
+
+2000-11-02  Lee Mallabone <lee0@callnetuk.com>
+
+	* new_site.c: Fix bug so delete_event is handled correctly.
+	
+	* operations.c, init.c: Changes to allow start_main_update() to
+	handle update_all() as well as single sites.
+
+2000-08-18  Lee Mallabone <lee0@callnetuk.com>
+
+        * gcommon.[ch]: Merge patch from Joe (change detailed below) into 
+	main source tree. Closed the bug reported and patched by Joe Pfeiffer.
+	
+	* gcommon.c: Implemented the correct fe_login stuff, thanks to David
+	Knight for work on the screem upload Wizard that I backported to
+	xsitecopy.
+	
+	* everything: make it compile and run again without instant death.
+
+2000-06-28  Joe Orton  <joe@orton.demon.co.uk>
+ 
+ 	* main.c: Update for neon debugging interface.
+ 
+ 	* gcommon.c: Update for new fe_connection interface.
+ 
+ 	* gcommon.h: Comment out redundant prototypes.
+
+2000-05-07  Lee Mallabone  <lee0@callnetuk.com>
+
+	* site_widgets.c: Fix bug where the site status is nearly *always* 
+	unsaved, even if it's actually saved.
+	
+	* changes.c: (change_detect_mode) Rescan the selected site after
+	changing the file state. Fixes the mass of dangling pointers that
+	were previously left around.
+
+	* changes.c: Okay, so the memory hangling/usage on changing fields
+	was <cough> sub-optimal <cough>.
+
+	* gcommon.c: New function, xsc_replace_string(), saves on typing,
+	and sorts out the changes.c mess.
+	
+	* minilist.c: More efficient memory (re)allocation.
+	
+2000-04-29  Lee Mallabone  <lee0@callnetuk.com>
+
+	* tree.c, new_site.c: Minor messing around trying to find random
+	bugs. Not much luck so far.
+
+2000-04-22  Lee Mallabone  <lee0@callnetuk.com>
+
+	* gcommon.c: New function, set_status_after_operation that provides
+	a suitable message for a status label once fetch,update,resync have
+	all finished.
+	
+	* operations.c: More skel code for the update_all thread.
+	
+2000-04-21  Lee Mallabone  <lee0@callnetuk.com>
+
+	* misc.c, gcommon.c: Changes to sync up with the latest FE API changes
+	in sitecopy 0.10pre.
+
+	* new_site.c: Fixed a major blooper where first-use would stop
+	the first site created from actually being added to the tree.
+	
+2000-04-10  Lee Mallabone  <lee0@callnetuk.com>
+
+	* site_widgets.c, changes.c: Changed the state_method code to be a
+	bit more useful. I think there are issues with rescan_selected
+	though. Something is definately causing crashes.
+
+2000-04-07  Lee Mallabone  <lee0@callnetuk.com>
+
+	* operations.c, main.c: Changes to add decent abort handling for
+	the new abort API. Skeleton code added for update_all and resync 
+	threads.
+
+2000-03-25  Lee Mallabone  <lee0@callnetuk.com>
+
+	* README.gnome: Add `hacking' information, update requirements and
+	add a bit of descriptive blurb.
+	
+	* *.xpm: More pixmaps, removed the old cruft.
+
+2000-03-16  Lee Mallabone  <lee0@callnetuk.com>
+
+	* resync.c: Integrate threading into fetch mode properly, and add
+	an animation to replace the (faulty) progress bar.
+	
+	* *.xpm: Added pixmaps and renamed the existing ones so that we now
+	have consistent naming (and icons) for links, dirs & files.
+
+2000-03-15  Lee Mallabone  <lee0@callnetuk.com>
+
+	* site_widgets.c, changes.c: Removed all get_widget calls as doing
+	so seems to reduce the amount of deadlock conditions, for a random
+	reason.
+	
+	* file_widgets.c: Okay, for some reason it was the GdkDestroyNotify
+	stuff added by glade which was causing the deadlock. removed. It
+	didn't cause deadlock on a simple test case I wrote though. :(
+
+	* misc.[ch]: New function, make_transfer_anim that returns a
+	GnomeAnimator widget that will play in a specific direction. Will
+	be useful now everything is almost properly threaded.
+
+	* resync.c, main.c: New thread (and function) for doing a
+	site_fetch. Untested as of yet.
+
+2000-03-11  Lee Mallabone  <lee0@callnetuk.com>
+
+	* tree.c, new_site.c: Make site creation (and editing in the same
+	session) actually work properly. Who knows what I was on when I
+	thought file scanning for new sites worked before now.
+
+2000-03-10  Lee Mallabone  <lee0@callnetuk.com>
+
+	* main.c, operations.c: Made the application run on 2 threads all the
+	time. A thread for doing updates is now spawned at startup, and
+	sleeps until the user clicks `update site'. Major issues with
+	deadlock still remain though.
+
+2000-03-09  Lee Mallabone  <lee0@callnetuk.com>
+
+	* tree.c: Fixed a crash-instantly-on-startup bug where the app
+	would just die if sites' local directories didn't exist.
+	
+	* misc.c, changes.c: Can now change the local directory of a site
+	on the fly, without SEGV. Directory is re-read, and the sites tree
+	is properly rescanned.
+	
+	* new_site.c: Ensure users can only pick a _directory_ for the
+	local directory.
+
+2000-03-07  Lee Mallabone  <lee0@callnetuk.com>
+        
+	* new_site.c: Fixed bug with moving back from the last page.
+	
+2000-02-08  Lee Mallabone  <lee0@callnetuk.com>
+        
+	* new_site.c: Cleaned a little. Server details are now persistant.
+	Options, attributes, init or catchup are all now working. Just one more
+	bug to nail and this file should be clean.
+	
+2000-02-07  Lee Mallabone  <lee0@callnetuk.com>
+        
+	* tree.c: Abstracted fill_tree_from_sites a little. No idea how this
+	hadn't already been done.
+	
+	* new_site.c: Sites now add themselves to all_sites *and* the main
+	CTree properly.
+
+1999-12-12  Lee Mallabone  <lee0@callnetuk.com>
+
+	* gcommon.c: Added *_abort* functions so that xsitecopy will now
+	compile. Shipped files to Joe for 0.9.0, despite the very unstable
+	and unfinished nature.
+
+1999-10-08  Lee Mallabone  <lee0@callnetuk.com>
+
+	* new_site.c: Removed a load of old cruft (most of the file actually)
+	and replaced it with a nice GnomeDruid widget. Added callback skels.
+	Still more to do here.
+
+1999-10-07  Lee Mallabone  <lee0@callnetuk.com>
+
+	* misc.c: Moved a load of relevant functions into tree.c. Deleted
+	some old cruft, and re-arranged a few things to make it all more
+	logical.
+
+1999-10-04  Lee Mallabone  <lee0@callnetuk.com>
+
+        * resynch.c: Got rid of the not-working legacy fetch-mode GUI, and
+	added a nice new Glade generated one. 
+
+	* all files: Cleanups to all files. Now we get hardly any warnings
+ 	with -Wall.
+
+	* init.c: Noticed the 'update site' menu option wasn't actually
+ 	connected to a signal. Fixed.
+
+	* changes.c, site_widgets.c: Fixed the bug with strange port numbers
+	getting changed. Implemented site options. (eg. nodelete, checkmoved).
+
+1999-10-02  Lee Mallabone  <lee0@callnetuk.com>
+
+	* minilist.c: Fixed the whole minilist problem. Deletion now works
+	properly.
+
+1999-09-29  Lee Mallabone  <lee0@callnetuk.com>
+
+	* file_widgets.c (make_file_info_area): gnome_mime_info() seems to
+	report directories as text/plain. Which, whether it's right or not,
+	seems a bit crap to me. Fixed the bug where the view button would try
+	and edit a directory.
+
+	* tree.c: Big rewrite. We now have a proper hierarchical file/directory
+	structure for xsitecopy. This involves an intermediate stage of GNodes
+	before recursing over the data to create the GtkCTree contents.
+
+	* misc.c: Changes & cleanups to accomodate the new tree code.
+
+	* minilist.[ch]: Fixed bug where you couldn't create an item unless
+	items already existed. This makes everything a little less generic, but
+	hey.
+
+1999-09-26  Lee Mallabone  <lee0@callnetuk.com>
+
+	* site_widgets.c (make_site_info_area): Fixed bug where the ignore
+	list wasn't getting populated.
+
+1999-09-19  Lee Mallabone  <lee0@callnetuk.com>
+
+	* tree.c: New file. Start of an algorithm to generate proper
+	directory structures into the site trees.
+
+1999-09-11  Lee Mallabone  <lee0@callnetuk.com>
+
+	* init.c (xsitecopy_read_configuration): renamed fe_gnome_init().
+	Started adding code to read gnome-config info. Cleaned up some of
+	what was already there.
+
+	* minilist.[ch]: New files. These abstract out what would have
+ 	been excludes.c, ascii.c and ignores.c. Thankfully I had the brain
+ 	to realise it could all be done much nicer before wasting time on
+ 	separate files. This is also fairly future proof.
+
+	* site_widgets.c: Completely redesigned the site info/edit GUI. Made
+	(imho) a really nice one with glade, and began incorporating it 
+	into the app. Long way to go yet due to Joe's API redesign.
+
+1999-09-07  Lee Mallabone  <lee0@callnetuk.com>
+
+	* site_widgets.c: Made the local directory widget sensitive. Can
+	now change local directory on the fly. It's a little broken though.
+
+1999-09-06  Lee Mallabone  <lee0@callnetuk.com>
+
+	* misc.c: Added a proper rescan function. This can now be used from
+	the operations menu, and can be called after adding/removing excludes,
+	changing the local directory, adding files to your site while xsitecopy
+	is running, etc.
+
+	* operations.c: Changed refresh_site() into rebuild_node_files().
+	Should fix the "seg-fault when clicking a file, after an update" bug
+	reported by Nick Silberstein.
+
+	* misc.c: Made whether the site tree gets sorted or not a little
+	more consistent. Will now be user-decidable.
+
+1999-09-05  Lee Mallabone  <lee0@callnetuk.com>
+
+	* misc.c: Rewrote the tree population code. Removed the thoroughly 
+	disgusting check_dir() function and cleaned code layout a little.
+
+	* misc.h: Added a struct for accessing preferences information, in
+	preparation for when I actually implement them. :)
+	
+1999-08-29  Lee Mallabone  <lee0@callnetuk.com>
+
+        * file_widgets.c: plugged the (small) memory leak this file created.
+	
+	* misc.c: Started rewrite of the ctree populate code.
+
+1999-08-29  Lee Mallabone  <lee0@callnetuk.com>
+
+        * all files: renamed everything to remove the legacy fe_[gtk|gnome] 
+	prefixes. Hopefully it might be a little easier for other people to 
+	identify which files do what now.
+	
+1999-08-28  Lee Mallabone  <lee0@callnetuk.com>
+
+        * fe_gtk_site_widgets.c: added #ifdef 0 around the web dav options
+	as Joe disabled/made them default.
+	
+1999-08-23  Lee Mallabone  <lee0@callnetuk.com>
+
+        * fe_gtk_site_ops.c: Changed upload dialog to a new, much more
+	'gnomified' dialog. Comments welcome. Disable 'cancel' ability
+	though, as I can't get it working yet.
+
+1999-08-21  Lee Mallabone  <lee0@callnetuk.com>
+
+	* fe_gnome_common.c: Abstracted the rc_verifysite() stuff; everything that
+	needs to should now be able to report site definition problems properly.
+
+	* fe_gtk_main.c (create_site_errors_dialog): If there is a problem
+	with the rcfile, xsitecopy will now popup a dialog on startup with
+ 	all the problems, rather than just spewing a load of stuff all over
+	the console.
+
+	*fe_gtk_main.c (check_site_and_record_errors): Call rc_verifysite()
+	on all the sites, and add any errors to the linked list 'errors'.
+
+1999-08-18  Lee Mallabone  <lee0@callnetuk.com>
+
+	* fe_gnome_common.c: Removed legacy code.
+
+	* fe_gtk_main.c: quite a few changes that I've not updated the
+	changelog about; now have 2 new webdav options. Cleaned up the 
+	quit "are you sure?" code. Made nicer dialogs with glade.
+
+1999-07-02  Lee Mallabone  <lee@callnetuk.com>
+
+	* doc/xsitecopy.[sgml|html]: Minor updates to reflect latest
+	status of the menu options.
+	
+	* fe_gnome_resynch.c: Disabled fetch mode for 0.6.10.
+
+	* fe_gtk_main.c: Plugged a HUUUUGE memory leak. XSitecopy should
+	now use sane amounts of memory, instead of the stupid amounts it
+	previously used. This makes me happy. :)
+	Finished site creation wizard. Seems to work well, but had problems
+	creating a "scanning files..." dialog.
+
+1999-07-01  Lee Mallabone  <lee@callnetuk.com>
+
+	* fe_gtk_excludes.c: Fixed a seg-fault bug when adding excludes to
+	sites that didn't have any.
+
+1999-06-30  Lee Mallabone  <lee@callnetuk.com>
+
+	* fe_gnome_common.c: Finally fixed the job progressbar bug. Now 
+	works a treat here. Also minor mem cleanups in fe_updated().
+
+1999-06-30  Lee Mallabone  <lee@callnetuk.com>
+
+	* fe_gnome_creation.c: Now uses the all new site creation wizard.
+
+1999-06-30  Lee Mallabone  <lee@callnetuk.com>
+
+	* fe_gtk_changes.c: Memory alloc cleanups. Sites should use a little 
+	less memory now, in theory.
+
+1999-06-29  Lee Mallabone  <lee@callnetuk.com>
+
+	* fe_gnome_new_site.c: slight cleanups.
+
+	* fe_gtk_main.c: changes in preparation for new site creation
+	wizard. 
+
+	* fe_gtk_changes.c: change_root_dir now works properly and is 
+	called by the focus-out-event.
+
+1999-05-23  Lee Mallabone  <lee0@callnetuk.com>
+
+	* fe_gnome_resynch.c: Fetch mode now working just fine. Could be a bit
+	prettier, but the functionality is all there.
+
+1999-05-23  Lee Mallabone  <lee0@callnetuk.com>
+
+	* fe_gtk_main.c: Added in "Open new rcfile" capability. Preliminary
+	fetch mode added. Still needs work though. Abstracted the fe_connect*
+	stuff a bit so that it will work for update, fetch, *and* resynch modes.
+
+1999-04-26  Lee Mallabone  <lee0@callnetuk.com>
+
+        * fe_gtk_main.c: Grrr, nuked some changelog entries while trying
+	to sync my code with Joe's. :(
+	Refresh now works properly - thanks to people on gtk-list for that.
+	Implemented editing a site's remote directory, including giving 
+	warnings for insane dirs.
+	
+	* rcfile.c: Changes to rcfile_write(). It should now actually be
+	stable and not write rubbish for remote directories.
+
+1999-04-18  Lee Mallabone  <lee0@callnetuk.com>
+
+	* fe_gtk_main.c (refresh_site_node): Sorted out the refresh functions.
+	Cleaned fe_gtk_main.c up a bit. Removed old, useless code.
+	Can't understand why gtk_ctree_set_node_info seems to be setting
+	my node labels as complete garbage.
+
+1999-04-10  Lee Mallabone  <lee0@callnetuk.com>
+
+	* xsitecopy.sgml, topic.dat: Pretty much finished off 
+	documenting the 'sites' widgets.
+
+	* fe_gtk_main.c/h: Did a bit of abstraction. copy_a_file() now
+	does just that. Added rcfile backup and restore functions.
+
+	* fe_gnome_creation.c: Added rcfile backup/restore menu options.
+	Disabled 'open' menu option again ready for a 0.5.2 release.
+
+1999-04-09  Lee Mallabone  <lee0@callnetuk.com>
+
+	* fe_gtk_main.c: Backup and restore options now fully working.
+
+	* fe_gnome_creation.c: slight edit to menus.
+
+1999-04-08  Lee Mallabone  <lee0@callnetuk.com>
+
+	* fe_gnome_creation.c: Added backup_menu.
+
+	* fe_gtk_main.c: Added backup_infofile(), restore_infofile(),
+	and actual_restoration() to allow backing up of file states.
+
+1999-04-06  Lee Mallabone  <lee0@callnetuk.com>
+
+	* fe_gnome.c: Fixed a bug with closing the window and xsitecopy 
+	not actually terminating properly.
+
+1999-04-05  Lee Mallabone  <lee0@callnetuk.com>
+
+	* fe_gtk_main.c: saveas_request() and save_sites_as() added. Laid
+	down some code for open a new rcfile.
+
+	* fe_gnome_creation.c: Save as, added to file menu.
+
+1999-04-02  Lee Mallabone  <lee0@callnetuk.com>
+
+	* fe_gtk_site_widgets.c (make_site_info_area): added nooverwrite checkbox.
+
+	* rcfile.c (rcfile_write): added support for nooverwrite option.
+
+	* fe_gtk_main.c, fe_gnome.c: populate_site_node() flat
+	tree view now an option.
+
+
+	

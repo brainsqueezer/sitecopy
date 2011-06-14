@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Excludes, ASCII, and Ignores</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="XSitecopy"
+HREF="book1.html"><LINK
+REL="UP"
+TITLE="Sites"
+HREF="c44.html"><LINK
+REL="PREVIOUS"
+TITLE="Update Options"
+HREF="x91.html"><LINK
+REL="NEXT"
+TITLE="Files &#38; Directories"
+HREF="c130.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>XSitecopy</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x91.html"
+ACCESSKEY="P"
+>&#60;&#60;&#60; Previous</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Sites</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="c130.html"
+ACCESSKEY="N"
+>Next &#62;&#62;&#62;</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN117"
+>Excludes, ASCII, and Ignores</A
+></H1
+><P
+>Chances are that while you're editing html locally, things like backup files
+will get created. While useful, it's likely you don't want them uploaded to
+your remote web site. The excludes section allows you to specify glob
+patterns (see the fnmatch(3) and glob(7) man pages).
+Any files on the local site matching these expressions will be
+ignored by XSitecopy.</P
+><P
+>For example my excludes consist of:</P
+><P
+><P
+></P
+><UL
+><LI
+><P
+>*.bak</P
+></LI
+><LI
+><P
+>core</P
+></LI
+><LI
+><P
+>oldweb</P
+></LI
+></UL
+></P
+><P
+>because I don't want any backups or core dumps uploaded. I also have a
+sub-directory on my local site called 'oldweb' which I keep for nostalgic
+purposes only. This is not uploaded by specifying it as 'an exclude'.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x91.html"
+ACCESSKEY="P"
+>&#60;&#60;&#60; Previous</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="book1.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="c130.html"
+ACCESSKEY="N"
+>Next &#62;&#62;&#62;</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Update Options</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c44.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Files &#38; Directories</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

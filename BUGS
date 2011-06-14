@@ -1,0 +1,119 @@
+
+From Jan Hendrik Schreier:
+
+no display of protocol in standard banner line is confusing.
+
+---
+
+SEGTERM during a --fetch gets a SIGSEGV
+
+---
+
+Bugs in 0.11.4:
+
+- MacOS X 10.1 catchup/sitecopy not recording times properly doesn't
+ *** possibly CPP fileset.h duplication bug
+- FTP fetch mode does MDTM for each file when 0.10.x didn't and is hence 
+very slow for large sites (Dave Hollis)
+- rm foo; --synch brings back foo with 1970-01-01 modtime (Dave Hollis)
+
+---
+
+From Kobaz Mi'Daire:
+
+If there is an "&" in a directory name on the remote end and you do a
+sitecopy -f, then try to preform a sync operation on the site, either
+using -u or -s, sitecopy thinks the directory has not been created, trys
+to create it, and fails because it already exists.
+ 
+Also if a directory on the remote end is all caps, this problem shows up
+as well.
+
+--- 
+
+From: "Jean Jordaan" <jean@upfrontsystems.co.za>
+
+Currently, it looks like there are things that sitecopy silently
+ignores if it doesn't understand. For example, I had this:
+
+    exclude     Queries/makeTSV
+    exclude     Queries/makeMatrix
+    exclude     Queries/doReduce
+
+That was wrong; missing a leading slash. It should be:
+
+    exclude     /Queries/makeTSV
+    exclude     /Queries/makeMatrix
+    exclude     /Queries/doReduce
+
+But sitecopy didn't let me know that those excludes were being ignored.
+
+-- 
+
+From: "Pascal Ung":
+
+trying not to use clear password inside .sitecopyrc
+(preferring, user and password challenge)
+
+we found that it doesn't work in the following case:
+
+ the .htaccess contains kind of:
+
+ <Limit PROPFIND PUT DELETE PATCH PROPPATCH MKCOL COPY MOVE LOCK UNLOCK>
+    require user webmaster enduser
+</Limit>
+<Files ~ "^\.ht">
+ Order deny,allow
+ Deny from all
+ Allow from  .userdomain.fr
+ require user webmaster
+</Files>
+
+--- 
+
+Volker Kuhlmann: ftp: echo_quit never set.
+
+---
+
+On Thu, Apr 25, 2002 at 06:07:02PM +0200, Dave Hollis wrote:
+> After fetching and synchronizing I noticed that files which had been
+> updated by my colleague and consequently fetched, still had the date of
+> the old file after it had been overwritten.
+
+---
+
+From: Luc Bastiaenssen
+To: sitecopy@lyra.org
+Subject: [sitecopy] large files
+Date: Tue, 07 Jun 2005 17:00:07 +0200
+
+To get support for large files I've used following compile option as
+suggested in previous thread:
+
+export CFLAGS="-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
+
+But I also had to tweak 'src/sitestore.c' to avoid "filezize overflow"
+message
+
+---
+
+On Sun, Jul 17, 2005 at 11:38:35PM +0200, Dirk Pirschel wrote:
+> Yes, i am using safe mode.  We are two webmasters at this site, so that
+> safe mode is mandatory.
+...
+> The best performance would be: Fetch the directory listing via ls -laR,
+> remove files which are excluded, and perform MDTM commands only on the
+> remaining files.  sitecopy currently performs MDTM commands on every
+> (possibly excluded) file, and excludes the files later... :-(
+
+---
+
+From: "Matthew Palmer" <320586@bugs.debian.org>
+
+Sitecopy has supported scp/sftp modes of transfer for a while now, however
+the manual page has no information on how to make it all work.
+
+- Matt
+
+---
+

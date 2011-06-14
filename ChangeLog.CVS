@@ -1,0 +1,6039 @@
+Fri Oct  1 00:06:30 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/lsparser.c (ls_init): Initialize curdir to empty string.
+
+Sat Sep 18 09:46:21 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/console_fe.c (fe_updated): Cosmetic: don't wrap short error
+	messages onto a new line.
+
+Sat Sep 18 09:16:13 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/rcfile.c (init_paths): Fail if the rcfile is not a regular
+	file.
+
+Mon Sep 13 22:47:10 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* po/it.po: Update from Cristian Rigamonti.
+
+	* THANKS: Update Cristian's e-mail address.
+
+Mon Sep 13 22:42:58 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* po/Makefile.in.in: Update from gettext.
+
+Sun Sep 12 17:10:31 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (struct ftp_session): Add pi_curaddr and
+	rfc2428_mode fields.
+	(parse_epasv_reply): New function.
+	(parse_reply): Handle 229 EPSV replies.
+	(ftp_data_open): Try EPSV before PASV unless it's known
+	to fail.
+
+Sun Sep 12 17:06:36 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (authenticate): Renamed from log_in.
+	(ftp_open): Update, and fix error path to close socket and not set
+	->connected flag.
+
+Sun Sep 12 12:30:23 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitesi.h (DEBUG_DUMP_FILE_PROPS): Use NE_FMT_OFF_T to print
+	file sizes.
+
+Sun Sep 12 12:17:19 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitestore.c (end_element): Don't give an error on bad
+	permissions mode (migration issue from <0.14.0).
+
+Sun Sep 12 12:04:14 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* po/POTFILES.in: Regenerate listing all C sources.
+
+Sun Sep 12 11:47:07 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/common.h (ne_has_support) [HAVE_NEON024]: Define for 0.24.x
+	compatibility.
+
+Sun Sep 12 11:40:27 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/common.c (map_debug_options): Use ne_token.
+
+Sun Sep 12 11:36:13 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Define HAVE_NEON024 if neon 0.24.x is used.
+	
+	* src/common.h (ne_xml_failed): Define for neon 0.24/0.25
+	compatibility.
+
+	* src/sitestore.c (parse_storage_file): Use ne_xml_failed.
+
+Sun Sep 12 11:34:23 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (init): Drop Expect: 100 support; use
+	ne_has_support to detect SSL support.
+	(put_if_unmodified): New function, for neon 0.25 compatibility.
+	(file_upload_cond): Use put_if_unmodified.
+
+Sat Sep 11 01:51:18 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/console_fe.c (fe_setting_perms): Differentiate directories
+	from files.
+
+Sat Sep 11 01:47:46 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/rcfile.c (rcfile_read): Make "protocol ssh" equivalent
+	to "protocol rsh" with "rsh ssh" and "rcp scp".
+
+Sat Sep 11 00:32:48 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Modernise a little; require neon 0.24.x; pick
+	up SSL library message properly.
+
+Sat Sep 11 00:30:50 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/rshdriver.c: Rewrite by Nobuyuki Tsuchimura, adapted to use
+	lsparser interface for fetch_list implementation.
+
+	* src/common.h, src/common.c: Add DEBUG_RSH, "rsh" debug channel.
+
+Sat Sep 11 00:28:44 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/lsparser.c (ls_pflist_add): New function, factored out from
+	ftp_fetch.
+
+	* src/ftp.c (ftp_fetch): Use ls_pflist_add.
+
+Sat Sep 11 00:11:34 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/lsparser.c (ls_init): Strip trailing slash internally.
+	(ls_parse): Strip whitespace internally.
+
+	* src/ftp.c (ftp_fetch): Simplify accordingly.
+
+Fri Sep 10 23:22:37 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/lsparser.c, src/lsparser.h: New files, factored out from
+	ftp.c.
+
+	* Makefile.in: Build it.
+
+	* src/ftp.c (parse_permissions): Removed function.
+	(ftp_fetch): Use the new lsparser interface.
+
+Fri Sep 10 20:57:28 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/vfsdriver.c: New file, from David Knight.
+
+Fri Sep 10 20:54:52 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sites.h (struct site_file): Drop 'marked' field.
+	(struct site): Drop only_marked field.
+
+	* src/sites.c (throughout): Drop support for "only marked"
+	updates.
+
+Fri Sep 10 20:41:13 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/nulldriver.c: New file.
+
+	* Makefile.in: Build it, by default.
+
+	* src/console_fe.c (parse_cmdline): Support --dry-run argument for
+	--update.
+	(act_on_site): Support dry run updates using NULL protocol driver.
+	(usage): Document --dry-run.
+
+Thu Sep  9 23:39:38 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/rcfile.c (rcfile_verify): Directory perms cannot be
+	maintained over WebDAV.
+	(rcfile_read): Clear ->dirperms on "permissions none".
+	(rcfile_write): Write "permissions dir" if appropriate.	
+
+Thu Sep  9 23:34:46 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sites.h (struct site): Add dirperms field.
+
+	* src/sitesi.h (file_compare): Compare directory permissions
+	bits if site->dirperms is true.
+	
+	* src/rcfile.c (rcfile_read): Support 'permissions dir'.
+
+	* src/sites.c (update_create_directories): Set dir perms as
+	necessary for new and changed files.
+
+	* src/sitestore.c (site_write_stored_state): Write permissions
+	mode for directories.
+	(start_element): Clear current stored state on <item>
+	start-element; initialise stored.mode to -1.
+	
+Thu Sep  9 23:04:43 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitefiles.c (file_state_copy): Don't inline.
+
+Thu Sep  9 18:31:30 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* gnome/main.c (main): Use PACKAGE_VERSION.
+
+	* gnome/init.c (create_about): Use PACKAGE_VERSION.
+
+Thu Sep  9 18:30:52 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: GNOME fe fixes from Andrew Burton.
+
+Thu Sep  9 18:21:03 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Fix AC_LIBOBJ use for recent autoconf.
+
+Thu Sep  9 18:18:59 2004  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (set_pisockerr): Print a debug message.
+	(ftp_finish): Use run_command rather than execute to avoid
+	re-opening the connection just to send a QUIT; avoid
+	double-closing the socket in that case.
+
+Tue Jul 29 21:05:25 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/rcfile.c (init_paths): Relax permissions check to fix false
+	positives on some platforms.
+
+Wed Jul  2 21:11:39 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Fix use of included getopt on BSDs.
+
+Mon Jun 30 20:10:23 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (dtp_open_passive): Renamed from ftp_connect_pasv.
+	(ftp_close): Removed.  (ftp_finish): Close the PI socket here.
+	(dtp_open_active): Renamed from ftp_active_open.
+	(dtp_close): Renamed from ftp_data_close.
+	(parse_permissions): Renamed from ftp_decode_perms.
+	... all callers updated.
+
+Mon Jun 30 19:59:06 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitestore.c (fn_escape): Don't escape '/', '.' or '-'.
+	(end_element): Better error handling.
+
+Mon Jun 30 19:56:02 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (ftp_active_open, ftp_connect_pasv, ftp_open): Update
+	for neon 0.24 socket API.
+	(ftp_fetch): Use an 'unsigned long' filesize; ensure a zero
+	default file size.
+
+Sun Jun 29 22:12:58 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (verify_trusted, fetch_list): Update for neon
+	0.24 compatibility.
+
+Sun Jun 29 22:12:07 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (ftp_fetch): Strip leading tabs and spaces from parsed
+	lines.
+
+Tue Jun 17 21:08:25 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (receive_file): Fix fwrite argument order; fix
+	handling of NE_SOCK_CLOSED (David Madore <david.madore@ens.fr>).
+
+Sun Jun 15 10:42:08 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (verify_trusted): New function.
+	(init): Use verify_trusted for a trusted cert.
+
+Wed Jun  4 17:54:38 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (ftp_fetch): Fix handling of empty lines.
+
+Wed Jun  4 17:39:41 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/common.c (debug_map): Add ssl -> NE_DBG_SSL mapping.
+
+Tue May 20 20:44:55 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitestore.c (fn_escape): Remove extraneous semi-colon.
+
+Tue May 20 20:41:14 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitestore.c (parse_storage_file): Renamed from
+	site_read_stored_state_new.
+	(site_read_stored_state): Drop support for detection of non-XML
+	storage files.
+	(site_read_stored_state_old): Removed function.
+
+Tue May 20 20:39:26 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Add $(top_builddir)/intl to CPPFLAGS for the
+	included libintl build.
+
+	* Makefile.in: Build intl before libneon, since libintl.h is now a
+	generated file.
+
+Fri May  9 15:29:19 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (send_file_binary): Renamed from send_file to prevent
+	conflict with AIX system call of the same name.  (Takeshi
+	NISHIMATSU, <t-nissie@imr.tohoku.ac.jp)
+
+Tue May  6 22:22:32 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitestore.c (site_write_stored_state): Write
+	<escaped-filenames> to options element.
+
+Tue May  6 22:12:56 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/frontend.h (fe_accept_cert): New prototype.
+
+	* src/sites.h (struct site): Add certfile field, drop server_cert
+	field.
+	
+	* src/console_fe.c (fe_accept_cert): New function.
+	(verify_sites): Don't handle SITE_NOSERVERCERT.
+
+	* src/davdriver.c (verify_cert): New function.
+	(init): If a cached cert exists, trust it; otherwise use
+	verify_cert as server cert verification callback.
+	
+	* src/rcfile.c (rcfile_read): Drop server-cert option; fill in
+	certfile field.
+	(rcfile_verify): Drop SITE_NOSERVERCERT constraint.
+
+Tue May  6 21:10:37 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sites.h (struct site): Removed charset field.
+	* src/common.c (init_charset): Removed.
+	* src/console_fe.c (list_site_definitions): Don't print charset.
+	* src/rcfile.c (rcfile_read): Ignore charset field.
+	* src/sites.c (fe_initialize): Don't call init_charset.
+
+Tue May  6 21:06:22 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitestore.c (site_read_stored_state_new): Call ne_xml_parse
+	with 0 length to finalize parse.
+	(fn_escape, fn_unescape): New functions.
+	(site_write_stored_state): Use fn_escape.
+	(end_element): Use fn_unescape.
+
+Tue May  6 20:28:54 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitestore.c (start_element): Replaces check_context.
+	(char_data): New function.
+	(end_element, elmmap): Adapted for neon 0.24 XML API.  Un-escape
+	filenames.
+	(site_write_stored_state): Escape filenames.
+
+Tue May  6 20:22:14 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (check_context, end_element): Removed.
+	(start_element): New function.
+	(fetch_list, fetch_elms[]): Adapt for neon 0.24 XML API.
+
+Sun Mar 30 19:14:38 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (init): Update for neon 0.24 SSL API.
+
+Sun Mar 30 17:39:05 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Add "it" to ALL_LINGUAS.
+
+Sun Mar 16 11:32:03 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/rcfile.c (rcfile_read): Parse the 'server-cert' option.
+	(rcfile_verify): Fail with SITE_NOSERVERCERT if SSL is enabled and
+	no server cert is given.
+
+	* src/sites.h (struct site): Add server_cert field.
+
+	* src/davdriver.c (h2s_init): Removed function.
+	(init): Load specified server_cert; fold in h2s_init.
+
+Sun Mar 16 10:45:20 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* po/it.po: New file, from Cristian Rigamonti
+	<bigamons@freemail.it>.
+
+Sun Mar 16 10:43:23 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (init): Fix segfault if SSL is requested but not
+	supported.
+
+Wed Feb 19 21:32:20 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* Makefile.in (DOCS): Remove FAQ; fix from Juergen Daubert
+	<Juergen.Daubert@t-online.de>.  Convert $(EXE) to @EXEEXT@.
+
+Wed Feb 19 21:29:48 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/console_fe.c (main): Log default charset for debugging.
+
+Wed Feb 19 21:18:39 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Disable bundled expat pending build fix.
+
+Wed Feb 19 21:11:31 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitestore.c: Never request UTF-8 "decoding" of "filename"
+	element.
+
+Wed Feb 19 20:25:12 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/common.c (init_charset): Default to ISO-8859-1 if the
+	codeset from nl_langinfo is "ANSI_X3.4-1968".
+
+Thu Feb 13 08:21:57 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (send_file): Fix FTP file upload corruption.
+
+Tue Feb 11 19:51:28 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* Makefile.in (LIBS): Include @LIBINTL@ (patch from Nathan Hand
+	<Nathan.Hand@defence.gov.au>).
+
+Tue Feb 11 19:47:32 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (ftp_get): Handle errors from fclose().
+
+Sun Feb  9 20:52:37 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (parse_pasv_reply): Renamed from ftp_read_pasv.
+
+Sun Feb  9 20:44:41 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (read_reply, parse_reply, log_in, run_command,
+	execute): Rewrite and refactor of ftp_read, ftp_exec, ftp_login,
+	ftp_response.  Avoid exec/read/login infinite loops.
+
+Sun Feb  9 16:41:35 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* Makefile.in: Removed all uninstall- targets.
+
+Sun Feb  9 12:23:01 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/common.c (init_charset): New function.
+	(default_charset): New global.
+
+	* src/sites.h (struct site): Add charset field.
+
+	* src/console_fe.c (main): Always call setlocale() if available.
+	(list_site_definitions): List charset.
+	
+	* src/rcfile.c (rcfile_read): Read charset field.
+
+	* src/sites.c (fe_initialize): Call init_charset.
+
+	* src/sitestore.c (site_write_stored_state): Write out charset in
+	XML declaration.  Remove encoding mess.  Write respect-encoding
+	into <options>.
+	(site_read_stored_state_new): Fail if encoding from declaration
+	and config don't match.
+
+Fri Feb  7 16:52:36 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Update for autoconf 2.5.x, simplifications.
+	Fix to always require an XML parser.
+
+Fri Feb  7 16:49:34 2003  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitestore.c (site_write_stored_state): Use single quotes for
+	sitestate and saved-by attributes.
+
+Sun Nov 17 10:22:33 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sites.c (site_get_protoname): Update to use proto_string
+	field of site object.
+	(everywhere): Update for neon 0.22 API.
+
+Mon Nov 11 14:23:04 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	Ensure trailing slash is used in Request-URI for collections.
+	
+	* src/davdriver.c (coll_escape): New function.
+	(dir_create, dir_remove):
+
+Mon Nov 11 14:21:27 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/rcfile.c (rcfile_read): Always fill in proto_string field.
+	(rcfile_write): Write out proto_string field as protocol name.
+
+	* src/sites.h (struct site): Make proto_string field always valid.
+
+Tue Nov  5 20:54:11 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (file_read): Use ne_begin_request/ne_end_request
+	directly, rather than obsolete ne_read_file.
+	(get_server_port): Use ne_service_lookup.
+	(h2s): Adjust for error codes in neon >=0.20.
+
+Tue Nov  5 20:47:15 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (syserr): Renamed from set_err, take errno
+	value.  Updated all callers.
+
+Tue Nov  5 20:44:43 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/console_fe.c (main, version): Use PACKAGE_NAME,
+	PACKAGE_VERSION.
+
+Tue Nov  5 20:44:10 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitefiles.c (file_full_local): Use ne_concat.
+
+Tue Nov  5 20:42:38 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/rshdriver.c: Use ne_vsnprintf throughout.
+
+Tue Nov  5 20:41:13 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (set_err): Use varargs-style ne_set_error;
+	simplify callers.
+
+Sat Aug 31 23:46:31 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftpdriver.c (init): Enable usecwd support.
+
+	* src/rcfile.c (rcfile_read, rcfile_write): Support 'ftp usecwd'
+	config option.
+
+Sat Aug 31 23:43:20 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (file_download): Open local file with O_TRUNC.
+
+Sat Aug 31 23:41:15 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (maybe_chdir, ftp_set_usecwd): New functions.
+	(struct ftp_session_s): Add 'cwd' field.
+	(ftp_put): Call maybe_chdir before uploading.
+	(ftp_login): Invalidate stored 'cwd'.
+
+Mon Mar 11 22:04:43 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitestore.c (site_write_stored_state): Escape any non-ASCII
+	characters.
+
+Mon Feb 25 20:42:38 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (ftp_fetch): Use ne_shave rather than STRIP_EOL.
+
+Mon Feb 25 20:41:09 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/rshdriver.c (fetch_list): Removed.
+
+Sun Jan 13 21:56:08 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Create 'intl' directory too.
+
+Sun Jan 13 21:11:38 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* doc/changes.awk: Comment update from Peter Moulder.
+
+Sun Jan 13 20:55:17 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	Build system cleanups from Peter Moulder:
+
+	* Makefile.in: Replace sc_datadir with pkgdatadir.  Add ALL_CFLAGS
+	as the concatenation of INCLUDES, CPPFLAGS, CFLAGS.  Update
+	.PHONY; add .SUFFIXES.  Use MKINSTALLDIRS rather than "$(INSTALL)
+	-d".  
+	(install*): Support DESTDIR.  (uninstall-nls): New target.
+
+	* configure.in: Export NLSUNINSTALL.  Use INCLUDES rather than
+	CFLAGS where appropriate.  Add LIBGLADE_CFLAGS to INCLUDES for
+	GNOME frontend build.
+
+Sun Jan 13 20:41:33 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/console_fe.c (act_on_site): Fix typo in verify error output
+	(thanks to Thomas Schultz).
+	
+Sun Jan 13 20:14:46 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (pfind_results): Fix when absoluteURI given
+	using "https://" scheme.  Better debugging.
+
+Wed Jan  9 23:05:19 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* Makefile.in (install-xsitecopy): Fix installing HTML docs.
+
+Wed Jan  9 20:59:21 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* .release.sh: Generate xsitecopy documentation from SGML sources.
+
+Wed Jan  9 20:54:50 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* Makefile.in: Simplify handling of XSC_DOCS and XSC_PNGS.
+
+	* Makefile.in: Changes from Peter Moulder:
+	(subdirs, clean): Use `cd && make'.
+	(distclean): Act recursively.
+
+Sun Jan  6 23:18:40 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Fix GNOME_INCLUDEDIR include (Olaf Hering).
+
+Sun Jan  6 10:03:42 2002  Joe Orton  <joe@manyfish.co.uk>
+
+	* Makefile.in: Cleanup.
+
+Mon Dec 31 00:57:53 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (file_move): Always overwrite destination
+	resource.
+
+Thu Dec 20 09:31:27 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* Makefile.in (install-nls): Fix for non-GNU make.
+
+Thu Dec 20 01:22:36 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Bumped to 0.11.1.
+
+Thu Dec 20 01:17:07 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* Makefile.in, configure.in: Cleanups of CFLAGS/CPPFLAGS usage.
+	Don't add "-I/lib" to CFLAGS.
+
+Thu Dec 20 01:07:39 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Add INTLLIBS to LIBS if NLS enabled.  Add intl dir
+	to front of SUBDIRS, so that libintl.h is generated early.
+
+Sat Dec  8 01:36:03 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Remove --extra-{includes,libs}, off_t format
+	string detection.  Require that an external neon is version 0.18
+	or later.  Don't need zlib support in a bundled neon build.
+	Display SSL library detected.
+
+Sat Dec  8 01:27:50 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/console_fe.c (fe_can_update, fe_fetch_found): Use
+	NE_FMT_OFF_T for off_t format string.
+
+	* src/sitestore.c (site_write_stored_state): Similarly.
+
+Sat Dec  8 01:27:10 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/console_fe.c (get_username): Simplify, pass in the buffer.
+	(fe_login): Updated for new fe_login API.
+
+Sat Dec  8 00:00:03 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (auth_common, server_auth_cb, proxy_auth_cb):
+	Updated for neon 0.18 auth API, fe_login changes.
+
+Fri Dec  7 23:53:28 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (ftp_set_server, ftp_login): Store username and
+	password as fixed-size buffers; adapt for fe_login change.
+
+Fri Dec  7 23:52:28 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/frontend.h (fe_login): Pass username and password as
+	fixed-size buffers.
+
+Sat Nov 17 18:52:56 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/console_fe.c (fe_verified): Implemented.  (abort_handler):
+	Dump core on segfaults.  (act_on_site): Update for site_verify
+	interface changes.  (usage): Advertise --verify support.
+
+Sat Nov 17 18:46:59 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/frontend.h (fe_verified): Pass const char * filename rather
+	than a struct site_file *.
+
+	* src/sites.c (site_verify_compare): Fixes.  Updated for
+	fe_verified change.  (site_verify): Added a 'numremoved' argument.
+
+Sun Nov  4 22:46:23 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sites.c (munge_modtime): Split out of site_fetch_walk.
+
+Sun Nov  4 22:07:50 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c: Update for neon 0.17 API. Manually
+	escape/unescape URIs.
+
+Sun Nov  4 19:49:52 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in, po/nn.po: Added 'nn' translation from
+	Karl Ove Hufthammer <huftis@bigfoot.com>.
+
+Sun Nov  4 19:12:26 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sites.c (synch_files): Call file_downloaded after setting
+	file permissions.
+
+Sun Nov  4 16:58:28 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sites.c (site_fetch_walk): Set stored modtime of new files
+	to the current date/time.
+
+Sun Sep 23 21:38:54 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* Makefile.in: Remove DEFS.  Add -DLOCALEDIR into CFLAGS.
+
+	* configure.in: Remove SDEFS/DEFS.  Add -DHAVE_CONFIG_H to CFLAGS.
+
+	* po/Makefile.in.in: Remove from CVS, add at autogen.sh time.
+
+Sun Sep 23 20:36:10 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sites.h (struct site): Add http_tolerant field.
+
+	* src/rcfile.c (rcfile_read): Handle "http tolerant" option.
+
+	* src/davdriver.c (init): Skip OPTIONS check if http_tolerant is
+	set.
+
+Sun Sep 23 20:33:44 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (ENABLE_PROGRESS, DISABLE_PROGRESS): New macros.
+	(file_upload, file_upload_cond, file_download, file_read):
+	Conditionally enable progress callbacks for interesting transfers.
+
+Sun Jun 24 16:21:41 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Check out to print integers of type off_t, and
+	define FORMAT_OFF_T apropriately.
+
+Sun Jun 24 16:17:43 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitestore.c (site_write_stored_state): Use FORMAT_OFF_T to
+	print integers of type off_t.  (end_element): Fix warning, size_t
+	is unsigned.
+
+Sun Jun 10 11:54:38 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/davdriver.c (end_element): Don't check for private pointer
+	is NULL.
+
+Sun Jun 10 11:48:59 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/frontend.h: Add back 'enum fe_status', and use it in
+	fe_connection.
+
+Sun Jun 10 11:47:47 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (ftp_decode_perms): Better algorithm from Michael
+	Lindner <mikel@att.net>.
+
+Sun Jun 10 03:33:53 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/console_fe.c (fe_can_update): Print number of bytes to
+	upload for files.
+
+Sat Jun  9 21:56:11 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* */*: Updated for neon 0.15 symbol changes.
+
+Tue May 29 20:55:18 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* po/Makefile.in.in: Replaced with copy from gettext 0.10.37.
+
+	* intl/*: Updated to gettext 0.10.37.
+
+Sun Apr 22 19:54:21 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sites.c (site_fetch): Don't fetch checksums if main fetch
+	failed.  Only need modtimes in fetch if using safe mode or state
+	timesize.
+
+Wed Apr 18 00:56:26 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitestore.c (decode_utf8_double): Remove redundant function.
+
+Tue Apr 17 10:01:10 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/rshdriver.c (run_rsh): Make sure the buffer is
+	NUL-terminated. (Nobuyuki Tsuchimura).
+
+Fri Mar  2 17:55:29 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftp.c (ftp_read_pasv): Recognise address/port info when not
+	in parentheses. (patch by Rob Funk <rfunk@funknet.net>).
+
+Sun Feb 18 16:57:22 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* Makefile.in: Note that 'make install' might only work as root.
+
+Wed Feb 14 23:41:33 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Bumped version to 0.10.15.
+
+Wed Feb 14 23:39:09 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* Makefile.in: Remove bogus PHONY, add an 'all' target.
+
+Wed Feb 14 23:22:57 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitestore.c (end_element) [DEBUGGING]: Comment-out tokens
+	after #endif.
+
+Wed Feb 14 23:21:09 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/console_fe.c: Removed trailing comma in actions enum.
+
+Wed Feb 14 22:59:40 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/sitefiles.c (file_perms_changed): The perms have always
+	changed in nooverwrite mode.
+
+Wed Feb 14 22:37:07 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Add AC_TYPE_SIGNAL.
+
+Wed Feb 14 22:34:50 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/ftpdriver.c (init): Don't return SITE_ERRORS only
+	SITE_FAILED.
+
+Wed Feb 14 22:33:36 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* src/console_fe.c (abort_handler, quit_handler): Use RETSIGTYPE
+	for return type.
+
+Sun Jan 28 22:44:35 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* configure.in: Add intl and po to SUBDIRS when NLS is being
+	built.  Remove NLSTARGS.  Generate intl/Makefile.  Use
+	NEON_REQUIRE to require neon 0.10 or later.
+
+Sun Jan 28 22:43:26 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* Makefile.in: Remove NLSTARGS, and display the recursion steps in
+	subdirs.
+
+Sun Jan 28 10:30:07 2001  Joe Orton  <joe@manyfish.co.uk>
+
+	* Makefile.in: Remove neon-specific tester programs.
+
+Tue Jan 16 08:11:53 2001  Joe Orton  <joe@light.plus.com>
+
+	* src/sites.c (site_fetch_walk): Only do the modtime munge if the
+	file already exists locally.  And do munge stored = local. (thanks
+	to Nobuyuki Tsuchimura).
+
+Mon Jan 15 22:33:08 2001  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Bumped version to 0.10.14.
+
+Mon Jan 15 22:31:31 2001  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Use $(top_builddir) rather than ${top_builddir}
+	when adding top-level dir to CFLAGS.
+
+Mon Jan 15 22:31:02 2001  Joe Orton  <joe@light.plus.com>
+
+	* Makefile.in (clean): Clean in SUBDIRS too.
+
+Mon Jan 15 19:45:35 2001  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Bumped version to 0.10.13.
+
+Mon Jan 15 19:43:50 2001  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Tidy up post-configure message, and remove the
+	message hinting at GNU make.
+
+Sun Jan 14 16:31:49 2001  Joe Orton  <joe@light.plus.com>
+
+	* src/davdriver.c: Added 'struct private' to hold pre-resource
+	private property details. (pfind_results, end_element): Use new
+	struct private. (create_private): New function.  (fetch_list): Use
+	new neon-0.10 API for dav_propfind_set_complex.
+
+Sun Jan 14 11:15:14 2001  Joe Orton  <joe@light.plus.com>
+
+	* Makefile.in (subdirs): Bail out immediately if a subdir build
+	fails.
+
+Sun Jan 14 10:59:55 2001  Joe Orton  <joe@light.plus.com>
+
+	* Makefile.in (intl_OBJS): Hard-code intl/ prefix into objects
+	list rather than using $(addprefix).
+
+Sun Jan 14 10:56:59 2001  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Use new NEON_VPATH_BUNDLED macro from neon-0.10.
+
+Mon Jan  8 20:00:49 2001  Joe Orton  <joe@light.plus.com>
+
+	* sitecopy.spec.in: Use separate build dirs for xsitecopy and
+	sitecopy.  (Nobuyuki Tsuchimura).
+
+Sun Jan  7 19:28:14 2001  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Bumped version to 0.10.12.
+
+Sun Jan  7 17:48:19 2001  Joe Orton  <joe@light.plus.com>
+
+	* lib/yesno.c (yesno): Add declaration to fix warning.
+
+Sun Jan  7 17:44:58 2001  Joe Orton  <joe@light.plus.com>
+
+	* src/rshdriver.c: Include string.h to fix warnings.
+
+Sun Jan  7 17:35:58 2001  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Pass srcdir/libneon and builddir/libneon to
+	NEON_BUNDLED appropriately (Peter Moulder).
+
+Sun Jan  7 17:12:57 2001  Joe Orton  <joe@light.plus.com>
+
+	* gnome/doc/xsitecopy.sgml: Doc fix from Peter Moulder.
+
+Sat Jan  6 11:11:37 2001  Joe Orton  <joe@light.plus.com>
+
+	* src/ftp.c (send_file_ascii): Only call progress for every 4K
+	of upload, rather than for every line.
+
+Wed Jan  3 22:22:01 2001  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Bumped version to 0.10.11.
+
+Wed Jan  3 22:20:07 2001  Joe Orton  <joe@light.plus.com>
+
+	* sitecopy.spec.in: Fix xsitecopy build (Nobuyuki Tsuchimura).
+
+Wed Jan  3 21:48:48 2001  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Only add 'po' to SUBDIRS if NLS is enabled.
+
+Wed Jan  3 21:39:29 2001  Joe Orton  <joe@light.plus.com>
+
+	* Makefile.in: Hard-code top_builddir as '.'. Add NEONLIBS to
+	LIBS.
+
+Wed Jan  3 21:37:17 2001  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Include top_builddir in bundled libneon/expat
+	paths.
+
+Wed Jan  3 21:29:24 2001  Joe Orton  <joe@light.plus.com>
+
+	* src/fileset.c: Include string_utils.h (Peter Moulder).
+
+Thu Dec 28 12:56:29 2000  Peter Moulder  <pjm@bofh.asn.au>
+
+	* Allow building outside of srcdir.  Makefile.in: Insert
+	$(top_srcdir)/ in a few places.  configure.in: Create directories
+	if necessary.
+
+	* Makefile.in: add @CPPFLAGS@ to INCLUDES.
+
+Fri Dec 22 23:49:34 2000  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Bumped version to 0.10.10.
+
+Fri Dec 22 23:45:43 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/sites.c (site_fetch_walk): In the modtime munging logic,
+	when marking unchanged files the same, copy stored->local rather
+	than local->stored, since local will be zero in this case.
+
+Fri Dec 22 23:22:25 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/console_fe.c (main): Fix warning on str_action qualifier.
+
+Fri Dec 22 23:15:22 2000  Joe Orton  <joe@light.plus.com>
+
+	* Makefile.in: Recursive make for neon 0.9 build.
+
+Fri Dec 22 23:14:53 2000  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Build neon the way neon 0.9 wants it.
+
+Fri Dec 22 22:50:30 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/davdriver.c: Rewritten fetch handling to use PROPFIND
+	interface from neon 0.9.
+
+Fri Dec 22 21:22:05 2000  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Bumped version to 0.10.10.
+
+Fri Dec 22 21:19:05 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/ftp.c (ftp_data_close): Possible fix for false negative "250
+	Transfer Complete" error messages: accept any FTP_OK response as
+	FTP_SENT.
+
+Fri Dec 22 21:04:33 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/ftp.c (ftp_fetch): Recognise ".:" directory in fetch
+	response (Phil Davis <pmd@hazy.org.uk>).
+
+Sun Dec 17 15:55:56 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/ftp.c (ftp_response): Add 253 as a DELE succesful code (Hans
+	Meine <hans_meine@gmx.net>).
+
+Sun Dec 10 23:19:19 2000  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Bumped version to 0.10.9.
+
+Sun Dec 10 23:03:15 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/ftp.c (recv_file): Don't treat a SOCK_CLOSED return value
+	from sock_read as an error.
+
+Sun Dec 10 23:02:00 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/console_fe.c (verify_sites): Add A_COND_STORED flag to
+	operation: carry on regardless if the stored state file doesn't
+	exist.
+
+Thu Dec  7 23:49:26 2000  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Bumped version to 0.10.8.
+
+Thu Dec  7 23:39:19 2000  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Adapt for new NEON_LIBRARY interface.
+
+Thu Dec  7 21:37:55 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/davdriver.c (h2s_init): New function.  (init): Call
+	h2s_init, make sure we only ever return SITE_FAILED not
+	SITE_ERRORS.
+
+Thu Dec  7 21:36:50 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/sites.c (site_fetch, site_synch, site_update): Always call
+	proto_finish when returning in error cases, to make sure
+	site->last_error is set appropriately.
+
+Thu Dec  7 21:32:56 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/ftp.c (handle_socket_error): Fix wrong and missing
+	parameters.	
+
+Wed Dec  6 21:04:26 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/sites.h (site_update, site_fetch, site_synch): Clean up the
+	defined return code semantics.  Now, SITE_FAILED is returned if
+	the operation could not being, and site->last_error is guaranteed
+	to be set.  SITE_ERRORS is returned if errors occured *during* the
+	operation, which have already been passed to the frontend using
+	the fe_* functions.
+
+	* src/protocol.h: Define what happens if init() doesn't return
+	SITE_OK.
+
+Wed Dec  6 20:37:16 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/davdriver.c (init): Return SITE_ERRORS for errors in init.
+
+Sun Nov 19 17:56:33 2000  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Bumped version to 0.10.7.
+
+Sun Nov 19 17:54:37 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/ftp.c (handle_socket_error): Check sock_get_error doesn't
+	return NULL.  (ftp_put): Change sock_transfer return value to be
+	boolean.
+
+Sat Nov 18 12:24:04 2000  Joe Orton  <joe@light.plus.com>
+
+	* Makefile.in: Add libneon/dates.o to NEONOBJS (Ross Nicoll
+	<jrn@st-andrews.ac.uk>).
+
+	* Makefile.in: Add auto-regenerate Makefile from Makefile.in if
+	Makefile.in has been changed.
+
+Sat Nov 18 12:20:05 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/sitesi.h (DEBUG_DUMP_FILE_PROPS): Add server modtime if
+	present.
+
+Sat Nov 18 12:16:52 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/console_fe.c: Read stored state in fetch mode as well, so we
+	get the server modtime to compare against the *real* server
+	modtime.
+
+Sat Nov 18 11:48:47 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/ftp.c (ftp_fetch): Better checking for the top-level
+	directory name in the directory line.  Return failure if a line
+	could not be parsed.
+
+Thu Nov 16 20:21:31 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/sites.c (site_fetch_walk): In state timesize, and with safe
+	mode, check whether the modtime really indicates the file has
+	changed.
+
+Sun Oct 29 14:15:19 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/ftp.c: Massive error handling clean-up.
+
+Sun Oct 29 12:36:29 2000  Joe Orton  <joe@light.plus.com>
+
+	* sitecopy.spec.in: Fix man page location.
+
+2000-10-07  Joe Orton  <joe@monolith.orton.local>
+
+	* src/davdriver.c (fetch_list): Use hip_xml_push_handler from neon
+	0.8.0.
+
+Sat Sep 16 15:39:09 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/ftp.c (ftp_put_cond): Don't leak file descriptors.
+
+Mon Sep 11 15:29:24 2000  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Bumped version to 0.10.6.
+
+Mon Sep 11 15:28:26 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/ftp.c, src/rshdriver.c, src/sites.h: Include snprintf.h if
+	HAVE_SNPRINTF_H is defined.
+
+Mon Sep 11 15:27:30 2000  Joe Orton  <joe@light.plus.com>
+
+	* lib/snprintf.h, lib/snprintf.c: Move static declarations into
+	snprintf.c.  Add vsnprintf prototype to snprintf.h.
+
+Mon Sep 11 15:10:51 2000  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Use NEON_REPLACE_SNPRINTF.
+
+Mon Sep 11 13:35:16 2000  Joe Orton  <joe@light.plus.com>
+
+	* configure.in: Bumped version to 0.10.5.
+
+Mon Sep 11 13:32:06 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/davdriver.c (init): Disable expect-100 if it is not enabled
+	(workaround neon bug).
+
+Mon Sep 11 13:27:34 2000  Joe Orton  <joe@light.plus.com>
+
+	* src/ftp.c (ftp_put): Don't leak file descriptors.
+
+Tue Sep  5 21:26:30 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_open): Fix pi_socket comparison, from Fabrice
+	Noilhan <Fabrice.Noilhan@ens.fr>.
+
+Fri Aug 18 02:39:16 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Bumped version to 0.10.4.
+
+Fri Aug 18 02:38:05 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/cs.po: Update from Petr Prazak <prazak@grisoft.cz>.
+
+Fri Aug 18 02:28:00 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* gnome/*: Update from Lee.
+
+Fri Aug 18 02:27:14 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_write): Patch from Lee, to output empty
+	user/pass strings correctly.
+
+Tue Aug 15 20:40:03 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Bumped version to 0.10.3.
+
+Tue Aug 15 20:28:20 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_update): Only delete directories if nodelete
+	is not specified.
+
+Thu Aug  3 11:09:11 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, Makefile.in: Move NEONOBJS definitions into
+	Makefile.in
+
+Thu Aug  3 11:03:38 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/*.c: Use ne_* allocation functions rather than x*.
+
+Wed Aug  2 12:35:50 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/de.po: Updated German translation from Thomas Schultz.
+
+Tue Aug  1 22:55:53 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.c (map_debug_options): New function.
+
+	* src/console_fe.c (map_debug_opts): Removed function.
+	(parse_cmdline): Use map_debug_options.
+
+Tue Aug  1 17:51:49 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_get, ftp_read_file): Remove 'remotesize'
+	parameter.
+
+Tue Aug  1 17:49:55 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Removed 'remotesize' argument from file_read and
+	file_download handlers.
+
+	* src/davdriver.c, src/ftpdriver.c, src/rshdriver.c: Update
+	similarly.
+
+	* src/sites.c (synch_files, site_fetch_checksum): Update
+	similarly.
+
+Tue Aug  1 14:35:35 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Bumped version to 0.10.2. 
+
+Tue Aug  1 14:32:11 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (recv_file): Read till EOF. Call sock_call_progress.
+
+Tue Aug  1 12:55:20 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_fetch_walk): In safe mode, set server modtime
+	as fetched modtime.
+
+Tue Aug  1 12:52:53 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (fe_transfer_progress), src/davdriver.c
+	(file_download, file_read), src/ftp.c (recv_file, ftp_get,
+	ftp_read_file), src/ftpdriver.c (file_download, file_read),
+	src/rshdriver.c (file_download, file_read): Use 'off_t' not
+	'size_t' for file sizes.
+
+Tue Aug  1 12:49:08 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h, src/sites.h: Use 'off_t' not 'size_t' for file
+	sizes.
+
+Tue Aug  1 12:47:30 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/frontend.h (fe_transfer_progress): Use 'off_t' parameters.
+
+Tue Aug  1 12:15:17 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftpdriver.c (f2s): Map FTP_FAILED onto SITE_FAILED.
+
+Tue Aug  1 12:12:41 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_perms_changed): If in tempupload mode,
+	always return true regardless of local and stored file state.
+
+Sun Jul 30 09:30:41 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rshdriver.c Patch from David Knight: (run_rsh): Add "-l
+	username" if a remote username is specified.  (file_upload): Use
+	user@host similarly.
+
+Fri Jul 28 17:40:04 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Bumped version to 0.10.1.
+
+Fri Jul 28 17:39:50 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* gnome/*: Quick fixes so it compiles and links again.
+
+Fri Jul 28 13:47:04 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Bumped version to 0.10.0.
+
+Mon Jul 24 16:47:32 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/davdriver.c (h2s): Return SITE_ERRORS as generic error
+	message error.
+
+Mon Jul 24 16:40:36 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (fe_warning): Nicer layour of messages.
+
+Mon Jul 24 16:39:41 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_put): Fix error case for file transfer.
+
+Mon Jul 24 16:39:01 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_uploaded, file_downloaded): Copy
+	permissions mode across too.
+
+Mon Jul 24 00:19:08 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_read_local_state): Free directory stack after
+	use.
+
+Sat Jul 22 14:10:47 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (version): Removed expat/libxml.
+
+Sat Jul 22 13:35:59 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c, src/sites.c: Include neon_md5.h not md5.h.
+
+Sat Jul 22 13:35:21 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (usage): Don't include neon version line.
+
+Sat Jul 22 13:33:13 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Updated for NEON_LIBRARY macro changes.
+
+Thu Jul 20 18:43:04 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (init_signals): Use abort_handler for SIGHUP,
+	SIGUSR1 and SIGUSR2.
+
+Thu Jul 20 11:16:44 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Use NEON_WARNINGS macro for --enable-warnings.
+	Add "de" to ALL_LINGUAS.
+
+Wed Jul 19 19:36:37 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/de.po: Added German translation from Thomas Schultz
+	<tststs@gmx.de>.
+
+Wed Jul 19 19:28:29 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/davdriver.c (file_move): Pass overwrite parameter to
+	dav_move.  (h2s): Set error message for HTTP_TIMEOUT.
+	(end_resource): Add description argument.
+
+Wed Jul 19 19:11:01 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_verify): Don't allow symlinks maintain mode
+	for WebDAV any more.
+
+Sat Jul  8 19:05:20 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_fetch): Skip over a Windows drive specification in
+	the directory string.
+
+Sat Jul  8 18:10:30 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (fe_fetch_found): Print ASCII if file is ASCII.
+	[DEBUGGING] (map_debug_opts): New function.
+	(parse_cmdline, usage): Use textual debug channel specifiers
+
+Sat Jul  8 17:46:33 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sitecopy.spec.in: Update from Nobuyuki Tsuchimura.
+
+Sat Jul  8 17:43:50 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/POTFILES.in: Added libneon/socket.c and src/sites.c.
+
+Sat Jul  8 17:42:07 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Mostly moved into macros/neon.m4 and
+	macros/neon-xml-parser.m4
+
+Sat Jul  8 17:37:29 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (end_element, site_read_stored_state_new): Use
+	new hip_xml interface.
+
+Fri Jul  7 22:25:29 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_read): Added "http secure" option.
+
+Fri Jul  7 22:22:48 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c: Ported to new neon socket interface.
+	(send_file_ascii): Imported function, since neon socket.c lost
+	this.
+
+Fri Jul  7 20:57:54 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.c (debug): Removed function.
+
+Mon May 29 01:03:04 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Removed PROTO_* return codes. Unified init,
+	set_server, set_proxy, verify handlers into single init handler,
+	which is passed the struct site *.  New get_server_port and
+	get_proxy_port handlers.
+
+	* src/davdriver.c, src/ftpdriver.c: Updated as above.
+
+	* src/sites.c (everywhere): s/PROTO_OK/SITE_OK/g. (proto_init):
+	Simplified as above.  (p2s): Removed function.  (fe_initialize):
+	Call sock_init.	
+
+Mon May 29 01:06:45 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c: Overhauled for new neon socket handling interface.
+
+Mon May 29 01:00:44 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/davdriver.c (start_element): Removed.  (end_element): Moved
+	functionality of start_element here.  (fetch_list): Updated for
+	new dav_prop / hip_xml interface.
+
+Mon May 29 00:31:37 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: Re-order struct site_file, and bit-slice the enum
+	fields; save 12 bytes.
+
+Sun May 28 16:32:06 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_read): Set site->proto_string for all
+	'protocol' options.  (rcfile_verify): Reflect get_tcp_port ->
+	sock_service_lookup rename.
+
+Tue May  9 22:10:29 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.[ch]: Use sock_block_reader not proto_read_block.
+
+Tue May  9 22:09:26 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h, src/davdriver.c, src/rshdriver.c,
+	src/ftpdriver.c: Use sock_block_reader not proto_read_block.
+
+Tue May  9 22:08:06 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/davdriver.c: Implemented fetch mode.  (file_download): Open
+	local file for writing, not reading.  Set error message correctly
+	if writing fails.
+
+Tue May  9 22:07:05 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (verify_sites): Display error string for
+	corrupt storage file.
+
+Tue May  9 22:04:43 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (synch_files): Only set permissions if contents have
+	not changed.
+
+Sun May  7 22:02:16 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* README.gnome: Update from Lee.
+
+Sun May  7 15:05:02 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in, configure.in: Build fix for --disable-rsh
+	--disable-webdav.
+
+Sun May  7 15:03:40 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/Makefile.in.in (install-data-yes): Be less verbose.
+
+Tue May  2 16:48:58 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c: Added (no) namespace to elements for hip_xml
+	changes, and request UTF8-decoding for the filename element only.
+
+Tue May  2 13:19:07 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, config.h.in: Check for regex.h.
+
+	* lib/rpmatch.c (RP_USE_REGEX): Only use regex matching if regex.h
+	is present.
+
+Sun Apr 30 22:50:09 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Bumped version to 0.10.0-beta2.
+
+Sun Apr 30 22:42:48 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/davdriver.c (verify): Fixed error messages regarding server
+	capabilities.
+
+Sun Apr 30 20:26:49 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Bumped version to 0.10.0-beta.
+
+Sun Apr 30 20:26:18 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/davdriver.c (fetch_list): Disable for release.
+
+Sun Apr 30 20:14:43 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/xalloc.c (xstrdup): Renamed from strdup.  (xstrndup):
+	Renamed from strndup.
+
+Sun Apr 30 20:14:05 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/POTFILES.in: Added libneon files.
+
+Sun Apr 30 20:13:17 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.in: Fixed defines for libneon.
+
+	* configure.in: Build libneon/dav_props.o for WebDAV too.
+
+Sun Apr 30 19:59:17 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (fe_initialize): New function.
+
+Sun Apr 30 19:58:01 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c, src/davdriver.c, src/rcfile.c, src/sitefiles.c,
+	src/sites.c, src/sitestore.c: Use xstrdup not strdup.
+
+Sun Apr 30 19:53:51 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Removed MAINOBJS, GNOMEOBJS, ALLLIBOBJS, EXPATOBJS,
+	EXES.  Renamed COMPOBJS to ALLOBJS.  (clean): Remove ALLOBJS.
+
+Sun Apr 30 19:10:33 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_verify): Allow exec permissions for WebDAV.
+
+Sun Apr 30 19:01:44 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (abort_handler): Don't try to save stored state
+	from a SEGV within the critical section.  (init_signals): Handle
+	SIGSEGV.  (issue_error): Handle SITE_FAILED.  (act_on_site) [case
+	action_update]: Use site_open_storage_file.
+
+	* src/sites.c (proto_init, p2s): Return SITE_FAILED as generic
+	error code.
+
+Sun Apr 30 18:52:36 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/davdriver.c (file_chmod): Implemented using PROPPATCH.
+
+Sun Apr 30 18:45:17 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Added support parameter to verify handler.
+
+	* src/sites.c: Pass support parameter to verify.
+
+	* src/ftpdriver.c, src/rshdriver.c, src/davdriver.c: Change verify
+	handler as above.
+
+Sat Apr 29 15:08:02 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (update_files): Skip moved and unchanged files.
+	(proto_init): Don't call fe_connection.  (site_catchup,
+	site_destroy_stored, site_destroy): Use site_enter/leave.
+
+Sat Apr 29 15:07:09 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.c (md5_hexify, md5_unhexify): Removed functions.
+
+Sat Apr 29 15:04:38 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_open_storage_file,
+	site_close_storage_file): New functions.  (end_element): Read
+	server modtime correctly (fixes safe mode).
+
+Sun Apr 23 16:17:57 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, Makefile.in: GNOME: Set LIBS and CFLAGS in
+	configure.
+
+Sun Apr 23 11:27:42 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Pass boolean to fetch_list indicating whether
+	modification times should be retrieved.
+
+	* src/ftp.c (ftp_fetch_walktree): Renamed to ftp_fetch_modtimes.
+	(ftp_fetch): Removed function.  (ftp_fetch_gettree): Renamed to
+	ftp_fetch.
+
+	* src/ftpdriver.c (fetch_list): Modified for both of above.
+
+Sun Apr 23 11:23:22 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/*.html, doc/topic.dat, doc/xsitecopy.sgml: Removed.
+
+	* gnome/doc/*: New GNOME documentation from Lee.
+
+Sun Apr 23 11:22:53 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* .cvsignore: Added aclocal.m4.
+
+Sun Apr 23 11:16:18 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* macros/: New directory.
+
+	* aclocal.m4: File now generated at distribution time by aclocal.
+
+Sun Apr 23 10:59:46 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Changes from Lee. Moved GNOME docs into gnome/doc.
+
+	* configure.in: Changes from Lee.
+
+Sun Apr 23 10:54:48 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* gnome/*: New files from Lee.
+
+Thu Apr 13 09:52:29 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/davdriver.c (init): Set user-agent.
+
+Thu Apr 13 09:48:12 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (proto_init): Call set_proxy before set_server so
+	that the protocol layer can omit doing a DNS lookup on the server
+	if a proxy is being used.
+
+Wed Apr 12 22:42:15 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/cs.po: Update from Petr Prazak.
+
+Wed Apr 12 22:28:18 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/davdriver.c (h2p): Set error message for PROXYAUTH +
+	SERVERAUTH appropriate.  (all callers): Pass session to h2p.
+	(file_upload, file_upload_cond, file_download): Set error string
+	appropriately if fopen() fails.
+
+Wed Apr 12 22:26:53 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rshdriver.c (run_rsh, run_rcp, init): Support 'rsh_cmd' and
+	'rcp_cmd' options.
+
+Wed Apr 12 22:24:10 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (end_element): Add error checking for strto(u)l
+	return values.
+
+Wed Apr 12 19:31:28 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Use site_get_protoname().  (main,
+	list_site_definitions): Only display named sites for --view mode
+	if any sites are named.  (issue_error): Added SITE_PROXYLOOKUP
+	message.
+
+Wed Apr 12 19:29:58 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_read): Accept "dav" and "webdav" as names
+	for the WebDAV driver.  If an unknown protocol is used, store the
+	string name in site->proto_string.
+
+Wed Apr 12 19:29:13 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_get_protoname): New function.  (proto_init):
+	Set rsh_cmd and rcp_cmd options.
+
+Tue Apr 11 11:12:16 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_write): Write out state method (Lee
+	Mallabone).
+
+Mon Apr 10 19:39:54 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/davdriver.c (h2p): Map HTTP_PROXYAUTH onto PROTO_PROXYAUTH.
+
+	* src/sites.c (p2s): Map PROTO_PROXYAUTH onto SITE_PROXYAUTH.
+
+Mon Apr 10 19:36:52 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Added PROTO_PROXYAUTH return code.
+
+	* src/sites.h: Added SITE_PROXYAUTH return code.
+
+	* src/console_fe.c (issue_error): Handle SITE_PROXYAUTH return
+	code.
+
+Mon Apr 10 19:36:02 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (verify_sites): Removed no username/passowrd
+	messages.  (fe_login, get_username): New functions.
+
+Mon Apr 10 19:33:19 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_verify): Allow ommission of username and/or
+	password in rcfile entries.
+	FEAPI: SITE_NOUSERNAME/PASSWORD return codes removed.
+
+Mon Apr 10 16:34:58 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_synch): Only connect to the server if there
+	are deleted, changed or ignored files in the site.
+
+Mon Apr 10 15:06:28 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/dates.[ch], lib/base65.[ch], lib/md5.[ch],
+	lib/string_utils.[ch]: Removed files.
+
+Mon Apr 10 14:40:59 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.[ch]: Removed files. 
+
+Sat Apr  8 13:34:20 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c, src/httpdav.h, src/httpauth.c, src/httpauth.h:
+	Removed files.
+
+Sat Apr  8 13:33:25 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_verify): Renamed from rc_verifysite.
+
+Sat Apr  8 13:29:57 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c: Mass renaming to use "sock_" prefix to all
+	functions.  No perror() calls.  Add SOCK_TIMEOUT return value.
+
+Sat Apr  8 13:29:14 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/frontend.h (fe_disable_abort, fe_enable_abort): Pass site.
+
+Sat Apr  8 13:27:07 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/fileset.h (FS_NAME): Wrap as critical section.
+
+Sat Apr  8 13:25:10 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c [HANDLE_ABORT]: Removed.  (proto_init): Call init,
+	set_server, set_proxy and verify handlers.  (proto_finish): New
+	function.  (site_update): Iterate over list of updater functions.
+
+Sat Apr  8 13:22:20 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitesi.h (site_enter, site_leave): Critical section
+	management.
+
+	* src/sitefiles.c (file_state_copy, file_set_diff): Enter and
+	leave critical section.
+
+Sat Apr  8 12:49:35 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_delete): Renamed from file_remove,
+	integrated file_destroy. Wrap as critical section.
+	(file_uploaded, file_downloaded): Wrap as critical section.
+
+Sat Apr  8 12:47:27 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Added set_server(), set_proxy() and verify()
+	handlers to protocol driver.  init() takes an options object.
+
+Sat Apr  8 12:28:25 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/frontend.h (fe_enable_abort, fe_disable_abort, fe_login):
+	New functions.
+
+Sat Apr  8 12:26:54 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c: Rewritten to parse XML storage files using
+	hip_xml.
+
+Sat Apr  8 00:33:43 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_exec, ftp_data_open): Reimplement using
+	printf-like varargs.  (all callers): Simplify greatly using above.
+
+Sat Apr  8 00:31:22 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/davdriver.c (server_auth_cb, proxy_auth_cb, h2p, set_server,
+	set_proxy, verify): New functions.
+
+Sat Apr  8 00:29:45 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (fe_disable_abort, fe_enable_abort, abort_now):
+	New functions.  (fe_abort_update, fe_abort_synch): Removed
+	functions.
+
+Sat Apr  8 00:28:39 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.c [!HAVE_STRDUP] (strdup): Removed function.
+
+Sat Apr  8 00:24:16 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.in: Added USE_FTP define.
+
+Sat Apr  8 00:23:52 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added --disable-ftp option.
+
+Sat Apr  8 00:23:10 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/ja.po: Update from Nobuyuki Tsuchimura.
+
+Sat Apr  8 00:08:36 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* gnome/*: Update from Lee.
+
+Fri Apr  7 19:15:10 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_read): Added support for 'rsh' and 'rcp'
+	rcfile options.
+
+	* src/sites.h: Added 'rsh_cmd' and 'rcp_cmd' fields to struct
+	site.
+
+Fri Apr  7 19:12:53 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rc_verifysite) [USE_FTP]: Compile-time conditional
+	support for FTP.
+
+Thu Apr  6 14:37:42 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/string_utils.c (sbuffer_zappend): Implement as call to
+	sbuffer_append.
+
+Thu Apr  6 14:36:45 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c: Transparent session structure. Use FTP_* return codes
+	rather than PROTO_*.
+
+Wed Apr  5 16:32:27 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/string_utils.c (sbuffer_altered): New function.
+
+Wed Apr  5 16:26:29 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/string_utils.c, lib/netrc.c, lib/base64.c, lib/dates.c,
+	lib/dirname.c, lib/getopt.c: Use xmalloc() rather than malloc().
+
+	* lib/xalloc.c: New file.
+
+Wed Apr  5 16:23:46 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.in: Added USE_RSH, HAVE_DEBUG_FUNC for libneon,
+	HAVE_LIBXML, removed USE_BROKEN_PROPFIND.
+
+Wed Apr  5 16:22:33 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Added http_utils.o and hip_xml.o (from libneon) to
+	OBJECTS.  (src/davdriver.o): New dependancy listing.
+
+Wed Apr  5 16:21:25 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added --enable-libxml option, message showing
+	which XML parser is being used.
+
+Tue Mar 28 15:08:56 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Updated deps, use libneon.
+
+Tue Mar 28 15:06:38 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/*: Removed 'bool' type.
+
+Tue Mar 28 14:02:18 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: Added 'rsh' and 'unknown' protocols.
+	FE API: Do not presume site->driver is non-NULL.
+
+	* src/rshdriver.c: New file.
+
+	* src/rcfile.c (rcfile_read): Support 'protocol rsh' and unknown
+	protocols.  (rc_verifysite): Set protocol ->driver here.
+	FE API: New return code from rc_verifysite: SITE_UNSUPPORTED.  No 
+	need to set ->driver when changing site->protocol, 
+	rc_verifysite
+
+Tue Mar 28 14:00:12 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: New expat/libxml test logic from cadaver.  Display
+	configuration details when finished condiguring.
+
+Tue Mar 28 13:59:04 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/string_utils.[ch]: Imported new versions from cadaver.
+
+Sun Mar 26 19:05:02 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftpdriver.c, src/davdriver.c: Added protocol driver modules.
+
+Sun Mar 26 19:00:53 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c: Added session support for protocol drivers.
+	Removed protocol driver structure definitions.  (site_update):
+	Iterate over list of handler functions.
+
+Sun Mar 26 11:55:47 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Added session support.
+
+Sat Mar 25 15:46:46 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in, gnome/*: Update from Lee.
+
+Thu Mar 23 20:45:18 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Bumped to 0.9.9.
+
+Thu Mar 23 20:43:16 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* gnome/operations.c (main_update_please): Fix from Lee Mallabone.
+
+Tue Mar 14 23:45:35 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.c (debug): Send debugging messages to debug_stream
+	rather than stderr.
+
+	* src/console_fe.c (init): Added --logfile option, to redirect
+	debug_stream to a file.
+
+Sat Mar 11 13:57:56 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* gnome/*: Update from Lee Mallabone.
+
+Thu Mar  9 20:41:35 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/xsitecopy.sgml: Update from Lee Mallabone.
+
+Thu Mar  9 20:37:40 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c (transfer): Call fe_transfer_progress when transfer
+	is complete.
+
+Tue Mar  7 22:58:00 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* gnome/*: Update from Lee Mallabone.
+
+Tue Mar  7 20:53:55 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added 'ja' to ALL_LINGUAS.
+
+Tue Mar  7 20:51:36 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_write_stored_state): Don't escape '_'.
+
+Tue Mar  7 20:35:48 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_fetch_checksum): Don't checksum excluded files
+	(Nobuyuki Tsuchimura).
+
+Tue Mar  7 20:25:25 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/ja.po: New file, from Nobuyuki Tsuchimura.
+
+Tue Mar  7 20:23:51 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (verify_sites) [case SITE_NOSAFEOVER]:
+	conjuction -> conjuction typo (Nobuyuki Tsuchimura).
+
+Sat Feb 26 16:04:28 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (act_on_site) [case action_list]: Display
+	number of items to update if remote site has changed.
+
+Mon Feb 21 22:54:33 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Use $(MAKE) instead of 'make' when recursing.
+
+Thu Feb 10 17:55:48 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_synch): Carry on if keepgoing is set.
+
+Thu Feb 10 17:40:49 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (fnlist_match): Use GNU FNM_LEADING_DIR
+	fnmatch() extension to exclude files within excluded directories
+	(required for fetch).
+
+Thu Feb 10 17:33:33 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added check for GNU fnmatch.
+
+Thu Feb 10 16:57:13 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added cs to ALL_LINGUAS.
+
+Thu Feb 10 16:56:41 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_write): Added in some missing options.
+
+Thu Feb 10 16:28:00 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/cs.po: New file, from Petr Prazak <prazak@grisoft.cz>.
+
+Thu Feb 10 16:14:11 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (get_perms_mode, get_symlinks_mode): New
+	functions to replace old PERMSMODE/SYMLINKSMODE macros, to allow
+	localization of strings.  (set_action): New function to replace
+	SETACTION macro, to allow localization of strings.
+
+	* src/sites.h (PERMSMODE, SY4MLINKSMODE): Removed macros.
+	
+	* src/console_fe.c.  (issue_error): Mark strings for gettext (Petr
+	Prazak).  (main): Translate action string correctly (Petr Prazak).
+
+Sun Feb  6 21:48:33 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Moved checks for SOCKSv4/v5 earlier.
+
+Sun Feb  6 21:45:14 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, config.h.in, src/common.h: Added SOCKSv5 support
+	(thanks to Volkan Yavuz <volkan.yavuz@knoll-ag.de>).
+
+Tue Feb  1 15:49:37 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added 'fr' to ALL_LINGUAS.
+
+Tue Feb  1 15:46:14 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/fr.po: New file, from Sylvain 'Murdock' Glaize
+	<mokona@club-internet.fr>.
+	
+Tue Feb  1 15:36:47 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (SINGLEBYTE_UTF8): New macro.
+	(decode_utf8_double): New function.  (site_xml_cdata): Decode
+	double-byte UTF-8 encodings of 8-bit characters.
+
+Thu Jan 20 20:11:47 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Added closing quote in comment (Nobuyuki
+	Tsuchimura).
+q
+Thu Jan 20 17:29:50 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_fetch_gettree): Skip absolute pathname in
+	directory names (patch by Nobuyuki Tsuchimura
+	<tutimura@nn.iij4u.or.jp>).
+
+Thu Jan 20 17:01:11 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added check for xmlparse.h in xmlparse/.
+
+Tue Jan 18 20:24:23 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* tools/cvsdist: Create Makefile.emx from Makefile.emx.in.
+	config.h.emx likewise.
+
+	* Makefile.emx.in, config.h.emx.in: Renamed from *.emx.
+
+Tue Jan 18 19:16:02 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c (read_line): Use sock_recv again.
+
+Tue Jan 18 19:11:24 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_insert): Set the file type according to
+	parameter.  (file_set_local, file_set_stored): Don't set the file
+	type.  (file_set_stored): Set a shoved file to be deleted not new.
+
+Sat Jan 15 01:18:18 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_flatlist_items): Use file_name() for
+	displaying filenames: patch from Niall Smart <niall@pobox.com>.
+
+Sat Jan 15 01:16:34 2000  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_update_move_files): New function.
+	(site_update): Move files using above before uploading changed
+	files.
+
+Sun Dec 12 13:53:10 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* gnome/*: Update from Lee Mallabone.
+
+Thu Dec  9 15:28:55 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c: Removed file_compare.
+
+	* src/sitesi.h: Added file_compare, inlined.
+
+Thu Dec  9 15:24:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_compare): Another slight optimisation.
+
+Thu Dec  9 15:14:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_compare): Return immediately on
+	determining file has changed.
+
+Wed Dec  8 16:51:30 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/sitecopy.1: Spelling and other fixes.
+
+Wed Dec  8 16:32:41 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_read_pasv): Return error if no '(' found in
+	response.
+
+Wed Dec  8 16:31:03 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* FAQ: Added entry about "cannot create directory" errors.
+
+Wed Dec  8 16:26:59 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (temp_upload_filename): Strings are char *, not int.
+
+Wed Dec  8 16:24:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Define _GNU_SOURCE to pick up strsignal
+	definition from string.h.
+
+Fri Dec  3 00:11:17 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.h, src/ftp.c: Rewrite to support >1 session at a time.
+
+Wed Nov 24 15:22:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_fetch_gettree): Allocate zero-length string
+	correctly.
+
+Wed Nov 17 00:44:08 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (fe_fetch_found): Display remote filenames
+	rather than using file_name().
+
+Tue Nov 16 17:08:00 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Don't read the stored state for fetch mode.
+
+Tue Nov 16 16:57:23 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (site_stats_increase, site_stats_decrease): Made
+	inline, moved to sitesi.h.  (file_insert): Removed.
+
+	* src/sitefiles.c (file_set_stored, file_set_local): Removed.
+
+	* src/fileset.h: Generic hack file_set implementation.
+
+	* src/fileset.c (file_insert): Added from sitefiles.c.
+	(file_set_local, file_set_stored): Use fileset.h.
+
+	* configure.in: Added src/fileset.o to OBJECTS.
+
+Sun Nov 14 13:34:21 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.9.0-pre.
+
+Sun Nov 14 13:30:35 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Error on --enable-gnomefe for 0.9.0-pre release.
+
+Sun Nov 14 13:19:28 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_read_stored_state,
+	site_read_stored_state_*): Changed return codes to SITE_OK,
+	SITE_FAILED, SITE_ERRORS.
+	
+	* src/sites.c (site_read_local_state): No return value.
+	(site_readfiles): Returns any of the return codes of
+	site_read_stored_state.
+
+	* src/console_fe.c (init_sites): Handles return codes of
+	site_read_stored_state appropriately.  Clear 'use_this' field of
+	sites for which an error is returned, so act_on_site ignores them.
+
+Thu Nov  4 14:37:55 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (temp_upload_filename): New function. Prefixes
+	filename with ".in." for temporary uploads.  (site_update_files):
+	Use it.
+
+Thu Nov  4 01:54:41 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (usage): Update debug levels.
+
+Thu Nov  4 01:52:30 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/sitecopy.1: Concepts section, better wording for exclude,
+	new section on ignore, updated debug levels.
+
+Wed Nov  3 09:55:24 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (verify_sites): Handle SITE_NOSAFETEMPUP error
+	from rc_verifysite.
+
+Tue Nov  2 19:21:44 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Bumped version to 0.9.0-beta2.
+
+Tue Nov  2 19:20:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_set_*): Always give file properties
+	debugging message.
+
+Tue Nov  2 18:00:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_update_files): If tempupload is set, upload a
+	changed file to `filename.in', then rename to `filename'.
+
+Tue Nov  2 16:39:53 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: Added tempupload field to struct site.
+
+	* src/rcfile.c (rcfile_read): Parse tempupload option.
+	(rcfile_write): Boolean options written out easier, added
+	tempupload option. (rc_verifysite): Disallow tempupload in
+	conjunction with safe mode.
+	FE API: New return code from rc_verifysite: SITE_NOSAFETEMPUP.
+
+Sun Oct 31 12:52:22 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/frontend.h: Added fe_verifying, fe_verified.
+
+Thu Oct 21 00:43:22 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_update_*): Made onlymarked a site option
+	rather than a function argument. Made keepgoing a site option
+	rather than a global variable. Removed fe_prompting completely,
+	fe_can_update is ALWAYS called now.
+
+	* src/console_fe.c: Updated for above changes.
+
+Wed Oct 20 15:27:24 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/frontend.h: Removed fe_promting.
+
+Tue Oct 19 00:08:27 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c, configure.in, config.h.in, config.h.emx: Removed
+	Linux 2.2 sendfile() handling.
+
+Mon Oct 18 22:34:36 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_synch_delete_directories): Fixed segfault and
+	skipping problems.
+
+Mon Oct 18 22:22:05 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_update_files): Skip deleted files, fix
+	segfault.
+
+Mon Oct 18 21:24:49 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c: Fixed fe_can_update problems.
+
+Mon Oct 18 21:20:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (fe_can_update): Added missing break causing
+	incorrect fallthrough and confused prompts.
+
+Mon Oct 18 21:13:20 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in, configure.in, gnome/*: GNOME update from Lee
+	Mallabone.
+
+Mon Oct 18 01:18:20 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.9.0-beta.
+
+Mon Oct 18 01:05:23 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (act_on_site): Display warning on changed state
+	method at the end of list display, and only in non-flatlist mode.
+
+Mon Oct 18 00:59:51 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: Added ftp_echo_quit field to struct site.
+
+	* src/rcfile.c (rcfile_read, rcfile_write): Support for "ftp
+	showquit" option (ftp_echo_quit field).
+
+	* src/ftp.c: Added echo_response global, ftp_echo_quit public
+	global. (ftp_read): Display command response if echo_response is
+	set. (ftp_close): Set echo_response from ftp_echo_quit.
+	
+	* src/sites.c (proto_init): Set global ftp_echo_quit from site
+	field of the same name.
+
+	* doc/sitecopy.1: Added "ftp showquit" option.
+
+Mon Oct 18 00:42:04 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/sitecopy.1: Added --show-progress option.
+
+Mon Oct 18 00:39:28 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.h: Added BINARY_R_FOPEN for fopen() flags for
+	reading binary files.
+
+	* src/sitestore.c, src/httpdav.c: Use BINARY_R_FOPEN.
+
+Mon Oct 18 00:38:29 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_read_local_state): Always read file size,
+	regardless of state method.
+
+Sun Oct 17 23:10:23 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/sitecopy.1: Updated for "http expect".
+
+Sun Oct 17 22:05:35 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_write): Write "http expect" correctly.
+
+Sun Oct 17 22:03:48 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_req_fixedheaders): Only send "Connection:
+	Keep-Alive" header if not using a proxy.
+
+Sat Oct  9 10:40:57 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (abort_handler, fe_abort_update): Abort safely
+	using fe_abort_update.  (quit_handler): New function.
+	(init_signals): abort_handler handles SIGINT, quit_handler all
+	other termination signals.
+
+Sat Oct  9 10:37:23 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/testdav.c, Makefile.in: testdav removed (use cadaver
+	instead :).
+
+Fri Oct  8 19:57:39 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_update_*): Call fe_abort_update() after each
+	update operation, and return SITE_ABORTED if it returns non-zero.
+	(site_update): Pass up SITE_ABORTED return value from
+	site_update_*.  (site_synch_*, site_synch): Similarly.
+
+Fri Oct  8 15:01:17 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: Made the SITE_ codes negative.
+
+Fri Oct  8 12:08:57 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in, configure.in: Hard-code lib/ into LIBOBJS, rather
+	than using $(addprefix...).
+
+Thu Oct  7 12:12:30 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c: Removed site_pseudourl.
+
+Thu Oct  7 11:37:39 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Single 'flags' field in action_info.
+	(parse_cmdline): Added '--show-progress' option.  (fe_updated):
+	Print upload progress.
+
+Mon Oct  4 22:34:23 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_pseudourl): Fix from Lee Mallabone.
+
+Mon Oct  4 13:49:08 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (issue_error): Handle SITE_UNIMPL too.
+
+Mon Oct  4 13:48:15 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_read_stored_state): Don't return error on
+	empty storage file.
+
+Mon Oct  4 13:46:37 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/i18n.h: Easy-access to _ and N_ macros.
+
+	* src/console_fe.c, src/common.c: Use i18n.h.
+
+Mon Oct  4 00:12:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_read_stored_state): Only return error on
+	opening stored state file if the file doesn't exist. Return
+	success if stored state file doesn't exist.
+
+Sun Oct  3 13:45:08 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Don't use MAINTAINER_ADDR, it messed up
+	xgettext.
+
+Wed Sep 29 20:32:53 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_get_callback): Reset the progress counter
+	when it goes past the total.
+
+Wed Sep 29 19:39:25 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_compare): Compare linktargets correctly.
+
+Wed Sep 29 16:48:06 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (main) [HAVE_SETLOCALE]: Remove set_locale
+	call.
+
+Wed Sep 29 16:15:07 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in (intl_OBJS): Updated for gettext-0.10.35.
+
+Wed Sep 29 16:13:38 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Updated for gettext-0.10.35 macros.
+
+	* intl/: Imported gettext-0.10.35 sources.
+
+Wed Sep 29 15:59:29 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* aclocal.m4: Use AM_LC_MESSAGES, AM_PATH_PROG_WITH_TEST,
+	AM_GNU_GETTEXT, AM_WITH_NLS from gettext-0.10.35.
+
+Wed Sep 29 15:58:37 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/Makefile.in.in: New version from gettext-0.10.35.
+
+Wed Sep 29 13:09:35 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Compile and link intl/*.o objects in NLS build.
+
+	* configure.in: Add in NLS extras.
+
+Wed Sep 29 13:09:00 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/sitecopy.pot: Extracted new messages.
+
+Wed Sep 29 11:25:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_fetch_walk): Only need to fudge the
+	modification time when using state_timesize.
+	(site_read_local_state): Exported interface.
+
+Tue Sep 28 23:22:21 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: (main): Modularized.  (verify_site): New
+	function, separated from main().  Only reads local state and
+	stored state when necessary for the given action.  (act_on_site):
+	New function, separated from main().
+
+Tue Sep 28 23:13:37 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_set_stored): Typo in shove test.
+
+Tue Sep 28 22:27:58 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (issue_error): New function. (main): Unified
+	standard site_* error handling.
+
+Tue Sep 28 22:20:59 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* tools/: New directory, tools for the maintainer.
+
+	* sitecopy.lsm.in: LSM entry template.
+
+Tue Sep 28 20:19:44 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_write, rcfile_read): Write and read the 
+	'http expect' option.
+
+	* src/sites.h: Renamed 'http_no_expect' member of struct site to
+	'http_use_expect'.
+
+	* src/httpdav.c: Renamed http_disable_expect to
+	http_enable_expect. (http_init): Reversed semantics as above.
+
+	* src/sites.c (proto_init): As above.
+
+Tue Sep 28 20:15:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitesi.h (for_each_file): New macro.
+
+Tue Sep 28 20:09:32 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_verify, site_verify_compare): New functions,
+	beginning of verify mode implementation.
+
+	* src/console_fe.c (init, main): Verify mode interface.
+
+Tue Sep 28 16:39:22 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in (src/sitestore.o, src/sitefiles.o): Both depend
+	on src/sites.h as well as src/sitesi.h
+
+Tue Sep 28 15:51:01 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.9.0-alpha2.
+
+Mon Sep 27 22:26:15 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_write_stored_state): Write modification
+	times as raw time_t values. (site_read_stored_state_new): Read
+	modification times as raw time_t values.
+
+	* configure.in: Remove dates.o from default LIBOBJS, now required
+	only in WebDAV builds again.
+
+Mon Sep 27 12:33:21 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_write_stored_state): Set stored state
+	method to be current state method.
+
+Mon Sep 27 12:28:55 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_write_stored_state) [CYGWIN||EMX]: Open
+	storage file in binary.
+
+Sat Sep 18 16:59:27 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.9.0-alpha.
+
+Sat Sep 18 16:59:14 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_read): Default to following symlinks.
+
+Sat Sep 18 16:57:35 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/examplerc: Updated for some of the new features since 0.8.0.
+
+Sat Sep 18 16:56:58 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/changes.awk: Added '/' between URL and filename.
+
+Sat Sep 18 14:13:18 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_insert): New function, amalgamation of
+	file_append, file_prepend, and file_create.
+
+Sat Sep 18 13:46:32 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_download): Fix typo.
+
+Sat Sep 18 13:43:22 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_set_local, file_set_remote): Significant
+	changes. Handle renamed files. Prefer a move to changed direct
+	match.
+
+Sat Sep 18 12:41:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_fetch): if0 out the walk tree stage...
+	remote modtimes are ignored now.
+
+Sat Sep 18 12:40:31 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (fe_fetch_found): Put the newlines back in.
+
+Sat Sep 18 12:39:37 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.h: Added DEBUG_FLUSH and DEBUG_FILESEXTRA.
+
+	* src/common.c (debug) [DEBUGGING]: Flush stderr if DEBUG_FLUSH
+	set.
+
+Sat Sep 18 12:38:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitesi.h (DEBUG_GIVE_DIFF): Returns diff string.
+
+Sat Sep 18 11:02:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: Added 'checkrenames' field to struct site.
+	
+	* src/rcfile.c (rcfile_read): Read 'checkmoved renames' option.
+	(rc_verifysite): Check for using 'checkrenames'	when not using
+	checksumming.
+	FE API: New return code from rc_verifysite: SITE_NORENAMES.	
+
+Fri Sep 17 12:28:59 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: Use 'fnlist's for excludes, asciis, ignores.
+
+	* src/sitefiles.c (fnlist_match): New function, modified version
+	of slist_fnmatch. (file_is*): Use fnlist_match.
+
+	* src/rcfile.c (rcfile_read, rcfile_write): Modified for fnlists.
+
+Fri Sep 17 12:24:37 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpauth.c (http_auth_challenge): Put challenges on linked
+	list, and free them afterwards.  (http_auth_init): Use callback to
+	supply username and password on-demand.  (http_auth_get_creds):
+	New function. (http_auth_challenge_digest,
+	http_auth_challenge_basic): Use http_auth_get_creds to get
+	username + password.
+
+	* src/httpdav.c (http_give_creds): New function, supplies
+	username + password.  (http_init): Modified for http_auth_init
+	changes as above.
+
+Fri Sep 17 11:29:27 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitesi.h: New file, contains internal sites code prototypes.
+
+	* src/sites.h: Removed internal prototypes.
+
+	* src/sites.c, src/sitefiles.c, src/sitestore.c: Include sitesi.h
+	not sites.h
+
+	* Makefile.in: Updated deps as above.
+
+Thu Sep 16 14:44:30 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/string_utils.c: Removed 'slist' handling.
+
+Thu Sep 16 10:13:01 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_write_stored_state): Close the file, and
+	return success code appropriately.
+
+Thu Sep 16 09:42:03 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: Added comment section on filename handling.
+
+Wed Sep 15 19:54:05 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_is*, slist_fnmatch): Adding debugging
+	messages.
+
+Wed Sep 15 19:52:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_read_stored_state_old): Fixed filename
+	handling and general brokenness.
+
+Wed Sep 15 19:50:16 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (dav_fetch_gotresource) [DEBUGGING]: Fixed to
+	display date without leaking memory
+
+Wed Sep 15 19:43:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpauth.c: (http_auth_response_body): Debugging fix.
+
+Wed Sep 15 19:38:02 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.h (debug): Use GNU CC __attribute__ to indicate
+	printf-style arguments.
+
+Wed Sep 15 19:36:41 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_write_stored_state): Don't write
+	a character reference for '.'.
+
+Wed Sep 15 19:32:25 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_destroy): Update site stats correctly.
+	(site_catchup): Set the diff after copying local state to
+	stored.
+
+Wed Sep 15 19:03:23 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_set_local, file_set_stored): Append
+	directories to the end of the files list, prepend everything
+	else.
+
+Fri Sep 10 19:41:09 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_write_stored_state): Write out XML 
+	character reference when necessary.
+
+Fri Sep 10 18:38:50 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/frontend.h (fe_checksumming, fe_checksummed): Changed to
+	take a filename rather than a struct file *.
+
+	* src/console_fe.c (fe_checksumming, fe_checksummed): As above.
+
+Fri Sep 10 17:25:21 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Added 'checksum', 'type' fields to struct
+	proto_file, and removed 'isdir'.
+
+	* src/httpdav.c (dav_fetch_gotresource, dav_xml_endelm,
+	dav_xml_startelm): Modified to set file 'type' appropriately.
+
+	* src/ftp.c (ftp_fetch_gettree, ftp_fetch_walktree): As above.
+
+	* src/sites.c (site_fetch): Call site_fetch_checksum before
+	rebuilding the files list.  (site_fetch_checksum): Modified to
+	write the checksum directly into the 'proto_file' list.
+	(site_fetch_walk): Modified to copy the 'type' and 'checksum'
+	fields appropriately.
+
+Fri Sep 10 16:31:04 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_synch_create_directories, site_synch_files,
+	site_synch_delete_directories): Modified to dynamically update
+	files list.
+
+Fri Sep 10 11:10:17 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (file_retrieve_server): New function.
+	(site_update_files): Completed safe mode implementation.
+
+Wed Sep  8 15:52:53 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_fetch_walk): Set ascii appropriately, and copy
+	over the modification time so that existing files won't all appear
+	changed.
+
+Wed Sep  8 15:08:51 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_getmodtime): Removed redundant argument.
+
+Wed Sep  8 15:07:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c (send_file_ascii): Added dummy fe_transfer_progress
+	call so we get progress dots when uploading ASCII files. Return
+	0 on successful upload.	
+
+Wed Sep  8 15:04:32 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_uploaded): Set exists and ascii too.
+
+	* src/sites.c (site_update_files): Call file_uploaded after
+	file_chmod to update list correctly.
+
+Wed Sep  8 11:31:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_perms_changed, file_contents_changed): New
+	functions.
+
+	* src/frontend.h (fe_setting_perms, fe_set_perms): New FE API
+	calls.
+	
+	* src/sites.c (site_update_files): Just chmod changed files when
+	file contents are unchanged.  (file_chmod): Use new fe_*_perms
+	calls.
+
+	* src/console_fe.c (fe_setting_perms, fe_set_perms):
+	Implementation.
+
+Wed Sep  8 11:30:09 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_chmod): Use mininum of 3 digits in chmod.
+
+Tue Sep  7 20:23:49 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (file_chmod): New function.  (site_update_files):
+	Use file_chmod for new files, changed files when nooverwrite is
+	set.
+
+Tue Sep  7 20:21:07 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_uploaded): Only copy over fields relevant
+	to a file upload.
+
+Tue Sep  7 19:54:08 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_parse_status): Cope with spaces between
+	HTTP-Version and Status-Code tokens.  Use friendly error messages.
+	Fix bug in HTTP-Version parsing.  Check that Status-Code is made
+	up of digits.
+
+Tue Sep  7 17:23:57 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpauth.c, src/httpdav.c: Removed _t's from HTTP auth
+	structure/enum names.
+
+	* src/httpauth.c: Made private stuff static.
+
+Tue Sep  7 12:16:43 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_decode_perms): New function.  (ftp_fetch): Get
+	file permissions.
+
+Mon Sep  6 17:53:29 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_full_remote): Fixed off-by-one error
+	in lowercase conversion.
+
+Mon Sep  6 17:15:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_read): Added 'lowercase' option.
+
+Mon Sep  6 16:26:55 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_write_stored_state): Write out the
+	file's stored size regardless of state method.
+
+Mon Sep  6 16:17:03 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Updated dependancies.
+
+Mon Sep  6 16:15:31 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.h: Removed file.
+
+Mon Sep  6 15:48:12 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/string_utils.h (CONCAT2, CONCAT3): New macros.
+
+	* src/ftp.c, src/sitefiles.c, src/sites.c: Use CONCAT2.
+	
+Mon Sep  6 15:37:45 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Removed 'directory' from struct proto_file.
+
+	* src/sites.c (site_fetch_walk): Changed as above.
+	
+	* src/ftp.c (ftp_fetch_gettree, ftp_fetch_walktree): Changed
+	as above.
+
+	* src/httpdav.c (dav_fetch_parse_href, dav_fetch_gotresource):
+	Changed as above.
+
+Mon Sep  6 13:57:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Use size_t for 'remotesize' parameter for
+	file_get and file_read.
+
+	* src/httpdav.c (http_get, http_file_read): As above.
+
+	* src/ftp.c (ftp_get, ftp_file_read): As above.
+
+Mon Sep  6 13:56:15 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_read_file): New function, implementation of
+	read_file handler. (ftp_get): Use ftp_settype.
+
+	* src/socket.c (read_file_blocks): New function.
+
+	* src/sites.c. Added ftp_read_file to FTP driver.
+
+Mon Sep  6 13:55:14 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_fetch_checksum): Only checksum files which
+	exist remotely.
+
+Mon Sep  6 10:31:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Modified file_read handler to take remote file size.
+
+	* src/httpdav.c (http_read_file): As above. (http_read_file_block):
+	New function, calls fe_t_p then callback.
+
+	* src/sites.c (site_fetch_checksum): Checksum remote files. 
+	(site_fetch): Modified to call site_fetch_walk before calling 
+	pdriver finish, call site_fetch_checksum too.
+
+	* src/frontend.h (fe_checksumming, fe_checksummed): New functions.
+
+	* src/console_fe.c (fe_checksumming, fe_checksummed): Implementation.
+
+Sun Sep  5 13:42:44 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Added file_read handler.
+
+	* src/httpdav.c (http_read_file): New function, implemenation of
+	file_read handler.
+	
+	* src/sites.c: Added NULL to FTP and http_read_file to WebDAV for
+	file_read handlers in protocol drivers.
+
+Sun Sep  5 12:06:39 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_write_stored_state): Minimize file size.
+
+Fri Sep  3 15:10:16 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h [struct site]: Added 'numignored' member.  Split the
+	'is_different' member into local_ and remote_to cope with
+	'nodelete' and 'ignored' files.
+	
+	* src/sitefiles.c (site_stats_increase, site_stats_decrease,
+	site_stats_update): New functions, to manage the num* and total*
+	fields of sites accurately.  (file_remove, file_set_diff,
+	file_set_local, file_set_stored): Modified to use site_stats_*
+	appropriately.
+
+	* src/sites.c (site_update, site_readfiles, site_catchup): Rely on
+	num* and total* and is_different to be updated dynamically, rather
+	than setting them explicitly.
+	
+	* src/console_fe.c (site_normlist): Modified to show ignored
+	changed files in brackets.
+
+Fri Sep  3 15:05:44 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_set_stored, file_set_local): Modified to
+	find a single moved file candidate, and to prefer a direct match
+	over a moved file candidate.
+	
+Fri Sep  3 13:34:25 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_write_stored_state): Only write out
+	checksum-algorithm when using checksumming.
+
+Fri Sep  3 09:04:11 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (main): Handle nooverwrite + safe mode error.
+
+Thu Sep  2 13:36:28 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/sitecopy.1: Added explanation of 'state' keyword.
+
+Thu Sep  2 13:32:46 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: Added 'stored_state_method' to struct site.
+
+	* src/sitestore.c (site_xml_endelm, site_read_stored_state_old):
+	Set stored_state_method appropriately.
+
+	* src/console_fe.c (main): Display warning if stored state method
+	differs from current state method.
+
+Thu Sep  2 12:46:12 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.c (md5_unhexify): New function.
+
+	* src/sitestore.c (site_xml_endelm): Read checksum using
+	md5_unhexify.
+
+	* src/rcfile.c (rcfile_read): Added 'state checksum' and 'state
+	timesize' options.
+
+Wed Sep  1 14:30:51 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_compare): Return file_moved when the
+	filenames differ but the states are otherwise the same.
+	(file_set_local, file_set_remote): Modified for above change.
+	(files_state_copy): Destroy the destination state before copying
+	over it. (file_state_copy, file_state_destroy): Updated for
+	filename in state.	
+
+	* src/sites.c (site_destroy_stored): Remove file from linked list
+	correctly before destroying it.
+	
+Mon Aug 30 13:05:11 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_read_local_state): Put the "." or ".." test
+	first while scanning directories, losing two wasted "lstat" calls
+	per local directory.
+
+Sun Aug 29 22:14:46 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_initialize): Removed all code, put in
+	a call to site_destroy_stored. 
+
+Sun Aug 29 21:42:04 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_name): New function, easy access to
+	a filename.
+
+	* src/console.c (everywhere): Use file_name. Don't use 'old'.
+
+Sun Aug 29 21:12:59 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: Make filename part of file state. Removed 'old'
+	member from struct site_file.
+
+	* src/sitefiles.c (file_set_stored, file_set_local): Split down
+	file_set_state, and integrated "moved files" check.
+	(file_full_stored, file_full_local): Take a file state as first
+	parameter, rather than a file.
+	
+	* src/sites.c (site_update_*, site_synch_*): Changed for
+	file_full_(stored,local).  (site_checkmoved): Removed function.
+	(site_readfiles): Removed site_checkmoved call.
+	(site_fetch_walk): Use file_set_stored.  (site_read_local_state):
+	Use file_set_local.
+	
+	* src/sitestore.c (everywhere). Updated for filename in file
+	state. (site_xml_endelm): Use file_set_stored.
+
+Sun Aug 29 19:21:12 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: Use string list for ASCII patterns in struct site.
+
+	* src/rcfile.c (rcfile_read): Changed as above.  (rcfile_write):
+	Dump ascii, excludes, and ingores string lists out using generic
+	DUMP_SLIST macro.
+	
+Sun Aug 29 18:44:29 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (slist_fnmatch): Abstracted fnmatch'ing against
+	string lists. (file_isexcluded, file_isascii): Use slist_fnmatch.
+
+Sun Aug 29 18:09:21 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in, configure.in, gnome/*.[ch]: Source files
+	rename (Lee Mallabone).
+
+Sun Aug 29 17:49:39 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (main): Don't need to call site_readfiles if we
+	are in init mode (allows --init over corrupted .sitecopy/ files).
+
+Sun Aug 29 17:47:43 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in, configure.in: Updated for lib/string_utils.c, 
+	now always need lib/md5.c, lib/dates.c.
+
+Sun Aug 29 17:45:41 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_checkmoved): Compare filenames by their
+	base_name() again.
+
+Sun Aug 29 16:42:06 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/string_utils.c: Added 'string list' handling.
+	(slist_prepend): New function. (slist_deep_copy): New function.
+
+	* src/sites.h: Added 'ignores' to struct site. 'excludes' now
+	uses generic string list. 
+
+	* src/sitefiles.c, src/rcfile.c: Changed for generic string list
+	handling of excludes.
+
+	* src/rcfile.c (rcfile_read): 'ignores' handling. Deep copy
+	string list from default site entry.
+
+Sun Aug 29 16:40:54 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/string_utils.c: Renamed from lib/strsplit.c. (split_string):
+	Renamed from strsplit. (pair_string): Renamed from strpairs. 
+	(shave_string): Renamed from strstrip.
+
+	* src/httpauth.c, src/httpdav.c: Renamed function as above.
+
+Sun Aug 29 13:35:17 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c (file_state_copy): Copy one state onto another.
+	(file_set_diff): Reduce num* and total* as appropriate before
+	changing the diff. (file_set_state): Pretend newly-created files
+	are 'deleted' before the diff is set properly.
+
+	* src/sitefiles.h (DEBUG_DUMP_FILE): New macro, to dump a file and
+	a file state.
+	
+	* src/sites.c (site_catchup): Updated for abstract state changes.
+	Use file_state_copy for changed and new files. Remove deleted
+	files from the files list. (site_read_local_state): Bitwise-and
+	the protection mode with octal 777.
+
+Sun Aug 29 13:09:49 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c (send_file_binary, send_file_ascii): Changed to
+	return zero on success, non-zero on error.
+
+	* src/ftp.c (ftp_put, ftp_put_cond): Check send_file_* return
+	codes appropriately.
+
+Sat Aug 28 20:07:46 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_read_stored_state_new, site_xml_startelm,
+	site_xml_endelm, site_xml_cdata, site_xml_get_tag): Implementaion
+	of parsing XML-format stored state files using expat.
+
+Sat Aug 28 17:06:22 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_read_stored_state_old): Updated to use
+	file_set_state to dynamically update the files list.
+
+Sat Aug 28 16:07:48 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (main): Display the remote root in the
+	banner lines.
+
+Sat Aug 28 15:08:40 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* gnome/*: Merged changes from Lee Mallabone.
+
+Sat Aug 28 13:53:31 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.emx, config.h.emx: Updated to build WebDAV code
+	(Steffen Siebert).
+
+Sat Aug 28 13:50:00 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.h [__EMX__]: strncasecmp is strnicmp.
+
+Fri Aug 27 18:03:45 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (proto_init): ifdef out http_disable_expect
+	and http_conn_limit with USE_DAV (Steffen Siebert).
+
+Fri Aug 27 11:24:42 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added check for xmlparse.h in xmltok/ and
+	xml/. Give a warning if found library but no header, and only
+	define HAVE_LIBEXPAT if both are found.
+
+Fri Aug 27 10:59:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_init): Set http_expect_works to -1 always...
+	play safe.
+
+Wed Aug 25 13:23:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/frontend.h (fe_warning): New function.
+
+	* src/console_fe.c (fe_warning): Implementation.
+
+Wed Aug 25 13:15:26 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c (site_write_stored_state): New function,
+	writes out the stored state in XML.
+
+Wed Aug 25 12:28:04 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added sitefiles.o and sitestore.o to OBJECTS.
+
+	* Makefile.in: Added sitefiles.o and sitestore.o dependancies.
+
+Wed Aug 25 12:25:58 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitefiles.c: New file. (file_*): Moved here from sites.c.
+
+	* src/sites.c (file_*): Removed.
+
+Wed Aug 25 10:11:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sitestore.c: New file. (site_read_stored_state): New
+	function, reads the stored state. (site_read_stored_state_new):
+	For the new XML format. (site_read_stored_state_old): For the
+	old-style format (slightly modified site_readremotefiles).
+
+	* src/sites.c (site_readremotefiles): Removed function.
+	(site_read_localstate): Renamed from site_readlocalfiles.
+
+Wed Aug 25 09:20:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c: Removed dirname.h include.
+
+Tue Aug 24 18:14:18 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: Added 'lowercase' member to struct site.
+
+	* src/sites.c (file_full_remote): Returns filename in lowercase
+	if 'lowercase' is set for the site.
+
+Tue Aug 24 18:07:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (file_state_destroy): New function.  (file_destroy):
+	Use it. (site_destroy_stored): New function.  (site_fetch): Calls
+	site_destroy_remote before altering files list, allow it to be
+	called at any time.
+	
+Tue Aug 24 12:51:49 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Use supplied expat source if none found in system.
+
+	* Makefile.in: Add expat dependancies.
+
+	* expat/*: Integrated expat sources.
+
+Tue Aug 24 10:19:28 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added AC_EXEEXT to check for executable extension.
+
+Tue Aug 24 09:32:02 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Link against both -lxmltok and -lxmlparse when
+	looking for XML_Parse there.
+
+Sun Aug 22 10:40:23 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (proto_init): Use proper return code, rather than
+	SITE_OK always.
+
+Sat Aug 21 16:34:02 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/*: Renamed 'struct site_file_t' to 'struct site_file',
+	'struct site_t' to 'struct site'.
+	
+	* src/sites.h: Abstracted file state: 'struct file_state'
+	represents a complete state of a file. 'struct site_file'
+	
+	* src/sites.c (file_compare): Returns the file_diff of a given
+	file, derived directly from the file's alocal and stored state.
+	(file_set_state): Sets the local and/or stored state for a file.
+	(site_readlocalfiles): Large simplification to use file_set_state.
+	(site_fetch_walk): Uses file_set_state.  (file_destroy): Function
+	renamed from site_destroyfile.  (file_remove): Function renamed
+	from file_delete.  (file_checksum): Sets the checksum of a local
+	file.  (site_checkmoved): Modified to check file type, and
+	file_compare.  (file_full_remote, file_full_local): Replacements
+	for full_remote and full_local fields in struct site_file.
+
+Sat Aug 21 12:12:53 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: In 'struct site', use two 'struct proto_host's for
+	the server and proxy details.
+
+	* src/sites.c (proto_init): Modified for above changes.
+
+Sat Aug 21 12:04:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_put_cond, ftp_put): Check the return code from
+	send_file_(ascii,binary) and return an error if it failed, even if
+	the server indicated success.
+
+Fri Aug 20 18:22:04 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Added generic contact-maintainer message.
+	Made file-private functions and variables static.
+	(fe_can_update): Handle file_link.
+
+Fri Aug 20 17:59:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.h: Changed to using short for bool rather than int,
+	saves 6 bytes in struct file, 26 in struct site.
+
+	* src/console_fe.c (main): In the longopts struct, use the option
+	char for --prompting and --allsites, and a dummy for --flatlist,
+	since an 'int *' is required here, not a 'short *'.
+
+Fri Aug 20 17:54:08 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_read): Added 'default' site entry, which
+	sets the default for any of the normal site options.  Use LINESIZE
+	rather than BUFSIZ for line buffers: 128 rather than 1024 bytes.
+	
+Fri Aug 20 10:04:00 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* .cvsignore: Added strpairs
+
+Thu Aug 19 22:46:41 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.7.10.
+
+Thu Aug 19 22:43:48 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_update_remove_directories): Deleted reduntant
+	prototype.
+
+Thu Aug 19 22:38:47 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (main): Handle no permissions support in WebDAV
+	rcfile error.
+
+	* src/rcfile.[ch] (rc_verifysite): Disallow using permissions
+	mirroring for sites using WebDAV.
+	FE API: New return code from rc_verifysite: SITE_NOPERMS.
+	
+Thu Aug 19 11:25:11 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c, src/socket.h, src/ftp.c: Renamed send_file to
+	send_file_binary to fix AIX build.
+
+Wed Aug 18 19:52:40 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_synch_*, site_update_*, proto_init,
+	site_checkmoved, file_*): Functions internal to file declared as
+	static.
+
+	* src/httpdav.c (many): Similarly.
+
+Wed Aug 18 18:30:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_update_files) [file_new case]: Added debugging
+	to show success or failure of the file_upload call.
+
+Tue Aug 17 20:04:20 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_write): Changes from Lee Mallabone, support
+	for 'http limit' and 'http noexpect' options.
+
+	* gnome/...: Changes from Lee Mallabone, support for 'http limit'
+	and 'http noexpect' options.
+
+Sat Aug 14 23:55:04 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/ru.po: New file, from Michael Sobolev
+	<mss@despair.transas.com>.
+
+Fri Aug  6 14:39:42 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Swapped AC_ISC_POSIX and AC_PROG_CC.
+
+Fri Aug  6 13:21:44 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/testdav.c (get_body): New function, reads body for HTTP
+	request. (main): PROPPATCH support, updated for http_init change,
+	case-insensitive to method names on command line.
+
+	* Makefile.in: Link httpauth.o into testdav.
+
+Wed Aug  4 14:32:30 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.7.9.
+
+Wed Aug  4 14:29:11 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.h: Added DEBUG_SITES debugging constant.
+	
+	* src/sites.c (site_update_files): Added debugging messages.
+
+Wed Aug  4 14:13:28 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Added .c.o rule to explicitly add -o to compile
+	line.
+
+Thu Jul 29 16:12:15 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_put) [CYGWIN||EMX]: Use binary mode for
+	fopen.
+
+	* src/httpda.c (http_req_sendbody): Added debug message showing
+	how many bytes transfer() reports as sent.
+
+Mon Jul 26 23:20:08 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added checks for expat in -lxmltok and -lxmlparse,
+	as per Debian libxmltok1 package.
+
+Mon Jul 26 23:03:10 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sitecopy.spec.in: Enabled debugging.
+
+Mon Jul 26 18:14:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (init): const'ed longopts, and added last
+	element of all zeroes (as required by getopt_long).
+
+Mon Jul 26 12:10:26 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.7.8.
+
+Mon Jul 26 12:09:32 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c: Added errno.h include (finally)
+
+Mon Jul 26 11:54:10 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.7.7.
+
+Mon Jul 26 11:47:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpauth.c (http_auth_clean): Only show debugging messages
+	for DEBUG_HTTPAUTH.
+
+Mon Jul 26 11:39:41 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.h, src/httpdav.c: Added http_conn_limit global.
+
+	* src/httpdav.c (http_request): Close the connection after
+	each request if http_conn_limit is set.
+
+	* src/sites.h: Added http_limit member to site_t.
+
+	* src/rcfile.c (rcfile_read): Added 'http limit' site option,
+	setting http_limit.
+
+	* src/sites.c (proto_init): Set http_conn_limit according to
+	site->http_limit.
+	
+Mon Jul 26 11:32:37 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c (read_line): Revert to using recv rather than
+	sock_recv.
+
+Mon Jul 26 11:30:57 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c (transfer): Only transfer a fixed number of 
+	bytes when one is specified.
+
+Sun Jul 25 17:35:20 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.7.6.
+
+Sun Jul 25 17:29:45 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_open): Set the transfer type if one is required.
+	Patch by Tim Ricketts <tr@oxlug.org>.
+
+Sun Jul 25 17:21:01 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c (transfer): Debugging messages for Linux 2.2
+	sendfile() support.  (read_line): Debugging messages for
+	error cases.
+
+Sun Jul 25 17:16:26 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_data_close): Check return value of close() on
+	data socket.  (ftp_put): Added debugging message if
+	send_file[_ascii] returns an error.  (ftp_read): Set the error
+	correctly if read_line() returns an error.
+
+Sun Jul 25 14:08:39 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (site_normlist): Use different 'Deleted files'
+	message when nodelete is set.
+
+Sun Jul 25 11:12:48 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_exec): Removed reduntant cast of command to
+	(char *) when calling send_line.
+
+Fri Jul 23 17:34:06 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_readlocalfiles): Remove debugging message
+	which fired regardless of file type (caused segfault on named
+	pipes etc).
+
+Fri Jul 23 17:33:10 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_init, http_finish, http_new_request): Added
+	some debugging messages.
+
+Thu Jul 22 15:13:40 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/sitecopy.1: Updated for proxy support, 'http noexpect'
+	option, new HTTP RFC's.
+
+Thu Jul 22 15:11:36 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_update_links, site_update_create_directories,
+	site_update_delete_files, site_update_delete_directories): Use
+	CALL() everywhere.
+
+Thu Jul 22 14:20:47 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_parse_status): Use first digit of status
+	code directly as class rather than doing a /100.
+
+Thu Jul 22 14:06:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (dav_rmdir): Fail if we get 207, or any non-2xx
+	class response, rather than any non-204 status.
+
+Thu Jul 22 13:16:53 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_init): Do the name lookup on the proxy when
+	we have a proxy, and on the server when we have a server.
+
+Thu Jul 22 12:20:16 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpauth.c (http_auth_verify_response): Free up everything
+	we strdup. Check we have a current sess->unq_nonce before free'ing
+	it.
+
+Thu Jul 22 12:11:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpauth.c (http_auth_request_digest): For qop=auth-int, use
+	MD5 digest of empty string for H(entity-body).
+
+Thu Jul 22 11:25:47 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.7.5.
+
+Thu Jul 22 11:24:28 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_response_read): Fix typo, read bodies
+	with set content-length properly.
+
+Thu Jul 22 11:10:57 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpauth.c (http_auth_challenge_basic): Set session scheme
+	on success.
+
+Thu Jul 22 09:45:41 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.7.4.
+
+Thu Jul 22 09:24:18 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_request): Read trailing headers after
+	chunked messages, store Authentiation-Info value.
+
+Thu Jul 22 09:21:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_request): Overwrite Authorization parameters
+	with 'x's unless debug channel 256 is specified.
+
+	* src/common.h: Reserve debug channel 256.
+
+Thu Jul 22 09:11:14 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_exec): Don't display complete PASS command in
+	debugging information.
+
+Tue Jul 20 17:41:01 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_request): Send absoluteURI in Request-Line
+	if using proxy server. (http_strcat_hostname): Renamed, pass
+	proto_host_t as argument.
+
+Tue Jul 20 17:39:36 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpauth.c (http_auth_request_basic): Allocate memory
+	properly.
+
+Tue Jul 20 15:12:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Added proto_host_t to store a server's
+	address, port, and authentication details. Changed driver ->init
+	prototype to pass two proto_host_t's giving the server
+	and proxy information, if any.
+
+	* src/httpdav.c, src/httpdav.c (http_init, http_open,
+	http_strcat_remoteserver, http_mkdir_with_put): Updated for above
+	changes.
+
+	* src/ftp.c, src/ftp.h (ftp_init): Updated for above changes.
+
+Tue Jul 20 14:33:42 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (main): Changed 'sitecopy: Site...' header
+	line to display current usage mode, site name, and server only.
+
+Tue Jul 20 14:25:32 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Added hardcoded port member to protocol driver.
+
+	* src/rcfile.c (rc_verifysite): Fallback on hardcoded port number
+	if lookup by name fails.
+
+	* src/sites.c: Added hardcoded port numbers to FTP and DAV drivers
+	of 21 and 80 respectively.
+
+Tue Jul 20 14:19:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_read): Added 'proxy-*' options to
+	support proxy servers.
+
+	* src/sites.h: Added proxy_* members to site_t.
+
+Tue Jul 20 14:18:08 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (proto_init): New function, to initialize
+	the protocol driver. (site_update, site_synch, site_fetch):
+	Use proto_init.
+
+Tue Jul 20 14:00:16 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* .cvsignore: Added strpairs.
+
+Mon Jul 19 15:59:49 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.7.3.
+
+Mon Jul 19 15:45:41 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c: Added http_disable_expect to disable 'Expect:
+	100-continue' support. (http_init): Set http_expect_works to 
+	-1 if http_disable_expect is set.
+
+	* src/sites.h: Added 'http_no_expect' member to site_t.
+	
+	* src/rcfile.c (rcfile_read): Added 'http noexpect' option.
+
+	* src/sites.c (site_update,site_synch,site_fetch): Set
+	http_disable_expect according to site->http_no_expect.
+
+Mon Jul 19 11:05:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_response_read): New function, reads
+	a block of response body. (http_request): Simplification
+	of response body read handling. Localize variables better.
+
+Mon Jul 19 09:18:57 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in (src/httpdav.o): Depends on httpauth.h.
+
+Sun Jul 18 19:19:01 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_request): Updated for auth changes.
+
+Sun Jul 18 19:17:23 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.h: Added DEBUG_HTTPAUTH debug constant.
+
+	* src/httpauth.c: Changed to use DEBUG_HTTPAUTH for debugging.
+
+Sun Jul 18 19:07:24 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpauth.c: Completed implementation of HTTP authentication
+	to RFC2617. (http_auth_request): Return the header value, rather
+	than pass it as an argument. (http_auth_request_basic,
+	http_auth_request_digest): Use dynamically allocated buffer for
+	field value, avoid buffer overruns. (http_auth_response_body,
+	http_auth_verify_response): New functions, to handle the
+	'Authentication-Info' header and authenticate the server.
+
+	* src/httpauth.h: Changes as above. Added interface usage
+	description.
+
+Fri Jul 16 23:45:46 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.7.2.
+
+Fri Jul 16 23:42:29 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* gnome/fe_gtk_site_ops.c: Error handling improved (Lee
+	Mallabone).
+
+Fri Jul 16 23:42:20 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added message to advise using GNU make.
+
+Fri Jul 16 09:09:06 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/snprintf.c, lib/snprintf.h: Renamed dtoa() to doubletoa()
+	to avoid conflict with cygwin dtoa() in <stdlib.h> - thanks
+	to Andy Cowling.
+
+Thu Jul 15 15:17:02 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpauth.c: Removed reliance on 'http_req_t' structure,
+	abstracted session state. (http_auth_new_request): New function,
+	takes method, URI and optionally entity-body.
+
+	* src/httpdav.c (http_request): Updated for above changes.
+
+Thu Jul 15 11:27:17 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.7.1.
+
+Wed Jul 14 11:46:49 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpauth.c (http_auth_request_digest): Don't quote
+	'algorithm=' value. Generate 'nc=' value properly, give
+	quoted cnonce value, but digest it unquoted.
+
+Wed Jul 14 11:38:10 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c: Added http_can_authenticate global.
+	(http_request): Made authentication status persistent beyond a
+	single request.
+
+Wed Jul 14 11:34:32 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpauth.c (http_auth_request_digest): More commas
+	in 'Authorization:' header, quote 'qop=' value.
+
+Wed Jul 14 11:32:53 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/strsplit.c [STRPAIRS_TEST] (main): Command-line strpairs
+	tester.
+
+	* Makefile.in: Fixed strsplit tester, added strpairs tester.
+
+Wed Jul 14 10:20:45 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_request): Removed very stupid strtok from
+	header-line parser, split the line properly by ':' position.
+
+Tue Jul 13 18:03:21 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Removed sitecopy.spec from AC_OUTPUT, now
+	generated at distribution time.
+
+Tue Jul 13 14:40:28 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.h: Removed date member of http_req_t.
+
+	* src/httpdav.c (http_request): Removed 'Date:' header handling.
+
+	* src/httpauth.c (http_auth_request_digest): Fixed handling of
+	ASCII MD5 digests, added commas between fields in 'Authorization:'
+	header, removed extra ':' in Request-Digest calculation.
+	(http_auth_request): Call http_auth_request_basic with Basic
+	challenges.
+
+	* src/common.c (md5_hexify): Require 33 byte buffer, write
+	trailing \0.
+
+Mon Jul 12 18:17:51 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added src/httpauth.o to OBJECTS for WebDAV 
+	build.
+
+Mon Jul 12 18:00:26 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpauth.c: Reimplementation continues.
+	(http_auth_request, http_auth_request_digest,
+	http_auth_request_digest): New functions.
+	(http_auth_finish): New function, to clean up after ourselves.
+
+	* src/httpdav.c: Added call to http_auth_finish().
+
+Mon Jul 12 17:59:37 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Remove linelen.o from LIBOBJS (console_fe),
+	until we actually need it.
+
+Mon Jul 12 17:56:47 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.c (md5_hex_stream) (md5_hex): Removed functions.
+	(md5_hexify): Renamed from hexify_md5, changed to write ASCII
+	to buffer given as argument.
+
+Mon Jul 12 15:39:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/snprintf.h: Added sys/types.h define to pick up
+	size_t, patch by Andy Cowling <arc@sequent.com>.
+
+Mon Jul 12 09:49:08 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* tests/server.test: Added file download (synch) test.
+
+Mon Jul 12 09:00:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.emx: Updates from Steffen Siebert.
+
+	* config.h.emx: Define HAVE_STRING_H (Steffen Siebert).
+
+Mon Jul 12 08:58:54 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c [HAVE_SYS_SELECT_H]: Include sys/select.h.
+
+	* configure.in: Added sys/select.h to CHECK_HEADERS.
+
+	* config.h.in: Added HAVE_SYS_SELECT_H.
+
+	* config.h.emx: Define HAVE_SYS_SELECT_H 1.
+
+Sun Jul 11 22:55:01 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c: Changes to remove all traces of the 'updated'
+	member of site_file_t.
+	(site_update_*): Dynamically update the files list, by changing
+	the ->diff after a successfull update operation.
+	(site_catchup): Dynamically update the files list.
+	(site_writefiles): Rewritten, uses new info file format.
+
+Sun Jul 11 19:41:12 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.7.0.
+
+Fri Jul  9 13:17:25 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c: Separation of authentication code into separate
+	module. (http_init): Added http_auth_init call. (http_request):
+	Simplified authentication handling a little.
+
+	* src/httpauth.c: New file. Added authentication globals 
+	from httpdav.c. (http_auth_init): New function, stores
+	the username and password we are using to authenticate.
+
+Thu Jul  8 23:25:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.7.0-pre.
+
+Thu Jul  8 23:21:35 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* gnome/fe_gtk_main.c: Disallow new sites with no name.
+	(Lee Mallabone)
+
+Thu Jul  8 23:08:25 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.h: Added new debug constant DEBUG_GNOME. (Lee
+	Mallabone)
+
+	* gnome/fe_gnome.c, gnome/fe_gtk_main.c: Debugging and
+	command line options changes. (Lee Mallabone)
+	
+Thu Jul  8 15:41:26 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_readlocalfiles): Added fe_warning for stat()
+	failure. Dynamically grow the directory stack.
+
+Thu Jul  8 15:14:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_auth_request): Added fe_warning for
+	warning of switch from digest -> basic auth spoof attack.
+
+Thu Jul  8 15:12:54 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_readlocalfiles): Fix 'free(NULL)' line.
+
+Thu Jul  8 14:42:41 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in (distclean): Use 'find' to delete .orig, .rej etc.
+
+Thu Jul  8 12:34:06 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.6.13.
+
+Thu Jul  8 12:07:05 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_read): Create excludes list doubly linked 
+	(Lee Mallabone).
+
+	* src/sites.h: Make excludes list doubly linked (Lee Mallabone).
+
+	* configure.in: GNOME changes - updated OBJECTS, die when
+	--enable-gnomefe is used and cannot find GNOME properly. (Lee
+	Mallabone)
+
+Wed Jul  7 22:31:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_request): Added handling for
+	read-till-socket-close response message length case.
+	(http_get): Use given remote file size for total download size.
+
+Wed Jul  7 22:28:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* tests/server.test: New file, mini testsuite for servers.
+
+Wed Jul  7 17:45:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_update_files) [file_new case]: Added safe mode
+	handling.
+
+Wed Jul  7 17:36:38 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.h: Added DEBUG_GTK to debugging constants.
+
+Tue Jul  6 19:24:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_update_files): Use fe_warning when chmod fails.
+
+	* src/protocol.h: fe_warning takes two arguments.
+
+	* src/console_fe.c (fe_warning): As above.
+	
+Tue Jul  6 19:02:42 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Added file_get_modtime handler to protocol
+	driver, to retrieve the remote modification time of files.
+
+	* src/sites.c: Added file_get_modtime handlers to FTP and WebDAV
+	drivers. (site_update_files) [file_changed case]: Added safe mode
+	handling.
+
+Tue Jul  6 19:00:24 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c, src/ftp.h (ftp_ext_get_modtime): External interface
+	to ftp_getmodtime.
+
+Tue Jul  6 18:57:54 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/frontend.h: Added fe_warning prototype.
+
+	* src/console_fe.c (fe_ynprompt): Removed function.
+	(fe_warning): New function - displays warning messages.
+
+Tue Jul  6 17:59:48 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rc_verifysite): Disallow using nooverwrite
+	mode and safe mode at the same time.
+	FE API: New return code from rc_verifysite: SITE_NOSAFEOVER.
+
+Tue Jul  6 17:40:30 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_dateparse): HTTP-date parser.
+	(http_get_lastmod): New function, catches date from Last-Modified
+	header.  (http_getmodtime): New function, does a HEAD and fetches
+	modification time of remote file.  (http_put_if_unmodified): If
+	server does not claim HTTP/1.1 compliance, try fetching mod time
+	using http_getmodtime.
+
+Tue Jul  6 17:38:59 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Add dates.o to LIBOBJS for WebDAV.
+
+	* Makefile.in: Added dates.o to ALLLIBOBJS, updated
+	dependancies for lib/dates.?.
+
+Tue Jul  6 17:36:24 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/dates.c, lib/dates.h: New files.
+	(rfc1123_parse, rfc1123_date): Moved from common.c
+	(rfc1036_parse): Resurrected. (asctime_parse): New function, to
+	parse asctime()-style dates.
+
+	* src/common.c, src/common.h: Removed date manipulation code.
+
+Tue Jul  6 16:03:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/sitecopy.1: Added safe mode.
+
+Tue Jul  6 15:50:50 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_read): 'safe' keyword sets ->safemode.
+
+Tue Jul  6 15:49:10 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h (struct site_t): Added safemode member.
+	(struct site_file_t): Added servertime member.
+
+Tue Jul  6 15:37:16 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_put_if_unmodified): Check server claims
+	to at least HTTP/1.1 compliance.
+
+Tue Jul  6 15:19:24 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_getmodtime): New function, does MDTM.
+	(ftp_fetch_walktree): Use ftp_getmodtime.
+	(ftp_put_cond): New function, performs a conditional put by
+	checking MDTM before doing STOR.
+
+	* src/httpdav.c (http_parse_status): Parse the HTTP-Version and
+	Status-Code strings properly, setting http_version_major and
+	http_version_minor appropriately. (http_put_if_unmodified): New
+	function, performs a conditional put by sending the
+	"If-Unmodified-Since" header in the PUT request.
+
+	* src/protocol.h: Added conditional put to protocol driver.
+
+Fri May 28 17:26:14 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c [!HAVE_SNPRINTF]: Include snprintf.h.
+
+Mon Jul  5 18:38:01 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.6.12.
+
+Mon Jul  5 18:36:07 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_request): Only pass the response body
+	back to the caller when the response is 2xx class.
+
+Mon Jul  5 17:50:35 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_fetch_walk): Store dummy rel_local on
+	the heap, rather than malloc'ing it for every file.
+
+Mon Jul  5 17:41:15 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (fe_synching): Display 'Moving' message
+	correctly.
+
+Mon Jul  5 17:39:48 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_fetch): Initialize files to NULL - fixes
+	segfault on empty remote site.
+
+Mon Jul  5 17:28:07 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_fetch_walk): Still loop properly after
+	excluded file.
+
+Mon Jul  5 16:11:28 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/basename.h: New file, with base_name declaration.
+
+	* src/common.h: Removed base_name declaration.
+
+	* src/httpdav.c, src/sites.c, src/console_fe.c: Added basename.h
+	include.
+
+Mon Jul  5 15:51:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.6.11.
+
+Sun Jul  4 15:11:35 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/protocol.h: Fetch mode interface changed to pass files list
+	as argument.
+
+	* src/sites.c (site_fetch): Altered for new fetch mode interface.
+	(site_fetch_callback): Removed. (site_fetch_walk): New function,
+	to create a real files list from the dummy files list.
+
+	* src/httpdav.c, src/httpdav.h, src/ftp.c, src/ftp.h: Adjusted for
+	new fetch mode interface.
+
+Sun Jul  4 13:54:49 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c: Undefine RE and UN after URI character map array.
+
+Sun Jul  4 13:52:40 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_synch_files) [file_deleted,file_changed case]:
+	Pass the driver error string to fe_synched on file_download
+	failure.
+
+Sat Jul  3 11:09:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c: Fixed typo.
+
+Sat Jul  3 10:58:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in (install-xsitecopy): xsitecopy.desktop is in gnome/.
+
+Sat Jul  3 10:57:06 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Added fe_gnome_new_site.o and mguru.o to
+	GNOMEOBJS. Added $(topdir)/src to INCLUDES.
+
+Fri Jul  2 19:29:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/*, gnome/*: Merged changes from Lee Mallabone.
+
+Fri Jul  2 17:19:15 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_write): Added quotes around 'exclude'
+	values (suggested by Lee Mallabone).
+
+Thu Jul  1 10:38:04 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rcfile_write): Write out local_root_user and
+	remote_root_user for 'local' and 'remote' rcfile fields,
+	respectively.
+
+Tue Jun 29 00:43:54 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c, src/socket.c, src/httpdav.c: cygwin port by
+	Andy Cowling <arc@sequent.com>.
+	
+	* src/console_fe.c (version): Added cygwin platform.
+
+Mon Jun 28 16:58:27 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_update_files) [file_changed case]: Perform a
+	chmod after the put when nooverwite is set - patch from Olivier
+	Calle <olivier@calle.org>.
+
+Sun Jun 27 20:22:10 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_fetch) (site_synch): Set ftp_use_passive here
+	too - patch from Paul Crowley <paul@hedonism.demon.co.uk>.
+
+Sat Jun 26 20:59:18 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (fe_transfer_progress) [PROGRESS_SPINNER]:
+	Removed.
+
+Fri Jun 25 21:56:54 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/POTFILES.in: Added lib/rpmatch.c
+
+Fri Jun 25 20:43:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.6.10.
+
+Fri Jun 25 20:38:01 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Only add linelen.o to LIBOBJS for console
+	frontend.
+
+Fri Jun 25 20:27:37 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/yesno.c: New file. Added from fileutils-4.0i.
+
+	* lib/rpmatch.c: New file. Added from fileutils-4.0i.
+
+	* src/console_fe.c: Added yesno() declaration.
+	(fe_ynprompt): #if 0'ed out. (fe_can_update): Use yesno() rather
+	than fe_ynprompt.
+
+	* configure.in: Added rpmatch.o and yesno.o to LIBOBJS.
+
+	* Makefile.emx: Added lib/rpmatch.o and lib/yesno.o to OBJECTS.
+
+Fri Jun 25 20:07:18 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/linelen.c: New file. 
+	(get_line_length): Returns console line length, or 80 if
+	this cannot be determined. From fileutils-4.0i.
+
+	* configure.in: Added linelen.o to LIBOBJS. Added termios.h
+	to AC_CHECK_HEADERS. Added jm_WINSIZE_IN_PTEM and 
+	AM_HEADER_TIOCGWINSZ_NEEDS_SYS_IOCTL calls.
+
+	* config.h.in: Added GWINSZ_IN_SYS_IOCTL, WINSIZE_IN_PTEM,
+	HAVE_TERMIOS_H.
+
+	* Makefile.emx: Added lib/linelen.o to OBJECTS.
+
+	* aclocal.m4: Added jm_WINSIZE_IN_PTEM,
+	AM_HEADER_TIOCGWINSZ_NEEDS_SYS_IOCTL, AM_SYS_POSIX_TERMIOS,
+	jm_HEADER_TIOCGWINSZ_IN_TERMIOS_H (latter not needed?).
+	
+Thu Jun 24 10:39:40 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/base64.c [BASE64_TEST] (main): Added usage message.
+
+Wed Jun 23 12:16:53 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in (base64): Build from only lib/base64.c
+
+Wed Jun 23 11:59:35 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/snprintf.c, lib/snprintf.h: Moved includes to .c
+	from .h, bracketed in HAVE_*_H checks.
+
+Wed Jun 23 11:52:27 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: Removed const from ->*_root in site_t.
+	Comment about site_t->*_root* added.
+
+	* src/rcfile.c (rc_verifysite): remote_root is strdup'd from
+	remote_root_user.
+
+Tue Jun 22 22:54:47 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_update_files): file_changed, nooverwrite == true,
+	check file_delete returns PROTO_OK.	
+
+Tue Jun 22 22:38:38 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.c, src/common.h (base64): Removed function.
+
+	* lib/base64.c, lib/base64.h: New files. (base64) Moved function
+	from common.[ch].
+
+	* configure.in: Add base64.o to LIBOBJS for WebDAV build.
+
+	* Makefile.in: Added base64.o to ALLLIBOBJS, added and altered
+	dependancies.
+
+	* src/httpdav.c: Include base64.h.
+
+Tue Jun 22 20:22:47 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_get_content_charset): New function, gets the
+	charset from the Content-Type and places it in
+	http_content_charset.
+
+Tue Jun 22 20:19:05 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: httpdav.o depends on strsplit.h, strsplit.o 
+	depends on config.h.
+
+Tue Jun 22 20:17:51 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/strsplit.c (strsplit) (strpairs): Fixed allocation of 
+	memory for arrays.
+
+Tue Jun 22 11:07:57 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/strsplit.c, lib/strsplit.h (strpairs_free): New function,
+	frees pairs array correctly.
+
+Tue Jun 22 10:52:58 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/strsplit.c (strpairs): Cope with missing separators.
+
+Mon Jun 21 01:36:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sitecopy.spec.in (%description): sitecopy has a lower-case s.
+
+Mon Jun 21 01:34:38 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Linux 2.2 sendfile() support made a --with
+	option.
+
+Mon Jun 21 01:19:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_parse_status): Calculate request class
+	here. (http_request): Loop while any 1xx class responses are
+	returned.
+
+Mon Jun 21 00:30:53 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_auth_challenge): Updated to use strpairs and
+	strstrip.
+
+Mon Jun 21 00:26:29 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/strsplit.c, lib/strsplit.h (strstrip): New function.
+
+Sun Jun 20 23:54:06 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/strsplit.c, lib/strsplit.h (strpairs): New function.
+
+Sun Jun 20 23:37:36 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* .cvsignore: Added strsplit.
+
+Sun Jun 20 23:35:40 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added strsplit.o to LIBOBJS for DAV builds.
+
+Sun Jun 20 23:34:18 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_options_parsehdr): Use strsplit to
+	parse 'DAV:' header correctly.
+
+Sun Jun 20 23:33:29 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/strsplit.c (strsplit_free): Corrected.
+
+Sun Jun 20 23:24:58 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in (strsplit): Added strsplit tester goal.
+
+Sun Jun 20 23:21:46 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/strsplit.c, lib/strsplit.h (strsplit_free): Added new
+	function.
+
+Sun Jun 20 23:14:37 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/strsplit.c: Fixed quotes starting component case.
+	[STRSPLIT_TEST] (main): Added usage message.
+
+Sun Jun 20 22:45:46 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/strsplit.c, lib/strsplit.h: New files.
+	Generic string splitter function.
+
+Sat Jun 12 21:05:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/update.sh: Fixed default changes.awk location.
+
+Sat Jun 12 20:43:53 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c (host_lookup): Removed unnecessary gethostbyaddr
+	call - can now specify servers by IP address which don't have
+	a reverse DNS hostname entry.
+
+Sat Jun 12 20:16:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/Makefile.in.in (mostlyclean): Clean *.o too.
+
+Sat Jun 12 17:50:48 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* .cvsignore: Added sitecopy.spec.
+
+Sat Jun 12 17:49:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in (subdirs): Added @ for silent invocation of make.
+
+Sat Jun 12 17:03:04 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.h: Added sig_handler typedef.
+
+Sat Jun 12 17:02:29 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (abort_handler): Renamed from sighandler.
+
+Tue Jun  8 23:06:14 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Use NLSTARGS to build in intl and po.
+	subdirs goal added.
+
+Tue Jun  8 22:59:40 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Fix quoting of -DLOCALEDIR in SDEFS when
+	building NLS support. Use NLSTARGS to make in intl and po.
+
+Tue Jun  8 22:55:39 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/*.c: Include string.h and strings.h (only) when present.
+
+Tue Jun  8 22:50:49 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.in, configure.in: Added strings.h check.
+
+	* config.h.emx: Updated with missing defs from config.h.in.
+
+Tue Jun  8 22:46:45 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Enabled NLS stuff.
+
+	* Makefile.in: Started on NLS build.
+
+Mon Jun  7 22:12:44 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* mkinstalldirs: New file, required by po/Makefile
+	install goal.
+
+Mon Jun  7 22:03:12 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/sitecopy.pot: Extracted new messages.
+
+Mon Jun  7 22:00:38 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.c (hexify_md5): Moved into #ifdef USE_DAV
+	section, added prototype.
+
+Mon Jun  7 21:56:28 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c: Added in last of missing prototypes, use
+	'authentication' not 'authorization' in comments.
+
+Tue Jun  1 23:16:39 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_parse_status): Use strchr not strrchr to
+	check for \r.
+
+Tue Jun  1 23:14:44 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.in, configure.in: Added check for limits.h
+	(used by lib/md5.h).
+
+Tue Jun  1 23:07:26 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c, src/ftp.c, src/httpdav.c, src/common.c, 
+	src/sites.c, src/console_fe.c: Only include stdlib.h and
+	unistd.h when present.
+
+	* configure.in, config.h.in: Add checks for stdlib.h and
+	unistd.h.
+
+Tue Jun  1 23:00:01 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in (INCLUDES): Use top_srcdir instead of '.'.
+
+Mon May 31 19:57:39 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.emx (OBJECTS): Added lib/basename.o and lib/dirname.o
+	(thanks to Steffen Siebert).
+
+Mon May 31 18:55:35 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (dav_xml_cdata): Don't do anything when passed a
+	segment of cdata which is entirely leading whitespace.
+	(http_request): Fixed multi-line header handling.
+
+Mon May 31 18:11:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c (read_line): Return -2 when no newline is
+	found within len.
+
+Mon May 31 17:41:30 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/dirname.c (dir_name): Include the trailing slash.
+
+Sat May 29 14:36:26 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.6.9.
+
+Sat May 29 14:34:27 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (version): Show if using sendfile.
+
+Sat May 29 14:33:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c (transfer): If sendfile gives EINVAL, then
+	do normal user-space copying.	
+
+Sat May 29 14:31:12 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/testdav.c (usage): Fixed typo.
+
+Sat May 29 00:02:51 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c (transfer): Use sendfile() when present, and we
+	know how much to send.
+
+Fri May 28 23:29:42 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added Linux 2.2 sendfile() check.
+
+	* config.h.in: Added HAVE_LX22_SENDFILE define.
+
+	* src/socket.c: sendfile() declared.
+
+Fri May 28 20:23:30 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c, src/socket.h (sock_read): Made count const.
+	(sock_recv): Made count, flags const.
+
+	* src/socket.h: Updated read_line and transfer prototypes to
+	match implementations.
+
+Fri May 28 20:17:22 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/sitecopy.1: Updated, adding --help and --version, INVOCATION
+	section, when to use fetch mode.
+
+Fri May 28 20:14:43 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Fixed port output, added --version to help
+	output.
+
+Fri May 28 20:13:51 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* doc/examplerc: Restored to former glory, got emptied during the
+	move.
+
+Fri May 28 20:06:04 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/dirname.c (dir_name): Modified to return "" not "." if no
+	directory name is found.
+
+Fri May 28 19:53:37 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Fixed install goals.
+
+Fri May 28 17:26:14 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c [!HAVE_SNPRINTF]: Include snprintf.h.
+
+Fri May 28 17:19:45 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c, src/ftp.c, src/rcfile.h: Use void in declarations of
+	functions which take no arguments.
+
+Fri May 28 17:16:51 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.in: Added HAVE_SYS_TIME_H (Dobrica Pavlinusic).
+
+	* config.h.emx: Define HAVE_SYS_TIME_H.
+
+Fri May 28 17:11:53 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c [HAVE_SYS_TIME_H]: Only include sys/time.h when
+	present (Dobrica Pavlinusic). 
+
+	* src/socket.c: Include config.h (Dobrica Pavlinusic).
+
+	* src/httpdav.c: Don't include sys/time.h any more (was only used
+	for select(), now used through sock_block).
+
+Fri May 28 16:59:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sitecopy.spec -> sitecopy.spec.in: Renamed, use @VERSION@ to
+	pick up package version (Dobrica Pavlinusic).
+
+	* configure.in: Added sitecopy.spec to AC_OUTPUT (Dobrica
+	Pavlinusic).
+
+Fri May 28 16:56:04 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added some -W's to CFLAGS with warnings on. Added
+	sys/time.h to CHECK_HEADERS (thanks to Dobrica Pavlinusic
+	<dpavlin@foi.hr>).
+
+Fri May 28 16:51:49 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c (rc_get_netrc_password): const arguments and
+	return, added prototype. 
+
+	* src/rcfile.c (rc_verifysite): Rearranged to const password.
+
+Fri May 28 16:46:43 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/netrc.c, lib/netrc.h (search_netrc): const 'host' argument.
+
+Fri May 28 16:15:15 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c, src/sites.c, src/ftp.c: Added missing
+	prototypes.
+
+Thu May 27 20:17:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (HTTP_FATAL_ERROR): Modified to take only a single
+	argument rather than a variable number, makes SunOS 5 cc
+	happy. Two callers modified.
+
+Thu May 27 20:14:23 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in (ALLLIBOBJS): Added to include objects in lib.
+
+Thu May 27 19:58:31 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_readremotefiles): Fixed a memory leak, work
+	harder to prevent SEGV on corrupt info file (not infallible yet).
+
+Thu May 27 19:19:05 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added -lresolv check (from fetchmail), made socket
+	check only try -linet if it's not in -lsocket.
+
+Thu May 27 19:03:29 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/POTFILES.in: Added common.c.
+
+Thu May 27 19:02:03 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.c: Added NLS _ defines (used by strerror).
+
+Thu May 27 18:57:51 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/socket.c: Include sys/time.h for struct timeval (patch by
+	Andrew Haylett <ajh@primag.co.uk>).
+
+Thu May 27 18:28:38 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/testdav.c: Added PROPFIND tester, renamed 'upload' to 'put'.
+	Made 'trace' work again. Updated for new connection API.
+	
+Thu May 27 18:20:03 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added basename.o and dirname.o to initial LIBOBJS.
+
+Thu May 27 18:19:04 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* ABOUT-NLS: Replaced with December 1998 version.
+
+Thu May 27 18:14:14 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.c (basename,dirname): Removed functions.
+
+Thu May 27 18:11:09 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.emx, config.h.in, configure.in: Removed basename and
+	dirname tests.
+
+	* src/common.h: Added base_name prototype.
+
+Thu May 27 18:05:22 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (site_fetch_callback): Replaced dirname with
+	dir_name. Include dirname.h.
+
+Thu May 27 18:04:38 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/basename.c, lib/dirname.c, lib/dirname.h: New files,
+	from GNU fileutils.
+
+Thu May 27 13:49:09 1999  Joe Orton  <jeo101@york.ac.uk>
+
+	* src/sites.c, src/console_fe.c: Replaced basename with base_name
+	everwhere.
+
+Thu May 27 13:47:58 1999  Joe Orton  <jeo101@york.ac.uk>
+
+	* Makefile.in: Added comment noting GNU make requirement.
+
+Thu May 27 11:36:31 1999  Joe Orton  <jeo101@york.ac.uk>
+
+	* src/ftp.c (ftp_response): Break out of loop to return on read()
+	failure, making final return non-redundant.
+
+Thu May 27 11:34:15 1999  Joe Orton  <jeo101@york.ac.uk>
+
+	* src/sites.c (site_fetch): Removed redundant return at end, never
+	reached.
+
+Wed May 26 13:06:43 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.h: Added comment about libc 5.4.44's basename
+	weirdness.
+
+Wed May 26 12:49:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (file_append,file_prepend): Don't inline - shave
+	several k off i386/ELF binary.
+
+Wed May 26 12:41:45 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: --help output: Moved GNOME messages, wording
+	updates.
+
+Wed May 26 12:37:39 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added --enable-warnings to add -Wall to CFLAGS.
+
+Wed May 26 12:36:29 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/md5.c: Removed fixed HAVE_MEMCPY define.
+
+Tue May 25 23:50:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added memcpy to CHECK_FUNCS.
+
+Tue May 25 21:26:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.6.8.
+
+Tue May 25 21:09:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.emx: Defined HAVE_STRERROR as 1.
+
+Tue May 25 00:20:11 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.c, src/common.h: Added strerror using sys_errlist
+	where not present (from fetchmail).
+
+	* configure.in, config.h.in: Added strerror test.
+
+Tue May 25 00:19:23 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, config.h.in: Added SOCKS support.
+
+Mon May 24 23:43:24 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (usage): Print usage info to stdout.
+
+Mon May 24 22:45:46 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c (ftp_response): Trim newline from \r not \n.
+
+Mon May 24 22:31:26 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, Makefile.in: Use SDEFS for the -D...'s we pass.
+
+	* configure.in: Don't output NLS Makefiles.
+
+Mon May 24 22:13:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/sitecopy.pot: Extracted new strings using xgettext.
+
+Mon May 24 22:10:22 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (dav_xml_cdata): Drop straight out when not
+	collecting cdata.
+
+	* src/httpdav.c: Comments update.	
+
+Mon May 24 19:36:35 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c: Only reallocate cdata buffer when it grows above
+	CDATASHRINK.
+
+Mon May 24 19:16:40 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: const'ed progname and sitenames[].
+
+Mon May 24 19:12:49 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added ANSI C headers test (AC_STDC_HEADERS),
+	temporarily commented out NLS macros, substitute INTLLIBS.
+
+	* config.h.in: Added STDC_HEADERS.
+
+Mon May 24 19:11:46 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (dav_xml_parsetag): Removed tmp, now unused.
+
+Mon May 24 19:09:48 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (file_isexcluded): const'ed filename args.
+
+Mon May 24 18:24:05 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, config.h.in: Added dirname checks (from Dobrica
+	Pavlinusic <dpavlin@foi.hr>).
+
+	* common.c, common.h: Added HAVE_DIRNAME around dirname() defn.
+	Added HAVE_BASENAME around basename() defn.
+
+Mon May 24 18:17:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added string.h to AC_CHECK_HEADERS list.
+
+	* config.h.in: Added HAVE_STRING_H
+	
+Mon May 24 18:12:48 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/snprintf.h: Include string.h for strlen().
+
+Mon May 24 18:07:14 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Switch to using AM_* NLS macros. Added -DLOCALEDIR
+	to $DEFS when --enable-nls is used. Added AC_ISC_POSIX at start
+	(required by NLS macros).
+
+	* aclocal.m4: Removed ud_* and md_* NLS macros (duplicates of
+	AM_* macros from GNOME?).
+
+Mon May 24 18:06:10 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.emx: Removed unnecessary comments.
+
+Mon May 24 18:04:43 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c (main): Call setlocale and textdomain.
+
+Sun May 23 11:12:46 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: GNOME goals update from Lee Mallabone. Only install
+	man page when building console FE.
+
+Mon May 17 12:33:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.in: Added HAVE_STPCPY for libintl.
+
+Mon May 17 12:33:00 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c (pseudo_url): ANSI C fix, added '1' in ? : sequence.
+
+Mon May 17 12:08:24 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c: Added support for multi-line headers (untested).
+
+Mon May 17 11:09:05 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c: Skip any trailing headers after chunked message
+	body.
+
+Mon May 17 00:39:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c: Fetch mode rewrite complete - 0-out cdata buffer
+	on first malloc.
+
+	* src/httpdav.c: Fetch mode memory usage optimisations: removed
+	two strdup()'s when resolving tag namespaces. Made initial cdata
+	buffer 128 bytes rather than 1k. Free files off doc->files list
+	after passing back to fetch callback.
+
+Sun May 16 18:23:12 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Updated for new site_update onlymarked
+	argument.
+
+Sun May 16 18:05:38 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Dummy implementation of new connection API.
+
+Sun May 16 18:02:30 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c, src/sites.h: Removed 'ignore' functionality, added
+	'marked' and 'onlymarked' argument to site_update as a more useful
+	replacement.
+
+Sun May 16 18:01:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c: Removed old fe_connect* calls.
+
+	* src/frontend.h: New connection status API - fe_connection().
+
+	* src/httpdav.c, src/ftp.c: Use of new fe_connection() call.
+
+Sun May 16 15:41:12 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in (uritest): Depend on .o's not .c's (except
+	src/httpdav.c).
+
+Sun May 16 15:39:42 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (uri_encode): Fixed to work with 8-bit characters.
+
+Sun May 16 13:51:38 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Shuffled code to only call rc_verifysite for
+	sites we are interested in -> faster startup for normal usage
+	(don't stat all local directories).
+
+Sun May 16 00:29:53 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c: Took out the last perror() call.
+
+Sun May 16 00:20:39 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in (DOCS): Added doc/update.sh.
+
+Sun May 16 00:13:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c, src/ftp.c: Fixed two DEBUG() calls which didn't
+	have a `;'.
+
+Sun May 16 00:11:29 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/common.c, src/common.h: New, hopefully more portable
+	debugging mechanism, not reliant on DEBUG(a,b...) macros which
+	broke some creaky old compilers.
+
+Sat May 15 22:58:42 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/sitecopy.pot: Extracted messages using xgettext.
+
+Sat May 15 18:41:40 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c: Fixed href handling.
+
+Sat May 15 18:19:04 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c: Removed HTTP-date parser, use only RFC1123-style
+	date parser in DAV:href.
+
+	* src/common.c, src/common.h: Removed RFC1036-style date parser.
+
+Sat May 15 17:56:58 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c (http_head): Removed reduntant http_request call.
+
+Sat May 15 17:23:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.h: const'ed driver in site_t.
+
+Sat May 15 16:03:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c, src/sites.h: Added 'ignore' member of site_file_t,
+	where files with ignore = true will be skipped in site_update.
+
+	* src/sites.c: Moved common sections of file_append and
+	file_prepend to file_create.
+	
+Sat May 15 15:55:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* po/POTFILES.in: Added lib/getopt.c
+
+Sat May 15 15:53:26 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c, src/protocol.h: First stage of fetch mode rewrite
+	complete.
+
+Sat May 15 15:52:29 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.emx: Added #undef's for all NLS defines.
+
+Sat May 15 15:51:36 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c: const the protocol driver structs.
+
+Sat May 15 12:33:12 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* ABOUT-NLS: Replaced with December 1997 version
+
+Sat May 15 12:29:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/getopt1.c, lib/getopt.h: Updated for newer versions.
+
+Sat May 15 12:19:59 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Completed marking strings for translation.
+
+Sat May 15 12:19:08 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/getopt.c: Replaced with newer version from gettext-0.10.35
+	(with NLS support).
+
+Fri May 14 10:25:03 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/ftp.c: Redone for new fetch mode callback.
+
+Fri May 14 10:24:45 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.[ch]: Started large rewrite of fetch mode routines.
+
+Fri May 14 10:25:18 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c, protocol.h: New fetch mode callback mechanism.
+	No longer passing directory name and file name separately.
+
+Fri May 14 10:23:16 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.in: Added HAVE_LOCALE_H and ENABLE_NLS
+
+Fri May 14 10:20:25 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Started marking messages for translation.
+
+Sun May  9 00:53:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Moved netrc.o from OBJECTS to LIBOBJS.
+
+Sat May  8 23:39:51 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/rcfile.c: Create ->prev links for sites list.
+
+Sat May  8 23:37:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c, src/sites.h: Sites list doubly linked,
+	const'ed name argument to site_find, added comment for
+	site_keepgoing, really removed DIRPREFIX.
+
+Sat May  8 23:04:44 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in (EXES): Added testdav
+
+Sat May  8 22:37:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c, src/sites.h, src/rcfile.c: Completely removed
+	name mapping.
+
+Sat May  8 15:33:09 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c: Only allow 204 as the 'success' code
+	in dav_rmdir.
+
+Sat May  8 15:22:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.emx: Updated for new directory layout, pruned
+	unused bits.
+
+Sat May  8 15:21:22 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Generate LIBOBJS for objects in lib/.
+
+Sat May  8 15:19:26 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Added LIBOBJS to handle objects in lib/, updated
+	GNOME dependancies.
+
+Sat May  8 15:18:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Added k to short getopt list.
+
+Sat May  8 15:11:50 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c: Fixed dav_rmdir false negative, escape
+	8-bit char's in uri_encode, comments update.
+
+Thu May  6 23:11:44 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: lib/netrc.o and lib/md5.o depend on config.h
+
+Thu May  6 23:09:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* lib/netrc.c: Include <config.h> not "..."
+
+Thu May  6 23:08:48 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/sites.c: Corrected the dirstack again.
+
+Thu May  6 23:07:18 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/httpdav.c: Decode URI's from <DAV:href> cdata.
+
+Thu May  6 00:29:47 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Added INTLLIBS to LIBS and tidied testdav target.
+
+Thu May  6 00:16:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.in, configure.in, aclocal.m4: Added NLS config.
+
+	* po/POTFILES.in: Added for NLS.
+
+Wed May  5 18:53:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* src/console_fe.c: Added NLS _ and libintl.h include.
+
+	* intl/* po/* ABOUT-NLS: Added by gettextize.
+
+Wed May  5 18:43:36 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* */*: Split package into src/, gnome/, lib/ doc/ directories
+	
+	* configure.in, Makefile.in: Updated to build correctly in new
+	structure.
+
+Wed May  5 16:22:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Corrected free()'ing of items on the directory
+	stack.
+
+Wed May  5 00:41:02 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Fixed some leaks.
+
+Wed May  5 00:31:01 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c (site_readlocalfiles): Fixed a couple of leaks in the
+	tree walker.
+
+Wed May  5 00:24:41 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* common.c, sites.c, ftp.c, rcfile.c: Use <config.h> not
+	"config.h"
+
+Wed May  5 00:20:45 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.[ch]: Added URI encoder/decoder for basic support of
+	escaped characters in URI's. Added http_request_end, added calls
+	everywhere. Added 'class' member == status/100 to http_req_t, used
+	everywhere.
+
+Wed May  5 00:20:01 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Support for site_keepgoing with --keep-going
+	option (-k).
+
+Wed May  5 00:19:01 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.[ch]: Added site_keepgoing: forces site_update to carry on
+	despite errors encountered.
+
+Mon May  3 13:52:43 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Updated to use site_pseudourl and local relative
+	site dir handling.
+
+Mon May  3 13:46:04 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.[ch], rcfile.[ch]: Allow relative local site directory.
+	Added _remote_user member to site information for better handling
+	of relative directories. Removed DIRPREFIX completely. Added
+	site_pseudourl() for giving pseudo-URL remote location of site.
+	FE API: New return code from rc_verifysite: SITE_NOLOCALREL
+
+Mon May  3 13:42:44 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.in: Added const to defines.
+
+Mon May  3 11:20:50 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.[ch]: Removed HEAD check in http_init.
+
+Mon May  3 11:03:50 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Added prototypes of fetch mode functions.
+
+Tue Apr 27 23:14:26 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* common.c: Removed unnecessary extern of int quiet.
+
+Tue Apr 27 23:13:42 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile.c: Comment update, removed proto_driver extern's.
+
+Tue Apr 27 23:08:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Removed extern's of copypath, rcfile, all_sites.
+	Un-extern'ed progname.
+
+Tue Apr 27 23:08:30 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile.c: Removed progname.
+
+Tue Apr 27 23:04:57 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.h: Added extern of all_sites.
+
+Tue Apr 27 23:02:50 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile.h: Added extern's of rcfile and copypath.
+
+Tue Apr 27 22:58:51 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.h: Removed MAXEXCLUDES #define (no longer used). Added
+	extern's of proto_driver's. Added local_isrel to site_t.
+
+Mon Apr 26 23:24:06 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.[ch], rcfile.c: Excludes mode changes: use linked list for
+	internal representation, allow and match against paths in exclude
+	patterns.
+
+Mon Apr 26 23:22:27 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Fixed status message when moving a file.
+
+Mon Apr 26 23:16:18 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Flush stderr at start of signal handler.
+
+Mon Apr 26 22:56:27 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Replaced uses of DRV with CALL
+
+Mon Apr 26 22:45:03 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile.c: #if 0'ed out 'rename' key - name mapping no longer
+	supported.
+
+Sun Apr 25 23:56:27 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Wait on 100-continue expectation using new
+	sock_block().
+
+Sun Apr 25 23:52:14 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* socket.[ch]: Added sock_block to wait for data on a socket.
+	
+	* socket.[ch]: Added sock_read and sock_recv which implement
+	read() and recv() with a set timeout given by SOCKET_TIMEOUT.
+
+	* socket.c: Changed all read() and recv() calls to timeout based
+	sock_{read,recv} calls.
+
+Sun Apr 25 19:07:06 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Added HTTP-date parser, checks RFC1123-style
+	then RFC1036-style.
+
+Sun Apr 25 19:06:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* common.[ch]: Added parser for RFC1036-style dates.
+
+Sun Apr 25 14:09:36 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Added standalone netrc tester target
+
+Sun Apr 25 13:57:16 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* common.c: Removed stdarg.h include after further consideration.
+
+Fri Apr 23 20:34:57 1999  Joe Orton  <jeo101@york.ac.uk>
+
+	* common.c: Added snprintf include, ifdef'ed stdarg.h include.
+
+Fri Apr 23 19:23:23 1999  Joe Orton  <jeo101@york.ac.uk>
+
+	* sites.c: #ifdef USE_DAV around proto driver and httpdav.h
+	include (Steffen Siebert).
+
+Fri Apr 23 19:22:12 1999  Joe Orton  <jeo101@york.ac.uk>
+
+	* Makefile.in (snprintf.o): Depends on config.h
+
+Fri Apr 23 19:18:09 1999  Joe Orton  <jeo101@york.ac.uk>
+
+	* config.h.in, configure.in: Added stdarg.h check so snprintf.o
+	is slightly happier on MIPS.
+
+	* snprintf.c: Removed HAVE_CONFIG_H around #include for config.h.
+
+Fri Apr 23 00:15:59 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* changes.awk: Use --flatlist rather than -ll in the usage
+	example.
+
+Thu Apr 22 23:13:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c (main): Prefix catchup and init status messages
+	with progname.
+
+Thu Apr 22 23:12:03 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in (testdav): Added LIBS and LDFLAGS.
+
+Thu Apr 22 23:10:31 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* testdav.c: Updated for new HTTP code.
+
+Thu Apr 22 21:46:26 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.[ch]: Updated response body handling logic to be nearly
+	2068-compliant, added http_init_checks to allow skipping HEAD and
+	OPTIONS in http_init (for testdav). Added http_request_init decl.
+
+Wed Apr 21 14:36:46 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.6.0-pre
+
+Wed Apr 21 14:35:26 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Proper fetch+synch mode return code interpretation,
+	status messages.
+
+Wed Apr 21 14:31:11 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.[ch]: Sorted out site_{fetch,update,synch} return codes,
+	returning SITE_AUTH when driver->init returns PROTO_AUTH.
+
+Wed Apr 21 14:29:13 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: http_init calls http_open and returns PROTO_CONNECT
+	when appropriate. dav_fetch returns PROTO_OK and PROTO_ERROR
+	appropriately.
+
+Wed Apr 21 13:58:07 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* ftp.c: Made ftp_open return relevant code, and ftp_init return
+	PROTO_AUTH when ftp_login fails.
+
+Wed Apr 21 12:24:25 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* protocol.h: Added PROTO_AUTH return code to driver->init.
+
+Tue Apr 20 15:47:25 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.[ch]: Revised MKCOL logic, added HEAD and OPTIONS
+	requests.
+
+Tue Apr 20 14:54:02 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.[ch], rcfile.c: Removed http_mkcol_off option.
+
+Tue Apr 20 09:36:21 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Tidied PHONY targets
+
+Mon Apr 19 23:30:10 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* ftp.[ch], protocol.h, sites.c: Pass remote root directory
+	to driver init.
+
+Mon Apr 19 23:25:12 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c, rcfile.[ch]: Added check for relative remote
+	directories in WebDAV.
+
+Mon Apr 19 23:17:12 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile.c (rcfile_write): Took out unnecessary malloc's.
+
+Mon Apr 19 11:34:26 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* ftp.c: Remember the transfer mode and only change it when
+	actually necessary.
+
+Mon Apr 19 01:16:59 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c, configure.in, config.h.in, configure: Added
+	workaround for broken PROPFIND on IIS5 beta.
+
+Mon Apr 19 00:54:42 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, configure: Added --with-extra-* options for
+	finding libexpat in strange and mysterious places.
+
+Sun Apr 18 13:37:02 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Added view mode to help output.
+
+Sun Apr 18 11:26:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Added "Maintain" to SYMLINKSMODE macro
+
+Sun Apr 18 00:31:23 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Added parser for absolute URI's including scheme and
+	host part as used in <DAV:href> element.
+
+Sat Apr 17 14:18:40 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Keep fetch list in sorted order (by depth).
+
+Sat Apr 17 13:54:27 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Use PACKAGE rather than progname for program name
+	in version output.
+
+Fri Apr 16 12:48:41 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Enhanced to accept interim 100 (Continue) responses
+	followed by regular response, as per RFC 2068.
+
+	* httpdav.c: Changed MKCOL/MKCOL handling to be less strict about
+	response codes.
+
+	* httpdav.c: Removed "encoding=..." and "charset=..." in PROPFIND
+	requests, from XML body and Content-Type header respectively.
+
+Wed Apr 14 11:04:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* common.c: RFC1123 tester extended to take cmdline argument, 
+	comment updates to parser.
+	
+Wed Apr 14 11:01:31 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.[ch]: Fixed authentication, removed XML namespace
+	resolution debugging messages, added fe_transfer_progress calls to
+	GET response body callback, XML CDATA whitespace cleaner cleaned
+	up.
+
+Wed Apr 14 11:00:00 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: More verbose output from fe_fetch_found.
+
+Wed Apr 14 09:43:22 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Added fetch mode indicator to version output.
+
+Wed Apr 14 09:08:55 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: CDATA clean fixes, and call
+
+Tue Apr 13 14:33:30 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Fixed MOVE Destination header
+
+	* httpdav.c, rcfile.c, sites.h, sites.c: Merged changes from Yarom
+	Last <ylast@cco.caltech.edu> to work with non-WebDAV HTTP
+	authoring servers.
+
+Tue Apr 13 14:12:21 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Trim leading whitespace for CDATA.
+
+Sun Apr 11 16:03:00 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.[ch], sites.c: Added file download handler for WebDAV.
+
+Sun Apr 11 15:23:07 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* protocol.h, httpdav.[ch]: Finished basic implementation of
+	fetch mode for WebDAV driver.
+
+Sun Apr 11 15:19:00 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Fixed site_destroy bug where files_tail was not set to
+	NULL.
+	
+Sun Apr 11 14:37:10 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c, common.h: Removed Gtk debugging channel, updated
+	console --help message for XML channel.
+
+Sun Apr 11 14:34:45 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c, console_fe.c: Moved fe_prompting into sites.c
+
+Sun Apr 11 11:08:10 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.[ch], console_fe.c, frontend.h: Interface cleanups, use
+	void where appropriate, better use of extern.
+
+Sun Apr 11 10:54:31 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Decreased MAXDIRS to 500
+
+Sat Apr 10 16:53:54 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile.c, sites.h: Added 'remote_isrel' boolean for remote path.
+
+Sat Apr 10 16:49:49 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.[ch], ftp.[ch], sites.c: Moved the protocol driver
+	declarations into sites.c, better abstraction of FTP and WebDAV
+	code.
+
+Tue Apr  6 12:08:05 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Set return code in site_synch_files if 
+	utime() fails.
+
+Mon Apr  5 10:12:14 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile.c: Added nooverwrite support to rcfile_write (Lee).
+
+Sat Apr  3 15:17:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* common.[ch]: Added RFC1123-style date parser, extended
+	standalone tester to use this too.
+
+Sat Apr  3 12:13:10 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* common.c: Changed md5_buffer to take const char *.
+
+Sat Apr  3 02:43:28 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.[ch]: More implementation of XML body handling.
+
+Thu Apr  1 01:04:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Began implementing fetch mode, PROPFIND response XML
+	parsing using expat.
+
+Wed Mar 31 21:41:16 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.[ch]: Major rewrite to be slightly more modular.
+
+Wed Mar 31 17:04:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added expat check
+
+Tue Mar 30 21:56:08 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.5.1.
+
+Tue Mar 30 21:35:21 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c, sites.h, rcfile.c: 'nooverwrite' option, for
+	doing a delete before uploading a changed file.
+
+Tue Mar 30 17:37:52 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Split site_update_files to separate file deletion, 
+	modified site_update to delete files before uploading changes,
+	for quota-limited sites.	
+
+Tue Mar 30 16:03:15 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Fixed typo
+
+Tue Mar 30 10:33:44 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Removed getopt check, changed getopt1.c to
+	getopt1.o and added getopt.o to getopt_long check.
+
+Tue Mar 30 10:29:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in: Made rcfile.o dependant on all the
+	right .h's.
+
+Tue Mar 30 09:46:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* fe_gnome.c, fe_gnome_creation.c: Load pixmaps into
+	executable.	
+
+Tue Mar 30 00:00:36 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Update 'updated' flag in site_update_links,
+	and read the local symlink target name properly.
+
+Mon Mar 29 23:40:44 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.emx: Replaced #defines with #undefs where
+	appropriate.
+
+Wed Mar 24 17:53:49 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.5.0.
+
+Wed Mar 24 17:51:05 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: No leading slashes when updating. Error
+	messages tidied up.
+
+Wed Mar 24 07:35:37 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Prevent yucky segfault on response headers with no
+	value.
+
+	* socket.c: send_file_ascii implemented properly.
+
+Tue Mar 23 14:25:27 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Added value to "No-Passthrough" header for PyDAV
+	interop.
+
+Mon Mar 22 00:33:05 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, Makefile.in: GNOME cleanups (Lee).
+
+Sun Mar 21 15:23:11 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, Makefile.in: Cleanups for frontend choice.
+
+	* configure.in, Makefile.in, fe_*.[ch], README.emx,
+	xsitecopy.desktop, aclocal.mv, INSTALL: Merged GNOME front
+	end from Lee Mallabone <lee0@callnetuk.com>.
+
+Thu Mar 18 21:20:43 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* socket.c: send_file_ascii implementation.
+
+	* protocol.h, ftp.h, httpdav.h: Changed driver to allow ASCII file
+	uploads and downloads.
+
+	* ftp.c: Do ASCII uploads when requested.
+
+	* httpdav.c: Ignore ASCII upload parameter.
+	
+	* sites.c: Check for ASCII files, request ACSII mode from
+	protocol driver when appropriate.
+
+	* rcfile.c: Parse 'ascii' keyword.
+	
+Thu Mar 18 19:37:45 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Allow only one operation mode on the command
+	line. Only compile in --debug long option when debugging is on.
+
+Thu Mar 18 18:57:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c, sites.c, sites.h: Moved site_flatlist* into
+	sites.c and changed to take output stream as parameter.
+
+Thu Mar 18 16:59:20 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.4.10
+
+Thu Mar 18 12:46:25 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Added the strsignal check
+
+	* console_fe.c: Use strsignal if present.
+
+Thu Mar 18 11:49:59 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, *.emx: Bumped version to 0.4.9
+
+	* configure.in: Removed getopt check, added getopt.o into
+	OBJECTS for getopt_long check instead.
+
+Thu Mar 18 11:41:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile.c: Stat failed error typo fix from 
+	Andrey A. Chernov <ache@nagual.pp.ru>
+
+Thu Mar 18 11:20:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c, sites.h, console_fe.c: Renamed num_changed to
+	is_different.
+	
+	* sites.c: Changed site_initialize to update num* counters,
+	and set is_different appropriately.
+
+Wed Mar 17 18:36:09 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.emx, config.h.emx: Added getopt_long
+
+	* configure.in, config.h: Added getopt_long check.
+
+Wed Mar 17 11:20:02 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in, config.h.emx: Bumped version to 0.4.8.
+
+Wed Mar 17 10:54:37 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Maintain files_tail when deleting files too.
+
+Tue Mar 16 21:48:23 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Implemented dummy connection status calls.
+
+	* frontend.h, sites.c: Simple connection status FE calls
+	from Lee Mallabone.
+
+Tue Mar 16 19:21:00 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure: Updated with autoconf 2.13
+
+Tue Mar 16 18:41:05 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Non-chunked body debug display error, changed
+	delete for directories to add the trailing / again.
+
+Tue Mar 16 16:41:05 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile.c, netrc.c, ftp.c: Compiler warning fixes - cast
+	argument to is*() to unsigned.
+
+Tue Mar 16 16:03:38 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* socket.c: Better host_lookup fix from Steffen Siebert.
+
+Tue Mar 16 14:48:58 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: GNU-style long options.
+
+Mon Mar 15 18:53:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* socket.c: Added a inet_addr check to host_lookup
+
+	* ftp.c: Improved debugging messages. Call ftp_open
+	from ftp_init.
+
+	* sites.c, sites.h: Tied down the return codes from site_update.
+
+	* console_fe.c: Display message according to return code from
+	site_update.
+
+Sun Mar 14 11:07:38 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile.c: rcfile_write from Lee Mallabone.
+
+Sun Mar 14 10:40:48 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* frontend.h, console_fe.c, sites.c: Added fe_fetch_found API
+
+Sat Mar 13 16:50:22 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* socket.c: EMX: Binary mode open() for recv_file (Steffen
+	Siebert).
+
+	* rcfile.c: EMX: No perms check in init_paths (Steffen Siebert).
+
+Fri Mar 12 13:41:02 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* ChangeLog: Several entries lost due to operator stupidity...
+
+	* ftp.c: Allow 125 as 'ready for file response'
+
+	* testdav.c: Extended for TRACE persistent connection stress
+	tester + HEAD.
+
+Mon Mar  1 00:44:44 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.emx: Updated from Makefile.in, hacked to
+	copy config.h.emx onto config.h.
+
+	* config.h.emx: Created with defaults for EMX?
+
+Mon Mar  1 00:08:06 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.in, configure.in: Add check for strdup.
+
+Sun Feb 28 12:04:32 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile.c: Enabled option of symlink 'maintain' mode.
+
+	* sites.c: Added support for symlink 'maintain' mode.
+
+	* protocol.h: Added link_create, link_change, link_remove
+	handlers to drivers.
+
+	* httpdav.c: Added support for link_* handlers using
+	MKREF and DELETE: dav_mkref, dav_chref, dav_rmref.
+
+Sat Feb 27 18:13:01 1999  Joe Orton  <jeo101@cs.york.ac.uk>
+
+	* socket.c: Open files with O_BINARY for EMX (Steffen Siebert).
+
+Sat Feb 27 13:51:06 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c, rcfile.c: Moved environment initialization into
+	rcfile.c init_env().
+
+	* rcfile.[ch]: Use global vars: rcfile_read doesn't take filename
+	parameter, init_paths doesn't take any.
+
+	* rcfile.[ch]: Added netrc handling functions.
+
+	* netrc.[ch]: New files - ~/.netrc parser by Gordon Matzigkeit
+	<gord@gnu.ai.mit.edu>
+
+	* configure.in, snprintf.[ch]: Add check for and implementation
+	of snprintf().
+
+Sat Feb 27 12:17:53 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* ftp.c: Final fix for ftp_active_open.
+
+Sat Feb 27 12:15:23 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* configure.in: Only add httpdav.o, md5.o to OBJECTS when WebDAV
+	is enabled.
+
+	* httpdav.c: Take out the silly whole-file USE_DAV
+		
+	* common.c: Only compile md5_ when USE_DAV is defined.
+
+Thu Feb 25 19:34:38 1999  Joe Orton  <jeo101@cs.york.ac.uk>
+
+	* configure.in: Add check for gethostbyname, in libnsl on SunOS,
+	also add -I. to CFLAGS for picking up e.g. fnmatch.h
+
+	* Makefile.in: Use $(OBJECTS) rather than $^
+
+Thu Feb 25 00:48:38 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* config.h.in, configure: Add checks for getopt and strcasecmp.
+
+	* getopt.[ch], strcasecmp.c: Added GNU implementations.
+
+	* console_fe.c: Use getopt.h when no system getopt().
+
+Wed Feb 24 13:29:39 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* ftp.c: Fixed ftp_active_open bug.
+
+Tue Feb 23 22:54:38 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile.c, httpdav.c, common.c: Include config.h
+
+	* configure.in, config.h.in, Makefile.in: Minor tweaks.
+
+	* console_fe.c, rcfile.c: Moved copypath, rcfile, progname
+	declarations into rcfile.c.
+
+	* console_fe.c, sites.c: Moved prompting to sites.c
+	and renamed to fe_prompting.
+
+Mon Feb 22 23:49:04 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Makefile.in, configure.in, aclocal.m4: autoconf installer -
+	first crack.
+	
+	* fnmatch.[ch]: Added fnmatch implementation from GNU fileutils.
+
+	* sites.c: Use fnmatch.h when no system fnmatch().
+
+Mon Feb 22 22:09:33 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Changes for EMX port (Win32, OS/2) from
+	Steffen Siebert <siebert@SteffenSiebert.de>.
+
+Mon Feb 22 21:57:20 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Removed old error reporting mechanism from synchronize
+	mode code.
+	
+	* sites.c: File also marked changed when local and remote sizes
+	differ - from Steffen Siebert <siebert@SteffenSiebert.de>.
+
+Mon Feb 15 00:52:44 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.h: Implemented total file size counters.
+
+Sun Feb  7 01:33:39 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile.c, console_fe.c: init_paths, for checking file
+	permissions. Pass sites list as argument to rcfile_read.
+	
+	* rcfile.h, sites.h: Moved rcfile-specific stuff out of sites.h.
+	
+	* sites.c: Implemented file_{append,prepend}.
+	
+Mon Feb  1 17:36:02 1999  Joe Orton  <jeo101@york.ac.uk>
+
+	* console_fe.c: Cosmetic cleanups in site_{update,synch}.
+
+Mon Feb  1 14:52:08 1999  Joe Orton  <jeo101@york.ac.uk>
+
+	* sites.c, httpdav.c: Include <errno.h> for errno definition.
+	* sites.c: Removed the last %as from the ftp_fetch_gettree scanf.
+	* console_fe.c: Removed strsignal() from sighandler.
+	* sitecopy-0.4.0 released.
+
+Sun Jan 31 21:27:56 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* ftp.c: Improved ftp_exec and ftp_read so commands which
+	fail due to broken connections will be retried.
+	* console_fe.c: Check for no changes before site_synch.
+	* ftp.c, console_fe.c: gcc -pedantic cleanups.
+	* console_fe.c, frontend.h, sites.c: Added error reporting
+	to fe_updated and fe_synched.
+
+Sat Jan 30 10:58:58 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: site_destroy added, cleanups to ensure all
+	site_file_t strings are distinct (i.e. separate malloc's).
+	* *.h, *.c: Moved unneeded prototypes from .h's to .c's.
+
+Thu Jan 28 23:05:36 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Set site->has_changed = false after success in
+	site_update and site_catchup.
+
+Mon Jan 25 00:20:57 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile.c, console_fe.c: Enhanced rcfile error reporting
+	(due to popular confusion). More errors detected, too.
+	* console_fe.c: Tidied up so site_verify is called for all
+	sites now, regardless.
+
+Sun Jan 24 00:26:51 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Updated dump sites mode.
+
+Sat Jan 23 02:23:00 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Upload rather than download request bodies again,
+	more debugging messages.
+	* socket.c, httpdav.c: Checking write() return codes, handle
+	partial writes in send_data.
+
+Wed Jan 20 17:04:19 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c, frontend.h, console_fe.c: Separated FE calls for
+	site_synch from site_update.
+	* console_fe.c: Spelling cleanups.
+
+Mon Jan 18 00:22:36 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Split normal and flat list mode functions.
+	Changed flat list mode to be more easily parseable.
+	* changes.awk: Updated for new flat list mode.
+
+Thu Jan 14 00:13:06 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Synch mode implementation.
+	* console_fe.c: Synch mode changes.
+	* protocol.h, ftp.c, httpdav.c: Driver error reporting change.
+	* socket.c, ftp.c: ftp_get implementation.
+	* ftp.c: Fetch mode clean ups.
+	* sites.c: Added name mapping and exclusions to fetch mode.
+	* socket.c: Extra error checking in transfer().
+	
+Mon Jan 11 01:26:21 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sitecopy.1: Man page update.
+	* examplerc: Added sample rcfile.
+
+Fri Jan  8 14:40:24 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* testdav.c: Updated for new driver interface.
+	* ftp.c: Extra checks in MDTM response parser.
+	Cleaned up return codes for driver functions.
+
+Wed Jan  6 19:28:03 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Added flat listing mode, -lf. More
+	debugging tidying.
+	* changes.awk: Added sample -lf mode parser.
+	* Makefile: Cleaned clean.
+
+Sun Jan  3 17:27:34 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* ftp.c: Made connection handling more sensible.
+	* console_fe.c: Do-it-to-all-sites option, -a
+
+Sat Jan  2 17:05:06 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Cosmetic: display pseudo-URL in site header.
+	* sites.c: site_fetch implementation begins. Logic added to
+	site_update so that files only get updated if directories are
+	created successfully.
+	* ftp.c: ftp_fetch implementation complete. Put ftp_quit into
+	ftp_finish so the FTP session gets closed properly again.
+
+Fri Jan  1 02:26:43 1999  Joe Orton  <joe@orton.demon.co.uk>
+
+	* ftp.c: Work on fetch-remote-file-listing implementation begins.
+
+Thu Dec 31 11:55:20 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* ftp.c: Non-PASV open - ensure dtp socket closed in error cases.
+	Speed-up: Only execute `TYPE I' once per connection.
+
+Tue Dec 29 21:49:04 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* README: Minor documentation update.
+	* ftp.c: Improved connection handling mechanism, to handle
+	connections which break mid-update. Improved non-PASV mode
+	code to read success codes appropriately.
+	* console_fe.c: Improved for new FE interface, and for
+	new debugging stuff.
+
+Sat Dec 26 02:26:03 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* common.h, common.c, sites.c, httpdav.c, ftp.c: Improved 
+	debugging mechanism.
+	* ftp.c, httpdav.c, protocol.h, sites.c: Slight tidy up of
+	protocol driver.
+	* sites.c, frontend.h, console_fe.c: Major changes on the FE 
+	interface.
+	* sites.c: Cleaned up upload/chmod interworking a bit.
+	* httpdav.c: Fixed small leak in digest auth code.
+
+Thu Dec 24 23:16:07 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* aclocal.m4, configure.in, Makefile.in: Added first hack at
+	autoconfization from Lee Mallabone.
+	* common.h: Added missing #includes.
+
+Wed Dec 23 14:03:30 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Debugging improvements.
+	* sites.c: printf->fe_status cleanups from Lee Mallabone
+	<drazka@geocities.com>
+
+Mon Dec 21 00:41:54 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.h, protocol.h, sites.c: Removed reduntant `protocol_t'
+	stuff.
+
+Fri Dec 18 11:33:15 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Added signal handling so state gets saved if 
+	terminated half way through an update.
+	* console_fe.c, sites.c: site_writefiles() is never called from
+	in sites.c.
+
+Thu Dec 17 20:52:24 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Fixed muckup in rcfile parser which prevented 'ftp
+	nopasv' mode working.
+
+Wed Dec 16 12:59:13 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sitecopy-0.3.0 released.
+	* sites.c: Fixed the so-broken-I'm-not-really-sure-how-it-worked-at
+	at-all rcfile parser.
+	* httpdav.c: Added spoof check when basic auth used after digest.
+	* sites.c: Debugging cleanups.
+	* httpdav.c: Status code parsing and interpretation fixes,
+	better RFC2068 compliance.
+
+Tue Dec 15 17:10:53 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* console_fe.c: Couple of cosmetic cleanups: displaying symlink mode.
+	* httpdav.c: Handle `100 (Continue)' response correctly.
+	* sites.c: Fixed directory names corruption bug.
+
+Mon Dec 14 16:05:22 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Added check for existence of local dirctory.
+	* httpdav.c, socket.c: Cleanups for FreeBSD by Nik Clayton
+	<nik@nothing-going-on.demon.co.uk>
+	* sites.c: Added symlink handling options to rcfile.
+
+Thu Dec 10 20:20:27 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sitecopy.1: Man page started
+
+Mon Dec  7 14:52:14 1998  Joe Orton  <jeo101@york.ac.uk>
+
+	* sites.c: Fix from Gal Goldschmidt <gal@il.esafe.com> to prevent
+	infinite looping into cyclicly symlinked directories. (Symlinks
+	are now ignored completely, as they should be until they can be
+	handled sensibly.)
+	* sites.c: Fix from Aloril <aloril@iki.fi> for segfault when
+	updating two sites at once.
+	
+Sun Dec  6 21:43:12 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Added digest authentication for entity body too. Many
+	fixes for read_line's that return errors.
+	* sites.c: Updated to use error string from specific protocol driver.
+	* httpdav.c: Using CRLF at end of header lines rather than just LF.
+
+Sat Dec  5 12:34:02 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Small string handling clean ups.
+
+Fri Dec  4 00:33:32 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Fixed read chunk debugging display corruption (cosmetic).
+	* md5.c, md5.h: Added MD5 implementation from GNU textutils - by
+	Ulrich Drepper <drepper@gnu.ai.mit.edu>
+	* common.c: Added text -> MD5 -> hex conversion algorithms.
+	* httpdav.c: Digest authentication implemented (except for 
+	entity-response digest).
+
+Wed Dec  2 20:39:56 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* sites.c: Modified to allow choice of FTP PASV-mode (or not)
+	from rcfile.
+	* httpdav.c: More improvements to http_request.
+	* httpdav.c: Fixed very, very stupid Host: request header.
+
+Wed Dec  2 00:59:52 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* httpdav.c: Finished off rewrite of request functions.
+	Authentication only used on auth.
+	* sites.c: Fixed broken remote file move.
+
+Mon Nov 30 18:52:27 1998  Joe Orton  <jeo101@york.ac.uk>
+
+	* Added site_initialize to sites.c to remove crap ->files = NULL
+	hack to init the site.
+	* Non-PASV-mode FTP patch from James Youngman <jay@gnu.org>
+
+Mon Nov 30 00:55:34 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Restructuring HTTP request functions to make digest auth
+	possible.
+
+Fri Nov 27 21:06:15 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Broken FTP PASV socket connection stuff fixed.
+
+Fri Nov 27 00:23:23 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* HTTP unfixes: removed Content-Type and \n-terminated lines work-
+	arounds since PyDAV has been fixed.
+
+Tue Nov 24 22:38:39 1998  Joe Orton  <jeo101@york.ac.uk>
+
+	* HTTP fixes:
+	  - Workaround for \n-terminated lines for PyDAV testing
+	  - Dumb logic when getting response, non-persistent connections
+            work again.
+	* HTTP PUT: don't bother waiting around for a 100 if it times out
+	first time.
+	* sitecopy-0.2.9 released.
+
+Tue Nov 24 00:58:56 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* HTTP-DAV:
+	  - Try and cope gracefully when the server doesn't respect
+	        "Expect: 100-continue"
+	  - Send dummy Content-Type with PUT
+	  - Parse and interpret response headers
+	  - Read response body properly - including 'chunked' transfer encoding
+	  - Persistent connections might work now too.
+
+Mon Nov 23 00:16:00 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Console FE cleanups for multi-protocol changes.
+	* Added default service name to protocol driver interface.
+	* User-Agent added to HTTP-DAV requests.
+
+Thu Nov 19 23:15:47 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* HTTP-DAV Code:
+	   - HTTP/1.0 basic authentication (first hack)
+	   - HTTP/1.1 persistent connections (first hack)
+	   - some semblence of structure in httpdav.c now.
+	   - (ab)Use the HTTP/1.1 100-continue thing for PUT's
+	* Clean up of site_update - filename handling code was all broken.
+	* Removed all dirname() crud from sites.c, fixed corrupt directory
+	names in local tree.
+	
+Sun Nov 15 22:47:33 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* DAV is a compile-time option
+	* Makefile clean ups.
+
+Sat Nov 14 12:55:22 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Filename rewriting implemented - 'rename' key in rcfile.
+	* Rewrite of much of filename handling code to be slightly
+	more sensible.
+	* Extended rcfile parser for key+two values per line.
+
+Fri Nov 13 00:07:55 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Basic implementation of HTTP-DAV client complete: MKCOL, DELETE, 
+	PUT, MOVE. Not very HTTP/1.1 compliant yet.
+	* Allow port specification in rcfile.
+
+Wed Nov 11 20:42:51 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Generic socket handling code moved from ftp.c into socket.c.
+	* Made sites.c use generic protocol driver interface (protocol.h),
+	made FTP code into protocol driver.
+	* Started basic implementation of HTTP-DAV client
+
+Sun Nov  8 22:11:09 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Full implementation of non-recursive tree traverse algorithm 
+	complete.
+
+Thu Nov  5 01:35:24 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Rewrite of remote file list file parser, to prevent filenames
+	with spaces breaking everything.
+
+Mon Nov  2 23:54:43 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* 'exclude' option added, simple implementation in ftw callback. Core
+	implementation of non-recursive tree traverse to replace ftw() stuff, 
+	will enable 'exclude CVS' or whatever.
+
+Sun Nov  1 10:39:08 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* rcfile parser modified to allow quoted values (which can also
+	contain #'s, and escaped quotes: `exclude "#\""' is valid.
+
+Sat Oct 24 18:31:39 1998  Joe Orton  <jeo101@york.ac.uk>
+
+	* Major changes for FE modularization complete.
+
+Fri Oct 23 17:53:02 1998  Joe Orton  <jeo101@york.ac.uk>
+
+	* Began splitting of interface into separate modules to allow
+	for Gtk front end (under development by Lee Mallabone).
+	* When the directory creation order was fixed, it broke the
+	directory deletion order - both now correct (hopefully). Doubly
+	linked list is proving very handy.
+	* Started tidying up the debug code a bit.
+
+Tue Oct 20 19:50:27 1998  Joe Orton  <jeo101@york.ac.uk>
+
+	* Docs updates after excellent advice from Bob van der Poel.
+	* Added 'quiet mode', from patch submitted by Peter Marbaise
+
+Thu Oct 12 13:09:00 1998  Joe Orton <jeo101@york.ac.uk>
+
+	* sitecopy-0.2.0 released
+
+Fri Oct  9 22:24:29 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Largish overhaul to fix problems created while adding
+	confirmations. sites.c code generally a bit less crap now.
+
+Fri Oct  9 15:25:29 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Optional confirmations while updating remote sites.
+
+Thu Oct  8 22:24:17 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Complete rewrite of 'moved files' code - made it sensible
+	* Differences between remote and local now counted, resulting in:
+	  - Connects to FTP server only made when necessary
+	  - Tidier 'list site' mode output
+	  - Exit codes for list site mode too
+
+Wed Oct  7 19:56:24 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Finished off relative remote filenames stuff.
+	* Exit code stuff
+
+Mon Oct  5 01:44:40 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Made 'file moved' checking optional on a per-site basis.
+
+Sun Oct  4 17:57:30 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Checking for whether a file has been moved added - file has been
+	moved only if size, basename and mod time match.
+	* Multiple site names can be specified in cmdline.
+	* Couple of debugging tidy ups.
+
+Wed Sep 30 15:31:10 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Added 'nodelete' option to keep remote files.
+	* Allow rcfile and site storage directory to be specified
+	on cmdline.
+
+Mon Sep 28 16:07:02 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Make .'s appear when uploading: thanks to Karl Heinz Marbaise
+
+Sun Sep 27 16:11:12 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Modified filename handling in preparation for allowing
+	different local/remote names, and relative remote filenames.
+
+Sat Sep 26 02:32:05 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Fixed directory creation order bug
+	* Tidied up FTP error reporting.
+	
+Fri Sep 25 19:10:51 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Added `permissions' mirroring - new rcfile key.
+
+Thu Sep 24 13:15:20 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Added `view sites' mode, to view site defs from rc file.
+	* Allow comments in rcfile.
+
+Tue Sep 22 22:22:24 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Debugging messages tidied up a lot
+	* sitecopy-0.1 released.
+
+Tue Sep 22 17:31:15 1998  Joe Orton  <joe@orton.demon.co.uk>
+
+	* Directories are distinguished from files
+	* Probable bug fix of segfault after long upload sequence (ftp_exec
+	still wasn't quite malloc'ing properly)
+	* 'Catchup' and 'Init' invocation modes added
+	* Fixed silly segfault from giving invalid site name
+
+Monday September 22nd, 1998:
+
+	* Implemented info file read+write
+	* Implemented file change/new/delete detection
+	
+Tuesday September 16th, 1998:
+	
+	* Implemented read of $HOME/.sitecopyrc.
+
+Sunday September 14th, 1998:
+
+	* Split FTP code into ftp.c
+	* Designed some of interface for site info storage
+
+Sunday September 6th, 1998:
+
+	* Segfault irradicated (ftp_exec malloc problem?)
+	* Full site upload now works.
+	
+Saturday September 5th, 1998:
+
+	* FTP + recursive site_put implemented
+	* Segfault consistently after about 10 uploads.

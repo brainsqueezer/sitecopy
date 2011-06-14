@@ -1,0 +1,2042 @@
+# sitecopy localization for turkish (tr)
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# A. Sinan Unur <sinan@unur.com>, 2001.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: sitecopy-0.10.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-03-12 10:07+0000\n"
+"PO-Revision-Date: 2001-01-03 HO:MI+ZONE\n"
+"Last-Translator: A. Sinan Unur <sinan@unur.com>\n"
+"Language-Team: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-9\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/console_fe.c:119
+msgid "Show changes to"
+msgstr "Deðiþiklikleri göster"
+
+#: src/console_fe.c:119
+msgid "showing changes to"
+msgstr "deðiþiklikler gösteriliyor"
+
+#: src/console_fe.c:119 src/console_fe.c:120
+msgid "local"
+msgstr "yerel"
+
+#: src/console_fe.c:120
+msgid "Synchronize"
+msgstr "Eþleþtir"
+
+#: src/console_fe.c:120
+msgid "synchronizing"
+msgstr "eþleþtiriliyor"
+
+#: src/console_fe.c:125
+msgid "Fetch"
+msgstr "Ýncele"
+
+#: src/console_fe.c:125
+msgid "fetching"
+msgstr "inceleniyor"
+
+#: src/console_fe.c:125 src/console_fe.c:126 src/console_fe.c:127
+msgid "remote"
+msgstr "sunucu"
+
+#: src/console_fe.c:126 gnome/init.c:198
+msgid "Update"
+msgstr "Güncelleþtir"
+
+#: src/console_fe.c:126
+msgid "updating"
+msgstr "güncelleþtiriliyor"
+
+#: src/console_fe.c:127
+msgid "Verify"
+msgstr "Kontrol et"
+
+#: src/console_fe.c:127
+msgid "verifying"
+msgstr "kontrol ediliyor"
+
+#: src/console_fe.c:128
+msgid "Catch up"
+msgstr "Güncelle"
+
+#: src/console_fe.c:128
+msgid "catching up"
+msgstr "güncelleniyor"
+
+#: src/console_fe.c:128 src/console_fe.c:129
+msgid "stored"
+msgstr "yüklendi"
+
+#: src/console_fe.c:129
+msgid "Initialize"
+msgstr "Hazýrla"
+
+#: src/console_fe.c:129
+msgid "initializing"
+msgstr "hazýrlanýyor"
+
+#: src/console_fe.c:134
+msgid ""
+"You should never see this message.\n"
+"Please contact the maintainer at sitecopy@lyra.org\n"
+msgstr ""
+"Bu mesajýn asla verilmemesi gerekir.\n"
+"Bu durumu lütfen sitecopy@lyra.org adresine iletin.\n"
+
+#: src/console_fe.c:196
+#, c-format
+msgid "%s: Error: No site called `%s' found - skipping.\n"
+msgstr "%s: Hata: `%s' adýnda bir site bulunamadi - atlýyorum.\n"
+
+#: src/console_fe.c:214
+#, c-format
+msgid "%s: No valid sites specified.\n"
+msgstr "%s: Geçerli bir site adýna rastlanmadý.\n"
+
+#: src/console_fe.c:216
+#, c-format
+msgid "%s: No sites specified.\n"
+msgstr "%s: Hiç bir site adý verilmedi.\n"
+
+#: src/console_fe.c:218 src/console_fe.c:369 src/console_fe.c:529
+#, c-format
+msgid "Try `%s --help' for more information.\n"
+msgstr "Ek bilgi için `%s --help' komutunu deneyin.\n"
+
+#: src/console_fe.c:228
+#, c-format
+msgid "%s: %c%s site `%s' (on %s in %s)\n"
+msgstr ""
+"%s: %c%s: `%s' sitesi\n"
+"\t(%s sunucusunda %s kütüðü)\n"
+
+#: src/console_fe.c:249
+#, c-format
+msgid "* These items have been added since the last update:\n"
+msgstr "* Son güncelleþtirmeden bu yana eklenenler:\n"
+
+#: src/console_fe.c:254 src/console_fe.c:285
+#, c-format
+msgid "dir:"
+msgstr "kütük:"
+
+#: src/console_fe.c:261
+#, c-format
+msgid "* These items have been changed since the last update:\n"
+msgstr "* Son güncelleþtirmeden bu yana deðiþenler:\n"
+
+#: src/console_fe.c:263
+#, c-format
+msgid "  Changes to items in [brackets] are ignored during updates.\n"
+msgstr ""
+"  [Parantez] içindeki birimlere yapilan deðiþiklikler güncelleþtirme "
+"sýrasýnda göz önüne alýnmaz.\n"
+
+#: src/console_fe.c:277
+#, c-format
+msgid "* These items have been deleted, but will be left on the server:\n"
+msgstr "* Yerel kopyasý silinip sunucudan silinmeyeckler:\n"
+
+#: src/console_fe.c:279
+#, c-format
+msgid "* These items have been deleted since the last update:\n"
+msgstr "* Son güncelleþtirmeden bu yana silinenler:\n"
+
+#: src/console_fe.c:292
+#, c-format
+msgid "* These items have been moved since the last update:\n"
+msgstr "* Son güncelleþtirmeden bu yana taþýnanlar:\n"
+
+#: src/console_fe.c:310 src/console_fe.c:322
+msgid "Ignored"
+msgstr "Göz önüne alýnmaz"
+
+#: src/console_fe.c:312
+msgid "Maintained for executables"
+msgstr "Programlar için korunur"
+
+#: src/console_fe.c:314
+msgid "Always maintained"
+msgstr "Her zaman korunur"
+
+#: src/console_fe.c:324
+msgid "Maintained"
+msgstr "Korunur"
+
+#: src/console_fe.c:326
+msgid "Followed"
+msgstr "Ýzlenir"
+
+#: src/console_fe.c:337
+#, c-format
+msgid ""
+"Site: %s\n"
+"\tServer: %s"
+msgstr ""
+"Site: %s\n"
+"\tSunucu: %s"
+
+#: src/console_fe.c:339
+#, c-format
+msgid "  Port: "
+msgstr "  Port: "
+
+#: src/console_fe.c:341
+#, c-format
+msgid "(default)\n"
+msgstr "(varsayýlan)\n"
+
+#: src/console_fe.c:343
+#, c-format
+msgid "%d\n"
+msgstr "%d\n"
+
+#: src/console_fe.c:345
+#, c-format
+msgid "\tProtocol: %s    Username: %s\n"
+msgstr "\tProtokol: %s    Kullanýcý:%s \n"
+
+#: src/console_fe.c:348
+msgid "(unspecified)"
+msgstr "(belirtilmemiþ)"
+
+#: src/console_fe.c:350
+#, c-format
+msgid "\tPassive mode FTP will not be used.\n"
+msgstr "\t Pasif FTP iþlem biçimi kullanýlmayacak.\n"
+
+#: src/console_fe.c:351
+#, c-format
+msgid ""
+"\tRemote directory: %s\n"
+"\tLocal directory: %s\n"
+msgstr ""
+"\tSunucudaki kütük: %s\n"
+"\tYerel kütük: %s\n"
+
+#: src/console_fe.c:353
+#, c-format
+msgid "\tPermissions: %s     Symlinks: %s\n"
+msgstr "\tÝzinler: %s     Sembolik linkler: %s\n"
+
+#: src/console_fe.c:356
+#, c-format
+msgid "\tRemote files will not be deleted.\n"
+msgstr "\tSunucudaki dosyalar silinmez.\n"
+
+#: src/console_fe.c:358
+#, c-format
+msgid "\tFiles will be moved remotely if moved locally.\n"
+msgstr "\tYeri deðiþen dosyalar, sunucuda da taþýnýr.\n"
+
+#: src/console_fe.c:367
+#, c-format
+msgid "%s: Error: Only specify ONE operation mode at a time.\n"
+msgstr "%s: Hata: Sadece tek BÝR iþlem biçimi belirtin.\n"
+
+#: src/console_fe.c:489
+#, c-format
+msgid "%s: Error: Debug channel %s not known.\n"
+msgstr "%s: Hata: Ýzleme kanalý %s bilinmiyor.\n"
+
+#: src/console_fe.c:497
+#, c-format
+msgid "%s: Warning: Could not open `%s' to use as logfile.\n"
+msgstr "%s: Uyarý: `%s' dosyasý izleme kaydý için açýlamadý.\n"
+
+#: src/console_fe.c:540
+#, c-format
+msgid "%s: Error: Dry run mode is currently only supported for updates.\n"
+msgstr ""
+
+#: src/console_fe.c:556
+#, c-format
+msgid ""
+"%s: Warning: Only %d sites can be specified on the command line!\n"
+"Extra entries are being skipped.\n"
+msgstr ""
+"%s: Uyarý: Komut satýrýnda en fazla %d adet site belirtilebilir!\n"
+"Fazlasý göz önüne alýnmayacak.\n"
+
+#: src/console_fe.c:581
+msgid "WARNING: Server certificate is not trusted."
+msgstr ""
+
+#: src/console_fe.c:584
+#, c-format
+msgid "Certificate was issued for server `%s'.\n"
+msgstr ""
+
+#: src/console_fe.c:586
+msgid "WARNING: Certificate does not specify a server"
+msgstr ""
+
+#: src/console_fe.c:588
+#, c-format
+msgid "Fingerprint: %s\n"
+msgstr ""
+
+#: src/console_fe.c:591
+#, c-format
+msgid "Issued to: %s\n"
+msgstr ""
+
+#: src/console_fe.c:595
+#, c-format
+msgid "Issued by: %s\n"
+msgstr ""
+
+#: src/console_fe.c:598
+#, c-format
+msgid "Do you wish to accept this certificate? (y/n) "
+msgstr ""
+
+#: src/console_fe.c:607
+msgid "server"
+msgstr "sunucu"
+
+#: src/console_fe.c:607
+msgid "proxy server"
+msgstr "ara sunucu"
+
+#: src/console_fe.c:613
+#, c-format
+msgid "Authentication required for %s on %s `%s':\n"
+msgstr ""
+
+#: src/console_fe.c:616
+#, c-format
+msgid "Authentication required on %s `%s':\n"
+msgstr ""
+
+#: src/console_fe.c:619
+msgid "Username: "
+msgstr "Kullanýcý: "
+
+#: src/console_fe.c:624
+#, c-format
+msgid "Username: %s\n"
+msgstr "Kullanýci: %s\n"
+
+#: src/console_fe.c:626 src/console_fe.c:650
+msgid "Password: "
+msgstr "Þifre: "
+
+#: src/console_fe.c:636
+#, c-format
+msgid "Retrying: ["
+msgstr "Tekrar deneniyor: ["
+
+#: src/console_fe.c:647
+#, c-format
+msgid "%s: Encrypted client certificate configured%s%s.\n"
+msgstr ""
+
+#: src/console_fe.c:680
+#, c-format
+msgid "Create %s/"
+msgstr "%s/ kütüðünü yarat"
+
+#: src/console_fe.c:682
+#, c-format
+msgid "Delete %s/"
+msgstr "%s/ kütüðünü sil"
+
+#: src/console_fe.c:689
+#, fuzzy
+msgid "Upload %s (%"
+msgstr "%s dosyasýný gönder"
+
+#: src/console_fe.c:689
+#, c-format
+msgid " bytes)"
+msgstr ""
+
+#: src/console_fe.c:691
+#, c-format
+msgid "Delete %s"
+msgstr "%s dosyasýný sil"
+
+#: src/console_fe.c:692
+#, c-format
+msgid "Move %s->%s"
+msgstr "%s dosyasýný %s'ye taþý"
+
+#: src/console_fe.c:696
+#, c-format
+msgid ""
+"%s: in fe_can_update/file_file\n"
+"%s"
+msgstr ""
+
+#: src/console_fe.c:703
+#, c-format
+msgid "Change %s"
+msgstr "%s dosyasýný deðiþtir"
+
+#: src/console_fe.c:704
+#, c-format
+msgid "Create %s"
+msgstr "%s dosyasýný yarat"
+
+#: src/console_fe.c:705
+#, c-format
+msgid "Remove %s"
+msgstr "%s dosyasýný sil"
+
+#: src/console_fe.c:708
+#, c-format
+msgid ""
+"%s: in fe_can_update/file_link\n"
+"%s"
+msgstr ""
+
+#: src/console_fe.c:714
+#, c-format
+msgid "? (y/n) "
+msgstr "? (e/h) "
+
+#: src/console_fe.c:723
+#, c-format
+msgid "Checksumming %s: ["
+msgstr "%s dosyasýnýn kontrol toplamý hesaplanýyor: [ "
+
+#: src/console_fe.c:738 src/console_fe.c:849 src/console_fe.c:910
+#, c-format
+msgid "] done.\n"
+msgstr "] tamamlandý.\n"
+
+#: src/console_fe.c:740 src/console_fe.c:912
+#, c-format
+msgid ""
+"] failed:\n"
+"%s\n"
+msgstr ""
+"] baþarýsýz oldu:\n"
+"%s\n"
+
+#: src/console_fe.c:750
+#, fuzzy, c-format
+msgid "Setting permissions on %s%s: "
+msgstr "%s dosyasýnýn izinleri konuyor: "
+
+#: src/console_fe.c:760 src/console_fe.c:838 src/console_fe.c:904
+#, c-format
+msgid "done.\n"
+msgstr "tamamlandý.\n"
+
+#: src/console_fe.c:762 src/console_fe.c:906
+#, c-format
+msgid ""
+"failed:\n"
+"%s\n"
+msgstr ""
+"baþarýsýz oldu:\n"
+"%s\n"
+
+#: src/console_fe.c:781 src/console_fe.c:868
+#, c-format
+msgid "Creating %s/: "
+msgstr "%s/ kütüðü yaratýlýyor: "
+
+#: src/console_fe.c:783 src/console_fe.c:870
+#, c-format
+msgid "Deleting %s/: "
+msgstr "%s/ kütüðü siliniyor: "
+
+#: src/console_fe.c:790
+#, c-format
+msgid "Uploading %s: ["
+msgstr "%s dosyasý gönderiliyor: ["
+
+#: src/console_fe.c:793 src/console_fe.c:812 src/console_fe.c:880
+#, c-format
+msgid "Deleting %s: "
+msgstr "%s dosyasý siliniyor: "
+
+#: src/console_fe.c:796 src/console_fe.c:883
+#, c-format
+msgid "Moving %s->%s: "
+msgstr "%s dosyasý %s'ye taþýnýyor: "
+
+#: src/console_fe.c:800
+#, c-format
+msgid ""
+"%s: in fe_updating/file_file\n"
+"%s"
+msgstr ""
+
+#: src/console_fe.c:808
+#, c-format
+msgid "Changing %s: "
+msgstr "%s dosyasý deðiþtiriliyor: "
+
+#: src/console_fe.c:810
+#, c-format
+msgid "Creating %s: "
+msgstr "%s dosyasý yaratýlýyor: "
+
+#: src/console_fe.c:814
+#, c-format
+msgid ""
+"%s: in fe_updating/file_link\n"
+"%s"
+msgstr ""
+
+#: src/console_fe.c:831
+#, fuzzy, c-format
+msgid "Failed to update %s:%c%s\n"
+msgstr ""
+"%s'yi güncelleþtirme baþarýsýz oldu:\n"
+"%s\n"
+
+#: src/console_fe.c:840
+#, fuzzy, c-format
+msgid "failed:%c%s\n"
+msgstr ""
+"baþarýsýz oldu:\n"
+"%s\n"
+
+#: src/console_fe.c:852
+#, fuzzy, c-format
+msgid "] failed:%c%s\n"
+msgstr ""
+"] baþarýsýz oldu:\n"
+"%s\n"
+
+#: src/console_fe.c:877
+#, c-format
+msgid "Downloading %s: ["
+msgstr "%s dosyasý indiriliyor: ["
+
+#: src/console_fe.c:922
+#, fuzzy
+msgid "Changed on server"
+msgstr "%s dosyasýný deðiþtir"
+
+#: src/console_fe.c:925
+msgid "Added on server"
+msgstr ""
+
+#: src/console_fe.c:933
+#, fuzzy, c-format
+msgid "%s: %s\n"
+msgstr "%s: Hata: %s\n"
+
+#: src/console_fe.c:951
+#, c-format
+msgid "Directory: %s/\n"
+msgstr "Kütük: %s/\n"
+
+#: src/console_fe.c:955
+#, fuzzy
+msgid "File: %s - size %"
+msgstr "Dosya: %s - boyutu %ld%s\n"
+
+#: src/console_fe.c:955
+#, fuzzy, c-format
+msgid "%s\n"
+msgstr "%d\n"
+
+#: src/console_fe.c:957
+msgid " (ASCII)"
+msgstr "  (ASCII)"
+
+#: src/console_fe.c:960
+#, c-format
+msgid "Link: %s - target %s\n"
+msgstr "Link: %s - hedefi %s\n"
+
+#: src/console_fe.c:973 gnome/init.c:402
+#, c-format
+msgid "%s: Error: Could not open rcfile: %s.\n"
+msgstr "%s: Hata: Kurulum dosyasý %s açýlamadý.\n"
+
+#: src/console_fe.c:977 gnome/init.c:407
+#, c-format
+msgid ""
+"%s: rcfile corrupt at line %d:\n"
+"%s\n"
+msgstr ""
+"%s: kurulum dosyasýnda bozukluk var. satýr %d:\n"
+"%s\n"
+
+#: src/console_fe.c:996
+#, c-format
+msgid ""
+"%s: Could not read directory for `%s':\n"
+"\t%s\n"
+msgstr ""
+"%s: `%s'nin kütüðü okunamadý:\n"
+"\t%s\n"
+
+#: src/console_fe.c:1000
+#, c-format
+msgid "%s: Server not specified in site `%s'.\n"
+msgstr "%s: `%s' sitesinin tanýmýnda sunucu belirtilmemiþ.\n"
+
+#: src/console_fe.c:1004
+#, c-format
+msgid "%s: Remote directory not specified in site `%s'.\n"
+msgstr "%s: `%s' sitesinin tanýmýnda sunucudaki kütük belirtilmemiþ.\n"
+
+#: src/console_fe.c:1008
+#, c-format
+msgid "%s: Local directory not specified in site `%s'.\n"
+msgstr "%s: `%s' sitesinin tanýmýnda yerel kütük belirtilmemiþ.\n"
+
+#: src/console_fe.c:1012
+#, c-format
+msgid "%s: Invalid port used in site `%s'.\n"
+msgstr "%s: `%s' sitesinin tanýmýnda geçersiz port belirtilmiþ.\n"
+
+#: src/console_fe.c:1016
+#, c-format
+msgid "%s: %s cannot maintain symbolic links (site `%s').\n"
+msgstr ""
+"%s: %s protokolü ile sembolik linklerin korunmasý mümkün deðil (`%s' "
+"sitesi).\n"
+
+#: src/console_fe.c:1020
+#, c-format
+msgid "%s: Cannot use a relative remote directory in %s (site `%s').\n"
+msgstr ""
+"%s: %s protokolü ile sunucuda göreli kütüklerin kullanýlmasý mümkün deðil (`%"
+"s' sitesi).\n"
+
+#: src/console_fe.c:1023
+#, c-format
+msgid "%s: File permissions are not supported in %s (site `%s').\n"
+msgstr "%s: %s protokolü dosya izinlerini desteklemiyor (`%s' sitesi).\n"
+
+#: src/console_fe.c:1026
+#, c-format
+msgid ""
+"%s: Safe mode cannot be used in conjunction with nooverwrite (site `%s').\n"
+msgstr ""
+
+#: src/console_fe.c:1029
+#, c-format
+msgid ""
+"%s: Safe mode cannot be used in conjunction with tempupload (site `%s').\n"
+msgstr ""
+
+#: src/console_fe.c:1032
+#, c-format
+msgid "%s: Can only check for renamed files when checksumming (site `%s').\n"
+msgstr ""
+"%s: Adý deðiþen dosyalar sadece kontrol toplamlarý hesaplanarak "
+"belirlenebilir (`%s' sitesi).\n"
+
+#: src/console_fe.c:1035
+#, c-format
+msgid "%s: The protocol `%s' is unsupported (site `%s').\n"
+msgstr "%s: `%s' protokolü desteklenmiyor (`%s' sitesi).\n"
+
+#: src/console_fe.c:1042
+#, c-format
+msgid "%s: Unhandled error %d in site `%s' - please contact the maintainer.\n"
+msgstr ""
+
+# msgid "%s: Unhandled error %d in site `%s' - please contact the maintainer.\n"
+# msgstr ""
+# "%s: `%s' sitesinde %d sayýlý bilinmeyen bir hata ile karþilaþýldý \n"
+# "lütfen bu durumu iletin.\n"
+#: src/console_fe.c:1060
+#, c-format
+msgid ""
+"%s: Error: Corrupt site storage file for `%s':\n"
+"%s: %s\n"
+msgstr ""
+"%s: Hata: Bozuk site veritabaný `%s':\n"
+"%s: %s\n"
+
+#: src/console_fe.c:1069
+#, c-format
+msgid ""
+"%s: Error: No storage file for `%s'.\n"
+"%s: Use --init, --catchup or --fetch to create a storage file.\n"
+msgstr ""
+"%s: Hata: `%s' sitesinin veritabaný yok.\n"
+"%s: --init, --catchup ya da --fetch seçenekelerinden birini kullanarak\n"
+"veritabanýný yaratýn.\n"
+
+#: src/console_fe.c:1082
+#, c-format
+msgid "%s: Skipping site `%s'.\n"
+msgstr "%s: `%s' sitesi atlanýyor.\n"
+
+#: src/console_fe.c:1097
+#, c-format
+msgid "%s: %s completed successfully.\n"
+msgstr "%s: %s baþarýyla tamamlandý.\n"
+
+#: src/console_fe.c:1103
+#, c-format
+msgid "%s: %s unsupported for %s.\n"
+msgstr "%s: %s, %s sitesinde desteklenmiyor.\n"
+
+#: src/console_fe.c:1108
+#, c-format
+msgid "%s: Errors occurred while %s the %s site.\n"
+msgstr "%s: %s: `%s' sitesinde hatalarla karþýlaþýldý.\n"
+
+#: src/console_fe.c:1113
+#, c-format
+msgid "%s: Error: Could not resolve remote hostname (%s).\n"
+msgstr "%s: Hata: %s sunucusunun adresi bulunamadý.\n"
+
+#: src/console_fe.c:1119
+#, c-format
+msgid "%s: Error: Could not resolve hostname of proxy server (%s).\n"
+msgstr "%s: Hata: %s ara sunucusunun adresi bulunamadý.\n"
+
+#: src/console_fe.c:1125
+#, c-format
+msgid "%s: Error: Could not connect to proxy server (%s port %d).\n"
+msgstr "%s: Hata: %s ara sunucusu ile %d portundan baðlantý kurulamadý.\n"
+
+#: src/console_fe.c:1128
+#, c-format
+msgid "%s: Error: Could not connect to server (%s port %d).\n"
+msgstr "%s: Hata: %s sunucusu ile %d portundan baðlantý kurulamadý.\n"
+
+#: src/console_fe.c:1134
+#, c-format
+msgid "%s: Error: Could not authorise user on server.\n"
+msgstr "%s: Hata: Kullanýcý sunucu tarafýndan onaylanmadý.\n"
+
+#: src/console_fe.c:1139
+#, c-format
+msgid "%s: Error: %s\n"
+msgstr "%s: Hata: %s\n"
+
+#: src/console_fe.c:1143
+#, c-format
+msgid "%s: Error: Could not authorise user on proxy server (%s).\n"
+msgstr "%s: Hata: Kullanýcý %s ara sunucusu tarafýndan onaylanmadý.\n"
+
+#: src/console_fe.c:1148
+#, c-format
+msgid ""
+"%s: in issue_error\n"
+"%s"
+msgstr ""
+"%s: in issue_error\n"
+"%s"
+
+#: src/console_fe.c:1162
+#, c-format
+msgid "%s: Error: Environment variable HOME not set.\n"
+msgstr "%s: Hata: Ortam deðiþkeni HOME belirtilmemiþ.\n"
+
+#: src/console_fe.c:1170
+#, c-format
+msgid "%s: Error: Could not open rcfile: %s\n"
+msgstr "%s: Hata: %s adlý kurulum dosyasý açýlamadý.\n"
+
+#: src/console_fe.c:1173
+#, c-format
+msgid "%s: Error: rcfile permissions allow other users to read your rcfile.\n"
+msgstr "%s: Hata: Kurulum dosyasý baþka kullanýcýlar tarafýndan okunabilir.\n"
+
+#: src/console_fe.c:1174 src/console_fe.c:1186
+#, c-format
+msgid "%s: Set the permissions to 0600.\n"
+msgstr "%s: Dosya izinlerini 0600 olarak belirtin.\n"
+
+#: src/console_fe.c:1177
+#, c-format
+msgid "%s: Error: Could not open storage directory: %s\n"
+msgstr "%s: Hata: Veritabaný kütüðü %s açýlamadý.\n"
+
+#: src/console_fe.c:1178
+#, c-format
+msgid ""
+"%s: You need to create this directory and set the permissions to 0700.\n"
+msgstr "%s: Bu kütüðü yaratýn ve izinlerini 0700 olarak belirtin.\n"
+
+#: src/console_fe.c:1181
+#, c-format
+msgid "%s: Error: storage directory permissions incorrect.\n"
+msgstr "%s: Hata: Veritabaný kütüðünün izinleri yanlýþ.\n"
+
+#: src/console_fe.c:1182
+#, c-format
+msgid "%s: Set the permissions to 0700.\n"
+msgstr "%s: Ýzinleri 0700 olarak belirtin.\n"
+
+#: src/console_fe.c:1185
+#, c-format
+msgid "%s: Error: ~/.netrc permissions incorrect.\n"
+msgstr "%s: Hata: ~/.netrc dosyasýnýn izinleri yanlýþ.\n"
+
+#: src/console_fe.c:1191
+#, c-format
+msgid ""
+"%s: init_paths gave %d\n"
+"%s"
+msgstr ""
+"%s: init_paths gave %d\n"
+"%s"
+
+#: src/console_fe.c:1198
+#, c-format
+msgid "%s: Error: Could not parse ~/.netrc.\n"
+msgstr "%s: Hata ~/.netrc dosyasý anlaþýlamadý.\n"
+
+#: src/console_fe.c:1216 src/console_fe.c:1315
+#, c-format
+msgid "%s: Nothing to do - no changes found.\n"
+msgstr "%s: Hiç deðiþiklik yok.\n"
+
+#: src/console_fe.c:1225
+#, c-format
+msgid ""
+"%s: Error: Could not open storage file for writing (%s)\n"
+"%s: Error: %s\n"
+"%s: Will not update site `%s'.\n"
+msgstr ""
+"%s: Hata: Veritabaný dosyasý %s yazým için açýlamadý.\n"
+"%s: Hata: %s\n"
+"%s: `%s' sitesi güncelleþtirilmeyecek.\n"
+
+#: src/console_fe.c:1249
+#, fuzzy, c-format
+msgid ""
+"%s: Warning: Current state method differs from stored in site `%s'.\n"
+"%s: All existing files will appear changed (use catchup?).\n"
+msgstr ""
+"%s: Uyarý: Kullanýmdaki durum belirleme yöntemi `%s' sitesi\n"
+"veritabanýndakinden farklý.\n"
+"%s: Bütün dosyalar deðiþmis görünecek (sunucudan güncellensin mi?)\n"
+
+#: src/console_fe.c:1255
+#, c-format
+msgid "%s: The remote site needs updating (%d items to update).\n"
+msgstr ""
+"%s: Sunucunun güncelleþtirilmesi gerek.\n"
+"\t(Güncelleþtirilecek dosya adedi: %d)\n"
+
+#: src/console_fe.c:1257
+#, c-format
+msgid "%s: The remote site needs updating (1 item to update).\n"
+msgstr "%s: Sunucudaki bir adet dosyanýn güncelleþtirilmesi gerek.\n"
+
+#: src/console_fe.c:1260
+#, c-format
+msgid "%s: The remote site does not need updating.\n"
+msgstr "%s: Sunucunun güncelleþtirilmesi gerekli deðil.\n"
+
+#: src/console_fe.c:1268
+#, c-format
+msgid "%s: All the files and directories are marked as NOT updated remotely.\n"
+msgstr ""
+"%s: Bütün dosya ve kütükler sunucuda güncel DEÐÝL olarak iþaretlendi.\n"
+
+#: src/console_fe.c:1273
+#, c-format
+msgid "%s: All the files and and directories are marked as updated remotely.\n"
+msgstr "%s: Bütün dosya ve kütükler sunucuda güncel olarak iþaretlendi.\n"
+
+#: src/console_fe.c:1282
+#, c-format
+msgid ""
+"%s: Failed to fetch file listing for site `%s':\n"
+"%s: %s\n"
+msgstr ""
+"%s: `%s' sitesinden dosya listesi indirme baþarýsýz oldu:\n"
+"%s: %s\n"
+
+#: src/console_fe.c:1296
+#, fuzzy, c-format
+msgid ""
+"%s: Failed to fetch file listing to verify site `%s':\n"
+"%s: %s\n"
+msgstr ""
+"%s: `%s' sitesinden dosya listesi indirme baþarýsýz oldu:\n"
+"%s: %s\n"
+
+#: src/console_fe.c:1303
+#, c-format
+msgid "%s: Verify found %d files missing from server.\n"
+msgstr ""
+
+#: src/console_fe.c:1306
+#, fuzzy, c-format
+msgid "%s: Remote site not synchronized with stored state.\n"
+msgstr "%s: `%s' sitesinin tanýmýnda sunucudaki kütük belirtilmemiþ.\n"
+
+#: src/console_fe.c:1319
+#, c-format
+msgid ""
+"%s: Refusing to delete all local files with a synchronize operation.\n"
+"%s: Use --update to update the remote site.\n"
+msgstr ""
+"%s: Refusing to delete all local files with a synchronize operation.\n"
+"%s: Use --update to update the remote site.\n"
+
+#: src/console_fe.c:1327
+#, c-format
+msgid ""
+"%s: in act_on_site\n"
+"%s"
+msgstr ""
+"%s: in act_on_site\n"
+"%s"
+
+#: src/console_fe.c:1338
+#, c-format
+msgid "Usage: %s [OPTIONS] [MODE] [sitename]...\n"
+msgstr "Kullaným biçimi: %s [SEÇENEKLER] [ÝÞLEM BÝÇÝMÝ] [site adý] ...\n"
+
+#: src/console_fe.c:1340
+#, c-format
+msgid "Options: \n"
+msgstr "Seçenekler: \n"
+
+#: src/console_fe.c:1343
+#, fuzzy, c-format
+msgid ""
+"  -d, --debug=KEY[,KEY] Turn debugging on for each KEY, which may be:\n"
+"     socket, files, rcfile, ftp, http, httpbody, rsh, sftp, xml, xmlparse, "
+"cleartext\n"
+"     Warning: cleartext displays (normally hidden) passwords in plain text\n"
+"  -g, --logfile=FILE    Append debugging messages to FILE (else use stderr)\n"
+msgstr ""
+" -d, --debug=KANAL[,KANAL] Hatalarý belirtilen KANAL'lardan izle.\n"
+"    Hata izleme iþlevi için aþaðidaki kanallarý kullanilabilir.\n"
+"    socket, files, rcfile, ftp, http, httpbody, xml, xmlparse, cleartext\n"
+"    Uyarý: cleartext kanalý ile, (normalde gizli) þifreler de gösterilir.\n"
+" -g, --logfile=DOSYA Hata izleme mesajlarýný (stderr yerine) DOSYA'ya ekle.\n"
+
+#: src/console_fe.c:1350
+#, fuzzy, c-format
+msgid ""
+"  -r, --rcfile=FILE     Use alternate run control file\n"
+"  -p, --storepath=PATH  Use alternate site storage directory\n"
+"  -y, --prompting       Request confirmation before making each update\n"
+"  -a, --allsites        Perform the operation on ALL defined sites\n"
+"  -k, --keep-going      Carry on an update regardless of errors\n"
+"  -o, --show-progress   Display total percentage file transfer complete\n"
+"  -q, --quiet           Be quiet while performing the operation\n"
+"  -qq, --silent         Be silent while perforing the operation\n"
+"  -n, --dry-run         Display but do not carry out the operation\n"
+"Operation modes:\n"
+"  -l, --list            List changes between remote and local sites "
+"(default)\n"
+"  -ll, --flatlist       Flat list of changes between remote and local sites\n"
+"  -v, --view            Display a list of the site definitions\n"
+"  -i, --initialize      Mark all files and directories as not updated\n"
+"  -f, --fetch           Find out what files are on the remote site\n"
+"  -e, --verify          Verify stored state of site matches real remote "
+"state\n"
+"  -c, --catchup         Mark all files and directories as updated\n"
+"  -s, --synchronize     Update the local site from the remote site\n"
+"  -u, --update          Update the remote site\n"
+"  -h, --help            Display this help message\n"
+"  -V, --version         Display version information\n"
+"Please send feature requests and bug reports to sitecopy@lyra.org\n"
+msgstr ""
+" -r, --rcfile=FILE     Ayrý bir kurulum dosyasý kullan.\n"
+" -p, --storepath=PATH  Ayrý bir veritabaný kütüðü kullan.\n"
+" -y, --prompting       Her güncelleþtrimeden önce onay iste.\n"
+" -a, --allsites        Ýþlemi bütün sitelere uygula.\n"
+" -k, --keep-going      Hatalara raðmen iþleme devam et.\n"
+" -o, --show-progress   Dosya aktarýmýnýn geliþmesini yüzde olarak göster.\n"
+" -q, --quiet           Ýþlem sýrasýnda özet bilgi ver.\n"
+" -qq, --silent         Ýþlem sýrasýnda hiç bilgi verme.\n"
+"Ýþlem biçimleri:\n"
+" -l, --list            Sunucu ile yerel site arasýndaki farklarý listele.\n"
+"                       (varsayýlan)\n"
+" -ll, --flatlist       Sunucu ile yerel site arasýndaki farklarýn düz "
+"listele.\n"
+" -v, --view            Site tanýmlarýnýn dökümünü ver.\n"
+" -i, --initialize      Bütün dosya ve kütükleri güncel DEÐÝL olarak "
+"iþaretle.\n"
+" -f, --fetch           Sunucudaki dosya ve kütükleri öðren.\n"
+" -c, --catchup         Bütün dosya ve kütükleri güncel olarak iþaretle.\n"
+" -s, --synchronize     Yerel siteyi sunucudan güncelleþtir.\n"
+" -u, --update          Sunucuyu güncelleþtir.\n"
+" -h, --help            Bu yardým mesajýný göster.\n"
+" -V, --version         Sürüm bilgilerini göster.\n"
+"Hata raporlarý ve isteklerinizi sitecopy@lyra.org adresine.\n"
+"Ýngilizce olarak iletin.\n"
+
+#: src/sitestore.c:326
+#, c-format
+msgid "Invalid checksum at line %d"
+msgstr ""
+
+#: src/sitestore.c:371
+#, c-format
+msgid "Boolean missing in 'ascii' at line %d"
+msgstr ""
+
+#: src/sitestore.c:396
+#, c-format
+msgid "Size overflow (%s) in '%s' at line %d"
+msgstr ""
+
+#: src/davdriver.c:175
+msgid "The connection timed out."
+msgstr "Baðlantý süre sýnýrý aþýldý."
+
+#: src/davdriver.c:220
+msgid "SSL support has not be compiled in."
+msgstr "SSL desteði yok."
+
+#: src/davdriver.c:228
+#, fuzzy, c-format
+msgid "Could not load certificate `%s'."
+msgstr "%s dosyasýna yazým yapýlamadý"
+
+#: src/davdriver.c:264
+#, fuzzy, c-format
+msgid "Could not read SSL client certificate '%s'."
+msgstr "%s dosyasýna yazým yapýlamadý"
+
+#: src/davdriver.c:277
+#, fuzzy, c-format
+msgid "Could not decrypt SSL client certificate '%s'."
+msgstr "%s dosyasýna yazým yapýlamadý"
+
+#: src/davdriver.c:299
+msgid "The server does not appear to be a WebDAV server."
+msgstr "Bu sunucu WebDAV sunucusu deðil."
+
+#: src/davdriver.c:304
+msgid "The server does not support the executable live property."
+msgstr "The server does not support the executable live property."
+
+#: src/davdriver.c:350 src/davdriver.c:417 src/davdriver.c:454 src/ftp.c:888
+#: src/ftp.c:972
+#, fuzzy
+msgid "Could not open file"
+msgstr "Dosya açýlamadý: "
+
+#: src/davdriver.c:385
+#, fuzzy, c-format
+msgid "Could not stat file: %s"
+msgstr "%s dosyasýna yazým yapýlamadý"
+
+#: src/davdriver.c:644
+msgid "Could not access resource"
+msgstr "Kaynaða eriþim baþarýsýz oldu"
+
+#: src/sites.c:160
+msgid "Could not set modification time of local file."
+msgstr "Yerel dosyanýn deðiþim vakti ayarlanamadý."
+
+#: src/sites.c:308
+msgid ""
+"Upload succeeded, but could not retrieve modification time.\n"
+"If this message persists, turn off safe mode."
+msgstr ""
+"Sunucuya aktarma tamamlandý, ama dosyanýn deðiþim vakti alýnamadý.\n"
+"If this message persists, turn off safe mode."
+
+#: src/sites.c:515
+msgid "Remote file has been modified - not overwriting with local changes"
+msgstr "Sunucudaki dosya deðiþmiþ - yerel dosya üstüne yazýlmayacak"
+
+#: src/sites.c:828
+msgid "Could not examine file."
+msgstr "Dosya incelenemedi."
+
+#: src/sites.c:871
+msgid "Could not checksum file"
+msgstr "Dosyanýn kotrol toplamý hesaplanamadý"
+
+#: src/sites.c:887
+msgid "The target of the symlink could not be read."
+msgstr "Sembolik linkin hedefi okunamadý."
+
+#: src/common.c:113
+msgid "Unknown system error"
+msgstr "Bilinmeyen sistem hatasý"
+
+#: src/ftp.c:153 lib/neon/ne_request.c:240
+#, c-format
+msgid "%s: connection was closed by server."
+msgstr "%s: baðlantý sunucu tarafinden kesildi."
+
+#: src/ftp.c:157 lib/neon/ne_request.c:245
+#, c-format
+msgid "%s: connection timed out."
+msgstr "%s: baðlantý bekleme sýnýrý aþýldý."
+
+#: src/ftp.c:195
+#, fuzzy
+msgid "Could not read response line"
+msgstr "Yanýt metni okunamadý"
+
+#: src/ftp.c:229
+#, fuzzy
+msgid "Cannot parse MDTM response; wrong length."
+msgstr "Durum satýrý anlaþýlamadý."
+
+#: src/ftp.c:236
+#, fuzzy
+msgid "Cannot parse MDTM response."
+msgstr "Durum satýrý anlaþýlamadý."
+
+#: src/ftp.c:260
+#, fuzzy
+msgid "Could not find address in PASV response"
+msgstr "Yanýt metni okunamadý"
+
+#: src/ftp.c:267
+#, fuzzy
+msgid "Could not parse PASV response"
+msgstr "Yanýt metni okunamadý"
+
+#: src/ftp.c:276
+msgid "Invalid IP address in PASV response"
+msgstr ""
+
+#: src/ftp.c:296
+#, fuzzy
+msgid "Malformed EPSV response"
+msgstr "Yanýt metni okunamadý"
+
+#: src/ftp.c:304
+#, fuzzy
+msgid "Malformed port in EPSV response"
+msgstr "Yanýt metni okunamadý"
+
+#: src/ftp.c:449
+msgid "Error sending file"
+msgstr ""
+
+#: src/ftp.c:463 src/ftp.c:489
+#, fuzzy
+msgid "Error reading file"
+msgstr "Ýstek metni gönderilirken hata"
+
+#: src/ftp.c:480
+#, fuzzy
+msgid "Could not send file"
+msgstr "Dosya açýlamadý: "
+
+#: src/ftp.c:510 src/ftp.c:991
+#, fuzzy
+msgid "Error writing to file"
+msgstr "Yanýt beklerken hata"
+
+#: src/ftp.c:516
+msgid "Receiving file"
+msgstr ""
+
+#: src/ftp.c:532
+#, fuzzy
+msgid "Could not connect passive data socket"
+msgstr "SSL baðlantýsý kurulamadý"
+
+#: src/ftp.c:647
+msgid "Active open failed: could not determine address of control socket"
+msgstr ""
+
+#: src/ftp.c:659
+#, fuzzy
+msgid "Active open failed: could not create socket"
+msgstr "SSL baðlantýsý kurulamadý"
+
+#: src/ftp.c:667
+msgid "Active open failed: could not bind to address"
+msgstr ""
+
+#: src/ftp.c:677
+msgid "Active open failed: could not determine address of data socket"
+msgstr ""
+
+#: src/ftp.c:684
+#, fuzzy
+msgid "Could not determine bound port number for data socket"
+msgstr "SSL baðlantýsý kurulamadý"
+
+#: src/ftp.c:727
+msgid "Active open failed: could not accept connection"
+msgstr ""
+
+#: src/ftp.c:800
+msgid "Error closing data socket"
+msgstr ""
+
+#: src/ftp.c:894
+#, fuzzy
+msgid "Could not determine length of file"
+msgstr "Dosya açýlamadý: "
+
+#: src/ftp.c:905
+#, fuzzy
+msgid "Could not rewind to beginning of file"
+msgstr "Dosya açýlamadý: "
+
+#: src/ftp.c:1147
+#, fuzzy
+msgid "Could not read 'LIST' response."
+msgstr "Yanýt metni okunamadý"
+
+#: src/ftp.c:1156
+#, fuzzy, c-format
+msgid "Parse error in LIST response: %s"
+msgstr "Yanýt metni okunamadý"
+
+#: gnome/init.c:51
+msgid "_New site..."
+msgstr ""
+
+#: gnome/init.c:51 gnome/init.c:171
+msgid "Create a new site definition"
+msgstr ""
+
+#: gnome/init.c:54
+msgid "_Open..."
+msgstr ""
+
+#: gnome/init.c:54
+msgid "Open a new rc file. (EXPERIMENTAL)."
+msgstr ""
+
+#: gnome/init.c:57
+msgid "_Save Sites"
+msgstr ""
+
+#: gnome/init.c:57 gnome/init.c:177
+msgid "Save the current site definitions"
+msgstr ""
+
+#: gnome/init.c:60
+msgid "Sav_e Sites As..."
+msgstr ""
+
+#: gnome/init.c:60
+msgid "Save the current site definitions to a file."
+msgstr ""
+
+#: gnome/init.c:63
+#, fuzzy
+msgid "_Delete this site"
+msgstr "%s dosyasýný sil"
+
+#: gnome/init.c:63
+msgid "Delete the selected site entry"
+msgstr ""
+
+#: gnome/init.c:69
+msgid "E_xit"
+msgstr ""
+
+#: gnome/init.c:69 gnome/init.c:202
+msgid "Exit the program"
+msgstr ""
+
+#: gnome/init.c:78
+#, fuzzy
+msgid "_Initialise site"
+msgstr "Hazýrla"
+
+#: gnome/init.c:78
+msgid "All files will be uploaded if a site is initialised"
+msgstr ""
+
+#: gnome/init.c:81
+#, fuzzy
+msgid "'_Catchup' site"
+msgstr "Güncelle"
+
+#: gnome/init.c:81
+msgid "Records the site as already updated."
+msgstr ""
+
+#: gnome/init.c:84
+msgid "_Fetch site listing"
+msgstr ""
+
+#: gnome/init.c:84
+msgid "Figures out which files are new/changed from the actual remote site."
+msgstr ""
+
+#: gnome/init.c:88
+#, fuzzy
+msgid "_Resynchronize site"
+msgstr "eþleþtiriliyor"
+
+#: gnome/init.c:88
+msgid "Copies newer files from the remote site to the local drive."
+msgstr ""
+
+#: gnome/init.c:91
+msgid "_Update site..."
+msgstr ""
+
+#: gnome/init.c:91
+msgid "Apply the local site's changes to the remote site."
+msgstr ""
+
+#: gnome/init.c:94
+msgid "Update _ALL sites"
+msgstr ""
+
+#: gnome/init.c:94 gnome/init.c:137
+msgid "Performs the required operations on all site definitions. (TODO)."
+msgstr ""
+
+#: gnome/init.c:98
+msgid "Rescan local directory"
+msgstr ""
+
+#: gnome/init.c:98
+#, fuzzy
+msgid "Re-reads the local directory of the selected site."
+msgstr "%s: `%s' sitesinin tanýmýnda yerel kütük belirtilmemiþ.\n"
+
+#: gnome/init.c:106
+msgid "_Required updates"
+msgstr ""
+
+#: gnome/init.c:106
+msgid "Displays a brief report of any required updates."
+msgstr ""
+
+#: gnome/init.c:109
+msgid "Site web-r_eport"
+msgstr ""
+
+#: gnome/init.c:109
+msgid ""
+"Generates a web page detailing the changes required on the selected site."
+msgstr ""
+
+#: gnome/init.c:112
+msgid "Prin_t site info..."
+msgstr ""
+
+#: gnome/init.c:112
+msgid "Print information about the selected site"
+msgstr ""
+
+#: gnome/init.c:119
+msgid "_Backup files status"
+msgstr ""
+
+#: gnome/init.c:119
+msgid "Save the 'state' of your local files, in case of accident."
+msgstr ""
+
+#: gnome/init.c:122
+msgid "Restore files status..."
+msgstr ""
+
+#: gnome/init.c:122 gnome/init.c:129
+msgid "If a backup has previously been made, it will be restored."
+msgstr ""
+
+#: gnome/init.c:126
+msgid "_Backup site definitions"
+msgstr ""
+
+#: gnome/init.c:126
+msgid "Backup your site definitions, in case you delete your sites."
+msgstr ""
+
+#: gnome/init.c:129
+msgid "Restore site definitions..."
+msgstr ""
+
+#: gnome/init.c:137
+msgid "Preferences..."
+msgstr ""
+
+#: gnome/init.c:146
+msgid "_About XSitecopy"
+msgstr ""
+
+#: gnome/init.c:146
+msgid "Information about XSitecopy"
+msgstr ""
+
+#: gnome/init.c:158
+msgid "_File"
+msgstr ""
+
+#: gnome/init.c:159
+#, fuzzy
+msgid "_Operations"
+msgstr "Seçenekler: \n"
+
+#: gnome/init.c:160
+msgid "_Reports"
+msgstr ""
+
+#: gnome/init.c:161
+msgid "_Settings"
+msgstr ""
+
+#: gnome/init.c:162
+msgid "_Backup"
+msgstr ""
+
+#: gnome/init.c:163
+msgid "_Help"
+msgstr ""
+
+#: gnome/init.c:171
+msgid "New site"
+msgstr ""
+
+#: gnome/init.c:174
+msgid "Open"
+msgstr ""
+
+#: gnome/init.c:174
+msgid "Open a new site definitions file."
+msgstr ""
+
+#: gnome/init.c:177
+msgid "Save"
+msgstr ""
+
+#: gnome/init.c:180
+#, fuzzy
+msgid "Delete site"
+msgstr "%s dosyasýný sil"
+
+#: gnome/init.c:180
+msgid "Delete the selected site"
+msgstr ""
+
+#: gnome/init.c:185
+#, fuzzy
+msgid "Initialise"
+msgstr "Hazýrla"
+
+#: gnome/init.c:185
+msgid "Initialise the site (mark all files as needing to be updated)."
+msgstr ""
+
+#: gnome/init.c:188
+#, fuzzy
+msgid "Catch-up"
+msgstr "Güncelle"
+
+#: gnome/init.c:188
+msgid "Mark all of the selected site's files as updated."
+msgstr ""
+
+#: gnome/init.c:194
+#, fuzzy
+msgid "Download"
+msgstr "%s dosyasý indiriliyor: ["
+
+#: gnome/init.c:194
+msgid "Download newer files from the remote site. (Use with care)"
+msgstr ""
+
+#: gnome/init.c:198
+msgid "Updates the selected site"
+msgstr ""
+
+#: gnome/init.c:202
+msgid "Quit"
+msgstr ""
+
+#: gnome/init.c:412
+#, fuzzy, c-format
+msgid "%s: Error: Could not read rcfile: %s.\n"
+msgstr "%s: Hata: Kurulum dosyasý %s açýlamadý.\n"
+
+#: gnome/main.c:184
+msgid ""
+"Debugging level (sum of: 1=socket, 2=files, 4=rcfile, 8=WebDAV, 16=FTP, "
+"32=XML, 64=GNOME )"
+msgstr ""
+
+#: gnome/misc.c:580
+#, fuzzy, c-format
+msgid "Server not specified in site `%s'.\n"
+msgstr "%s: `%s' sitesinin tanýmýnda sunucu belirtilmemiþ.\n"
+
+#: gnome/misc.c:584
+#, fuzzy, c-format
+msgid "Remote directory not specified in site `%s'.\n"
+msgstr "%s: `%s' sitesinin tanýmýnda sunucudaki kütük belirtilmemiþ.\n"
+
+#: gnome/misc.c:588
+#, fuzzy, c-format
+msgid "Local directory not specified in site `%s'.\n"
+msgstr "%s: `%s' sitesinin tanýmýnda yerel kütük belirtilmemiþ.\n"
+
+#: gnome/misc.c:592
+#, fuzzy, c-format
+msgid ""
+"Could not read directory for `%s':\n"
+"\t%s\n"
+msgstr ""
+"%s: `%s'nin kütüðü okunamadý:\n"
+"\t%s\n"
+
+#: gnome/misc.c:596
+#, fuzzy, c-format
+msgid "Invalid port used in site `%s'.\n"
+msgstr "%s: `%s' sitesinin tanýmýnda geçersiz port belirtilmiþ.\n"
+
+#: gnome/misc.c:600
+#, fuzzy, c-format
+msgid "Protocol '%s' cannot maintain symbolic links (site `%s').\n"
+msgstr ""
+"%s: %s protokolü ile sembolik linklerin korunmasý mümkün deðil (`%s' "
+"sitesi).\n"
+
+#: gnome/misc.c:604
+#, fuzzy, c-format
+msgid "Cannot use a relative remote directory protocol '%s' (site `%s').\n"
+msgstr ""
+"%s: %s protokolü ile sunucuda göreli kütüklerin kullanýlmasý mümkün deðil (`%"
+"s' sitesi).\n"
+
+#: gnome/misc.c:607
+#, c-format
+msgid "%s's protocol does not currently support maintaining permissions."
+msgstr ""
+
+#: gnome/misc.c:611
+#, fuzzy, c-format
+msgid "Could not find 'relative' local directory"
+msgstr "SSL baðlantýsý kurulamadý"
+
+#: lib/neon/ne_redirect.c:92
+#, fuzzy
+msgid "Could not parse redirect location."
+msgstr "Durum satýrý anlaþýlamadý."
+
+#: lib/neon/ne_gnutls.c:521 lib/neon/ne_openssl.c:386
+msgid "Server certificate was missing commonName attribute in subject name"
+msgstr ""
+
+#: lib/neon/ne_gnutls.c:557 lib/neon/ne_openssl.c:599
+#, fuzzy, c-format
+msgid "SSL negotiation failed: %s"
+msgstr "%s dosyasýna yazým yapýlamadý"
+
+#: lib/neon/ne_gnutls.c:566
+msgid "Server did not send certificate chain"
+msgstr ""
+
+#: lib/neon/ne_openssl.c:418
+#, c-format
+msgid "Certificate verification error: %s"
+msgstr ""
+
+#: lib/neon/ne_openssl.c:618
+msgid "SSL server did not present certificate"
+msgstr ""
+
+#: lib/neon/ne_openssl.c:627
+msgid "Server certificate changed: connection intercepted?"
+msgstr ""
+
+#: lib/neon/ne_session.c:305 lib/neon/ne_session.c:316
+msgid "[invalid date]"
+msgstr ""
+
+#: lib/neon/ne_session.c:329
+msgid "certificate is not yet valid"
+msgstr ""
+
+#: lib/neon/ne_session.c:330
+msgid "certificate has expired"
+msgstr ""
+
+#: lib/neon/ne_session.c:331
+msgid "certificate issued for a different hostname"
+msgstr ""
+
+#: lib/neon/ne_session.c:332
+msgid "issuer is not trusted"
+msgstr ""
+
+#: lib/neon/ne_session.c:337
+msgid "Server certificate verification failed: "
+msgstr ""
+
+#: lib/neon/ne_socket.c:480 lib/neon/ne_socket.c:528 lib/neon/ne_socket.c:631
+#, fuzzy
+msgid "Connection closed"
+msgstr "Baðlantý sunucu tarafýndan kesildi"
+
+#: lib/neon/ne_socket.c:538 lib/neon/ne_socket.c:643
+#, fuzzy
+msgid "Secure connection truncated"
+msgstr "Baðlantý süre sýnýrý aþýldý."
+
+#: lib/neon/ne_socket.c:550 lib/neon/ne_socket.c:655
+#, fuzzy, c-format
+msgid "SSL error: %s"
+msgstr "%s: Hata: %s\n"
+
+#: lib/neon/ne_socket.c:553
+#, c-format
+msgid "SSL error code %d/%d/%lu"
+msgstr ""
+
+#: lib/neon/ne_socket.c:636
+#, fuzzy, c-format
+msgid "SSL alert received: %s"
+msgstr "%s: Hata: %s\n"
+
+#: lib/neon/ne_socket.c:651
+msgid "SSL socket read failed"
+msgstr ""
+
+#: lib/neon/ne_socket.c:750
+msgid "Line too long"
+msgstr "Satýr çok uzun"
+
+#: lib/neon/ne_socket.c:890 lib/neon/ne_socket.c:896
+msgid "Host not found"
+msgstr "Sunucu bulunamadý"
+
+#: lib/neon/ne_socket.c:1006
+msgid "Socket descriptor number exceeds FD_SETSIZE"
+msgstr ""
+
+#: lib/neon/ne_socket.c:1218
+msgid "Client certificate verification failed"
+msgstr ""
+
+#: lib/neon/ne_socket.c:1234
+msgid "SSL disabled due to lack of entropy"
+msgstr ""
+
+#: lib/neon/ne_socket.c:1241
+msgid "SSL disabled due to library version mismatch"
+msgstr ""
+
+#: lib/neon/ne_socket.c:1247
+#, fuzzy
+msgid "Could not create SSL structure"
+msgstr "SSL baðlantýsý kurulamadý"
+
+#: lib/neon/ne_request.c:237
+#, c-format
+msgid "%s: connection was closed by proxy server."
+msgstr "%s: baðlantý ara sunucu tarafinden kesildi."
+
+#: lib/neon/ne_request.c:351
+msgid "offset invalid"
+msgstr ""
+
+#: lib/neon/ne_request.c:356
+#, fuzzy, c-format
+msgid "Could not seek to offset %s of request body file: %s"
+msgstr "%s dosyasýna yazým yapýlamadý"
+
+#: lib/neon/ne_request.c:401
+msgid "Could not send request body"
+msgstr "Ýstek metni gönderilemedi"
+
+#: lib/neon/ne_request.c:759
+msgid "Could not read chunk size"
+msgstr "Parça boyutu öðrenilemedi"
+
+#: lib/neon/ne_request.c:766
+msgid "Could not parse chunk size"
+msgstr "Parça boyutu anlaþýlamadý"
+
+#: lib/neon/ne_request.c:803
+msgid "Could not read response body"
+msgstr "Yanýt metni okunamadý"
+
+#: lib/neon/ne_request.c:819
+#, fuzzy
+msgid "Could not read chunk delimiter"
+msgstr "Parça boyutu öðrenilemedi"
+
+#: lib/neon/ne_request.c:822
+msgid "Chunk delimiter was invalid"
+msgstr ""
+
+#: lib/neon/ne_request.c:928
+msgid "Could not read status line"
+msgstr "Durum satýrý okunamadý"
+
+#: lib/neon/ne_request.c:950
+msgid "Could not parse response status line."
+msgstr "Durum satýrý anlaþýlamadý."
+
+#: lib/neon/ne_request.c:962
+#, fuzzy
+msgid "Could not read interim response headers"
+msgstr "Yanýt metni okunamadý"
+
+#: lib/neon/ne_request.c:996
+msgid "Could not send request"
+msgstr "Ýstek gönderilemedi"
+
+#: lib/neon/ne_request.c:1044 lib/neon/ne_request.c:1062
+#: lib/neon/ne_request.c:1072
+msgid "Error reading response headers"
+msgstr "Yanýt baþlýklarý okunurken hata"
+
+#: lib/neon/ne_request.c:1090
+msgid "Response header too long"
+msgstr "Yanýt baþlýðý çok uzun"
+
+#: lib/neon/ne_request.c:1172
+msgid "Response exceeded maximum number of header fields."
+msgstr ""
+
+#: lib/neon/ne_request.c:1189
+#, fuzzy, c-format
+msgid "Could not resolve hostname `%s': %s"
+msgstr "%s: Hata: %s sunucusunun adresi bulunamadý.\n"
+
+#: lib/neon/ne_request.c:1309
+msgid "Invalid Content-Length in response"
+msgstr ""
+
+#: lib/neon/ne_request.c:1371
+#, c-format
+msgid "Could not write to file: %s"
+msgstr "%s dosyasýna yazým yapýlamadý"
+
+#: lib/neon/ne_request.c:1444
+msgid "Could not create SSL connection through proxy server"
+msgstr "Ara sunucu üzerinden SSL baðlantýsý kurulamadý"
+
+#: lib/neon/ne_request.c:1489
+#, fuzzy
+msgid "Could not create socket"
+msgstr "SSL baðlantýsý kurulamadý"
+
+#: lib/neon/ne_request.c:1533
+msgid "Could not connect to server"
+msgstr "Sunucuyla baðlantý kurulamadý"
+
+#: lib/neon/ne_request.c:1536
+msgid "Could not connect to proxy server"
+msgstr "Ara sunucuyla baðlantý kurulamadý"
+
+#: lib/neon/ne_xml.c:280
+#, fuzzy, c-format
+msgid "XML parse error at line %d: invalid element name"
+msgstr ""
+"%s: kurulum dosyasýnda bozukluk var. satýr %d:\n"
+"%s\n"
+
+#: lib/neon/ne_xml.c:436
+#, fuzzy
+msgid "Unknown error"
+msgstr "Bilinmeyen sistem hatasý"
+
+#: lib/neon/ne_xml.c:521
+msgid "Invalid Byte Order Mark"
+msgstr ""
+
+#: lib/neon/ne_xml.c:609
+#, fuzzy, c-format
+msgid "XML parse error at line %d: %s."
+msgstr ""
+"%s: kurulum dosyasýnda bozukluk var. satýr %d:\n"
+"%s\n"
+
+#: lib/neon/ne_props.c:371 lib/neon/ne_props.c:411
+msgid "Response exceeds maximum property count"
+msgstr ""
+
+#: lib/neon/ne_compress.c:173
+#, fuzzy, c-format
+msgid "%s: %s"
+msgstr "%s: Hata: %s\n"
+
+#: lib/neon/ne_compress.c:184
+#, c-format
+msgid "%s: %s (code %d)"
+msgstr ""
+
+#: lib/neon/ne_compress.c:232
+#, fuzzy
+msgid "Could not inflate data"
+msgstr "Dosya açýlamadý: "
+
+#: lib/neon/ne_compress.c:293
+#, fuzzy
+msgid "Could not initialize zlib"
+msgstr "Dosyaya yazým yapýlamadý: "
+
+#: lib/neon/ne_xmlreq.c:31
+#, fuzzy, c-format
+msgid "Could not parse response: %s"
+msgstr "Yanýt metni okunamadý"
+
+#: lib/neon/ne_basic.c:94
+#, fuzzy, c-format
+msgid "Could not determine file size: %s"
+msgstr "Dosya açýlamadý: "
+
+#: lib/neon/ne_basic.c:149
+msgid "Response did not include requested range"
+msgstr ""
+
+#: lib/neon/ne_basic.c:183
+msgid "Range is not satisfiable"
+msgstr ""
+
+#: lib/neon/ne_basic.c:188
+#, fuzzy
+msgid "Resource does not support ranged GETs."
+msgstr "Sunucu kýsmi GET iþlemini desteklemiyor."
+
+#: lib/neon/ne_auth.c:462
+#, c-format
+msgid "GSSAPI authentication error (%s)"
+msgstr ""
+
+#: lib/neon/ne_auth.c:595
+msgid "Unknown algorithm in Digest authentication challenge"
+msgstr ""
+
+#: lib/neon/ne_auth.c:600
+msgid "Incompatible algorithm in Digest authentication challenge"
+msgstr ""
+
+#: lib/neon/ne_auth.c:606
+msgid "Missing nonce or realm in Digest authentication challenge"
+msgstr ""
+
+#: lib/neon/ne_auth.c:886
+msgid "Digest mutual authentication failure: missing parameters"
+msgstr ""
+
+#: lib/neon/ne_auth.c:891
+msgid "Digest mutual authentication failure: client nonce mismatch"
+msgstr ""
+
+#: lib/neon/ne_auth.c:896
+#, c-format
+msgid "Digest mutual authentication failure: nonce count mismatch (%u not %u)"
+msgstr ""
+
+#: lib/neon/ne_auth.c:936
+msgid "Digest mutual authentication failure: request-digest mismatch"
+msgstr ""
+
+#: lib/neon/ne_207.c:198
+#, c-format
+msgid ""
+"Invalid HTTP status line in status element at line %d of response:\n"
+"Status line was: %s"
+msgstr ""
+"Invalid HTTP status line in status element at line %d of response:\n"
+"Status line was: %s"
+
+#: lib/neon/ne_locks.c:583
+msgid "LOCK response missing Lock-Token header"
+msgstr ""
+
+#: lib/neon/ne_locks.c:739
+msgid "No Lock-Token header given"
+msgstr ""
+
+#: lib/neon/ne_locks.c:767
+#, c-format
+msgid "Response missing activelock for %s"
+msgstr ""
+
+#: lib/neon/ne_locks.c:811
+#, c-format
+msgid "No activelock for <%s> returned in LOCK refresh response"
+msgstr ""
+
+#: lib/rpmatch.c:79
+msgid "^[yY]"
+msgstr "^[eEyY]"
+
+#: lib/rpmatch.c:82
+msgid "^[nN]"
+msgstr "^[hHnN]"
+
+#: lib/getopt.c:664
+#, c-format
+msgid "%s: option `%s' is ambiguous\n"
+msgstr "%s: `%s' seçeneðini anlamý belirsiz\n"
+
+#: lib/getopt.c:688
+#, c-format
+msgid "%s: option `--%s' doesn't allow an argument\n"
+msgstr "%s: `--%s' seçeneði argüman almýyor\n"
+
+#: lib/getopt.c:693
+#, c-format
+msgid "%s: option `%c%s' doesn't allow an argument\n"
+msgstr "%s: `%c%s' seçeneði argüman almýyor\n"
+
+#: lib/getopt.c:710 lib/getopt.c:883
+#, c-format
+msgid "%s: option `%s' requires an argument\n"
+msgstr "%s: `%s' seçeneðine argüman gerek\n"
+
+#: lib/getopt.c:739
+#, c-format
+msgid "%s: unrecognized option `--%s'\n"
+msgstr "%s: `--%s' seçeneði bilinmiyor\n"
+
+#: lib/getopt.c:743
+#, c-format
+msgid "%s: unrecognized option `%c%s'\n"
+msgstr "%s: `%c%s' seçeneði bilinmiyor\n"
+
+#: lib/getopt.c:769
+#, c-format
+msgid "%s: illegal option -- %c\n"
+msgstr "%s: anlamsýz seçenek --%c\n"
+
+#: lib/getopt.c:772
+#, c-format
+msgid "%s: invalid option -- %c\n"
+msgstr "%s: geçersiz seçenek --%c\n"
+
+#: lib/getopt.c:802 lib/getopt.c:932
+#, c-format
+msgid "%s: option requires an argument -- %c\n"
+msgstr "%s: %c seçeneðine argüman gerek\n"
+
+#: lib/getopt.c:849
+#, fuzzy, c-format
+msgid "%s: option `-W %s' is ambiguous\n"
+msgstr "%s: `%s' seçeneðini anlamý belirsiz\n"
+
+# msgid "%s: option `-W %s' is ambiguous\n"
+# msgstr "`-W %s' seçeneðinin anlamý belirsiz\n"
+#: lib/getopt.c:867
+#, c-format
+msgid "%s: option `-W %s' doesn't allow an argument\n"
+msgstr "%s: `-W %s' seçeneði argüman almýyor\n"
+
+#~ msgid "%s: Aborted.\n"
+#~ msgstr "%s: Vazgeçildi.\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "%s: Caught signal: %s (%d)\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "%s: %s (%d) hatasý sinyallendi: \n"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "%s: Caught signal %d\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "%s: %d numaralý hata sinyallendi.\n"
+
+#~ msgid "%s: Cannot recover from segmentation fault, aborting.\n"
+#~ msgstr "%s: Sanal bellek hatasýndan dönüþ yok, vazgeçiliyor.\n"
+
+#~ msgid "%s: Aborting update...\n"
+#~ msgstr "%s: Güncelleþtirmeden vazgeçiliyor...\n"
+
+#~ msgid "%s: Terminating.\n"
+#~ msgstr "%s: Program kapanýyor.\n"
+
+#, fuzzy
+#~ msgid " of request body file: %s"
+#~ msgstr "%s dosyasýna yazým yapýlamadý"
+
+#~ msgid "Server was not authenticated correctly."
+#~ msgstr "Server was not authenticated correctly."
+
+#~ msgid "Proxy server was not authenticated correctly."
+#~ msgstr "Proxy server was not authenticated correctly."
+
+#, fuzzy
+#~ msgid "Error reading request body."
+#~ msgstr "Ýstek metni gönderilirken hata"
+
+#, fuzzy
+#~ msgid "unknown error code"
+#~ msgstr "Bilinmeyen sistem hatasý"
+
+#~ msgid "Error reading chunked response body"
+#~ msgstr "Parçalý yanýt metnini okurken hata"
+
+#~ msgid "document root"
+#~ msgstr "document root"
+
+#~ msgid "unknown element"
+#~ msgstr "unknown element"
+
+#~ msgid "unspecified"
+#~ msgstr "unspecified"
+
+#~ msgid "XML is not valid (%s found in parent %s)"
+#~ msgstr "Geçersiz XML (%2$s'nin altýnda %1$s bulundu)"
+
+#, fuzzy
+#~ msgid "Unknown XML element `%s (in %s)'"
+#~ msgstr "Bilinmeyen XML birimi `%s:%s'"
+
+#~ msgid ""
+#~ "The server did not authenticate itself correctly.\n"
+#~ "Report this error to your server administrator."
+#~ msgstr ""
+#~ "The server did not authenticate itself correctly.\n"
+#~ "Report this error to your server administrator."
+
+#~ msgid ""
+#~ "The proxy server did not authenticate itself correctly.\n"
+#~ "Report this error to your proxy server administrator."
+#~ msgstr ""
+#~ "The proxy server did not authenticate itself correctly.\n"
+#~ "Report this error to your proxy server administrator."
+
+#, fuzzy
+#~ msgid "Host `%s' not found"
+#~ msgstr "Sunucu bulunamadý"
+
+#~ msgid "Host not found (try again later?)"
+#~ msgstr "Sunucu bulunamadý (daha sonra tekrar denensin mi?)"
+
+#~ msgid "Host exists but has no address."
+#~ msgstr "Sunucu bulundu, ama adresi yok."
+
+#~ msgid "Non-recoverable error in resolver library."
+#~ msgstr "Adres ararken gveri dönüþü olamayan bir hata ile karsýlaþýldý."
+
+#~ msgid "Malformed header line."
+#~ msgstr "Bozuk baþlýk satýrý"
+
+#~ msgid "This application does not have SSL support."
+#~ msgstr "Bu programda SSL desteði yok."
+
+#, fuzzy
+#~ msgid "Recent Changes"
+#~ msgstr "%s dosyasýný deðiþtir"
+
+#, fuzzy
+#~ msgid "Changed Items"
+#~ msgstr "%s dosyasýný deðiþtir"
+
+#, fuzzy
+#~ msgid "Deleted Items"
+#~ msgstr "%s dosyasýný sil"
+
+#~ msgid "%s: Failed to fetch file listing for verification.\n"
+#~ msgstr "%s: Kontrol için dosya listesi indirme baþarýsýz oldu:\n"
+
+#~ msgid "%s: Verify indicates differences.\n"
+#~ msgstr "%s: Kontrol iþlemi deðiþiklik olduðunu gösteriyor.\n"

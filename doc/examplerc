@@ -1,0 +1,66 @@
+# 
+# This document gives some example rcfile entries for sitecopy.
+# For more detailed documentation, see the man page, sitecopy.1 
+# (or run 'man sitecopy').
+# 
+
+# Fred's site is uploaded to the FTP server 'my.server.com' and held
+# in the directory 'public_html', which is in the login directory. The
+# site is stored locally in the directory /home/fred/html.
+
+site mysite
+  server my.server.com
+  url http://www.server.com/fred
+  username fred
+  password juniper
+  local /home/fred/html/
+  remote ~/public_html/
+
+# You can put more site definitions below.
+# Make the name of the site (i.e. 'mysite' above) easily
+# memorable, since you refer to sites by these names on
+# the command line, e.g.:
+#    sitecopy --update mysite
+# to upload the recent changes to the above site.
+
+# You might want to use both the 'state checksum' and 'checkmoved
+# renames' options. This will mean that if you move or rename files
+# locally, they will be moved or renamed remotely, too. Using 'state
+# checksum' means that every file in your local site is read at
+# startup, which will cause a slower startup.
+
+# Here, Freda's site is uploaded to the FTP server 'elsewhere.com',
+# where it is held in the (absolute) directory /www/freda/. The local
+# site is stored in ~/sites/elsewhere/ (that is, $HOME/sites/elsewhere)
+
+site anothersite
+  server elsewhere.com
+  username freda
+  password blahblah
+  local ~/sites/elsewhere/
+  remote /www/freda/
+  # Use checksumming, and look for moved and renamed files
+  state checksum
+  checkmoved renames
+  # Freda wants files with a .log extension to 
+  # excluded from the update
+  exclude *.log
+  # She also wants any changes to the file 'news.html'
+  # in her site to be ignored
+  ignore /news.html
+
+# Enough examples yet?
+# Here's one for WebDAV:
+
+site joehome
+  server dav.wow.com
+  protocol webdav
+  username pow
+  password zap 
+  local /home/joe/www/homepage/
+  remote /joe/
+
+# That's enough.
+#
+# All server names and username/passwords given in this
+# file are fictitious. Please don't bother trying them.

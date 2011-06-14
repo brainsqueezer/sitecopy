@@ -1,0 +1,471 @@
+<!DOCTYPE book PUBLIC "-//Davenport//DTD DocBook V3.0//EN">
+
+<book id=xsitecopy>
+
+<bookinfo>
+  <title>XSitecopy</title>
+  <author>
+    <firstname>Lee</firstname>
+    <surname>Mallabone</surname>
+    <authorblurb><para>lee0@callnetuk.com</para></authorblurb>
+  </author>
+</bookinfo>
+
+<chapter><title>Requirements</title>
+<para>
+XSitecopy requires the Gnome libraries, version 1.0.14 or above, and all
+of the pre-requisites of those libraries.
+</para>
+</chapter>
+
+<chapter><title>Installation</title>
+<para>
+To compile from the source distribution, change into the source directory
+ and run:
+
+<simplelist><member><computeroutput>./configure --enable-gnomefe</computeroutput></member>
+<member><computeroutput>make</computeroutput></member>
+<member><computeroutput>make install  (become root first)</computeroutput></member>
+</simplelist>
+</para>
+
+<para>
+To install from a binary rpm, change directory to the location of your
+ freshly downloaded rpm and type the following, (substituting i386 for whatever
+ architecture you are running on, and VERSION for the version you've acquired):
+</para>
+
+<para><computeroutput>rpm -iv xsitecopy-VERSION-1.i386.rpm
+</computeroutput></para>
+
+<para>To rebuild a binary rpm from a source rpm, do the following:
+<computeroutput>rpm --rebuild sitecopy-VERSION-1.src.rpm
+</computeroutput></para>
+
+<para>This will place a binary rpm in /usr/src/redhat/RPMS/i386/ which can be
+ installed as above.
+</para>
+</chapter>
+ 
+<chapter><title>Usage</title>
+<para>
+
+Once installed, you should find a shortcut to XSitecopy in the Internet
+ section of your gnome system menu. If you are not running GNOME as your desktop
+ environment, simply type xsitecopy into an xterm.
+</para>
+<sect1><title>Quick-Start</>
+<para>
+
+If you've never used sitecopy before, you should take a look at the README
+ file that comes with the sitecopy distribution. When you run xsitecopy for
+ the first time, it will set up 2 things in your home directory; a
+ configuration file where your site definitions are stored ($HOME/.sitecopyrc),
+ and a storage directory where it will place configuration files to keep
+ track of the files you add, change, move or delete on the local copies of
+ your websites. ($HOME/.sitecopy/)
+
+To create sites, click <emphasis>New site </emphasis>. A Gnome Druid will appear to
+guide you through the creation process. You must type a name for the site,
+along with server details and local &amp; remote directory names. All other
+options may be left at their default values, or configured to your personal
+taste.
+</para>
+</sect1>
+</chapter>
+
+<chapter><title>Creating a site</title>
+
+<para>To guide you through the process of creating a site, a step-by-step Druid is provided.
+At each stage of the druid, the information required is explained. Almost all of the
+information is optional and can be edited or added at a later date. If you miss out a
+field that is mandatory for site creation, a dialog will pop up to warn you.</para>
+
+<para>We'll now take a look at the various steps of the site creation druid. FIXME. Add
+lots of nice screenshots, and a commentary.</para>
+</chapter>
+
+
+<chapter><title>The Main Interface</>
+<para>
+
+At the top is the menu. Below this is the toolbar. Both of these are used to
+perform operations on sites, and/or retrieve more general information.
+</para>
+
+<para>Below these bars is the main part of Xsitecopy's user interface. As is
+obvious from glancing at it, the UI is split into 2 main sections. On the
+left is a tree view with a tree node for each of the sites that Xsitecopy
+knows about.
+</para>
+<!-- FIXME: Add something about site name colours and configurability here -->
+<para>
+If you expand a site, the files and directories that it is aware of will be
+shown in a similar manner to the gnome file manager, gmc. Clicking on a file
+or directory brings up information about that file in the right side of the
+window.
+<!--FIXME: Make the above less crap, and a little more verbose -->
+</para>
+</chapter>
+
+
+
+<chapter><title>Sites</>
+<para>
+If you click on a site, the details and attributes of that site will be
+displayed in the main area of the program. These are divided into what are
+hopefully logical sections. Each section is separated by a frame, described
+below.
+</para>
+
+<sect1><title>Basic Details</title>
+<para>
+<itemizedlist>
+
+<listitem><para><emphasis>Hostname</emphasis> is the name of your
+remote web server. For example, ftp.geocities.com.</para></listitem>
+
+<listitem><para><emphasis>Port</emphasis> specifies the port that
+should be connected to on the remote server. Unless you know you need
+to change this, it should be safe to simply use the default value
+setup by your chosen protocol.  </para></listitem>
+
+<listitem><para><emphasis>Protocol</emphasis> determines the method
+that sitecopy uses to transfer your files. This is
+<emphasis>totally</emphasis> dependant upon whether or not you would
+normally upload files to your website using FTP, or whether you are
+using a WebDAV server. You should choose the protocol
+accordingly. Note:- If xsitecopy has been compiled without WebDAV
+support, FTP will be the only option here.</para></listitem>
+
+<listitem><para><emphasis>Username</emphasis> is the name you normally
+use to login when uploading files. If this is incorrect, you will
+receive errors when trying to upload your files.</para></listitem>
+
+<listitem><para><emphasis>Password</emphasis> is the password required
+in order to login to the remote server. This will appear as asterisks
+on the screen.</para></listitem>
+
+<listitem><para><emphasis>Site Statistics</emphasis> provides a short
+summary of the changes (if any) to the local site, since the last
+update was performed.</para></listitem>
+
+</itemizedlist>
+</para>
+</sect1>
+
+<sect1><title>Locations &amp; Files</title>
+<para>
+<itemizedlist>
+<listitem><para><emphasis>Directory for local files</emphasis>, is an absolute path in your file system. It
+should be the root directory <emphasis>of your website</emphasis> that resides on your
+filesystem.
+</para></listitem>
+<listitem><para><emphasis>Directory for remote files</emphasis>, is the directory that all files will be
+uploaded <emphasis>into</emphasis>. It must exist on the remote site for a successful
+update to be completed. The directory must either have a / prefix if it is
+an absolute path, or a \~/ prefix if it is relative to your remote login
+directory.
+</para></listitem>
+<listitem><para>
+<emphasis>Root URL of the remote site</emphasis>, is a non-essential field, that can be used to
+generate a "recent changes" web page using the console application,
+sitecopy, and a provided awk script. Support for report generation is
+planned for a future version of Xsitecopy.
+</para></listitem>
+
+<listitem><para><emphasis>Permissions mode</emphasis>, can be one of Ignore All, Executables Only, or Maintain
+For All. These options force XSitecopy to either ignore permissions of
+uploaded files, maintain them for files with the execute bit set locally, or ensure
+ALL remote files have the same permission bits as the local site,
+respectively.
+</para></listitem>
+<listitem><para><emphasis>Symbolic links</emphasis>, can be treated in
+various ways.  `Follow all' will tell
+XSitecopy to upload the file (or directory?) that any symbolic links point to.
+`Ignore links' tells XSitecopy not to care if it encounters a symbolic link
+on the local site. `Maintain all' will attempt to create symbolic links on
+the remote site, if this is supported by the selected protocol.
+</para></listitem>
+
+</itemizedlist>
+</para>
+</sect1>
+
+<sect1><title>Update Options</title>
+<para>
+<itemizedlist>
+<listitem><para><emphasis>Delete a file from the server if it is deleted locally</emphasis>. If this is not checked, then any local files that are deleted will be forgotten about. Selecting this option will force sitecopy to delete anything that is deleted on the local copy of the remote site.
+</para></listitem>
+<listitem><para><emphasis>Move a remote file if it is moved locally</emphasis>. When not checked, sitecopy will
+not bother to check if a file has been moved locally, when it appears to be
+deleted. If you wish all local file moves to be mirrored on the remote site,
+ensure this option is checked.
+</para></listitem>
+<listitem><para><emphasis>When uploading changed files, first delete them</emphasis>
+</para></listitem>
+<listitem><para><emphasis>Convert all filenames to lowercase when uploading</emphasis>
+</para></listitem>
+<listitem><para><emphasis>Use &quot;safe mode&quot;</emphasis>
+</para></listitem>
+<listitem><para><emphasis>Use passive mode FTP</emphasis>, should only be unchecked if you actually
+<emphasis>know</emphasis> you want it unchecked.</para></listitem>
+<listitem><para><emphasis>When uploading changed files, first delete them</emphasis>. This option should
+not be checked by default. If you find that your FTP server has trouble
+dealing with over-writing files, then this option will force sitecopy to
+first delete a changed file remotely, before uploading the newer local copy.
+</para></listitem>
+</itemizedlist>
+</para>
+</sect1>
+
+<sect1><title>Excludes, ASCII, and Ignores</title>
+<para>
+Chances are that while you're editing html locally, things like backup files
+will get created. While useful, it's likely you don't want them uploaded to
+your remote web site. The excludes section allows you to specify glob
+patterns (see the fnmatch(3) and glob(7) man pages).
+Any files on the local site matching these expressions will be
+ignored by XSitecopy.</para>
+<para>For example my excludes consist of:</para>
+<para>
+<itemizedlist>
+<listitem><para>*.bak</para></listitem>
+<listitem><para>core</para></listitem>
+<listitem><para>oldweb</para></listitem>
+</itemizedlist>
+</para>
+<para>because I don't want any backups or core dumps uploaded. I also have a
+sub-directory on my local site called 'oldweb' which I keep for nostalgic
+purposes only. This is not uploaded by specifying it as 'an exclude'.
+</para>
+</sect1>
+</chapter>
+
+<chapter><title>Files &amp; Directories</title>
+<sect1 id="existingfiles"><title>Existing Files</title>
+<para>
+FIXME: Add a list of the types here, added, changed, unchanged.
+</para>
+</sect1>
+
+<sect1><title>Deleted Files</title>
+<para>Deleted files appear in a site's file tree because they represent an
+operation that Xsitecopy must still perform when doing an update. However,
+given that these files don't exist, the only information Xsitecopy can
+report is just that.
+</para>
+</sect1>
+
+</chapter>
+
+<chapter id="menus"><title>The Menus</title>
+<sect1><title>File</title>
+<sect2><title>New</title>
+<para>
+This will start the site creation wizard. This wizard will take you through
+the step-by-step process required to give XSitecopy details about a website
+you wish to upload using XSitecopy. When you click "apply" the program may
+appear to freeze over for a number of seconds (or longer on large sites).
+This is currently normal, while XSitecopy processes the local files for the
+new site.
+</para>
+</sect2>
+
+<sect2><title>Open</title>
+<para>
+Prompts you for the filename of a valid sitecopy configuration file. (rc
+file). If you specify a valid one, the sites that the file defines will be
+loaded into XSitecopy.
+</para>
+</sect2>
+
+
+<sect2><title>Save sites</title>
+<para>Saves your site definitions file to the default configuration file.
+</para>
+</sect2>
+
+
+<sect2><title>Save sites As...</title>
+<para>Will prompt you for a filename, and then save your site definitions
+to the file given.
+</para>
+</sect2>
+
+<sect2><title>Delete this site</title>
+<para>Asks for confirmation as to whether you wish to delete the
+selected site or not. If you do, it will.
+</para>
+</sect2>
+
+
+<sect2><title>Quit</title>
+<para>
+Select this to exit the program. If your site definitions have not been
+saved, you will be prompted to save them.
+</para>
+</sect2>
+</sect1>
+
+<sect1><title>Operations</title>
+<para>A site can be initialised, caught-up, updated, a listing can be 
+fetched, or it can be resynchronized, with the remote site.
+</para>
+<sect2><title>Initialise site</title>
+<para>This will make xsitecopy think that there are <emphasis>no</emphasis> files on the
+remote site. This should be used to upload new files, or if you decide to
+change remote servers.
+</para>
+</sect2>
+
+<sect2><title>Catchup site</title>
+<para>This will force xsitecopy to assume that the remote site is identical to
+your local copy. Useful for starting new sites that are already online, or
+if you accidentally initialise a site.
+</para>
+</sect2>
+
+<sect2><title>Fetch site listing</title>
+<para>This will make xsitecopy connect to the remote site and attempt to
+determine what files are there. This is useful if your configuration files
+have become corrupted, and your local-remote sites are in an inconsistent
+state. It is also required if you wish to perform a resynchronization on
+your local site.
+</para>
+</sect2>
+
+<sect2><title>Resynchronize site</title>
+<para>Expected by 0.11.0.
+</para>
+</sect2>
+
+<sect2><title>Update site</title>
+<para>This will produce a dialog box. Once you are ready to connect to the
+remote site, hit <emphasis>Begin</emphasis> and xsitecopy will attempt to make a
+connection. Once one has been established, the operations required
+to synchronize the remote site with the local one will be committed.
+Progress indicators display the percentage completed of each operation.
+</para>
+</sect2>
+
+<sect2><title>Update ALL sites</title>
+<para>This will perform the above updates, for every site that requires one.
+Expected by 0.13.0.
+</para>
+</sect2>
+</sect1>
+
+<sect1><title>Reports</title>
+<sect2><title>Required updates</title>
+
+<para>This displays a short report (depending upon how many sites you have
+defined), simply stating which sites require an update.</para>
+</sect2>
+
+<sect2><title>Site web-report</title>
+<para>This creates a report of all modifications of the selected site, and
+displays them in your web browser. The browser use depends entirely upon how
+your gnome-url settings have been configured. (see gnome control-center for
+more info).
+</para>
+<para>
+NOTE:- This feature is currently a complete hack that requires about 5
+things all of which are not likely to hold on a system different to my own.
+A wide range of report options will be created as soon as sitecopy has reached a 1.0 state.
+</para>
+</sect2>
+
+<sect2><title>Print site info</title>
+<para>Not currently implemented.</para>
+</sect2>
+</sect1>
+
+<sect1><title>Settings</title>
+<sect2><title>Preferences</title>
+<para>This allows you to set various things. Or at least it will do as soon as
+I write it. :o)
+</para>
+</sect2>
+</sect1>
+
+<sect1><title>Backup</title>
+<sect2><title>Backup files status</title>
+<para>The state of your files on the remote site is actually stored in a file
+on the local hard drive. If this file was to become corrupted, then the
+state would normally have to be initialized, or "caught up". This gives you
+an alternate option.</para>
+</sect2>
+
+<sect2><title>Restore files status</title>
+<para>If you have a made a backup of your files' state information, this gives
+you the option to restore it.</para>
+</sect2>
+
+<sect2><title>Backup site definitions</title>
+<para>Saves a backup of your 'rcfile' - the file XSitecopy uses to store the
+site definitions.</para>
+</sect2>
+
+<sect2><title>Restore site definitions</title>
+<para>
+If you have previously backed up your site configurations, this will restore
+them.</para>
+</sect2>
+</sect1>
+
+<sect1><title>Help</title>
+
+<sect2><title>About</title>
+<para>Short dialog about the program.</para>
+</sect2>
+
+<sect2><title>XSitecopy Manual</title>
+<para>Should bring up this online manual.</para>
+</sect2>
+</sect1>
+</chapter>
+
+<chapter><title>Troubleshooting</title>
+<para><emphasis>Do NOT run xsitecopy as root</emphasis>. My experience has shown that for
+some reason all the sanity tests that determine (for example) whether a site
+is selected when you click certain buttons, just fail inexplicably.
+</para>
+<para>Once a new site has been created, the site's "statistics" seem
+to occasionally be wrong. Restarting the program seems to correct that. I
+*think* this is now fixed, but if you still encounter the problem,
+please let me know.</para>
+
+</chapter>
+
+<chapter id="todo"><title>Todo</title>
+<para>
+<itemizedlist>
+<listitem><para>More, cleaner methods of reporting changes to sites.</para></listitem>
+<listitem><para>Re-synchronize mode.</para></listitem>
+<listitem><para>Preferences dialog.</para></listitem>
+<listitem><para>Output of reports to printers. (use of gnome-print perhaps).</para></listitem>
+<listitem><para>Clean up some of the saved-notsaved code.</para></listitem>
+<listitem><para>Gnome panel applet for one-click updates.</para></listitem>
+</itemizedlist>
+Feel free to email me at lee0@callnetuk.com with any feature requests.
+</para>
+</chapter>
+
+<chapter id="bugs"><title>Known Bugs</title>
+<para>
+<itemizedlist>
+<listitem><para>
+Switching between time-size and checksum for change-detection is a bit dodgy
+at the moment.
+</para></listitem>
+<listitem><para>
+Occasional crashes are seen every so often when rescanning. These could be
+random memory corruption, but seem to have gone away recently.
+</para></listitem>
+
+</itemizedlist>
+</para>
+</chapter>
+
+</book>

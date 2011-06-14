@@ -1,0 +1,81 @@
+                                  _   _ ____  _
+                              ___| | | |  _ \| |
+                             / __| | | | |_) | |
+                            | (__| |_| |  _ <| |___
+                             \___|\___/|_| \_\_____|
+
+README
+
+  Curl is a command line tool for transferring data specified with URL
+  syntax. Find out how to use Curl by reading the curl.1 man page or the
+  MANUAL document. Find out how to install Curl by reading the INSTALL
+  document.
+
+  libcurl is the library curl is using to do its job. It is readily
+  available to be used by your software. Read the libcurl.3 man page to
+  learn how!
+
+  You find answers to the most frequent questions we get in the FAQ document.
+
+  Study the COPYING file for distribution terms and similar. If you distribute
+  curl binaries or other binaries that involve libcurl, you might enjoy the
+  LICENSE-MIXING document.
+
+CONTACT
+
+  If you have problems, questions, ideas or suggestions, please contact us
+  by posting to a suitable mailing list. See http://curl.haxx.se/mail/
+
+  All contributors to the project are listed in the THANKS document.
+
+WEB SITE
+
+  Visit the curl web site or mirrors for the latest news and downloads:
+
+        Sweden       http://curl.haxx.se/
+        Australia    http://curl.planetmirror.com/
+        Austria      http://curl.gds.tuwien.ac.at/
+        Denmark      http://curl.cofman.dk/
+        France       http://curl.fastmirror.net/
+        Germany      http://curl.freemirror.de/
+        Germany      http://curl.mirror-server.net/
+        Germany      http://curl.mirror.at.stealer.net/
+        Germany      http://curl.mirroring.de/
+        Germany      http://curl.miscellaneousmirror.org/
+        Germany      http://curl.mons-new-media.de/
+        Germany      http://curl.storemypix.com/
+        Germany      http://curl.triplemind.com/
+        Hong Kong    http://curl.hkmirror.org/
+        Japan        http://curl.s-lines.net/
+        Netherlands  http://curl.nedmirror.nl/
+        Russia       http://curl.tsuren.net/
+        Taiwan       http://curl.cs.pu.edu.tw/
+        Thailand     http://curl.siamu.ac.th/
+        US (AZ)      http://curl.islandofpoker.com/
+        US (CA)      http://curl.meulie.net/
+        US (CA)      http://curl.mirror.redwire.net/
+        US (CA)      http://curl.mirrormonster.com/
+        US (CA)      http://curl.signal42.com/
+        US (FL)      http://curl.hoxt.com/
+        US (TX)      http://curl.109k.com/
+        US (TX)      http://curl.hostingzero.com/
+        US (TX)      http://curl.mirrors.cyberservers.net/
+        US (TX)      http://curl.seekmeup.com/
+
+CVS
+
+  To download the very latest source off the CVS server do this:
+
+   cvs -d :pserver:anonymous@cool.haxx.se:/cvsroot/curl login
+
+  (just press enter when asked for password)
+
+   cvs -d :pserver:anonymous@cool.haxx.se:/cvsroot/curl co curl
+
+  (you'll get a directory named curl created, filled with the source code)
+
+NOTICE
+
+  Curl contains pieces of source code that is Copyright (c) 1998, 1999
+  Kungliga Tekniska Högskolan. This notice is included here to comply with the
+  distribution terms.

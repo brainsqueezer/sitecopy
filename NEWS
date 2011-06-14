@@ -1,0 +1,704 @@
+Changes in release 0.16.3:
+* DAV: Add PKCS#12 client cert support; "client-cert /path/to/cert.p12"
+* Update to neon 0.26.0 (0.24.x and 0.25.x still supported).
+
+Changes in release 0.16.2:
+* Fix over-eager move/rename algorithm when handling a
+ delete of one of a set of identical files.
+* DAV: Fix ordering issues with --fetch.
+* FTP: Retry after response timeouts for STOR commands.
+* Update to neon 0.25.4.
+
+Changes in release 0.16.1:
+* FTP: Fix crash in FTP timeout handling.
+* Improve error messages from LIST parser failure.
+
+Changes in release 0.16.0:
+* Fetch mode now fetches a single directory at a time:
+ - works with DAV servers which reject "Depth: infinity" PROPFIND
+ - works with FTP servers which reject the -R flag to LIST
+ - "exclude" and "ignore" patterns are now matched as expected
+   against remote files.
+* In updates, delete files remotely before creating directories,
+  to allow the "replace a file with a directory" case to work.
+* sftpdriver.c compile fix for older Unixes.
+* Fix for German translation (Jens Seidel)
+
+Changes in release 0.15.1:
+* Updated Italian translation (Cristian Rigamonti).
+* FTP: fix newline handling issues for ASCII file transfers.
+* sitecopy.1: explain use of "http secure" (Reed Snellenberger)
+* Update to neon 0.25.0:
+ - fix regressions in WebDAV path-escaping
+
+Changes in release 0.15.0:
+* Add SFTP support from Nobuyuki Tsuchimura using "protocol sftp".
+* FTP: Ignore symlinks in fetch mode; fix some fetch mode error handling.
+* DAV: fix use of remote root path which needed path-escaping.
+* rsh/ssh: Filename quoting fixes (Nobuyuki Tsuchimura).
+* Apply tempupload option to new files as well as changed files.
+* In "sitecopy --flatlist" output, mark ignored items with "|ignored".
+* Correct sitecopy.1 documentation: symlinks in the local site are
+  followed not ignored, by default.
+* Add French translation of man page, by Nicolas Girard.
+
+Changes in release 0.14.3:
+* FTP: Fix fetch mode issues with some servers.
+
+Changes in release 0.14.2:
+* FTP: Add IPv6 support (passive mode only).
+* Fix "make install" with NLS enabled.
+* Updated Italian translation (Cristian Rigamonti).
+
+Changes in release 0.14.1:
+* Fix state file parse error when upgrading from <0.14.0.
+* Fix build problems with older versions of GCC.
+
+Changes in release 0.14.0:
+* Rewrite of rshdriver by Nobuyuki Tsuchimura, adding support for fetch mode.
+* Add 'permissions dir' flag which maintains directory permissions over FTP.
+* Add --dry-run flag for update mode which displays update output
+  but doesn't actually carry out the operation.
+* Allow 'protocol ssh'; equivalent to 'protocol rsh' with 'rsh ssh, rsp scp'
+* Updated version of neon including various security fixes.
+
+Changes in release 0.13.4:
+* Fix ~/.sitecopy directory permissions check on some platforms.
+* Fix included getopt build on some platforms.
+* Updated Italian translation (Cristian Rigamonti).
+* neon updates:
+ - add support for Kerberos authentication over HTTP ("GSS-Negotiate").
+ - fix compatibility with OpenSSL 0.9.6.
+
+Changes in release 0.13.3:
+* 'ls' parsing tweaks in FTP fetch mode.
+* Better error handling for corrupt site storage files.
+* Update to neon 0.24.
+
+Changes in release 0.13.2:
+* Fixes for FTP synch mode (Paul J. Mantyla, David Madore and others).
+
+Changes in release 0.13.1:
+* Fixes for FTP fetch mode:
+ - corruption of downloaded files
+ - handling of empty lines in responses
+* Drop support for non-XML storage files produced by sitecopy-0.7.0 and earlier.
+* Fixes for SSL certificate caching.
+* Fix build using included libintl.
+* Fix fn_escape() build with some compilers.
+
+Changes in release 0.13.0:
+* Really fix use of non-ASCII filenames:
+ - drop 'charset' config option - this should no longer be used
+ - filenames should be preserved exactly regardless of character set
+* Support WebDAV over SSL again: user is prompted to verify the server
+ certificate on first access.
+* Enable use of bundled expat.
+* Add Italian translation from Cristian Rigamonti <bigamons@freemail.it>.
+* Fix segfault if SSL is requested but not supported.
+* Fix build on AIX (Takeshi NISHIMATSU), FreeBSD.
+
+Changes in release 0.12.1:
+* Fix corruption of uploaded files in FTP mode (Jonathan Paisley)
+* Fix build when included libintl is used (Nathan Hand).
+* Fix bogus "XML parser received non-8-bit data" error.
+* Fix make install (Juergen Daubert).
+* Disable use of bundled expat pending build fix.
+
+Changes in release 0.12.0:
+* Changes to WebDAV support:
+ - fix synch mode to overwrite rather than append to existing local files.
+ - fix create/remove directory operations for Apache 2.0/mod_dav
+* Changes to FTP support:
+ - new 'ftp usecwd' directive, for compatibility with some ProFTPd servers,
+ ensures that the working directory is changed before uploading files.
+ Volker Kuhlmann <VolkerKuhlmann@GMX.de>
+ - fix infinite loops if connection is terminated during login.
+* Fix support for non-ASCII characters in filenames:
+ - character set used for filenames is determined where possible from 
+ $LC_CTYPE, otherwise defaults to ISO-8859-1.  Use e.g. 'charset UTF-8' 
+ to override selection in config file.
+* Updated translations:
+ - Czech (cs.po) from Petr Prazak
+ - Norwegian Nynorsk (nn.po) from Karl Ove Hufthammer
+* Upgrade to neon 0.24-dev:
+ - regain support for SOCKSv5 (--with-socks), thanks to Torsten Kalix.
+ - fix build error for newer versions of libxml2.
+
+Changes in release 0.11.4:
+* Updated German translation (de.po) from Thomas Schultz.
+* Fix DAV fetch mode with SSL enabled against some servers e.g. IIS5?
+* Fix build on Mac OS X 10.1?
+* More Makefile work from Peter Moulder:
+ - support DESTDIR in install targets
+ - 'uninstall' removes message catalogs too when i18n enabled.
+ - clean up use of CFLAGS/CPPFLAGS/INCLUDES
+* Fix compiler warnings in GNOME frontend (Peter Moulder)
+
+Changes in release 0.11.3:
+* Makefile fixes (Peter Moulder).
+* GNOME frontend:
+ - fix includes (Olaf Hering) 
+ - fix build problems, clean up generated docs.
+ - fix memory leaks (Peter Moulder).
+* RPM spec file cleanups.
+* Merge Debian packages changes (Peter Moulder).
+
+Changes in release 0.11.2:
+* Fix 'make install' for non-GNU make.
+* Fix --silent option to really be silent.
+* WebDAV: fix for when 'tempupload' option is used.
+
+Changes in release 0.11.1:
+* Fixes for included gettext build.
+* Build fixes.
+
+Changes in release 0.11.0
+* Fix for segfault in rsh/rcp mode (Nobuyuki Tsuchimura).
+* Fixes for compilation using gcc 3 (Olaf Hering <olh@suse.de>).
+* Fixes for format string problem on Mac OS X.
+* Fix for fetch-then-sync setting modtime of deleted files to 1970-01-01.
+* Fix for setting permissions of local file in synch mode.
+* Improvement for PASV mode port parsing (Rob Funk <rfunk@funknet.net>).
+* Added basic --verify mode, to check whether the remote copy of a site
+ using safe mode has been modified outside sitecopy's control.
+* Added Norwegian Nynorsk translation, nn.po (Karl Ove Hufthammer
+ <huftis@bigfoot.com>)
+* Added 'http tolerant' option, to skip OPTIONS check in WebDAV mode.
+* Upgrade to neon 0.18:
+ - SOCKSv5 support, --with-socks (untested): please report success/failure.
+ - libxml2/expat 1.95 support
+ - a multitude of fixes, e.g. crashes during XML parsing, HTTP proxy
+ authentication, portability fixes, ...
+* Upgrade to gettext 0.10.40, autoconf 2.52.
+* Integrated changes from Debian package (Masayuki Hatta <mhatta@debian.org>)
+ - added setlocale() call to console frontend
+ - added skeleton man page for xsitecopy.
+* FE API changes:
+ - fe_connection takes an 'fe_status' argument again.
+
+Changes in release 0.10.15
+* Updated Japanese translation (ja) (Nobuyuki Tsuchimura).
+* Correctly store modtimes in both '--fetch over existing site' *and* 
+  '--fetch of a new site' cases (thanks to Nobuyuki Tsuchimura).
+* FTP: Fix error reporting for connect failures (broken since 0.10.8)
+* Fix maintaining file permissions in nooverwrite mode.
+
+Changes in release 0.10.14
+* Fix build against libxml.
+
+Changes in release 0.10.13
+* Use separate build dirs in spec file (Nobuyuki Tsuchimura).
+* GNOME update from Lee Mallabone:
+ - Fix crashes when a site is not selected.
+ - Make sure the local directory is read when adding a new site.
+* The Makefile should now work with a non-GNU 'make', please send in
+  bug reports if it doesn't.
+* Fix for 'no: command not found' error during build.
+
+Changes in release 0.10.12
+* For FTP, when uploading files in ASCII mode, display one progress 
+  dot for each 4Kb uploaded rather than one per line.
+* WebDAV: possible fix for problem with responses terminated by EOF.
+* GNOME docs fix (Peter Moulder).
+* Final fixes for building when srcdir != builddir (Peter Moulder).
+* Updated German translation (de.po) (Thomas Schultz).
+
+Changes in release 0.10.11
+* Added Turkish (tr) translation from A. Sinan Unur <sinan@unur.com>.
+* Fix build using bundled expat.
+* Fixes for building when srcdir != builddir from Peter Moulder 
+  <pjm@bofh.asn.au>.
+* Warning fixes (Peter Moulder).
+* Spec file fix (Nobuyuki Tsuchimura).
+
+Changes in release 0.10.10
+* GNOME frontend: bug fixes (Lee Mallabone).
+* FTP: Add '253' as DELE success code (Hans Meine <hans_meine@gmx.net>).
+* FTP fetch: recognise a ".:" line (Phil Davis <pmd@hazy.org.uk>).
+* FTP: possible fix for uploads failing with "250 Transfer Complete"
+  error.
+* Fix synch mode updating local file modification times 
+* neon updated to 0.9.1 (shouldn't affect anyone, except the build is
+  more portable now).
+
+Changes in release 0.10.9
+* Allow --fetch again even if stored state file doesn't exist.
+* Fix synch mode.
+
+Changes in release 0.10.8
+* Fix badly broken fetch mode in sites which use checksum and FTP.
+* Fix potential core dumps in FTP error handling routines.
+* Console: Display the error if fetch mode fails before the fetch began (e.g.
+  using 'protocol webdav' with a server which does not claim WebDAV
+  compliance).
+* Console: Tidy up the display of some error messages.  
+* Internal: Clean up the site_update/fetch/synch return code semantics.
+
+Changes in release 0.10.7
+* FTP fixes:
+ - Removed more file descriptor leaks.
+ - Fix some 'Error .... : Success' messages.
+* neon updates:
+ - WebDAV: HTTP digest authentication fixes against IIS5 (David Sloat)
+ - SSL improvements
+ - Increase read timeout to 120 seconds.
+* Fix RPM spec file for Red Hat Linux 7 (Nobuyuki Tsuchimura).
+* Fix --disable-webdav build (Ross Nicoll <jrn@st-andrews.ac.uk>)
+* FTP fetch mode changes:
+ - Improvements to recognising top-level directory name.
+ - Will FAIL if an 'ls' line could not be parsed. Previously, parse
+   errors were silently ignored, which could result in an empty files
+   list being stored.
+
+Changes in release 0.10.6
+* Fix for search for socket() in -lsocket or -linet which 0.10.5 broke.
+
+Changes in release 0.10.5
+* Fix for core dump on fail to connect FTP, patch by Fabrice Noilhan 
+  <Fabrice.Noilhan@ens.fr>.
+* Fix for file descriptor leak ("Too many open files" problem).
+* Fix for enabling expect-100 support by default (WebDAV driver).
+
+Changes in release 0.10.4
+* GNOME frontend update from Lee Mallabone:
+ - Threading now implemented correctly - no more frozen-up interfaces when
+   uploading over a slow connection. Abort/cancelling updates should
+   now work correctly too, (Thanks to David Knight for various
+   comments & code snippets).
+ - Various bug fixes (thanks to Joe Pfeiffer, Harry Slaughter & others
+   for reports).
+ - Now use libglade for certain dialogs. More glade-ified dialogs
+   coming soon for a better user experience.
+ - Fetch mode disabled - it wasn't designed for checksum-fetch, so has
+   been disabled for this release.
+* Updated Czech translation (cs.po) from Petr Prazak.
+
+Changes in release 0.10.3
+* Updated German translation (de.po) from Thomas Schultz.
+* Updated neon to 0.7.0.
+* Don't delete directories in --update mode if 'nodelete' is
+  specified.
+
+Changes in release 0.10.2
+* rsh driver: pass "-l username" to rsh if a username is specified,
+  and username@host for rcp: patch by David Knight <david@screem.org>
+* Fix for maintaining file permissions with 'tempupload' mode.
+* Fix for "will not overwrite changes" message in safe mode under FTP.
+* Disabled the GNOME frontend which doesn't seem to be working.
+* In synch mode under FTP, download the entire file regardless of what
+  the stored size is.
+
+Changes in release 0.10.1
+* Quick fixes so GNOME fe compiles and links again due to interface
+  changes.
+
+Changes in release 0.10.0
+* Build fix for cygwin, which lacks regex.h.
+* Synch mode will just set permissions of local files if the file 
+  contents have not changed.
+* Console: synch mode will refuse to just remove all files in the local 
+  site, since new users sometimes confuse --update with --synch, with 
+  disastrous consequences. Use 'rm' if you need this functionality.
+* Console: The --debug/-d option now takes comma-separated strings 
+  rather numbers, e.g. 'sitecopy --debug=http,socket --fetch mysite'
+* Added German translation (de.po) from Thomas Schultz <tststs@gmx.de>.
+* WebDAV fetch mode re-implemented.
+* Fix for downloading files in DAV driver.
+* neon updates to 0.4.x:
+  - Basic SSL support added to DAV driver (requires OpenSSL)... use
+    'configure --with-ssl', then put 'http secure' in the rcfile
+    entry for the site.
+    IMPORTANT NOTE: server certificates are NOT presented for user
+    verification (yet).
+* Protocol name for WebDAV driver in rcfile is now 'webdav' or 
+  'dav', e.g. 'protocol dav'
+  The old value, 'http' is recognized but deprecated.
+* WebDAV driver will refuse to operate against a server which does
+  not identify itself as a class 1 WebDAV server in an OPTIONS response.
+* FTP fetch mode will skip Windows drive specifications in directory
+  names.
+* Console: more signals handled by saving update state.
+
+Changes in release 0.10.0-beta
+* HACK: New protocol driver: uses rcp and rsh in combination.
+  Use 'protocol rsh'. Requires a WORKING rsh/rcp setup to the server.
+* Option to disable FTP support added to configure: --disable-ftp
+* Support interactive prompting for username/password: can omit these
+  from rcfile.
+* HTTP proxy authentication support: "proxy-username" and "proxy-password"
+  rcfile keywords (or omit these and use interactive prompting).
+* Switch to using 'neon' WebDAV client library (http://www.webdav.org/neon/):
+  - Support for libxml as XML parser (version 1.8.3 or later required).
+  - Proper error messages for 207 error responses.
+  - RFC2616 and RFC2518 compliance fixes.
+  - Temporarily dropped support for authoring via non-WebDAV extended HTTP 
+    (WebRFM, Netscape Enterprise, AOLserver etc)... will return later.
+* WebDAV: Can maintain file execute permissions against mod_dav 0.9.17 or 
+  later: 'permissions exec' is allowed for DAV sites.
+* Synch mode will only connect to the server if necessary.
+* Sensible abort handling (CTRL-C to abort).
+* Fix builds on Solaris 7 etc which have a libintl.
+* Console: --view mode will only display named sites if any sites are
+  named.
+* Console: Storage file is opened before update begins to help prevent
+  loss of update results.
+
+Changes in release 0.9.9
+* Added --logfile option to redirect debugging messages.
+* Bugfix for GNOME frontend (Lee Mallabone).
+
+Changes in release 0.9.8
+* Fix for transfer progress reporting (should fix GNOME progress bars).
+* GNOME frontend update from Lee Mallabone:
+  - Changing a site's local directory on-the-fly is implemented.
+  - Fix death-on-startup bug when local directories no longer existed.
+  - Only allow directories to be selected in the site creation druid.
+  - Other minor bug fixes
+
+Changes in release 0.9.7
+* GNOME frontend update from Lee Mallabone:
+  - Site creation druid now fully functional.
+
+Changes in release 0.9.6
+* Display number of items which need updating in --list mode.
+* New Japanese translation (ja.po) (Nobuyuki Tsuchimura).
+* Don't checksum excluded files (Nobuyuki Tsuchimura).
+* Spelling fix for console frontend (Nobuyuki Tsuchimura).
+* Minor Makefile fix.
+
+Changes in release 0.9.5
+* Mark more strings for i18n (Petr Prazak).
+* New Czech translation (cs.po) (Petr Prazak).
+* Move strings out of macros for i18n.
+* Exclude files within excluded subdirectory for fetch.
+
+Changes in release 0.9.4
+* Correctly handle 8-bit characters in filenames from stored state.
+* New French translation (fr.po) (Sylvain 'Murdock' Glaize).
+
+Changes in release 0.9.3
+* Parse absolute directory names in FTP fetch response (Nobuyuki Tsuchimura).
+* Check for expat's xmlparse.h in an 'xmlparse' subdirectory.
+
+Changes in release 0.9.2
+* Fix the case where a move is preferred to a change.
+* Use timeout-based read_line again (as per 0.7.6 and earlier).
+
+Changes in release 0.9.1
+* Move files remotely before uploading new files.
+* Niall Smart <niall@pobox.com> fixed --flatlist output.
+
+Changes in release 0.9.0
+
+ *** The info files (~/.sitecopy/*) written by this version are NOT
+ *** backward compatible - versions 0.8.x and before will NOT read
+ *** them. You are advised to take a backup copy of your ~/.sitecopy/
+ *** directory before installing this version.
+ *** 0.9.0 will read the info files written by previous versions.
+
+ *** If you use 'permissions all', then after upgrading, all existing
+ *** files will be appear 'changed'. Run sitecopy --catchup with the
+ *** new version to mark them as updated. The same applies for those
+ *** who use 'permissions exec'.
+
+ * Major redesign. This brings:
+
+  - Improved handling of file permissions - changes in just
+    permissions are detected and handled by update mode. Fetch mode
+    can retrieve the permissions of remote files, and synch mode will
+    set them locally.
+
+  - Better handling of ASCII files - if you change whether a file is
+    ASCII or not, files will be marked as changed accordingly.
+
+  - Detect file content changes by MD5 checksumming, rather than by
+    modification time / size - use the `state checksum' option.
+
+  - Handling of moved files improved: the overhead previously incurred
+    by checking for moved files should be greatly reduced. New option
+    to check for renamed files too - `checkmoved renames' (only valid
+    in conjuction with the `state checksum' option.
+
+ * Site storage files (~/.sitecopy/*) are now XML, allowing for easy
+ future extension.
+
+ * 'ignore' option added, syntax as per 'exclude', which means that
+ changes to local files which match any of the 'ignore' patterns are
+ not mirrored to the remote site by update mode. Files which match
+ 'ignore' patterns will still be created, deleted and moved as normal.
+
+ * The 'ascii' keyword now has syntax as per 'exclude', and is not
+ limited to 20 entries.
+
+ * New option 'lowercase', which forces all filenames to be converted
+ to lowercase for use on the remote site.
+
+ * "Safe mode" added, using the 'safe' option. See the man page for
+ details of this option. Thanks to Shaun Steinhorst for the idea.
+
+ * Synch mode will download deleted files even when 'nodelete' is used.
+
+ * Number of directories that can be scanned in local sites is limited
+ only by virtual memory size. 
+
+ * Console frontend: update mode signal handling changed. SIGINT
+ (e.g. CTRL-C) will now safely terminate the update, saving the update 
+ progress. Other termination signals cause an immediate quit, without
+ saving the update progress: use SIGQUIT (e.g. CTRL-\) if you want this.
+
+ * Console frontend: new --show-progress option to display progress
+ of data transfer in update mode.
+
+ * Internationalization: Russian translation from Michael Sobolev.
+
+ * 'tempupload' option to upload changed files to a temporary file, 
+ '.in.filename' then rename to 'filename' when the upload is complete.
+
+ * Added 'Expect: 100-continue' option again, in the form of an 
+ *enabling* option 'http expect'. Users of Apache 1.3.9 and above are
+ advised to use this option, since it will save time and bandwidth.
+
+ * Added 'ftp showquit' option to display QUIT message from FTP server.
+
+ * GNOME frontend update from Lee Mallabone: unfinished code, use with
+ care. Backup your rcfile! The site info writing code has not been
+ tested very much at all, so whatever you do, make sure your rcfile is
+ safe somewhere else before trying this release.
+ 
+  - The site/file tree received a complete rewrite and now appears
+  lovely and stable, and represents files/directories as it should
+  do.
+ 
+  - Fetch mode. Not perfect, but it's built the best way it can be
+  given the API, and does seem to work reliably.
+
+  - Update; I've added a "stop" button to the update dialog that
+  appears when an update is in progress. It has issues at the moment,
+  I believe; unfortunately I haven't had much time to test it, so your
+  mileage may vary.  Updates themselves should still work just fine
+  though.
+
+  - Site creation; as you'll see from clicking 'new site', this part
+  of the app has also been totally rewritten. *sigh* it's another
+  unfinished feature though. The druid looks very nice, imho. But I've
+  not yet added the code to actually create sites.
+
+  - Site editing; the GUI is totally rewritten from 0.8.x, but parts
+  of it are not yet hooked up, so you may experience some "race
+  conditions".
+
+Changes in release 0.8.3
+
+ * Minor Makefile fix.
+
+Changes in release 0.8.2
+
+ * GNOME frontend: Fixed a reported bug with using "always keep going"
+ to update remote sites (Lee Mallabone).
+
+Changes in release 0.8.1
+
+ * Minor cosmetic change to console frontend: display remote root in
+ banner lines too.
+
+ * Slight speed optimisation.
+
+ * GNOME file reorganisation (Lee Mallabone).
+
+Changes in release 0.8.0
+
+ * Updated EMX build to include WebDAV code (Steffen Siebert).
+
+ * Fix for non-WebDAV builds (Steffen Siebert).
+
+ * GNOME: New upload dialog (Lee Mallabone).
+
+Changes in release 0.8.0pre2
+
+ * WebDAV: Disabled '100-expect' completely, always, for safety.
+ This feature will be brought back later as an option which defaults
+ to "off".
+
+ * configure fix to find 'xmlparse.h' in /usr/include/xmltok/ as 
+ per Debian's libxmltok1-dev package.
+
+Changes in release 0.8.0pre
+
+ * Fixed bug which caused hostname lookup, connection and
+ authentication errors to be ignored.
+ 
+ * Fix for finding expat in 'xmltok' and 'xmlparse' libraries.
+
+ * GNOME update from Lee Mallabone:
+  - Redesigned quit dialog. No more dialogs popping up over each other.
+  - Improved error handling.
+  - WebDAV options added to interface.
+
+Changes in release 0.7.10
+
+ * Disallow using permissions support for WebDAV sites (prevents
+ segfault mid-update).
+
+ * Rename of send_file, hopefully improves AIX 4.3 build.
+
+Changes in release 0.7.9
+
+ * Added check for expat in -lxmltok and -lxmlparse as per
+ Debian's libxmltok1 package.
+
+ * console: Null-terminate long options array.
+
+ * Added implicit rule for object file compilation, should fix build
+ with non-GNU make.
+
+ * Possible fix for cygwin WebDAV upload problems.
+
+Changes in release 0.7.8
+
+ * Added errno.h include in src/socket.c.
+
+Changes in release 0.7.7
+
+ * Added 'http limit' option to try only one request per connection.
+
+ * read_line reverted to use recv() directly.
+
+ * Bug fix where uploads will continue till end-of-file rather than
+ a fixed number of bytes.
+
+Changes in release 0.7.6
+
+ * WebDAV: auth memory allocation tidyup, proxy support fixed,
+ succeed on delete directory for any non-207 2xx class response.
+
+ * Remove segfault on finding named pipes etc, in local directories 
+ with debugging turned on.
+ 
+ * FTP transfer type set when appropriate after broken connection -
+ patch by Tim Ricketts <tr@oxlug.org>.
+
+ * Extra debugging messages in FTP, WebDAV and socket code.
+
+ * Minor man page update.
+
+Changes in release 0.7.5
+
+ * HTTP Basic auth fix, and response body with set Content-Length
+ download fix.
+
+Changes in release 0.7.4
+
+ * console: Change to "sitecopy: Site `foo'..." line, now displays 
+ mode name, site name, and remote server host only.
+
+ * Experimental support for HTTP proxying - use, e.g.:
+    proxy-server proxy.myserver.com
+    proxy-port 8080
+ in rcfile to enable.
+
+ * Fall back on hardcoded port numbers if service name isn't known.
+
+ * Complete rewrite of HTTP Authentication code, to the new RFC 2617
+ standard. The new code has support for:
+  - MD5-session algorithm
+  - Digest code supports 'qop=auth-int' message integrity (untested)
+  - understands multiple challenges in 401 response, uses Digest 
+    in preference to Basic
+  - interprets the 'Authentication-Info' header, and authenticates
+    server response accordingly
+  Tested against Apache 1.3.6 with the new mod_digest (still
+  works against old RFC 2069-style server implementations, too).
+
+ * Cleanups to HTTP code.
+
+ * FTP Passwords and the HTTP 'Authorization:' header value are 
+ now hidden in debugging output.
+
+Changes in release 0.7.3
+
+ * New 'http noexpect' option to workaround problems with WebDAV 
+ servers which do not correctly handle the HTTP/1.1 
+ 'Expect: 100-continue' header (e.g. Apache <= 1.3.6).
+
+Changes in release 0.7.2
+
+ * GNOME error handling bugfix (Lee Mallabone)
+
+ * Compile fix for cygwin environment, thanks to Andy Cowling.
+
+Changes in release 0.7.1
+
+ * Fixed lib/snprintf.c compilation (Andy Cowling)
+
+Changes in release 0.7.0
+
+ *** Name mapping has been removed - the 'rename' key is no longer
+ *** valid in the rcfile
+
+ * Enhanced exclude syntax, allows specific directories to be
+ ignored, e.g. 'exclude /foo/bar' to exclude foo/bar, or
+ 'exclude /foo/bar/*.bak' similarly.
+
+ * Socket reads will timeout, so the program will not hang
+ indefinitely on a severe protocol error.
+
+ * Console: Added --keep-going option to force an update to
+ continue past errors. Faster startup (probably).
+
+ * WebDAV: Filenames with non-alphanumeric characters in
+ work now. Fetch mode memory consumption drastically improved. Better
+ RFC2068 compliance.
+
+ * FTP: Fetch and synch modes will work when 'ftp nopasv' is specified
+ too - fixed by Paul Crowley <paul@hedonism.demon.co.uk>. File
+ permissions are maintained in nooverwrite mode - fixed by Olivier Calle 
+ <olivier@calle.org>.
+
+ * GNOME changes from Lee Mallabone <lee0@callnetuk.com>:
+  - All new site creation wizard. Seems stable, but it is new code so please
+    test & report any shortcomings.
+  - Massive memory plugs. Memory usage reduction by nearly an order of
+    magnitude. (yea, i bloopered the first time round:)
+  - Misc bug fixes. (see gnome/Changelog.xsitecopy for more details).
+
+ * Ported to Digital Unix 4.0 by Dobrica Pavlinusic <dpavlin@foi.hr>.
+ Ported to SunOS 4.1 (thanks to Andrew Haylett <ajh@primag.co.uk> and
+ fetchmail). Ported to the cygwin environment by Andy Cowling
+ <arc@sequent.com>. Generally, quite a lot of portability
+ improvements.
+
+ * Added support for SOCKS firewall - thanks to Andrew Haylett.
+
+ * Bug fixes: some memory leaks.
+
+Changes in release 0.6.0
+
+ * Major restructuring of all the WebDAV code, including the
+ addition of fetch and synch mode handlers. Fetch mode requires
+ expat for XML parsing - see the INSTALL file for details (you 
+ can still compile without expat, just you can't use fetch mode)
+
+ * WebDAV code fixed to work with IIS 5 beta - thanks to Jim
+ Whitehead for making a server available.
+
+ * Yarom Last <ylast@cco.caltech.edu> extended the HTTP code 
+ to work with non-WebDAV HTTP-based authoring servers, i.e.
+  - AOLserver and Netscape Enterprise Server which implement
+    the 'MKDIR' etc methods
+  - Any HTTP server which can transparently create remote dirs
+    with PUT requests
+
+ * GNOME frontend changes from Lee Mallabone <lee0@callnetuk.com>:
+  - New 'backup' menu for storage and restoration of the rcfile and
+    individual site infofiles.
+  - Save sites As, option added.
+  - More online help.
+  - Numerous bug fixes, including a major one - if you've had 
+    trouble with XSitecopy before, I encourage you to try this 
+    version.
+
+ * FTP: Only execute TYPE when actually needed. Report login
+ failure properly.
+	
+ * Misc bug fixes and tidying

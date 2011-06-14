@@ -1,0 +1,17 @@
+Begin3
+Title:		sitecopy
+Version:	@VERSION@
+Entered-date:	@DATE@
+Description:	sitecopy is for easily maintaining remote web sites.
+		With a single command, the program will upload files
+		to the server which have been changed locally, and
+		delete files from the server which have been removed
+		locally, to keep the remote site synchronized with the
+		local site.  FTP and WebDAV servers are supported.
+Keywords:	www, web, site, management, remote, upload, FTP, WebDAV
+Author:		joe@orton.demon.co.uk (Joe Orton)
+Primary-site:	sunsite.unc.edu /pub/Linux/apps/www/misc/
+		@SIZE@ sitecopy-@VERSION@.tar.gz
+Platforms:	Many Unixes, OS/2 using EMX, cygwin.
+Copying-policy:	GPL
+End

@@ -1,0 +1,123 @@
+#! /bin/sh
+# Server testing.
+# Pass sitename as argument #1, directory as argument #2, logfile as #3
+# PRECONDITIONS: Localdir, remote dir empty, .sitecopy/sitename empty
+# TODO: Check whether preconditions hold.
+
+failexit() {
+	echo
+	echo FAIL: on test: $1
+	echo $tests completed successfully before failure.
+	echo
+	exit 1
+}
+
+runsitecopy() {
+	sitecopy $scargs $* $sitename 1>&3 2>&4
+	return $?
+}
+
+# Called for a test which should succeed
+# with sitecopy optype as arg 1, test name as arg 2
+oktest() {
+	echo "***** Test: $2 *****" 1>&3 1>&4
+	echo "Runing test: $2"
+	if ! runsitecopy $1; then
+		echo "- Test failed."
+		failexit $2
+	else
+		echo "- Test succeeded."
+	fi
+	tests=$[ tests + 1 ];
+}
+
+# Called for a test which should fail
+# with sitecopy optype as arg 1, test name as arg 2
+failtest() {
+	# Failure test
+	echo "Running test: $2"
+	echo "***** Test: $2 *****" >&3 >&4
+	if runsitecopy $1; then
+		echo "- Test failed."
+		failexit
+	else
+		echo "- Test succeeded."
+	fi
+	tests=$[ tests + 1 ];
+}
+
+if [ $# -ne 3 ]; then
+	echo Usage: $0 sitename localdir logfile
+	exit -1
+fi
+### Set this appropriately ###
+scargs="--debug=9"
+tests=0
+sitename=$1
+ldir=$2
+cd $ldir
+logfile=$3-out
+debugfile=$3-debug
+# Use fd 3 for the logfile
+exec 3> $logfile
+exec 4> $debugfile
+echo Logging started 1>&3
+
+#### Create directory
+mkdir foo
+oktest --update "Create directory"
+
+### Upload file
+echo "hello world" > foo/file
+oktest --update "Upload file"
+
+### Move file
+mv foo/file file
+oktest --update "Move file"
+
+### Remove directory
+rmdir foo
+oktest --update "Remove directory"
+
+### Remove file
+rm file
+oktest --update "Remove file"
+
+### Uploading weird filenames
+touch "this<is>>a>weird>name"
+oktest --update "Upload weird filename"
+
+### Fetching weird filenames
+oktest --fetch "Fetch weird filename"
+
+### Deleting weird filenames
+# Only here to clear the decks
+rm "this<is>>a>weird>name"
+oktest --update "Delete weird filename"
+
+### Create an existing directory
+mkdir bar
+runsitecopy --update
+rmdir bar
+runsitecopy --init $sitename
+mkdir bar
+failtest --update "Create existing directory"
+
+### Delete a nonexistent directory
+mkdir norman
+runsitecopy --catchup
+rmdir norman
+failtest --update "Delete nonexistent directory"
+
+### Download file
+runsitecopy --catchup
+echo hello world > myfile
+runsitecopy --update
+rm myfile
+oktest --synch "Download file"
+
+### End of tests
+echo
+echo PASS: $tests tests completed.
+echo
+

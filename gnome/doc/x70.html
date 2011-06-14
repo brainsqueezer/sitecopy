@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Locations &#38; Files</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="XSitecopy"
+HREF="book1.html"><LINK
+REL="UP"
+TITLE="Sites"
+HREF="c44.html"><LINK
+REL="PREVIOUS"
+TITLE="Sites"
+HREF="c44.html"><LINK
+REL="NEXT"
+TITLE="Update Options"
+HREF="x91.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>XSitecopy</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="c44.html"
+ACCESSKEY="P"
+>&#60;&#60;&#60; Previous</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Sites</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x91.html"
+ACCESSKEY="N"
+>Next &#62;&#62;&#62;</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN70"
+>Locations &#38; Files</A
+></H1
+><P
+><P
+></P
+><UL
+><LI
+><P
+><I
+CLASS="EMPHASIS"
+>Directory for local files</I
+>, is an absolute path in your file system. It
+should be the root directory <I
+CLASS="EMPHASIS"
+>of your website</I
+> that resides on your
+filesystem.</P
+></LI
+><LI
+><P
+><I
+CLASS="EMPHASIS"
+>Directory for remote files</I
+>, is the directory that all files will be
+uploaded <I
+CLASS="EMPHASIS"
+>into</I
+>. It must exist on the remote site for a successful
+update to be completed. The directory must either have a / prefix if it is
+an absolute path, or a \~/ prefix if it is relative to your remote login
+directory.</P
+></LI
+><LI
+><P
+><I
+CLASS="EMPHASIS"
+>Root URL of the remote site</I
+>, is a non-essential field, that can be used to
+generate a "recent changes" web page using the console application,
+sitecopy, and a provided awk script. Support for report generation is
+planned for a future version of Xsitecopy.</P
+></LI
+><LI
+><P
+><I
+CLASS="EMPHASIS"
+>Permissions mode</I
+>, can be one of Ignore All, Executables Only, or Maintain
+For All. These options force XSitecopy to either ignore permissions of
+uploaded files, maintain them for files with the execute bit set locally, or ensure
+ALL remote files have the same permission bits as the local site,
+respectively.</P
+></LI
+><LI
+><P
+><I
+CLASS="EMPHASIS"
+>Symbolic links</I
+>, can be treated in
+various ways.  `Follow all' will tell
+XSitecopy to upload the file (or directory?) that any symbolic links point to.
+`Ignore links' tells XSitecopy not to care if it encounters a symbolic link
+on the local site. `Maintain all' will attempt to create symbolic links on
+the remote site, if this is supported by the selected protocol.</P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="c44.html"
+ACCESSKEY="P"
+>&#60;&#60;&#60; Previous</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="book1.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x91.html"
+ACCESSKEY="N"
+>Next &#62;&#62;&#62;</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Sites</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c44.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Update Options</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
