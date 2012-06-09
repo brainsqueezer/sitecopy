@@ -19,7 +19,7 @@
 */
 
 /* This contains an FTP client implementation.
- * It performs transparent connection management - it it dies,
+ * It performs transparent connection management - if it dies,
  * it will be reconnected automagically.
  */
 
